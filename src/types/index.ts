@@ -64,4 +64,5 @@ export type RootStackParamList = {
   StudyRooms: undefined;
   RoomDetail: { room: StudyRoom; universityName: string };
   Settings: undefined;
+  Donation: undefined;
 };

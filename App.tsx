@@ -19,6 +19,7 @@ import { HomeScreen } from './src/screens/HomeScreen';
 import { StudyRoomsScreen } from './src/screens/StudyRoomsScreen';
 import { RoomDetailScreen } from './src/screens/RoomDetailScreen';
 import { SettingsScreen } from './src/screens/SettingsScreen';
+import { DonationScreen } from './src/screens/DonationScreen';
 import { StorageService } from './src/services/storageService';
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -90,6 +91,11 @@ export default function App() {
           <Stack.Screen
             name="Settings"
             component={SettingsScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Donation"
+            component={DonationScreen}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>

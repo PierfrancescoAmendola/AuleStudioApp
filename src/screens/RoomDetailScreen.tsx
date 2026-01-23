@@ -52,6 +52,16 @@ import { getDirectionsImperia } from '../data/Liguria/unigeImperiaRooms';
 import { getDirectionsSpezia } from '../data/Liguria/unigeSpeziaRooms';
 import { getDirectionsHealthDecentralized } from '../data/Liguria/unigeHealthRooms';
 import { getDirectionsAFAM_Liguria } from '../data/Liguria/afamLiguriaRooms';
+import { getDirectionsUNIVPM } from '../data/Marche/univpm';
+import { getDirectionsUniUrb } from '../data/Marche/uniurb';
+import { getDirectionsUniMC } from '../data/Marche/unimc';
+import { getDirectionsUniCam } from '../data/Marche/unicam';
+import { getDirectionsAFAM_Marche } from '../data/Marche/afamMarche';
+
+
+
+
+
 
 const DirectionPoint: React.FC<{ title: string; content: string; icon: keyof typeof Ionicons.glyphMap }> = ({ title, content, icon }) => (
     <View style={styles.directionPoint}>
@@ -208,6 +218,26 @@ export const RoomDetailScreen = ({ route, navigation }: any) => {
         if (room.id.startsWith('unige_') || room.id.startsWith('ge_') || room.university === 'UniGe') {
             return getDirectionsUniGe(room);
         }
+        if (room.id.startsWith('univpm_') || room.id.startsWith('an_') || room.university === 'UNIVPM') {
+            return getDirectionsUNIVPM(room);
+        }
+        if (room.id.startsWith('uniurb_') || room.id.startsWith('fano_') || room.id.startsWith('pesaro_') || room.university === 'UniUrb') {
+            return getDirectionsUniUrb(room);
+        }
+        if (room.id.startsWith('unimc_') || room.id.startsWith('civitanova_') || room.id.startsWith('jesi_') || room.id.startsWith('fermo_') || room.university === 'UniMC') {
+            return getDirectionsUniMC(room);
+        }
+        if (room.id.startsWith('unicam_') || room.id.startsWith('matelica_') || room.id.includes('ascoli_annunziata') || room.university === 'UniCam') {
+            return getDirectionsUniCam(room);
+        }
+        if (room.id.startsWith('isia_') || room.id.startsWith('aba_') || room.id.startsWith('cons_') || room.id.startsWith('poliarte_') || room.university === 'AFAM') {
+            return getDirectionsAFAM_Marche(room);
+        }
+
+
+
+
+
         if ((room.university || '').toUpperCase() === 'AFAM' || room.id.startsWith('abaq_') || room.id.startsWith('cons_') || room.id.startsWith('isia_')) {
             return getDirectionsAFAM(room);
         }
@@ -495,7 +525,7 @@ export const RoomDetailScreen = ({ route, navigation }: any) => {
                     const isPotenza = room.id.includes('cons_pz');
                     const isSassi = room.id.includes('cons_mt_sedile');
                     const isDesign = room.id.includes('idm');
-                    const needsBooking = room.tags?.some(t => t.toLowerCase().includes('prenot')) || room.id.includes('aule');
+                    const needsBooking = room.tags?.some((t: string) => t.toLowerCase().includes('prenot')) || room.id.includes('aule');
                     return (
                         <>
                             {isPotenza && (
@@ -575,7 +605,7 @@ export const RoomDetailScreen = ({ route, navigation }: any) => {
                     const uni = (room.university || '').toUpperCase();
                     const isAfam = uni === 'AFAM' || room.id.includes('abaq') || room.id.includes('cons_') || room.id.includes('isia');
                     if (!isAfam) return null;
-                    const needsBooking = room.tags?.some(t => t.toLowerCase().includes('prenot')) || room.nome.toLowerCase().includes('prenotazione') || room.id.includes('aule');
+                    const needsBooking = room.tags?.some((t: string) => t.toLowerCase().includes('prenot')) || room.nome.toLowerCase().includes('prenotazione') || room.id.includes('aule');
                     const isNoisy = room.id.includes('cons_') && !room.id.includes('biblio');
                     return (
                         <>
@@ -625,6 +655,239 @@ export const RoomDetailScreen = ({ route, navigation }: any) => {
                     );
                 })()}
 
+                {(() => {
+                    const uni = (room.university || '').toUpperCase();
+                    if (uni !== 'UNIVPM') return null;
+                    const isMonteDago = room.indirizzo.includes('Brecce') || room.id.includes('montedago');
+                    const isTorrette = room.indirizzo.includes('Conca') || room.id.includes('torrette');
+                    const isVillarey = room.indirizzo.includes('Martelli') || room.id.includes('villarey');
+                    const isAscoli = room.indirizzo.includes('Ascoli') || room.id.includes('ascoli');
+                    const month = new Date().getMonth();
+                    const isWinter = [10, 11, 0, 1, 2].includes(month);
+                    return (
+                        <>
+                            {isMonteDago && (
+                                <View style={[styles.infoBox, { backgroundColor: '#eff6ff', borderColor: '#bfdbfe' }]}>
+                                    <Ionicons name="bus-outline" size={24} color="#2563eb" />
+                                    <Text style={[styles.infoBoxText, { color: '#2563eb' }]}>Prendi il Bus 1/4 (Uno-Quarto): è l'arteria vitale per Monte Dago.</Text>
+                                </View>
+                            )}
+                            {isMonteDago && isWinter && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f0f9ff', borderColor: '#bae6fd', marginTop: 12 }]}>
+                                    <Ionicons name="thermometer-outline" size={24} color="#0284c7" />
+                                    <Text style={[styles.infoBoxText, { color: '#0284c7' }]}>High Wind Warning: Monte Dago è molto esposto. Copriti bene alla fermata del bus!</Text>
+                                </View>
+                            )}
+                            {isTorrette && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fff1f2', borderColor: '#fecdd3' }]}>
+                                    <Ionicons name="medical-outline" size={24} color="#be123c" />
+                                    <Text style={[styles.infoBoxText, { color: '#be123c' }]}>Sei dentro l'Ospedale Regionale. Schiscetta consigliata (o mensa ospedaliera).</Text>
+                                </View>
+                            )}
+                            {isVillarey && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f0fdf4', borderColor: '#bbf7d0' }]}>
+                                    <Ionicons name="rose-outline" size={24} color="#15803d" />
+                                    <Text style={[styles.infoBoxText, { color: '#15803d' }]}>Polo Economia: goditi il chiostro storico e la vicinanza al centro per l'aperitivo.</Text>
+                                </View>
+                            )}
+                            {isAscoli && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fffbeb', borderColor: '#fef3c7' }]}>
+                                    <Ionicons name="construct-outline" size={24} color="#d97706" />
+                                    <Text style={[styles.infoBoxText, { color: '#d97706' }]}>Vibe Artistica: qui trovi laboratori per plastici e modelli fisici.</Text>
+                                </View>
+                            )}
+                        </>
+                    );
+                })()}
+
+                {(() => {
+                    const uni = (room.university || '').toLowerCase();
+                    if (uni !== 'uniurb') return null;
+                    const isCentro = room.indirizzo.includes('Urbino') && !room.indirizzo.includes('Cappuccini') && !room.indirizzo.includes('Crocicchia');
+                    const isCollegi = room.indirizzo.includes('Cappuccini') || room.id.includes('collegi');
+                    const isScientifico = room.indirizzo.includes('Crocicchia') || room.id.includes('scientifico');
+                    const isFano = room.indirizzo.includes('Fano') || room.id.includes('fano');
+                    const month = new Date().getMonth();
+                    const isWinter = [10, 11, 0, 1, 2].includes(month);
+                    return (
+                        <>
+                            {isCentro && (
+                                <View style={[styles.infoBox, { backgroundColor: '#eff6ff', borderColor: '#bfdbfe' }]}>
+                                    <Ionicons name="alert-circle-outline" size={24} color="#2563eb" />
+                                    <Text style={[styles.infoBoxText, { color: '#2563eb' }]}>No Train Alert: Urbino non ha stazione. Usa il Bus Adriabus (Fast da Pesaro/Fano).</Text>
+                                </View>
+                            )}
+                            {isCentro && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f0fdf4', borderColor: '#bbf7d0', marginTop: 12 }]}>
+                                    <Ionicons name="arrow-up-outline" size={24} color="#15803d" />
+                                    <Text style={[styles.infoBoxText, { color: '#15803d' }]}>Verticalità: usa gli ascensori di Borgo Mercatale per salire in Piazza Repubblica senza fatica.</Text>
+                                </View>
+                            )}
+                            {isCollegi && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fdf2f8', borderColor: '#fbcfe8' }]}>
+                                    <Ionicons name="people-outline" size={24} color="#db2777" />
+                                    <Text style={[styles.infoBoxText, { color: '#db2777' }]}>Community Vibe: i Collegi De Carlo sono un'esperienza di studio e vita unica. Vista tramonto top.</Text>
+                                </View>
+                            )}
+                            {isFano && (
+                                <View style={[styles.infoBox, { backgroundColor: '#ecfeff', borderColor: '#bae6fd' }]}>
+                                    <Ionicons name="library-outline" size={24} color="#0ea5e9" />
+                                    <Text style={[styles.infoBoxText, { color: '#0ea5e9' }]}>MeMo Fano: studia tra le rovine romane in una mediateca super moderna.</Text>
+                                </View>
+                            )}
+                            {isWinter && (
+                                <View style={[styles.infoBox, { backgroundColor: '#eef2ff', borderColor: '#c7d2fe', marginTop: 12 }]}>
+                                    <Ionicons name="snow-outline" size={24} color="#4f46e5" />
+                                    <Text style={[styles.infoBoxText, { color: '#4f46e5' }]}>Snow Alert: in caso di neve, controlla la pagina Adriabus per ritardi/sospensioni.</Text>
+                                </View>
+                            )}
+                        </>
+                    );
+                })()}
+
+                {(() => {
+                    const uni = (room.university || '').toLowerCase();
+                    if (uni !== 'unimc') return null;
+                    const isMacerataCentro = room.indirizzo.includes('Macerata') || room.id.includes('unimc');
+                    const isBMB = room.id.includes('mozzi_borgetti');
+                    const isCASB = room.id.includes('casb');
+                    const isPantaleoni = room.id.includes('pantaleoni');
+                    const isCivitanova = room.indirizzo.includes('Civitanova');
+                    const isThursday = new Date().getDay() === 4;
+                    return (
+                        <>
+                            {isMacerataCentro && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f0fdf4', borderColor: '#bbf7d0' }]}>
+                                    <Ionicons name="cafe-outline" size={24} color="#15803d" />
+                                    <Text style={[styles.infoBoxText, { color: '#15803d' }]}>Umanista Vibe: goditi una pausa caffè in Piazza della Libertà tra una sessione e l'altra.</Text>
+                                </View>
+                            )}
+                            {isCASB && (
+                                <View style={[styles.infoBox, { backgroundColor: '#eff6ff', borderColor: '#bfdbfe', marginTop: 12 }]}>
+                                    <Ionicons name="people-outline" size={24} color="#2563eb" />
+                                    <Text style={[styles.infoBoxText, { color: '#2563eb' }]}>Hub Moderno: il CASB è il posto perfetto per lavori di gruppo e socialità (al piano terra).</Text>
+                                </View>
+                            )}
+                            {isBMB && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fff7ed', borderColor: '#fed7aa', marginTop: 12 }]}>
+                                    <Ionicons name="library-outline" size={24} color="#c2410c" />
+                                    <Text style={[styles.infoBoxText, { color: '#c2410c' }]}>Tempio del Silenzio: la Mozzi Borgetti è l'ideale per il deep work immersi nella storia.</Text>
+                                </View>
+                            )}
+                            {isMacerataCentro && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f5f3ff', borderColor: '#ddd6fe', marginTop: 12 }]}>
+                                    <Ionicons name="arrow-up-outline" size={24} color="#7c3aed" />
+                                    <Text style={[styles.infoBoxText, { color: '#7c3aed' }]}>Verticalità: usa gli ascensori di Viale Trieste (dietro lo Sferisterio) per evitare le Piagge.</Text>
+                                </View>
+                            )}
+                            {isCivitanova && (
+                                <View style={[styles.infoBox, { backgroundColor: '#ecfeff', borderColor: '#bae6fd' }]}>
+                                    <Ionicons name="boat-outline" size={24} color="#0ea5e9" />
+                                    <Text style={[styles.infoBoxText, { color: '#0ea5e9' }]}>Base Logistica: la Zavatti è comodissima se vivi sulla costa e fai il pendolare col treno.</Text>
+                                </View>
+                            )}
+                            {isPantaleoni && isThursday && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fef3c7', borderColor: '#fcd34d', marginTop: 12 }]}>
+                                    <Ionicons name="sparkles-outline" size={24} color="#d97706" />
+                                    <Text style={[styles.infoBoxText, { color: '#d97706' }]}>Giovedì Universitario: il Polo Pantaleoni vive la sua serata clou. Preparati a un po' di fermento!</Text>
+                                </View>
+                            )}
+                        </>
+                    );
+                })()}
+
+                {(() => {
+                    const uni = (room.university || '').toLowerCase();
+                    if (uni !== 'unicam') return null;
+                    const isCamerino = room.indirizzo.includes('Camerino') || room.id.includes('unicam');
+                    const isAscoli = room.indirizzo.includes('Ascoli') || room.id.includes('ascoli');
+                    const isMatelica = room.indirizzo.includes('Matelica') || room.id.includes('matelica');
+                    const month = new Date().getMonth();
+                    const isWinter = [10, 11, 0, 1, 2].includes(month);
+                    return (
+                        <>
+                            {isCamerino && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f0fdf4', borderColor: '#bbf7d0' }]}>
+                                    <Ionicons name="people-outline" size={24} color="#15803d" />
+                                    <Text style={[styles.infoBoxText, { color: '#15803d' }]}>Resilienza & Comunità: il Polo degli Studenti è l'hub dove batte il cuore di UniCam.</Text>
+                                </View>
+                            )}
+                            {isCamerino && (
+                                <View style={[styles.infoBox, { backgroundColor: '#eff6ff', borderColor: '#bfdbfe', marginTop: 12 }]}>
+                                    <Ionicons name="bus-outline" size={24} color="#2563eb" />
+                                    <Text style={[styles.infoBoxText, { color: '#2563eb' }]}>Contram Switch: scendi a Castelraimondo e prendi subito il bus Contram per Camerino centro.</Text>
+                                </View>
+                            )}
+                            {isAscoli && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f5f3ff', borderColor: '#ddd6fe' }]}>
+                                    <Ionicons name="color-palette-outline" size={24} color="#7c3aed" />
+                                    <Text style={[styles.infoBoxText, { color: '#7c3aed' }]}>SAD Excellence: la sede Annunziata è il top per i creativi, con tavoli da disegno ampi.</Text>
+                                </View>
+                            )}
+                            {isMatelica && (
+                                <View style={[styles.infoBox, { backgroundColor: '#ecfeff', borderColor: '#bae6fd' }]}>
+                                    <Ionicons name="paw-outline" size={24} color="#0ea5e9" />
+                                    <Text style={[styles.infoBoxText, { color: '#0ea5e9' }]}>Matelica-Camerino: calcola bene i tempi di spostamento tra le due sedi (ca. 20 min auto/bus).</Text>
+                                </View>
+                            )}
+                            {isWinter && isCamerino && (
+                                <View style={[styles.infoBox, { backgroundColor: '#eef2ff', borderColor: '#c7d2fe', marginTop: 12 }]}>
+                                    <Ionicons name="snow-outline" size={24} color="#4f46e5" />
+                                    <Text style={[styles.infoBoxText, { color: '#4f46e5' }]}>Snow Alert: Camerino è a 700m. In inverno controlla il meteo prima di salire!</Text>
+                                </View>
+                            )}
+                        </>
+                    );
+                })()}
+
+                {(() => {
+                    const uni = (room.university || '').toUpperCase();
+                    if (uni !== 'AFAM') return null;
+                    const isISIA = room.id.includes('isia');
+                    const isRossini = room.id.includes('rossini');
+                    const isMacerata = room.id.includes('aba_macerata') || room.id.includes('macerata_mozzi');
+                    const isUrbino = room.indirizzo.includes('Urbino');
+                    const isAncona = room.id.includes('poliarte');
+                    const isSummer = new Date().getMonth() >= 5 && new Date().getMonth() <= 7;
+                    return (
+                        <>
+                            {isISIA && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f0fdf4', borderColor: '#bbf7d0' }]}>
+                                    <Ionicons name="brush-outline" size={24} color="#15803d" />
+                                    <Text style={[styles.infoBoxText, { color: '#15803d' }]}>Graphic Design Hub: l'ISIA è una comunità creativa d'eccellenza. Mac Lab e stamperia top.</Text>
+                                </View>
+                            )}
+                            {isRossini && isSummer && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fef3c7', borderColor: '#fcd34d' }]}>
+                                    <Ionicons name="musical-notes-outline" size={24} color="#d97706" />
+                                    <Text style={[styles.infoBoxText, { color: '#d97706' }]}>ROF Alert: durante il Rossini Opera Festival la città è in fermento. Atmosfera magica ma aule piene!</Text>
+                                </View>
+                            )}
+                            {isMacerata && (
+                                <View style={[styles.infoBox, { backgroundColor: '#eff6ff', borderColor: '#bfdbfe' }]}>
+                                    <Ionicons name="color-palette-outline" size={24} color="#2563eb" />
+                                    <Text style={[styles.infoBoxText, { color: '#2563eb' }]}>Macerata Mixed: l'Accademia e UniMC condividono spesso gli spazi. La BMB è il terreno ideale.</Text>
+                                </View>
+                            )}
+                            {isUrbino && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f5f3ff', borderColor: '#ddd6fe', marginTop: 12 }]}>
+                                    <Ionicons name="briefcase-outline" size={24} color="#7c3aed" />
+                                    <Text style={[styles.infoBoxText, { color: '#7c3aed' }]}>Art Logistics: se hai cartelle giganti o strumenti, chiedi all'autista dell'Adriabus di aprire il bagagliaio.</Text>
+                                </View>
+                            )}
+                            {isAncona && (
+                                <View style={[styles.infoBox, { backgroundColor: '#ecfeff', borderColor: '#bae6fd' }]}>
+                                    <Ionicons name="construct-outline" size={24} color="#0ea5e9" />
+                                    <Text style={[styles.infoBoxText, { color: '#0ea5e9' }]}>Industrial Pragmatism: Poliarte è moderna e funzionale, in una zona di snodo facile da raggiungere.</Text>
+                                </View>
+                            )}
+                        </>
+                    );
+                })()}
+
+
+
+
                 <View style={styles.directionsContainer}>
                     {directions.map((dir, index) => {
                         const getIcon = () => {
@@ -668,8 +931,8 @@ export const RoomDetailScreen = ({ route, navigation }: any) => {
                         Queste indicazioni sono disponibili anche offline.
                     </Text>
                 </View>
-            </ScrollView>
-        </View>
+            </ScrollView >
+        </View >
     );
 };
 

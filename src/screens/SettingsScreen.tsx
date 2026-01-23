@@ -464,6 +464,15 @@ Per domande sulla Privacy, contattaci a: support@unistudyitalia.app`;
                             subtitle="Valutaci sullo Store"
                             onPress={handleReview}
                         />
+                        <View style={styles.divider} />
+                        <SettingItem
+                            icon="heart-outline"
+                            iconColor="#ef4444"
+                            iconBg="#fef2f2"
+                            title="Sostieni il Progetto"
+                            subtitle="Fai una piccola donazione"
+                            onPress={() => navigation.navigate('Donation')}
+                        />
                     </View>
                 </View>
 

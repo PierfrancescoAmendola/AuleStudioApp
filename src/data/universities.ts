@@ -45,6 +45,16 @@ import { unigeImperiaRooms } from './Liguria/unigeImperiaRooms';
 import { unigeSpeziaRooms } from './Liguria/unigeSpeziaRooms';
 import { unigeHealthDecentralizedRooms } from './Liguria/unigeHealthRooms';
 import { afamLiguriaRooms } from './Liguria/afamLiguriaRooms';
+import { univpmRooms, getDirectionsUNIVPM } from './Marche/univpm';
+import { uniurbRooms, getDirectionsUniUrb } from './Marche/uniurb';
+import { unimcRooms, getDirectionsUniMC } from './Marche/unimc';
+import { unicamRooms, getDirectionsUniCam } from './Marche/unicam';
+import { afamMarcheRooms, getDirectionsAFAM_Marche } from './Marche/afamMarche';
+
+
+
+
+
 
 // Centralized university registry
 export const universities: University[] = [
@@ -1152,6 +1162,129 @@ export const universities: University[] = [
         ],
         color: '#7c3aed', // Violet AFAM
         darkColor: '#4c1d95',
+    },
+    {
+        id: 'univpm',
+        name: 'UNIVPM',
+        fullName: 'Università Politecnica delle Marche',
+        city: 'Ancona / Marche',
+        regionName: 'Marche',
+        region: {
+            latitude: 43.4500,
+            longitude: 13.4000,
+            latitudeDelta: 1.2,
+            longitudeDelta: 1.2,
+        },
+        studyRooms: univpmRooms,
+        availableFilters: [
+            'Tutti',
+            'Monte Dago',
+            'Villarey',
+            'Torrette',
+            'Ancona Centro',
+            'Ascoli',
+            'Fermo',
+            'San Benedetto',
+            'Pesaro'
+        ],
+        color: '#003366', // Deep blue
+        darkColor: '#001a33',
+    },
+    {
+        id: 'uniurb',
+        name: 'UniUrb',
+        fullName: 'Università degli Studi di Urbino Carlo Bo',
+        city: 'Urbino / Marche',
+        regionName: 'Marche',
+        region: {
+            latitude: 43.726,
+            longitude: 12.636,
+            latitudeDelta: 0.5,
+            longitudeDelta: 0.8,
+        },
+        studyRooms: uniurbRooms,
+        availableFilters: [
+            'Tutti',
+            'Centro Storico',
+            'Collegi',
+            'Scientifico',
+            'Fano',
+            'Pesaro'
+        ],
+        color: '#ffcc00', // Yellow
+        darkColor: '#cca300',
+    },
+    {
+        id: 'unimc',
+        name: 'UniMC',
+        fullName: 'Università degli Studi di Macerata',
+        city: 'Macerata / Marche',
+        regionName: 'Marche',
+        region: {
+            latitude: 43.300,
+            longitude: 13.450,
+            latitudeDelta: 0.6,
+            longitudeDelta: 0.8,
+        },
+        studyRooms: unimcRooms,
+        availableFilters: [
+            'Tutti',
+            'Macerata Centro',
+            'Civitanova',
+            'Jesi',
+            'Fermo'
+        ],
+        color: '#004d40', // Deep Teal
+        darkColor: '#00251a',
+    },
+    {
+        id: 'unicam',
+        name: 'UniCam',
+        fullName: 'Università di Camerino',
+        city: 'Camerino / Marche',
+        regionName: 'Marche',
+        region: {
+            latitude: 43.136,
+            longitude: 13.068,
+            latitudeDelta: 0.5,
+            longitudeDelta: 0.8,
+        },
+        studyRooms: unicamRooms,
+        availableFilters: [
+            'Tutti',
+            'Camerino',
+            'Ascoli Piceno',
+            'Matelica',
+            'San Benedetto'
+        ],
+        color: '#880e4f', // Deep Pink/Magenta
+        darkColor: '#560027',
+    },
+    {
+        id: 'afamMarche',
+        name: 'AFAM Marche',
+        fullName: 'Istituzioni AFAM Marche (ISIA, Accademie, Conservatori)',
+        city: 'Urbino / Macerata / Pesaro / Fermo  Ancona',
+        regionName: 'Marche',
+        region: {
+            latitude: 43.500,
+            longitude: 13.200,
+            latitudeDelta: 1.5,
+            longitudeDelta: 1.5,
+        },
+        studyRooms: afamMarcheRooms,
+        availableFilters: [
+            'Tutti',
+            'Urbino (ISIA/ABA)',
+            'Macerata (ABA)',
+            'Pesaro (Rossini)',
+            'Fermo (Pergolesi)',
+            'Ancona (Poliarte)',
+            'Conservatori',
+            'Accademie'
+        ],
+        color: '#ef6c00', // Deep Orange
+        darkColor: '#b53d00',
     },
 ];
 

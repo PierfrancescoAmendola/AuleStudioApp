@@ -762,6 +762,97 @@ export const StudyRoomsScreen: React.FC<StudyRoomsScreenProps> = ({ navigation }
                 } else {
                     filtered = filtered.filter(r => r.edificio.includes(selectedBuilding) || r.indirizzo.includes(selectedBuilding));
                 }
+            } else if (university?.id === 'univpm') {
+                if (selectedBuilding === 'Monte Dago') {
+                    filtered = filtered.filter(r => r.indirizzo.includes('Brecce') || r.edificio.includes('Dago'));
+                } else if (selectedBuilding === 'Villarey') {
+                    filtered = filtered.filter(r => r.indirizzo.includes('Martelli') || r.edificio.includes('Villarey'));
+                } else if (selectedBuilding === 'Torrette') {
+                    filtered = filtered.filter(r => r.indirizzo.includes('Conca') || r.edificio.includes('Torrette'));
+                } else if (selectedBuilding === 'Ancona Centro') {
+                    filtered = filtered.filter(r => r.id === 'an_benincasa' || r.indirizzo.includes('Plebiscito'));
+                } else if (selectedBuilding === 'Ascoli') {
+                    filtered = filtered.filter(r => r.indirizzo.includes('Ascoli'));
+                } else if (selectedBuilding === 'Fermo') {
+                    filtered = filtered.filter(r => r.indirizzo.includes('Fermo'));
+                } else if (selectedBuilding === 'San Benedetto') {
+                    filtered = filtered.filter(r => r.indirizzo.includes('Benedetto'));
+                } else if (selectedBuilding === 'Pesaro') {
+                    filtered = filtered.filter(r => r.indirizzo.includes('Pesaro'));
+                } else {
+                    filtered = filtered.filter(room =>
+                        room.edificio.includes(selectedBuilding) ||
+                        room.indirizzo.includes(selectedBuilding)
+                    );
+                }
+            } else if (university?.id === 'uniurb') {
+                if (selectedBuilding === 'Centro Storico') {
+                    filtered = filtered.filter(r => r.indirizzo.includes('Urbino') && !r.indirizzo.includes('Cappuccini') && !r.indirizzo.includes('Crocicchia'));
+                } else if (selectedBuilding === 'Collegi') {
+                    filtered = filtered.filter(r => r.indirizzo.includes('Cappuccini') || r.id.includes('collegi'));
+                } else if (selectedBuilding === 'Scientifico') {
+                    filtered = filtered.filter(r => r.indirizzo.includes('Crocicchia') || r.id.includes('scientifico'));
+                } else if (selectedBuilding === 'Fano') {
+                    filtered = filtered.filter(r => r.indirizzo.includes('Fano'));
+                } else if (selectedBuilding === 'Pesaro') {
+                    filtered = filtered.filter(r => r.indirizzo.includes('Pesaro') || r.id.includes('pesaro'));
+                } else {
+                    filtered = filtered.filter(room =>
+                        room.edificio.includes(selectedBuilding) ||
+                        room.indirizzo.includes(selectedBuilding)
+                    );
+                }
+            } else if (university?.id === 'unimc') {
+                if (selectedBuilding === 'Macerata Centro') {
+                    filtered = filtered.filter(r => r.indirizzo.includes('Macerata') || r.id.includes('unimc'));
+                } else if (selectedBuilding === 'Civitanova') {
+                    filtered = filtered.filter(r => r.indirizzo.includes('Civitanova'));
+                } else if (selectedBuilding === 'Jesi') {
+                    filtered = filtered.filter(r => r.indirizzo.includes('Jesi'));
+                } else if (selectedBuilding === 'Fermo') {
+                    filtered = filtered.filter(r => r.indirizzo.includes('Fermo') || r.id.startsWith('fermo_'));
+                } else {
+                    filtered = filtered.filter(room =>
+                        room.edificio.includes(selectedBuilding) ||
+                        room.indirizzo.includes(selectedBuilding)
+                    );
+                }
+            } else if (university?.id === 'unicam') {
+                if (selectedBuilding === 'Camerino') {
+                    filtered = filtered.filter(r => r.indirizzo.includes('Camerino') || r.id.includes('unicam'));
+                } else if (selectedBuilding === 'Ascoli Piceno') {
+                    filtered = filtered.filter(r => r.indirizzo.includes('Ascoli'));
+                } else if (selectedBuilding === 'Matelica') {
+                    filtered = filtered.filter(r => r.indirizzo.includes('Matelica'));
+                } else if (selectedBuilding === 'San Benedetto') {
+                    filtered = filtered.filter(r => r.indirizzo.includes('Benedetto'));
+                } else {
+                    filtered = filtered.filter(room =>
+                        room.edificio.includes(selectedBuilding) ||
+                        room.indirizzo.includes(selectedBuilding)
+                    );
+                }
+            } else if (university?.id === 'afamMarche') {
+                if (selectedBuilding === 'Urbino (ISIA/ABA)') {
+                    filtered = filtered.filter(r => r.indirizzo.includes('Urbino'));
+                } else if (selectedBuilding === 'Macerata (ABA)') {
+                    filtered = filtered.filter(r => r.id.includes('aba_macerata') || r.id.includes('macerata_mozzi'));
+                } else if (selectedBuilding === 'Pesaro (Rossini)') {
+                    filtered = filtered.filter(r => r.id.includes('rossini') || r.id.includes('pesaro'));
+                } else if (selectedBuilding === 'Fermo (Pergolesi)') {
+                    filtered = filtered.filter(r => r.id.includes('fermo') || r.id.includes('cons_fermo'));
+                } else if (selectedBuilding === 'Ancona (Poliarte)') {
+                    filtered = filtered.filter(r => r.id.includes('poliarte'));
+                } else if (selectedBuilding === 'Conservatori') {
+                    filtered = filtered.filter(r => r.id.includes('cons_'));
+                } else if (selectedBuilding === 'Accademie') {
+                    filtered = filtered.filter(r => r.id.includes('aba_') || r.id.includes('isia_') || r.id.includes('poliarte'));
+                } else {
+                    filtered = filtered.filter(room =>
+                        room.edificio.includes(selectedBuilding) ||
+                        room.indirizzo.includes(selectedBuilding)
+                    );
+                }
             } else {
                 // For others, direct match or substring in Edificio OR Indirizzo (more robust)
                 filtered = filtered.filter(room =>

@@ -7,6 +7,7 @@ import { HomeScreen } from '../screens/HomeScreen';
 import { StudyRoomsScreen } from '../screens/StudyRoomsScreen';
 import { RoomDetailScreen } from '../screens/RoomDetailScreen';
 import { SettingsScreen } from '../screens/SettingsScreen';
+import { DonationScreen } from '../screens/DonationScreen';
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -31,6 +32,7 @@ export const AppNavigator: React.FC = () => {
                     }}
                 />
                 <Stack.Screen name="Settings" component={SettingsScreen} />
+                <Stack.Screen name="Donation" component={DonationScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     );
