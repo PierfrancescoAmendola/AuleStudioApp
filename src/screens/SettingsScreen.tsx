@@ -1,0 +1,691 @@
+import React, { useState, useEffect } from 'react';
+import {
+    View,
+    Text,
+    StyleSheet,
+    TouchableOpacity,
+    ScrollView,
+    Switch,
+    Linking,
+    Alert,
+    Platform,
+    Modal,
+    TextInput,
+    KeyboardAvoidingView,
+    TouchableWithoutFeedback,
+    Keyboard,
+} from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { LinearGradient } from 'expo-linear-gradient';
+import { Ionicons } from '@expo/vector-icons';
+import * as Location from 'expo-location';
+import * as Device from 'expo-device';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { FocusAwareStatusBar } from '../components/FocusAwareStatusBar';
+import { OnboardingCarousel } from '../components/OnboardingCarousel';
+import Constants from 'expo-constants';
+
+interface SettingsScreenProps {
+    navigation: any;
+}
+
+interface SettingItemProps {
+    icon: keyof typeof Ionicons.glyphMap;
+    iconColor: string;
+    iconBg: string;
+    title: string;
+    subtitle?: string;
+    onPress?: () => void;
+    rightElement?: React.ReactNode;
+}
+
+type FeedbackCategory = 'Feedback' | 'Suggerimento' | 'Manca Aula' | 'Localizzazione Sbagliata' | 'Bug' | 'Altro';
+
+const FEEDBACK_CATEGORIES: { type: FeedbackCategory; icon: keyof typeof Ionicons.glyphMap; color: string; bg: string }[] = [
+    { type: 'Feedback', icon: 'chatbubble-outline', color: '#3b82f6', bg: '#eff6ff' },
+    { type: 'Suggerimento', icon: 'bulb-outline', color: '#f59e0b', bg: '#fffbeb' },
+    { type: 'Manca Aula', icon: 'add-circle-outline', color: '#10b981', bg: '#ecfdf5' },
+    { type: 'Localizzazione Sbagliata', icon: 'location-outline', color: '#ef4444', bg: '#fef2f2' },
+    { type: 'Bug', icon: 'bug-outline', color: '#8b5cf6', bg: '#f5f3ff' },
+    { type: 'Altro', icon: 'ellipsis-horizontal-outline', color: '#6b7280', bg: '#f3f4f6' },
+];
+
+const SettingItem: React.FC<SettingItemProps> = ({ icon, iconColor, iconBg, title, subtitle, onPress, rightElement }) => (
+    <TouchableOpacity style={styles.settingItem} onPress={onPress} activeOpacity={onPress ? 0.7 : 1}>
+        <View style={[styles.settingIconContainer, { backgroundColor: iconBg }]}>
+            <Ionicons name={icon} size={22} color={iconColor} />
+        </View>
+        <View style={styles.settingTextContainer}>
+            <Text style={styles.settingTitle}>{title}</Text>
+            {subtitle && <Text style={styles.settingSubtitle}>{subtitle}</Text>}
+        </View>
+        {rightElement || (onPress && <Ionicons name="chevron-forward" size={20} color="#9ca3af" />)}
+    </TouchableOpacity>
+);
+
+export const SettingsScreen: React.FC<SettingsScreenProps> = ({ navigation }) => {
+    const [locationEnabled, setLocationEnabled] = useState(false);
+    const [showOnboarding, setShowOnboarding] = useState(false);
+    const [showTerms, setShowTerms] = useState(false);
+    const [showPrivacy, setShowPrivacy] = useState(false);
+
+    // Feedback flow state
+    const [showFeedback, setShowFeedback] = useState(false);
+    const [feedbackStep, setFeedbackStep] = useState<'category' | 'message'>('category');
+    const [selectedCategory, setSelectedCategory] = useState<FeedbackCategory | null>(null);
+    const [feedbackMessage, setFeedbackMessage] = useState('');
+
+    const appVersion = Constants.expoConfig?.version || '1.0.0';
+
+    useEffect(() => {
+        checkLocationPermission();
+    }, []);
+
+    const checkLocationPermission = async () => {
+        const { status } = await Location.getForegroundPermissionsAsync();
+        setLocationEnabled(status === 'granted');
+    };
+
+    const handleLocationToggle = async (value: boolean) => {
+        if (value) {
+            const { status } = await Location.requestForegroundPermissionsAsync();
+            if (status === 'granted') {
+                setLocationEnabled(true);
+            } else {
+                Alert.alert(
+                    'Permesso Negato',
+                    'Per abilitare la localizzazione, vai nelle Impostazioni del dispositivo.',
+                    [
+                        { text: 'Annulla', style: 'cancel' },
+                        { text: 'Impostazioni', onPress: () => Linking.openSettings() }
+                    ]
+                );
+            }
+        } else {
+            Alert.alert(
+                'Disabilita Localizzazione',
+                'Per disabilitare la localizzazione, vai nelle Impostazioni del dispositivo.',
+                [
+                    { text: 'OK', style: 'cancel' },
+                    { text: 'Impostazioni', onPress: () => Linking.openSettings() }
+                ]
+            );
+        }
+    };
+
+    const handleReplayOnboarding = async () => {
+        await AsyncStorage.removeItem('onboarding_completed');
+        setShowOnboarding(true);
+    };
+
+    const handleOnboardingComplete = async () => {
+        await AsyncStorage.setItem('onboarding_completed', 'true');
+        setShowOnboarding(false);
+    };
+
+    const openFeedbackModal = () => {
+        setShowFeedback(true);
+        setFeedbackStep('category');
+        setSelectedCategory(null);
+        setFeedbackMessage('');
+    };
+
+    const closeFeedbackModal = () => {
+        setShowFeedback(false);
+        setFeedbackStep('category');
+        setSelectedCategory(null);
+        setFeedbackMessage('');
+    };
+
+    const handleCategorySelect = (category: FeedbackCategory) => {
+        setSelectedCategory(category);
+        setFeedbackStep('message');
+    };
+
+    const handleSendFeedback = () => {
+        if (!selectedCategory || !feedbackMessage.trim()) {
+            Alert.alert('Attenzione', 'Scrivi un messaggio prima di inviare.');
+            return;
+        }
+
+        const now = new Date();
+        const dateString = now.toLocaleDateString('it-IT', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+
+        const deviceInfo = `${Device.brand || 'Unknown'} ${Device.modelName || 'Device'}`;
+        const osInfo = `${Platform.OS === 'ios' ? 'iOS' : 'Android'} ${Platform.Version}`;
+
+        const email = 'support@unistudyitalia.app';
+        const subject = encodeURIComponent(`[${selectedCategory}] UniStudy Italia`);
+        const body = encodeURIComponent(`📋 TIPO DI SEGNALAZIONE
+${selectedCategory}
+
+📝 MESSAGGIO
+${feedbackMessage}
+
+━━━━━━━━━━━━━━━━━━━━
+📱 Dispositivo: ${deviceInfo}
+🖥️ Sistema: ${osInfo}
+📦 App Version: ${appVersion}
+📅 Data: ${dateString}
+━━━━━━━━━━━━━━━━━━━━`);
+
+        closeFeedbackModal();
+        Linking.openURL(`mailto:${email}?subject=${subject}&body=${body}`);
+    };
+
+    const handleReview = () => {
+        const storeUrl = Platform.select({
+            ios: 'https://apps.apple.com/app/id000000000',
+            android: 'https://play.google.com/store/apps/details?id=com.unistudyitalia',
+        });
+        if (storeUrl) {
+            Linking.openURL(storeUrl);
+        }
+    };
+
+    // Modal for Terms and Privacy
+    const renderLegalModal = (visible: boolean, onClose: () => void, title: string, content: string) => (
+        <Modal visible={visible} animationType="slide" presentationStyle="pageSheet">
+            <SafeAreaView style={styles.modalContainer}>
+                <View style={styles.modalHeader}>
+                    <Text style={styles.modalTitle}>{title}</Text>
+                    <TouchableOpacity onPress={onClose} style={styles.modalCloseButton}>
+                        <Ionicons name="close" size={28} color="#1f2937" />
+                    </TouchableOpacity>
+                </View>
+                <ScrollView style={styles.modalContent} showsVerticalScrollIndicator={false}>
+                    <Text style={styles.legalText}>{content}</Text>
+                </ScrollView>
+            </SafeAreaView>
+        </Modal>
+    );
+
+    // Feedback Modal
+    const renderFeedbackModal = () => (
+        <Modal visible={showFeedback} animationType="slide" presentationStyle="pageSheet">
+            <SafeAreaView style={styles.modalContainer}>
+                <View style={styles.modalHeader}>
+                    <TouchableOpacity
+                        onPress={feedbackStep === 'message' ? () => setFeedbackStep('category') : closeFeedbackModal}
+                        style={styles.modalCloseButton}
+                    >
+                        <Ionicons name={feedbackStep === 'message' ? 'arrow-back' : 'close'} size={28} color="#1f2937" />
+                    </TouchableOpacity>
+                    <Text style={styles.modalTitle}>
+                        {feedbackStep === 'category' ? 'Tipo di Segnalazione' : selectedCategory}
+                    </Text>
+                    <View style={{ width: 36 }} />
+                </View>
+
+                {feedbackStep === 'category' ? (
+                    <ScrollView style={styles.feedbackContent} showsVerticalScrollIndicator={false}>
+                        <Text style={styles.feedbackSubtitle}>Seleziona il tipo di segnalazione che vuoi inviare:</Text>
+                        <View style={styles.categoryGrid}>
+                            {FEEDBACK_CATEGORIES.map((cat) => (
+                                <TouchableOpacity
+                                    key={cat.type}
+                                    style={styles.categoryCard}
+                                    onPress={() => handleCategorySelect(cat.type)}
+                                    activeOpacity={0.8}
+                                >
+                                    <View style={[styles.categoryIcon, { backgroundColor: cat.bg }]}>
+                                        <Ionicons name={cat.icon} size={28} color={cat.color} />
+                                    </View>
+                                    <Text style={styles.categoryLabel}>{cat.type}</Text>
+                                </TouchableOpacity>
+                            ))}
+                        </View>
+                    </ScrollView>
+                ) : (
+                    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                        <KeyboardAvoidingView
+                            style={styles.messageContainer}
+                            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+                        >
+                            <Text style={styles.feedbackSubtitle}>Descrivi nel dettaglio il tuo feedback:</Text>
+                            <TextInput
+                                style={styles.messageInput}
+                                placeholder="Scrivi qui il tuo messaggio..."
+                                placeholderTextColor="#9ca3af"
+                                multiline
+                                textAlignVertical="top"
+                                value={feedbackMessage}
+                                onChangeText={setFeedbackMessage}
+                            />
+                            <TouchableOpacity
+                                style={[
+                                    styles.sendButton,
+                                    !feedbackMessage.trim() && styles.sendButtonDisabled
+                                ]}
+                                onPress={handleSendFeedback}
+                                disabled={!feedbackMessage.trim()}
+                            >
+                                <LinearGradient
+                                    colors={feedbackMessage.trim() ? ['#10b981', '#059669'] : ['#d1d5db', '#9ca3af']}
+                                    style={styles.sendButtonGradient}
+                                >
+                                    <Ionicons name="send" size={20} color="#ffffff" />
+                                    <Text style={styles.sendButtonText}>Invia Feedback</Text>
+                                </LinearGradient>
+                            </TouchableOpacity>
+                        </KeyboardAvoidingView>
+                    </TouchableWithoutFeedback>
+                )}
+            </SafeAreaView>
+        </Modal>
+    );
+
+    const termsContent = `TERMINI E CONDIZIONI D'USO
+
+Ultimo aggiornamento: Gennaio 2026
+
+1. ACCETTAZIONE DEI TERMINI
+Utilizzando l'app UniStudy Italia, accetti i presenti Termini e Condizioni. Se non sei d'accordo, ti preghiamo di non utilizzare l'applicazione.
+
+2. DESCRIZIONE DEL SERVIZIO
+UniStudy Italia è un'applicazione gratuita che fornisce informazioni sulle aule studio universitarie in Italia. Le informazioni sono fornite a scopo indicativo e potrebbero non essere sempre aggiornate.
+
+3. UTILIZZO DELL'APP
+L'utente si impegna a:
+• Utilizzare l'app solo per scopi leciti
+• Non tentare di compromettere la sicurezza dell'app
+• Non raccogliere dati di altri utenti
+
+4. LIMITAZIONE DI RESPONSABILITÀ
+Le informazioni sugli orari, disponibilità e servizi delle aule studio sono fornite "così come sono". Non garantiamo l'accuratezza o la completezza delle informazioni.
+
+5. MODIFICHE AI TERMINI
+Ci riserviamo il diritto di modificare questi termini in qualsiasi momento. Le modifiche saranno comunicate tramite l'app.
+
+6. CONTATTI
+Per domande sui Termini, contattaci a: legal@unistudyitalia.app`;
+
+    const privacyContent = `INFORMATIVA SULLA PRIVACY
+
+Ultimo aggiornamento: Gennaio 2026
+
+1. DATI RACCOLTI
+UniStudy Italia raccoglie:
+• Posizione geografica (solo se autorizzata) per calcolare le distanze
+• Preferenze locali (università preferita, filtri)
+
+2. UTILIZZO DEI DATI
+I dati di posizione vengono utilizzati esclusivamente per:
+• Mostrare la distanza dalle aule studio
+• Ordinare le aule per vicinanza
+
+I dati NON vengono:
+• Condivisi con terze parti
+• Utilizzati per pubblicità
+• Memorizzati su server esterni
+
+3. CONSERVAZIONE
+Tutti i dati sono memorizzati localmente sul tuo dispositivo e non vengono trasmessi.
+
+4. I TUOI DIRITTI
+Puoi:
+• Disabilitare la localizzazione in qualsiasi momento
+• Eliminare tutti i dati locali disinstallando l'app
+
+5. CONTATTI
+Per domande sulla Privacy, contattaci a: support@unistudyitalia.app`;
+
+    return (
+        <View style={styles.container}>
+            <FocusAwareStatusBar barStyle="light-content" backgroundColor="#10b981" />
+
+            <OnboardingCarousel isVisible={showOnboarding} onComplete={handleOnboardingComplete} />
+
+            {renderLegalModal(showTerms, () => setShowTerms(false), 'Termini e Condizioni', termsContent)}
+            {renderLegalModal(showPrivacy, () => setShowPrivacy(false), 'Privacy Policy', privacyContent)}
+            {renderFeedbackModal()}
+
+            <LinearGradient colors={['#10b981', '#059669']} style={styles.headerGradient}>
+                <SafeAreaView edges={['top']}>
+                    <View style={styles.header}>
+                        <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+                            <Ionicons name="arrow-back" size={24} color="#ffffff" />
+                        </TouchableOpacity>
+                        <Text style={styles.headerTitle}>Impostazioni</Text>
+                        <View style={styles.headerSpacer} />
+                    </View>
+                </SafeAreaView>
+            </LinearGradient>
+
+            <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
+                {/* Legal Section */}
+                <View style={styles.section}>
+                    <Text style={styles.sectionTitle}>Legale</Text>
+                    <View style={styles.sectionCard}>
+                        <SettingItem
+                            icon="document-text-outline"
+                            iconColor="#6366f1"
+                            iconBg="#eef2ff"
+                            title="Termini e Condizioni"
+                            subtitle="Condizioni d'uso dell'app"
+                            onPress={() => setShowTerms(true)}
+                        />
+                        <View style={styles.divider} />
+                        <SettingItem
+                            icon="shield-checkmark-outline"
+                            iconColor="#8b5cf6"
+                            iconBg="#f5f3ff"
+                            title="Privacy Policy"
+                            subtitle="Come trattiamo i tuoi dati"
+                            onPress={() => setShowPrivacy(true)}
+                        />
+                    </View>
+                </View>
+
+                {/* Location Section */}
+                <View style={styles.section}>
+                    <Text style={styles.sectionTitle}>Posizione</Text>
+                    <View style={styles.sectionCard}>
+                        <SettingItem
+                            icon="location-outline"
+                            iconColor="#10b981"
+                            iconBg="#ecfdf5"
+                            title="Localizzazione"
+                            subtitle={locationEnabled ? 'Attiva' : 'Disattivata'}
+                            rightElement={
+                                <Switch
+                                    value={locationEnabled}
+                                    onValueChange={handleLocationToggle}
+                                    trackColor={{ false: '#e5e7eb', true: '#a7f3d0' }}
+                                    thumbColor={locationEnabled ? '#10b981' : '#9ca3af'}
+                                />
+                            }
+                        />
+                    </View>
+                </View>
+
+                {/* App Info Section */}
+                <View style={styles.section}>
+                    <Text style={styles.sectionTitle}>Informazioni</Text>
+                    <View style={styles.sectionCard}>
+                        <SettingItem
+                            icon="information-circle-outline"
+                            iconColor="#3b82f6"
+                            iconBg="#eff6ff"
+                            title="Versione App"
+                            subtitle={`v${appVersion}`}
+                        />
+                        <View style={styles.divider} />
+                        <SettingItem
+                            icon="code-slash-outline"
+                            iconColor="#0ea5e9"
+                            iconBg="#f0f9ff"
+                            title="Sviluppato da"
+                            subtitle="Pierfrancesco Amendola"
+                        />
+                    </View>
+                </View>
+
+                {/* Guide Section */}
+                <View style={styles.section}>
+                    <Text style={styles.sectionTitle}>Guida</Text>
+                    <View style={styles.sectionCard}>
+                        <SettingItem
+                            icon="play-circle-outline"
+                            iconColor="#f59e0b"
+                            iconBg="#fffbeb"
+                            title="Rivedi la Guida"
+                            subtitle="Ripeti il tutorial introduttivo"
+                            onPress={handleReplayOnboarding}
+                        />
+                    </View>
+                </View>
+
+                {/* Feedback Section */}
+                <View style={styles.section}>
+                    <Text style={styles.sectionTitle}>Feedback</Text>
+                    <View style={styles.sectionCard}>
+                        <SettingItem
+                            icon="mail-outline"
+                            iconColor="#ec4899"
+                            iconBg="#fdf2f8"
+                            title="Invia Feedback"
+                            subtitle="Segnalazioni, suggerimenti, bug"
+                            onPress={openFeedbackModal}
+                        />
+                        <View style={styles.divider} />
+                        <SettingItem
+                            icon="star-outline"
+                            iconColor="#eab308"
+                            iconBg="#fefce8"
+                            title="Lascia una Recensione"
+                            subtitle="Valutaci sullo Store"
+                            onPress={handleReview}
+                        />
+                    </View>
+                </View>
+
+                <View style={styles.footer}>
+                    <Text style={styles.footerText}>UniStudy Italia © 2026</Text>
+                    <Text style={styles.footerSubtext}>Fatto con ❤️ per gli studenti italiani</Text>
+                </View>
+            </ScrollView>
+        </View>
+    );
+};
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#f8fafc',
+    },
+    headerGradient: {
+        paddingBottom: 16,
+    },
+    header: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        paddingHorizontal: 16,
+        paddingVertical: 12,
+    },
+    backButton: {
+        padding: 8,
+    },
+    headerTitle: {
+        fontSize: 20,
+        fontWeight: '700',
+        color: '#ffffff',
+        letterSpacing: 0.3,
+    },
+    headerSpacer: {
+        width: 40,
+    },
+    content: {
+        flex: 1,
+        paddingHorizontal: 16,
+    },
+    section: {
+        marginTop: 24,
+    },
+    sectionTitle: {
+        fontSize: 13,
+        fontWeight: '600',
+        color: '#6b7280',
+        textTransform: 'uppercase',
+        letterSpacing: 0.5,
+        marginBottom: 8,
+        marginLeft: 4,
+    },
+    sectionCard: {
+        backgroundColor: '#ffffff',
+        borderRadius: 16,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.08,
+        shadowRadius: 8,
+        elevation: 3,
+        overflow: 'hidden',
+    },
+    settingItem: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        padding: 16,
+    },
+    settingIconContainer: {
+        width: 44,
+        height: 44,
+        borderRadius: 12,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginRight: 14,
+    },
+    settingTextContainer: {
+        flex: 1,
+    },
+    settingTitle: {
+        fontSize: 16,
+        fontWeight: '600',
+        color: '#1f2937',
+    },
+    settingSubtitle: {
+        fontSize: 13,
+        color: '#6b7280',
+        marginTop: 2,
+    },
+    divider: {
+        height: 1,
+        backgroundColor: '#f3f4f6',
+        marginLeft: 74,
+    },
+    footer: {
+        alignItems: 'center',
+        paddingVertical: 32,
+    },
+    footerText: {
+        fontSize: 14,
+        color: '#9ca3af',
+        fontWeight: '500',
+    },
+    footerSubtext: {
+        fontSize: 12,
+        color: '#d1d5db',
+        marginTop: 4,
+    },
+    // Modal Styles
+    modalContainer: {
+        flex: 1,
+        backgroundColor: '#ffffff',
+    },
+    modalHeader: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        paddingHorizontal: 20,
+        paddingVertical: 16,
+        borderBottomWidth: 1,
+        borderBottomColor: '#f3f4f6',
+    },
+    modalTitle: {
+        fontSize: 20,
+        fontWeight: '700',
+        color: '#1f2937',
+    },
+    modalCloseButton: {
+        padding: 4,
+    },
+    modalContent: {
+        flex: 1,
+        paddingHorizontal: 20,
+        paddingTop: 20,
+    },
+    legalText: {
+        fontSize: 15,
+        lineHeight: 24,
+        color: '#374151',
+    },
+    // Feedback Modal Styles
+    feedbackContent: {
+        flex: 1,
+        paddingHorizontal: 20,
+        paddingTop: 16,
+    },
+    feedbackSubtitle: {
+        fontSize: 15,
+        color: '#6b7280',
+        marginBottom: 20,
+    },
+    categoryGrid: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
+        gap: 12,
+    },
+    categoryCard: {
+        width: '47%',
+        backgroundColor: '#ffffff',
+        borderRadius: 16,
+        padding: 20,
+        alignItems: 'center',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.08,
+        shadowRadius: 8,
+        elevation: 3,
+        borderWidth: 1,
+        borderColor: '#f3f4f6',
+    },
+    categoryIcon: {
+        width: 56,
+        height: 56,
+        borderRadius: 16,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: 12,
+    },
+    categoryLabel: {
+        fontSize: 14,
+        fontWeight: '600',
+        color: '#1f2937',
+        textAlign: 'center',
+    },
+    messageContainer: {
+        flex: 1,
+        paddingHorizontal: 20,
+        paddingTop: 16,
+    },
+    messageInput: {
+        backgroundColor: '#f8fafc',
+        borderRadius: 16,
+        padding: 16,
+        fontSize: 16,
+        color: '#1f2937',
+        borderWidth: 1,
+        borderColor: '#e5e7eb',
+        marginBottom: 16,
+        minHeight: 120,
+        maxHeight: 180,
+    },
+    sendButton: {
+        marginBottom: 20,
+        borderRadius: 16,
+        overflow: 'hidden',
+    },
+    sendButtonDisabled: {
+        opacity: 0.7,
+    },
+    sendButtonGradient: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingVertical: 16,
+        gap: 8,
+    },
+    sendButtonText: {
+        fontSize: 16,
+        fontWeight: '700',
+        color: '#ffffff',
+    },
+});
