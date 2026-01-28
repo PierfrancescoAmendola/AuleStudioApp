@@ -33,6 +33,7 @@ import { udaRooms } from './Abruzzo/uda';
 import { uniteRooms } from './Abruzzo/unite';
 import { gssiRooms } from './Abruzzo/gssi';
 import { afamRooms } from './Abruzzo/afam';
+import { unimolRooms, unimolCampobassoRooms, unimolTermoliRooms, unimolPescheRooms, unimolIserniaRooms } from './Molise/unimol';
 import { unibasRooms } from './Basilicata/unibas';
 import { afamBasilicataRooms } from './Basilicata/afamBasilicata';
 import { unicalRooms } from './Calabria/unical';
@@ -169,6 +170,74 @@ export const universities: University[] = [
         ],
         color: '#0ea5e9', // Sky-500
         darkColor: '#0369a1', // Sky-700
+    },
+    {
+        id: 'unimol_cb',
+        name: 'UniMol CB',
+        fullName: 'UniMol - Campobasso',
+        city: 'Campobasso',
+        regionName: 'Molise',
+        region: {
+            latitude: 41.562150,
+            longitude: 14.667536,
+            latitudeDelta: 0.05,
+            longitudeDelta: 0.05,
+        },
+        studyRooms: unimolCampobassoRooms,
+        availableFilters: [
+            'Tutti',
+            'Vazzieri',
+            'Tappino (Medicina)',
+            'Economia',
+            'Campobasso (Albino)'
+        ],
+        color: '#be123c', // Rose-700
+        darkColor: '#881337', // Rose-900
+    },
+    {
+        id: 'unimol_termoli',
+        name: 'UniMol Termoli',
+        fullName: 'UniMol - Termoli',
+        city: 'Termoli',
+        regionName: 'Molise',
+        region: {
+            latitude: 42.004820,
+            longitude: 14.993450,
+            latitudeDelta: 0.03,
+            longitudeDelta: 0.03,
+        },
+        studyRooms: unimolTermoliRooms,
+        availableFilters: [
+            'Tutti',
+            'Polo Universitario',
+            'Biblioteca Civica',
+            'Borgo Antico'
+        ],
+        color: '#0ea5e9', // Sky-500 (Sea vibe)
+        darkColor: '#0369a1', // Sky-700
+    },
+    {
+        id: 'unimol_isernia_pesche',
+        name: 'UniMol Isernia',
+        fullName: 'UniMol - Isernia/Pesche',
+        city: 'Isernia / Pesche',
+        regionName: 'Molise',
+        region: {
+            latitude: 41.6050,
+            longitude: 14.2500, // Centered between Isernia and Pesche
+            latitudeDelta: 0.07,
+            longitudeDelta: 0.07,
+        },
+        studyRooms: [...unimolPescheRooms, ...unimolIserniaRooms],
+        availableFilters: [
+            'Tutti',
+            'Pesche (Agraria)',
+            'Isernia (Sede)',
+            'Isernia (Biblio Comunale)',
+            'Museo Paleolitico'
+        ],
+        color: '#16a34a', // Green-600 (Nature/Bioscienze vibe)
+        darkColor: '#14532d', // Green-900
     },
     {
         id: 'unibas',

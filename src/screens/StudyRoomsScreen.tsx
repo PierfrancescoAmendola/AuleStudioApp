@@ -275,6 +275,31 @@ export const StudyRoomsScreen: React.FC<StudyRoomsScreenProps> = ({ navigation }
                         room.indirizzo.includes(selectedBuilding)
                     );
                 }
+            } else if (university?.id === 'unimol') {
+                if (selectedBuilding === 'Vazzieri') {
+                    filtered = filtered.filter(r => r.id.includes('vazzieri') || r.id.includes('leonardo') || r.id.includes('economia'));
+                } else if (selectedBuilding === 'Tappino (Medicina)') {
+                    filtered = filtered.filter(r => r.id.includes('tappino'));
+                } else if (selectedBuilding === 'Economia') {
+                    filtered = filtered.filter(r => r.id.includes('economia'));
+                } else if (selectedBuilding === 'Termoli') {
+                    filtered = filtered.filter(r => r.id.includes('termoli'));
+                } else if (selectedBuilding === 'Pesche (Agraria)') {
+                    filtered = filtered.filter(r => r.id.includes('pesche'));
+                } else if (selectedBuilding === 'Isernia (Sede)') {
+                    filtered = filtered.filter(r => r.id.includes('unimol_isernia_'));
+                } else if (selectedBuilding === 'Isernia (Biblio Comunale)') {
+                    filtered = filtered.filter(r => r.id.includes('romano'));
+                } else if (selectedBuilding === 'Museo Paleolitico') {
+                    filtered = filtered.filter(r => r.id.includes('museo'));
+                } else if (selectedBuilding === 'Campobasso (Albino)') {
+                    filtered = filtered.filter(r => r.id.includes('albino'));
+                } else {
+                    filtered = filtered.filter(room =>
+                        room.edificio.includes(selectedBuilding) ||
+                        room.indirizzo.includes(selectedBuilding)
+                    );
+                }
             } else if (university?.id === 'unibas') {
                 if (selectedBuilding === 'Macchia') {
                     filtered = filtered.filter(r => r.id.includes('macchia') || r.id.includes('adsu'));

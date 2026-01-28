@@ -57,6 +57,7 @@ import { getDirectionsUniUrb } from '../data/Marche/uniurb';
 import { getDirectionsUniMC } from '../data/Marche/unimc';
 import { getDirectionsUniCam } from '../data/Marche/unicam';
 import { getDirectionsAFAM_Marche } from '../data/Marche/afamMarche';
+import { getDirectionsUnimol } from '../data/Molise/unimol';
 
 
 
@@ -169,6 +170,9 @@ export const RoomDetailScreen = ({ route, navigation }: any) => {
         if (room.id.startsWith('cons_ts') || room.id.startsWith('cons_ud') || room.id.startsWith('aba_ud') || (room.university === 'AFAM' && (room.indirizzo.includes('Ghega') || room.indirizzo.includes('Maggio') || room.indirizzo.includes('Ungheria')))) {
             return getDirectionsAFAM_FVG(room);
         }
+        if (room.id.startsWith('unimol_') || room.id === 'cb_albino' || (room.university || '').toLowerCase() === 'unimol') {
+            return getDirectionsUnimol(room);
+        }
         if (room.id.startsWith('univaq_') || room.id.startsWith('adsu_')) {
             return getDirectionsUnivaq(room);
         }
@@ -275,6 +279,41 @@ export const RoomDetailScreen = ({ route, navigation }: any) => {
                         Segui le indicazioni per raggiungere l'aula studio.
                     </Text>
                 </View>
+
+                {/* UniMol-specific advisories */}
+                {(() => {
+                    const uni = (room.university || '').toLowerCase();
+                    const isUnimol = uni === 'unimol' || room.id.startsWith('unimol_');
+                    if (!isUnimol) return null;
+
+                    const isVazzieri = room.id.includes('vazzieri') || room.id.includes('leonardo') || room.id.includes('economia');
+                    const isTappino = room.id.includes('tappino');
+                    const month = new Date().getMonth();
+                    const isWinter = [10, 11, 0, 1, 2].includes(month); // Nov-Mar
+
+                    return (
+                        <>
+                            {isWinter && (isVazzieri || isTappino) && (
+                                <View style={[styles.infoBox, { backgroundColor: '#eff6ff', borderColor: '#bfdbfe' }]}>
+                                    <Ionicons name="snow-outline" size={24} color="#2563eb" />
+                                    <Text style={[styles.infoBoxText, { color: '#2563eb' }]}>Campobasso è fredda (700m slm). Possibile neve: controlla se i bus SEAC per Tappino circolano.</Text>
+                                </View>
+                            )}
+                            {isTappino && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fff7ed', borderColor: '#fed7aa', marginTop: isWinter ? 12 : 0 }]}>
+                                    <Ionicons name="medkit-outline" size={24} color="#c2410c" />
+                                    <Text style={[styles.infoBoxText, { color: '#c2410c' }]}>Medicina è isolata: non riesci ad andare in sede centrale (Vazzieri) tra una lezione e l'altra.</Text>
+                                </View>
+                            )}
+                            {isVazzieri && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f0fdf4', borderColor: '#bbf7d0', marginTop: isWinter ? 12 : 0 }]}>
+                                    <Ionicons name="bus-outline" size={24} color="#15803d" />
+                                    <Text style={[styles.infoBoxText, { color: '#15803d' }]}>Hub Vazzieri: usa la Navetta gratuita "Campus Travellers" (serve badge).</Text>
+                                </View>
+                            )}
+                        </>
+                    );
+                })()}
 
                 {/* Univaq-specific advisories: Roio (pendenza) & Centro (Tunnel) & Winter weather */}
                 {(() => {
