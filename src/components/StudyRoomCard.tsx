@@ -37,7 +37,7 @@ export const StudyRoomCard = memo<StudyRoomCardProps>(
                         <Text style={styles.roomName}>{studyRoom.nome}</Text>
                         {studyRoom.tags && studyRoom.tags.length > 0 && (
                             <View style={styles.tagsRow}>
-                                {studyRoom.tags.slice(0, 2).map((tag, idx) => (
+                                {studyRoom.tags.map((tag, idx) => (
                                     <View key={idx} style={styles.tagBadge}>
                                         <Text style={styles.tagText}>{tag}</Text>
                                     </View>
@@ -126,18 +126,13 @@ export const StudyRoomCard = memo<StudyRoomCardProps>(
                 <View style={styles.servicesContainer}>
                     <Text style={styles.servicesTitle}>Servizi:</Text>
                     <View style={styles.servicesList}>
-                        {studyRoom.servizi.slice(0, 3).map((servizio, index) => (
+                        {studyRoom.servizi.map((servizio, index) => (
                             <View key={index} style={styles.serviceTag}>
                                 <Text style={styles.serviceText} numberOfLines={1}>
                                     {servizio}
                                 </Text>
                             </View>
                         ))}
-                        {studyRoom.servizi.length > 3 && (
-                            <View style={styles.serviceTag}>
-                                <Text style={styles.serviceText}>+{studyRoom.servizi.length - 3}</Text>
-                            </View>
-                        )}
                     </View>
                 </View>
 

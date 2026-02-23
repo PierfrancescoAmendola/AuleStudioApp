@@ -78,7 +78,7 @@ export const RoomCard = memo<RoomCardProps>(
                     {room.servizi.length > 0 && (
                         <View style={styles.servicesContainer}>
                             <View style={styles.servicesList}>
-                                {room.servizi.slice(0, 4).map((servizio, index) => {
+                                {room.servizi.map((servizio, index) => {
                                     let iconName: string = 'checkmark-circle';
                                     if (servizio.toLowerCase().includes('wifi')) iconName = 'wifi';
                                     else if (servizio.toLowerCase().includes('pres')) iconName = 'flash';

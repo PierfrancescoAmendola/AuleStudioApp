@@ -424,6 +424,7 @@ Per domande sulla Privacy, contattaci a: support@unistudyitalia.app`;
                             iconBg="#f0f9ff"
                             title="Sviluppato da"
                             subtitle="Pierfrancesco Amendola"
+                            onPress={() => Linking.openURL('https://pierfrancescoamendola.github.io/PierfrancescoAmendola/')}
                         />
                     </View>
                 </View>

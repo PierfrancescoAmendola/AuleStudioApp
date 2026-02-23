@@ -51,6 +51,10 @@ import { uniurbRooms, getDirectionsUniUrb } from './Marche/uniurb';
 import { unimcRooms, getDirectionsUniMC } from './Marche/unimc';
 import { unicamRooms, getDirectionsUniCam } from './Marche/unicam';
 import { afamMarcheRooms, getDirectionsAFAM_Marche } from './Marche/afamMarche';
+import { unitoRooms } from './Piemonte/unito';
+import { politoRooms } from './Piemonte/polito';
+import { upoRooms } from './Piemonte/upo';
+import { afamPiemonteRooms } from './Piemonte/afamPiemonte';
 
 
 
@@ -1354,6 +1358,103 @@ export const universities: University[] = [
         ],
         color: '#ef6c00', // Deep Orange
         darkColor: '#b53d00',
+    },
+    {
+        id: 'unito',
+        name: 'UniTo',
+        fullName: 'Università degli Studi di Torino',
+        city: 'Torino / Piemonte',
+        regionName: 'Piemonte',
+        region: {
+            latitude: 45.0700,
+            longitude: 7.6800,
+            latitudeDelta: 1.5,
+            longitudeDelta: 1.5,
+        },
+        studyRooms: unitoRooms,
+        availableFilters: [
+            'Tutti',
+            'CLE (Campus Einaudi)',
+            'Palazzo Nuovo',
+            'Molinette (Medicina)',
+            'Grugliasco (SAMEV)',
+            'Orbassano (San Luigi)',
+            'Sedi Regionali'
+        ],
+        color: '#004B8D', // UniTo Blue
+        darkColor: '#002d56',
+    },
+    {
+        id: 'polito',
+        name: 'PoliTo',
+        fullName: 'Politecnico di Torino',
+        city: 'Torino / Piemonte',
+        regionName: 'Piemonte',
+        region: {
+            latitude: 45.0630,
+            longitude: 7.6600,
+            latitudeDelta: 1.5,
+            longitudeDelta: 1.5,
+        },
+        studyRooms: politoRooms,
+        availableFilters: [
+            'Tutti',
+            'Sede Centrale (Corso Duca)',
+            'Cittadella (Lavori di Gruppo)',
+            'Valentino (Architettura)',
+            'Prese al Tavolo',
+            'Sedi Distaccate'
+        ],
+        color: '#003576', // PoliTo Blue
+        darkColor: '#001d42',
+    },
+    {
+        id: 'upo',
+        name: 'UPO',
+        fullName: 'Università del Piemonte Orientale',
+        city: 'Novara / Alessandria / Vercelli',
+        regionName: 'Piemonte',
+        region: {
+            latitude: 45.4430,
+            longitude: 8.6200,
+            latitudeDelta: 2.0,
+            longitudeDelta: 2.0,
+        },
+        studyRooms: upoRooms,
+        availableFilters: [
+            'Tutti',
+            'Novara',
+            'Alessandria (Borsalino)',
+            'Alessandria (DiSIT)',
+            'Vercelli (Quiet & Historic)',
+            'Sedi Distaccate'
+        ],
+        color: '#00457C', // UPO Blue
+        darkColor: '#002244',
+    },
+    {
+        id: 'afam_piemonte',
+        name: 'AFAM Piemonte',
+        fullName: 'Alta Formazione Artistica e Musicale - Piemonte',
+        city: 'Torino / Piemonte',
+        regionName: 'Piemonte',
+        region: {
+            latitude: 45.0700,
+            longitude: 7.6800,
+            latitudeDelta: 2.0,
+            longitudeDelta: 2.0,
+        },
+        studyRooms: afamPiemonteRooms,
+        availableFilters: [
+            'Tutti',
+            'Torino (Albertina & Verdi)',
+            'Design Hub (IED & IAAD)',
+            'Conservatori Provincia',
+            'Digital Art (ACME)',
+            'Prese Elettriche'
+        ],
+        color: '#8B0000', // Deep Art Red
+        darkColor: '#4A0000',
     },
 ];
 

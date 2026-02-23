@@ -878,6 +878,105 @@ export const StudyRoomsScreen: React.FC<StudyRoomsScreenProps> = ({ navigation }
                         room.indirizzo.includes(selectedBuilding)
                     );
                 }
+            } else if (university?.id === 'unito') {
+                if (selectedBuilding === 'CLE (Campus Einaudi)') {
+                    filtered = filtered.filter(r => r.id.includes('cle') || r.edificio.includes('Campus Luigi Einaudi'));
+                } else if (selectedBuilding === 'Palazzo Nuovo') {
+                    filtered = filtered.filter(r => r.id.includes('pn_') || r.edificio.includes('Palazzo Nuovo'));
+                } else if (selectedBuilding === 'Molinette (Medicina)') {
+                    filtered = filtered.filter(r => r.id.includes('molinette') || r.edificio.includes('Molinette'));
+                } else if (selectedBuilding === 'Grugliasco (SAMEV)') {
+                    filtered = filtered.filter(r => r.id.includes('grugliasco') || r.edificio.includes('Grugliasco'));
+                } else if (selectedBuilding === 'Orbassano (San Luigi)') {
+                    filtered = filtered.filter(r => r.id.includes('orbassano') || r.edificio.includes('San Luigi'));
+                } else if (selectedBuilding === 'Sedi Regionali') {
+                    filtered = filtered.filter(r =>
+                        r.id.includes('cuneo') ||
+                        r.id.includes('biella') ||
+                        r.id.includes('alba') ||
+                        r.id.includes('asti') ||
+                        r.id.includes('savigliano') ||
+                        r.id.includes('ivrea') ||
+                        (r.university || '').includes('-')
+                    );
+                } else {
+                    filtered = filtered.filter(room =>
+                        room.edificio.includes(selectedBuilding) ||
+                        room.indirizzo.includes(selectedBuilding)
+                    );
+                }
+            } else if (university?.id === 'polito') {
+                if (selectedBuilding === 'Sede Centrale (Corso Duca)') {
+                    filtered = filtered.filter(r => r.id.includes('centrale') || r.edificio.includes('Sede Centrale'));
+                } else if (selectedBuilding === 'Cittadella (Lavori di Gruppo)') {
+                    filtered = filtered.filter(r => r.id.includes('cittadella') || r.edificio.includes('Cittadella'));
+                } else if (selectedBuilding === 'Valentino (Architettura)') {
+                    filtered = filtered.filter(r => r.id.includes('valentino') || r.edificio.includes('Valentino') || r.edificio.includes('Castello'));
+                } else if (selectedBuilding === 'Prese al Tavolo') {
+                    filtered = filtered.filter(r => r.servizi.some(s => s.toLowerCase().includes('prese al tavolo')));
+                } else if (selectedBuilding === 'Sedi Distaccate') {
+                    filtered = filtered.filter(r =>
+                        r.id.includes('alessandria') ||
+                        r.id.includes('biella') ||
+                        r.id.includes('mondovi') ||
+                        r.id.includes('vercelli')
+                    );
+                } else {
+                    filtered = filtered.filter(room =>
+                        room.edificio.includes(selectedBuilding) ||
+                        room.indirizzo.includes(selectedBuilding)
+                    );
+                }
+            } else if (university?.id === 'upo') {
+                if (selectedBuilding === 'Novara') {
+                    filtered = filtered.filter(r =>
+                        r.id.includes('novara') || r.indirizzo.includes('Novara')
+                    );
+                } else if (selectedBuilding === 'Alessandria (Borsalino)') {
+                    filtered = filtered.filter(r => r.id.includes('borsalino'));
+                } else if (selectedBuilding === 'Alessandria (DiSIT)') {
+                    filtered = filtered.filter(r => r.id.includes('disit'));
+                } else if (selectedBuilding === 'Vercelli (Quiet & Historic)') {
+                    filtered = filtered.filter(r =>
+                        r.id.includes('vercelli') || r.indirizzo.includes('Vercelli')
+                    );
+                } else if (selectedBuilding === 'Sedi Distaccate') {
+                    filtered = filtered.filter(r =>
+                        r.id.includes('asti') ||
+                        r.id.includes('biella') ||
+                        r.id.includes('verbania')
+                    );
+                } else {
+                    filtered = filtered.filter(room =>
+                        room.edificio.includes(selectedBuilding) ||
+                        room.indirizzo.includes(selectedBuilding)
+                    );
+                }
+            } else if (university?.id === 'afam_piemonte') {
+                if (selectedBuilding === 'Torino (Albertina & Verdi)') {
+                    filtered = filtered.filter(r =>
+                        r.id.includes('albertina') || r.id.includes('verdi')
+                    );
+                } else if (selectedBuilding === 'Design Hub (IED & IAAD)') {
+                    filtered = filtered.filter(r =>
+                        r.id.includes('ied') || r.id.includes('iaad')
+                    );
+                } else if (selectedBuilding === 'Conservatori Provincia') {
+                    filtered = filtered.filter(r =>
+                        r.id.includes('cons_vivaldi') || r.id.includes('cons_cantelli') || r.id.includes('cons_ghedini')
+                    );
+                } else if (selectedBuilding === 'Digital Art (ACME)') {
+                    filtered = filtered.filter(r => r.id.includes('acme'));
+                } else if (selectedBuilding === 'Prese Elettriche') {
+                    filtered = filtered.filter(r =>
+                        r.servizi.some(s => s.toLowerCase().includes('prese'))
+                    );
+                } else {
+                    filtered = filtered.filter(room =>
+                        room.edificio.includes(selectedBuilding) ||
+                        room.indirizzo.includes(selectedBuilding)
+                    );
+                }
             } else {
                 // For others, direct match or substring in Edificio OR Indirizzo (more robust)
                 filtered = filtered.filter(room =>

@@ -58,6 +58,10 @@ import { getDirectionsUniMC } from '../data/Marche/unimc';
 import { getDirectionsUniCam } from '../data/Marche/unicam';
 import { getDirectionsAFAM_Marche } from '../data/Marche/afamMarche';
 import { getDirectionsUnimol } from '../data/Molise/unimol';
+import { getDirectionsUniTo } from '../data/Piemonte/unito';
+import { getDirectionsPoliTo } from '../data/Piemonte/polito';
+import { getDirectionsUPO } from '../data/Piemonte/upo';
+import { getDirectionsAFAMPiemonte } from '../data/Piemonte/afamPiemonte';
 
 
 
@@ -169,6 +173,18 @@ export const RoomDetailScreen = ({ route, navigation }: any) => {
         }
         if (room.id.startsWith('cons_ts') || room.id.startsWith('cons_ud') || room.id.startsWith('aba_ud') || (room.university === 'AFAM' && (room.indirizzo.includes('Ghega') || room.indirizzo.includes('Maggio') || room.indirizzo.includes('Ungheria')))) {
             return getDirectionsAFAM_FVG(room);
+        }
+        if (room.id.startsWith('unito_') || (room.university || '').toLowerCase() === 'unito' || (room.university || '').includes('UniTo')) {
+            return getDirectionsUniTo(room);
+        }
+        if (room.id.startsWith('polito_') || (room.university || '').toLowerCase() === 'polito' || (room.university || '').includes('PoliTo')) {
+            return getDirectionsPoliTo(room);
+        }
+        if (room.id.startsWith('upo_') || (room.university || '').toLowerCase() === 'upo' || (room.university || '') === 'UPO') {
+            return getDirectionsUPO(room);
+        }
+        if (room.id.startsWith('aba_albertina') || room.id.startsWith('ied_') || room.id.startsWith('iaad_') || room.id.startsWith('cons_verdi_') || room.id.startsWith('cons_vivaldi_') || room.id.startsWith('cons_cantelli_') || room.id.startsWith('cons_ghedini_') || room.id.startsWith('acme_') || room.id.startsWith('aba_cuneo_')) {
+            return getDirectionsAFAMPiemonte(room);
         }
         if (room.id.startsWith('unimol_') || room.id === 'cb_albino' || (room.university || '').toLowerCase() === 'unimol') {
             return getDirectionsUnimol(room);
