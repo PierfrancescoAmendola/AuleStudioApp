@@ -19,7 +19,8 @@ export const unimibRooms: StudyRoom[] = [
         indirizzo: 'Piazza dell\'Ateneo Nuovo 1, Milano',
         university: 'Unimib',
         occupancy_rate: 'Altissimo',
-        notes: 'Il cuore pulsante dell\'ateneo. Aperta fino a tardi e il sabato mattina. Prenotazione obbligatoria con app "Affluences".'
+        notes: 'Il cuore pulsante dell\'ateneo. Aperta fino a tardi e il sabato mattina. Prenotazione obbligatoria con app "Affluences".',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'unimib_u6_study',
@@ -35,7 +36,8 @@ export const unimibRooms: StudyRoom[] = [
         longitude: 9.2135,
         indirizzo: 'Piazza dell\'Ateneo Nuovo 1, Milano',
         university: 'Unimib',
-        notes: 'Tavoli liberi negli spazi comuni e al piano interrato vicino alla mensa. Ottimo per lavori di gruppo.'
+        notes: 'Tavoli liberi negli spazi comuni e al piano interrato vicino alla mensa. Ottimo per lavori di gruppo.',
+        tags: ['Aula Studio', 'WiFi', '☕ Ristoro'],
     },
     {
         id: 'unimib_u7_civitas',
@@ -51,7 +53,8 @@ export const unimibRooms: StudyRoom[] = [
         longitude: 9.2120,
         indirizzo: 'Via Bicocca degli Arcimboldi 8, Milano',
         university: 'Unimib',
-        notes: 'Edificio collegato all\'U6 da un tunnel. Meno affollato della biblioteca centrale.'
+        notes: 'Edificio collegato all\'U6 da un tunnel. Meno affollato della biblioteca centrale.',
+        tags: ['Aula Studio', 'WiFi'],
     },
     {
         id: 'unimib_u12_auditorium',
@@ -68,7 +71,8 @@ export const unimibRooms: StudyRoom[] = [
         indirizzo: 'Via Vizzola 5, Milano',
         university: 'Unimib',
         occupancy_rate: 'Alto la sera',
-        notes: 'Punto di riferimento per lo studio serale e la cena (mensa aperta la sera). Frequentato dai residenti del campus.'
+        notes: 'Punto di riferimento per lo studio serale e la cena (mensa aperta la sera). Frequentato dai residenti del campus.',
+        tags: ['Aula Studio', 'WiFi', '☕ Ristoro'],
     },
 
     // ============================================================
@@ -88,7 +92,8 @@ export const unimibRooms: StudyRoom[] = [
         longitude: 9.2115,
         indirizzo: 'Piazza della Scienza 3, Milano',
         university: 'Unimib',
-        notes: 'Gli studenti di Fisica/Matematica studiano qui. Proprio di fronte alla stazione Greco Pirelli.'
+        notes: 'Gli studenti di Fisica/Matematica studiano qui. Proprio di fronte alla stazione Greco Pirelli.',
+        tags: ['Aula Studio', 'WiFi', '🔇 Silenzio'],
     },
     {
         id: 'unimib_u4_tellus',
@@ -104,7 +109,8 @@ export const unimibRooms: StudyRoom[] = [
         longitude: 9.2110,
         indirizzo: 'Piazza della Scienza 4, Milano',
         university: 'Unimib',
-        notes: 'Meno conosciuta, spesso si trova posto.'
+        notes: 'Meno conosciuta, spesso si trova posto.',
+        tags: ['Aula Studio', 'WiFi'],
     },
 
     // ============================================================
@@ -125,7 +131,8 @@ export const unimibRooms: StudyRoom[] = [
         indirizzo: 'Via Cadore 48, Monza (MB)',
         university: 'Unimib',
         occupancy_rate: 'Alto',
-        notes: 'Biblioteca di riferimento per Medicina. Orari estesi fino alle 22:00 (verificare periodi esami).'
+        notes: 'Biblioteca di riferimento per Medicina. Orari estesi fino alle 22:00 (verificare periodi esami).',
+        tags: ['Biblioteca', 'Medicina', 'WiFi'],
     },
     {
         id: 'unimib_monza_ospedale',
@@ -141,7 +148,8 @@ export const unimibRooms: StudyRoom[] = [
         longitude: 9.2690,
         indirizzo: 'Via Pergolesi 33, Monza (Settore A)',
         university: 'Unimib',
-        notes: 'Nuova aula studio inaugurata recentemente all\'interno dell\'ospedale, adiacente agli ambulatori. Accesso libero con prenotazione Affluences.'
+        notes: 'Nuova aula studio inaugurata recentemente all\'interno dell\'ospedale, adiacente agli ambulatori. Accesso libero con prenotazione Affluences.',
+        tags: ['Aula Studio', 'Medicina', 'WiFi', '🔇 Silenzio'],
     },
     {
         id: 'unimib_monza_u18',
@@ -157,7 +165,8 @@ export const unimibRooms: StudyRoom[] = [
         longitude: 9.2700,
         indirizzo: 'Via Podgora, Vedano al Lambro (MB)',
         university: 'Unimib',
-        notes: 'Sede dei corsi di laurea triennali e infermieristica. Edificio moderno con spazi comuni.'
+        notes: 'Sede dei corsi di laurea triennali e infermieristica. Edificio moderno con spazi comuni.',
+        tags: ['Aula Studio', 'WiFi', '☕ Ristoro'],
     },
 
     // ============================================================
@@ -177,7 +186,8 @@ export const unimibRooms: StudyRoom[] = [
         longitude: 9.2115,
         indirizzo: 'Piazza della Scienza 1, Milano',
         university: 'Unimib',
-        notes: 'Edificio di Fisica e Matematica. 13 aule, 1126 posti. Proprio di fronte alla stazione Greco Pirelli!'
+        notes: 'Edificio di Fisica e Matematica. 13 aule, 1126 posti. Proprio di fronte alla stazione Greco Pirelli!',
+        tags: ['Aula Studio', 'WiFi'],
     },
     {
         id: 'unimib_u3_bios',
@@ -193,7 +203,8 @@ export const unimibRooms: StudyRoom[] = [
         longitude: 9.2110,
         indirizzo: 'Piazza della Scienza 2, Milano',
         university: 'Unimib',
-        notes: 'Biotecnologie e Scienze Biologiche. 11 aule, 1531 posti totali.'
+        notes: 'Biotecnologie e Scienze Biologiche. 11 aule, 1531 posti totali.',
+        tags: ['Aula Studio', 'WiFi'],
     },
     {
         id: 'unimib_u5_ratio',
@@ -209,7 +220,8 @@ export const unimibRooms: StudyRoom[] = [
         longitude: 9.2130,
         indirizzo: 'Via Roberto Cozzi 55, Milano',
         university: 'Unimib',
-        notes: 'Dipartimento di Informatica. Spazi studio nei corridoi e aule libere.'
+        notes: 'Dipartimento di Informatica. Spazi studio nei corridoi e aule libere.',
+        tags: ['Aula Studio', 'WiFi'],
     },
     {
         id: 'unimib_u9_koine',
@@ -225,7 +237,8 @@ export const unimibRooms: StudyRoom[] = [
         longitude: 9.2155,
         indirizzo: 'Viale dell\'Innovazione 10, Milano',
         university: 'Unimib',
-        notes: 'Edificio ristrutturato con nuove aule didattiche. Spazi studio disponibili.'
+        notes: 'Edificio ristrutturato con nuove aule didattiche. Spazi studio disponibili.',
+        tags: ['Aula Studio', 'WiFi'],
     },
     {
         id: 'unimib_u14_abacus',
@@ -241,7 +254,8 @@ export const unimibRooms: StudyRoom[] = [
         longitude: 9.2085,
         indirizzo: 'Viale Sarca 336, Milano',
         university: 'Unimib',
-        notes: 'Sala studio autonoma al piano -1. A volte riservata a laureandi Informatica.'
+        notes: 'Sala studio autonoma al piano -1. A volte riservata a laureandi Informatica.',
+        tags: ['Aula Studio', 'WiFi', '🔇 Silenzio'],
     },
     {
         id: 'unimib_u16_maieutica',
@@ -257,7 +271,8 @@ export const unimibRooms: StudyRoom[] = [
         longitude: 9.2070,
         indirizzo: 'Via Thomas Mann 8, Milano',
         university: 'Unimib',
-        notes: 'Scienze della Formazione e Psicologia. 9 aule, 825 posti. Raggiungibile da Metro Ponale.'
+        notes: 'Scienze della Formazione e Psicologia. 9 aule, 825 posti. Raggiungibile da Metro Ponale.',
+        tags: ['Aula Studio', 'WiFi'],
     },
     {
         id: 'unimib_carrel',
@@ -273,7 +288,8 @@ export const unimibRooms: StudyRoom[] = [
         longitude: 9.2135,
         indirizzo: 'Piazza dell\'Ateneo Nuovo 1, Milano',
         university: 'Unimib',
-        notes: '20 box individuali prenotabili tramite Affluences. Ideali per tesi e studio concentrato.'
+        notes: '20 box individuali prenotabili tramite Affluences. Ideali per tesi e studio concentrato.',
+        tags: ['Aula Studio', 'WiFi', '🔇 Silenzio'],
     },
     {
         id: 'unimib_biblio_scienze',
@@ -289,7 +305,8 @@ export const unimibRooms: StudyRoom[] = [
         longitude: 9.2115,
         indirizzo: 'Piazza della Scienza 3, Milano',
         university: 'Unimib',
-        notes: 'Biblioteca dedicata alle discipline scientifiche. Più silenziosa della centrale.'
+        notes: 'Biblioteca dedicata alle discipline scientifiche. Più silenziosa della centrale.',
+        tags: ['Biblioteca', 'WiFi', '🔇 Silenzio'],
     }
 ];
 

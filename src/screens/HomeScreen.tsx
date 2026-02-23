@@ -11,6 +11,8 @@ import {
     Animated,
     Dimensions,
     ScrollView,
+    Keyboard,
+    Pressable,
 } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Ionicons } from '@expo/vector-icons';
@@ -179,7 +181,7 @@ export const HomeScreen: React.FC<Props> = ({ navigation }) => {
     };
 
     return (
-        <View style={styles.container}>
+        <Pressable style={styles.container} onPress={Keyboard.dismiss}>
             <OnboardingCarousel
                 isVisible={showOnboarding}
                 onComplete={handleOnboardingComplete}
@@ -311,7 +313,7 @@ export const HomeScreen: React.FC<Props> = ({ navigation }) => {
                     }
                 />
             </View>
-        </View>
+        </Pressable>
     );
 };
 
@@ -362,6 +364,7 @@ const styles = StyleSheet.create({
         padding: 8,
         borderRadius: 12,
         backgroundColor: 'rgba(255,255,255,0.15)',
+        marginRight: 4,
     },
     favoriteButtonContainer: {
         position: 'absolute',

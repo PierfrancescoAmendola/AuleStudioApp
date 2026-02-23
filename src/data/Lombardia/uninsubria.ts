@@ -19,7 +19,8 @@ export const uninsubriaRooms: StudyRoom[] = [
         indirizzo: 'Via Monte Generoso 71, Varese',
         university: 'Insubria',
         occupancy_rate: 'Alto',
-        notes: 'Sede centrale del Campus di Varese. Grande, luminosa e con ampio parcheggio gratuito davanti.'
+        notes: 'Sede centrale del Campus di Varese. Grande, luminosa e con ampio parcheggio gratuito davanti.',
+        tags: ['Biblioteca', 'WiFi', '⚡ Prese', '❄️ Climatizzato', '🅿️ Parcheggio'],
     },
     {
         id: 'insubria_va_biblio_bio',
@@ -35,7 +36,8 @@ export const uninsubriaRooms: StudyRoom[] = [
         longitude: 8.8490,
         indirizzo: 'Via J.H. Dunant 3, Varese',
         university: 'Insubria',
-        notes: 'Riferimento per Medicina e Scienze. Ambiente molto tranquillo.'
+        notes: 'Riferimento per Medicina e Scienze. Ambiente molto tranquillo.',
+        tags: ['Biblioteca', 'WiFi', '🔇 Silenzio'],
     },
     {
         id: 'insubria_va_rossi',
@@ -51,7 +53,8 @@ export const uninsubriaRooms: StudyRoom[] = [
         longitude: 8.8520,
         indirizzo: 'Via Ottorino Rossi 9, Varese',
         university: 'Insubria',
-        notes: 'Immerso nel verde. Le aule didattiche (Pad. Antonini/Morselli) sono spesso usate per lo studio libero.'
+        notes: 'Immerso nel verde. Le aule didattiche (Pad. Antonini/Morselli) sono spesso usate per lo studio libero.',
+        tags: ['Aula Studio', 'Medicina', 'WiFi'],
     },
     {
         id: 'insubria_va_collegio',
@@ -67,7 +70,8 @@ export const uninsubriaRooms: StudyRoom[] = [
         longitude: 8.8495,
         indirizzo: 'Via Dunant 7, Varese',
         university: 'Insubria',
-        notes: 'All\'interno del collegio universitario. Verificare accessibilità per gli esterni alla reception.'
+        notes: 'All\'interno del collegio universitario. Verificare accessibilità per gli esterni alla reception.',
+        tags: ['Aula Studio', 'WiFi'],
     },
 
     // ============================================================
@@ -88,7 +92,8 @@ export const uninsubriaRooms: StudyRoom[] = [
         indirizzo: 'Via Sant\'Abbondio 12, Como',
         university: 'Insubria',
         occupancy_rate: 'Alto',
-        notes: 'Una delle sedi più belle d\'Italia, in un antico monastero con chiostro. Atmosfera unica.'
+        notes: 'Una delle sedi più belle d\'Italia, in un antico monastero con chiostro. Atmosfera unica.',
+        tags: ['Biblioteca', 'WiFi', '🔇 Silenzio'],
     },
 
     // ============================================================
@@ -108,7 +113,8 @@ export const uninsubriaRooms: StudyRoom[] = [
         longitude: 9.0940,
         indirizzo: 'Via Valleggio 11, Como',
         university: 'Insubria',
-        notes: 'Polo moderno condiviso in parte con il Politecnico di Milano (sede distaccata).'
+        notes: 'Polo moderno condiviso in parte con il Politecnico di Milano (sede distaccata).',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'insubria_co_castelnuovo',
@@ -124,7 +130,8 @@ export const uninsubriaRooms: StudyRoom[] = [
         longitude: 9.0960,
         indirizzo: 'Via Castelnuovo 7, Como',
         university: 'Insubria',
-        notes: 'A pochi passi dalla sede di Valleggio.'
+        notes: 'A pochi passi dalla sede di Valleggio.',
+        tags: ['Aula Studio', 'WiFi'],
     },
 
     // ============================================================
@@ -144,7 +151,8 @@ export const uninsubriaRooms: StudyRoom[] = [
         longitude: 8.8570,
         indirizzo: 'Via Alberto da Giussano 12, Busto Arsizio (VA)',
         university: 'Insubria',
-        notes: 'Sede suggestiva in un ex edificio industriale recuperato. Ospita Biologia e Scienze Motorie.'
+        notes: 'Sede suggestiva in un ex edificio industriale recuperato. Ospita Biologia e Scienze Motorie.',
+        tags: ['Aula Studio', 'WiFi', '🅿️ Parcheggio'],
     },
 
     // ============================================================
@@ -164,7 +172,8 @@ export const uninsubriaRooms: StudyRoom[] = [
         longitude: 9.0940,
         indirizzo: 'Via Valleggio 11, Como',
         university: 'Insubria',
-        notes: 'Aula dedicata nella Torre. 50 posti. Silenzio obbligatorio.'
+        notes: 'Aula dedicata nella Torre. 50 posti. Silenzio obbligatorio.',
+        tags: ['Aula Studio', 'WiFi', '🔇 Silenzio'],
     },
     {
         id: 'insubria_co_giurisprudenza',
@@ -180,7 +189,8 @@ export const uninsubriaRooms: StudyRoom[] = [
         longitude: 9.0815,
         indirizzo: 'Via Bossi 5, Como',
         university: 'Insubria',
-        notes: 'Biblioteca di Giurisprudenza nel centro storico di Como.'
+        notes: 'Biblioteca di Giurisprudenza nel centro storico di Como.',
+        tags: ['Biblioteca', 'Centro', 'WiFi', '🔇 Silenzio'],
     },
     {
         id: 'insubria_co_oriani',
@@ -196,7 +206,8 @@ export const uninsubriaRooms: StudyRoom[] = [
         longitude: 9.0825,
         indirizzo: 'Via Oriani, Como',
         university: 'Insubria',
-        notes: 'Aule didattiche usate come spazi studio quando libere.'
+        notes: 'Aule didattiche usate come spazi studio quando libere.',
+        tags: ['Aula Studio', 'Campus', 'WiFi'],
     },
 
     // ============================================================
@@ -216,7 +227,8 @@ export const uninsubriaRooms: StudyRoom[] = [
         longitude: 8.8515,
         indirizzo: 'Via Ottorino Rossi, Varese',
         university: 'Insubria',
-        notes: 'Aule didattiche nel verde del Campus Bizzozero.'
+        notes: 'Aule didattiche nel verde del Campus Bizzozero.',
+        tags: ['Aula Studio', 'WiFi'],
     },
     {
         id: 'insubria_va_lanzavecchia',
@@ -232,7 +244,8 @@ export const uninsubriaRooms: StudyRoom[] = [
         longitude: 8.8510,
         indirizzo: 'Via Ottorino Rossi, Varese',
         university: 'Insubria',
-        notes: 'Aule per Medicina e Biotecnologie.'
+        notes: 'Aule per Medicina e Biotecnologie.',
+        tags: ['Aula Studio', 'WiFi'],
     },
     {
         id: 'insubria_va_morselli',
@@ -248,7 +261,8 @@ export const uninsubriaRooms: StudyRoom[] = [
         longitude: 8.8525,
         indirizzo: 'Via Ottorino Rossi, Varese',
         university: 'Insubria',
-        notes: 'Padiglione più tranquillo, immerso nel parco.'
+        notes: 'Padiglione più tranquillo, immerso nel parco.',
+        tags: ['Aula Studio', 'WiFi'],
     },
     {
         id: 'insubria_va_ristoro',
@@ -264,7 +278,8 @@ export const uninsubriaRooms: StudyRoom[] = [
         longitude: 8.8470,
         indirizzo: 'Via Monte Generoso 71, Varese',
         university: 'Insubria',
-        notes: 'Sala ristoro con 14 posti studio. Ambiente informale.'
+        notes: 'Sala ristoro con 14 posti studio. Ambiente informale.',
+        tags: ['Aula Studio', 'WiFi', '❄️ Climatizzato'],
     }
 ];
 

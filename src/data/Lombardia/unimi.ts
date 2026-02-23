@@ -19,7 +19,8 @@ export const unimiRooms: StudyRoom[] = [
         indirizzo: 'Via Festa del Perdono 7, Milano',
         university: 'Unimi',
         occupancy_rate: 'Molto Alto',
-        notes: 'La sala centrale (Crociera) è spettacolare. Una delle poche aperte fino a tardi in centro.'
+        notes: 'La sala centrale (Crociera) è spettacolare. Una delle poche aperte fino a tardi in centro.',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'unimi_santalessandro',
@@ -35,7 +36,8 @@ export const unimiRooms: StudyRoom[] = [
         longitude: 9.1895,
         indirizzo: 'Piazza Sant\'Alessandro 1, Milano',
         university: 'Unimi',
-        notes: 'A pochi passi da Missori. Ambiente molto raccolto e silenzioso.'
+        notes: 'A pochi passi da Missori. Ambiente molto raccolto e silenzioso.',
+        tags: ['Biblioteca', 'Campus', 'WiFi', '🔇 Silenzio'],
     },
     {
         id: 'unimi_conservatorio',
@@ -51,7 +53,8 @@ export const unimiRooms: StudyRoom[] = [
         longitude: 9.2015,
         indirizzo: 'Via Conservatorio 7, Milano',
         university: 'Unimi',
-        notes: 'Vicino al Tribunale e San Babila.'
+        notes: 'Vicino al Tribunale e San Babila.',
+        tags: ['Biblioteca', 'WiFi', '⚡ Prese', '❄️ Climatizzato'],
     },
 
     // ============================================================
@@ -71,7 +74,8 @@ export const unimiRooms: StudyRoom[] = [
         longitude: 9.2270,
         indirizzo: 'Via Celoria 2, Milano',
         university: 'Unimi',
-        notes: 'Nel cuore di Città Studi. Spesso affollata in sessione esami.'
+        notes: 'Nel cuore di Città Studi. Spesso affollata in sessione esami.',
+        tags: ['Biblioteca', 'WiFi', '☕ Ristoro'],
     },
     {
         id: 'unimi_biomedica_cittastudi',
@@ -87,7 +91,8 @@ export const unimiRooms: StudyRoom[] = [
         longitude: 9.2315,
         indirizzo: 'Via Valvassori Peroni 21, Milano',
         university: 'Unimi',
-        notes: 'Molto grande e luminosa. Vicino alla Biblioteca Comunale Valvassori Peroni.'
+        notes: 'Molto grande e luminosa. Vicino alla Biblioteca Comunale Valvassori Peroni.',
+        tags: ['Biblioteca', 'WiFi', '👥 Gruppi OK'],
     },
 
     // ============================================================
@@ -107,7 +112,8 @@ export const unimiRooms: StudyRoom[] = [
         longitude: 9.1980,
         indirizzo: 'Via della Commenda 19, Milano',
         university: 'Unimi',
-        notes: 'Sede storica di Medicina, dietro il Tribunale.'
+        notes: 'Sede storica di Medicina, dietro il Tribunale.',
+        tags: ['Biblioteca', 'Campus', 'Medicina', 'WiFi'],
     },
     {
         id: 'unimi_sanpaolo',
@@ -123,7 +129,8 @@ export const unimiRooms: StudyRoom[] = [
         longitude: 9.1630,
         indirizzo: 'Via Antonio di Rudinì 8, Milano',
         university: 'Unimi',
-        notes: 'Zona Barona/Famagosta. Utile per tirocinanti.'
+        notes: 'Zona Barona/Famagosta. Utile per tirocinanti.',
+        tags: ['Biblioteca', 'Campus', 'Medicina', 'WiFi'],
     },
     {
         id: 'unimi_vialba_sacco',
@@ -139,7 +146,8 @@ export const unimiRooms: StudyRoom[] = [
         longitude: 9.1050,
         indirizzo: 'Via G.B. Grassi 74, Milano',
         university: 'Unimi',
-        notes: 'Estremo nord-ovest di Milano (Roserio). Serve il Polo Vialba.'
+        notes: 'Estremo nord-ovest di Milano (Roserio). Serve il Polo Vialba.',
+        tags: ['Biblioteca', 'Campus', 'Medicina', 'WiFi', '🅿️ Parcheggio'],
     },
 
     // ============================================================
@@ -160,7 +168,8 @@ export const unimiRooms: StudyRoom[] = [
         indirizzo: 'Via dell\'Università 6, Lodi (LO)',
         university: 'Unimi',
         occupancy_rate: 'Medio',
-        notes: 'Campus modernissimo progettato da Renzo Piano. Si trova a Lodi città.'
+        notes: 'Campus modernissimo progettato da Renzo Piano. Si trova a Lodi città.',
+        tags: ['Biblioteca', 'Campus', 'Medicina', 'WiFi', '☕ Ristoro'],
     },
     {
         id: 'unimi_mediazione_sesto',
@@ -176,7 +185,8 @@ export const unimiRooms: StudyRoom[] = [
         longitude: 9.2370,
         indirizzo: 'Piazza Indro Montanelli 4, Sesto S. Giovanni (MI)',
         university: 'Unimi',
-        notes: 'Sede dei corsi di Mediazione. Facilmente raggiungibile con M1.'
+        notes: 'Sede dei corsi di Mediazione. Facilmente raggiungibile con M1.',
+        tags: ['Biblioteca', 'Campus', 'WiFi'],
     },
     {
         id: 'unimi_noto_beni',
@@ -192,7 +202,8 @@ export const unimiRooms: StudyRoom[] = [
         longitude: 9.2060,
         indirizzo: 'Via Noto 6, Milano',
         university: 'Unimi',
-        notes: 'Sede distaccata per Storia dell\'Arte e Musica.'
+        notes: 'Sede distaccata per Storia dell\'Arte e Musica.',
+        tags: ['Biblioteca', 'WiFi', '🔇 Silenzio'],
     },
     {
         id: 'unimi_segrate_lita',
@@ -208,7 +219,8 @@ export const unimiRooms: StudyRoom[] = [
         longitude: 9.2730,
         indirizzo: 'Via Fratelli Cervi 93, Segrate (MI)',
         university: 'Unimi',
-        notes: 'Polo tecnologico avanzato (Milano 2).'
+        notes: 'Polo tecnologico avanzato (Milano 2).',
+        tags: ['Aula Studio', 'Campus', 'WiFi'],
     },
 
     // ============================================================
@@ -229,7 +241,8 @@ export const unimiRooms: StudyRoom[] = [
         indirizzo: 'Via Festa del Perdono 7, Milano',
         university: 'Unimi',
         occupancy_rate: 'Alto',
-        notes: 'Una delle aule studio più grandi di Milano! 450 posti. Perfetta per sessione.'
+        notes: 'Una delle aule studio più grandi di Milano! 450 posti. Perfetta per sessione.',
+        tags: ['Aula Studio', 'WiFi'],
     },
     {
         id: 'unimi_cortile_pesci',
@@ -245,7 +258,8 @@ export const unimiRooms: StudyRoom[] = [
         longitude: 9.1942,
         indirizzo: 'Via Festa del Perdono 7, Milano',
         university: 'Unimi',
-        notes: 'Nel cortile interno della Ca\' Granda. Ambiente suggestivo.'
+        notes: 'Nel cortile interno della Ca\' Granda. Ambiente suggestivo.',
+        tags: ['Aula Studio', 'WiFi'],
     },
     {
         id: 'unimi_bronxlab',
@@ -261,7 +275,8 @@ export const unimiRooms: StudyRoom[] = [
         longitude: 9.1945,
         indirizzo: 'Via Festa del Perdono 7, Milano',
         university: 'Unimi',
-        notes: 'Sala computer con postazioni attrezzate. Utile per progetti e stampe.'
+        notes: 'Sala computer con postazioni attrezzate. Utile per progetti e stampe.',
+        tags: ['Aula Studio', 'WiFi'],
     },
     {
         id: 'unimi_crociera_bassa',
@@ -277,7 +292,8 @@ export const unimiRooms: StudyRoom[] = [
         longitude: 9.1946,
         indirizzo: 'Via Festa del Perdono 7, Milano',
         university: 'Unimi',
-        notes: 'Sotto la famosa Crociera. Ambiente molto raccolto.'
+        notes: 'Sotto la famosa Crociera. Ambiente molto raccolto.',
+        tags: ['Aula Studio', 'WiFi', '🔇 Silenzio'],
     },
     {
         id: 'unimi_cortile_laghetto',
@@ -293,7 +309,8 @@ export const unimiRooms: StudyRoom[] = [
         longitude: 9.1940,
         indirizzo: 'Via Festa del Perdono 7, Milano',
         university: 'Unimi',
-        notes: 'Affacciata sul caratteristico cortile con laghetto.'
+        notes: 'Affacciata sul caratteristico cortile con laghetto.',
+        tags: ['Aula Studio', 'WiFi'],
     },
     {
         id: 'unimi_giurisprudenza_studio',
@@ -309,7 +326,8 @@ export const unimiRooms: StudyRoom[] = [
         longitude: 9.1947,
         indirizzo: 'Via Festa del Perdono 7, Milano',
         university: 'Unimi',
-        notes: 'Dedicata principalmente agli studenti di Giurisprudenza.'
+        notes: 'Dedicata principalmente agli studenti di Giurisprudenza.',
+        tags: ['Aula Studio', 'WiFi', '🔇 Silenzio'],
     },
 
     // ============================================================
@@ -329,7 +347,8 @@ export const unimiRooms: StudyRoom[] = [
         longitude: 9.1944,
         indirizzo: 'Via Festa del Perdono 7, Milano',
         university: 'Unimi',
-        notes: 'Biblioteca specializzata con ricco patrimonio di filosofia.'
+        notes: 'Biblioteca specializzata con ricco patrimonio di filosofia.',
+        tags: ['Biblioteca', 'WiFi', '🔇 Silenzio'],
     },
     {
         id: 'unimi_biblio_storia',
@@ -345,7 +364,8 @@ export const unimiRooms: StudyRoom[] = [
         longitude: 9.1943,
         indirizzo: 'Via Festa del Perdono 7, Milano',
         university: 'Unimi',
-        notes: 'Sezione storica con documenti e archivi.'
+        notes: 'Sezione storica con documenti e archivi.',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'unimi_biblio_safm',
@@ -361,7 +381,8 @@ export const unimiRooms: StudyRoom[] = [
         longitude: 9.1942,
         indirizzo: 'Via Festa del Perdono 7, Milano',
         university: 'Unimi',
-        notes: 'Scienze dell\'Antichità e Filologia Moderna. Include testi rari.'
+        notes: 'Scienze dell\'Antichità e Filologia Moderna. Include testi rari.',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'unimi_biblio_papirologia',
@@ -377,7 +398,8 @@ export const unimiRooms: StudyRoom[] = [
         longitude: 9.1941,
         indirizzo: 'Via Festa del Perdono 7, Milano',
         university: 'Unimi',
-        notes: 'Biblioteca unica con collezione di papiri egizi. Ambiente molto intimo.'
+        notes: 'Biblioteca unica con collezione di papiri egizi. Ambiente molto intimo.',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'unimi_sala_settecento',
@@ -393,7 +415,8 @@ export const unimiRooms: StudyRoom[] = [
         longitude: 9.1946,
         indirizzo: 'Via Festa del Perdono 7, Milano',
         university: 'Unimi',
-        notes: 'Sala storica con soffitti affrescati. Studiare in un museo!'
+        notes: 'Sala storica con soffitti affrescati. Studiare in un museo!',
+        tags: ['Aula Studio', 'WiFi'],
     },
 
     // ============================================================
@@ -413,7 +436,8 @@ export const unimiRooms: StudyRoom[] = [
         longitude: 9.2315,
         indirizzo: 'Via Valvassori Peroni 21, Milano',
         university: 'Unimi',
-        notes: 'Risorse multimediali per studio delle lingue. Postazioni computer.'
+        notes: 'Risorse multimediali per studio delle lingue. Postazioni computer.',
+        tags: ['Aula Studio', 'Campus', 'WiFi'],
     },
     {
         id: 'unimi_sala_venezian',
@@ -429,7 +453,8 @@ export const unimiRooms: StudyRoom[] = [
         longitude: 9.2280,
         indirizzo: 'Via Venezian 15, Milano',
         university: 'Unimi',
-        notes: 'Nel settore didattico di Città Studi. Comoda per le pause pranzo.'
+        notes: 'Nel settore didattico di Città Studi. Comoda per le pause pranzo.',
+        tags: ['Aula Studio', 'WiFi', '☕ Ristoro'],
     },
     {
         id: 'unimi_bicf',
@@ -445,7 +470,8 @@ export const unimiRooms: StudyRoom[] = [
         longitude: 9.2300,
         indirizzo: 'Via Celoria 16, Milano',
         university: 'Unimi',
-        notes: 'Biblioteca centrale per le scienze dure. Molto frequentata.'
+        notes: 'Biblioteca centrale per le scienze dure. Molto frequentata.',
+        tags: ['Biblioteca', 'Campus', 'WiFi'],
     },
     {
         id: 'unimi_matematica_ricci',
@@ -461,7 +487,8 @@ export const unimiRooms: StudyRoom[] = [
         longitude: 9.2305,
         indirizzo: 'Via Saldini 50, Milano',
         university: 'Unimi',
-        notes: 'Per studenti di Matematica. Ambiente molto tranquillo.'
+        notes: 'Per studenti di Matematica. Ambiente molto tranquillo.',
+        tags: ['Biblioteca', 'WiFi', '🔇 Silenzio'],
     },
     {
         id: 'unimi_scienze_terra',
@@ -477,7 +504,8 @@ export const unimiRooms: StudyRoom[] = [
         longitude: 9.2295,
         indirizzo: 'Via Mangiagalli 34, Milano',
         university: 'Unimi',
-        notes: 'Dedicata a Scienze della Terra. Include collezioni geologiche.'
+        notes: 'Dedicata a Scienze della Terra. Include collezioni geologiche.',
+        tags: ['Biblioteca', 'WiFi'],
     },
 
     // ============================================================
@@ -497,7 +525,8 @@ export const unimiRooms: StudyRoom[] = [
         longitude: 9.2062,
         indirizzo: 'Via Noto 10, Milano',
         university: 'Unimi',
-        notes: 'Centro di eccellenza per archivi editoriali e comunicazione. Richiede prenotazione.'
+        notes: 'Centro di eccellenza per archivi editoriali e comunicazione. Richiede prenotazione.',
+        tags: ['Aula Studio', 'WiFi'],
     }
 ];
 

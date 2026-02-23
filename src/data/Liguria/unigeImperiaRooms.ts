@@ -19,7 +19,8 @@ export const unigeImperiaRooms: StudyRoom[] = [
         indirizzo: 'Via Nizza 8, Imperia (Porto Maurizio)',
         university: 'UniGe',
         occupancy_rate: 'Medio',
-        notes: 'Biblioteca principale polo. Accogliente, testi specifici corsi.'
+        notes: 'Biblioteca principale polo. Accogliente, testi specifici corsi.',
+        tags: ['Biblioteca', 'Campus', 'WiFi', '🔇 Silenzio'],
     },
     {
         id: 'unige_im_aule_studio',
@@ -35,7 +36,8 @@ export const unigeImperiaRooms: StudyRoom[] = [
         longitude: 8.0158,
         indirizzo: 'Via Nizza 8, Imperia',
         university: 'UniGe',
-        notes: 'Aule/Aula Magna usate studio quando libere. Chiedi portineria.'
+        notes: 'Aule/Aula Magna usate studio quando libere. Chiedi portineria.',
+        tags: ['Aula Studio', '❄️ Climatizzato', '👥 Gruppi OK'],
     },
     {
         id: 'unige_im_cortile',
@@ -51,7 +53,8 @@ export const unigeImperiaRooms: StudyRoom[] = [
         longitude: 8.0158,
         indirizzo: 'Via Nizza 8, Imperia',
         university: 'UniGe',
-        notes: 'Cortile/mensa per studio informale. Clima mite.'
+        notes: 'Cortile/mensa per studio informale. Clima mite.',
+        tags: ['Mensa/Ristoro'],
     },
     {
         id: 'unige_im_giardino',
@@ -67,7 +70,8 @@ export const unigeImperiaRooms: StudyRoom[] = [
         longitude: 8.0158,
         indirizzo: 'Via Nizza 8, Imperia',
         university: 'UniGe',
-        notes: 'Giardino per studio all\'aperto.'
+        notes: 'Giardino per studio all\'aperto.',
+        tags: ['Outdoor', 'Campus'],
     },
     // ============================================================
     // IMPERIA CENTRO (Civica e Outdoor)
@@ -87,7 +91,8 @@ export const unigeImperiaRooms: StudyRoom[] = [
         indirizzo: 'Piazza De Amicis 7, Imperia (Oneglia)',
         university: 'UniGe',
         occupancy_rate: 'Alto',
-        notes: 'Civica principale. Usatissima studenti.'
+        notes: 'Civica principale. Usatissima studenti.',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'im_parasio',
@@ -103,7 +108,8 @@ export const unigeImperiaRooms: StudyRoom[] = [
         longitude: 8.0180,
         indirizzo: 'Parasio, Porto Maurizio, Imperia',
         university: 'UniGe',
-        notes: 'Borgo storico sopra campus. Logge vista mare iconiche.'
+        notes: 'Borgo storico sopra campus. Logge vista mare iconiche.',
+        tags: ['Outdoor', '🔇 Silenzio'],
     },
 ];
 

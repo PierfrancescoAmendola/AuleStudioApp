@@ -63,6 +63,10 @@ import { getDirectionsPoliTo } from '../data/Piemonte/polito';
 import { getDirectionsUPO } from '../data/Piemonte/upo';
 import { getDirectionsAFAMPiemonte } from '../data/Piemonte/afamPiemonte';
 import { getDirectionsUniBa } from '../data/Puglia/uniba';
+import { getDirectionsPoliBa } from '../data/Puglia/poliba';
+import { getDirectionsUniSalento } from '../data/Puglia/unisalento';
+import { getDirectionsUniFg } from '../data/Puglia/unifg';
+import { getDirectionsAFAMPuglia } from '../data/Puglia/afamPuglia';
 
 
 
@@ -256,6 +260,21 @@ export const RoomDetailScreen = ({ route, navigation }: any) => {
         }
         if (room.id.startsWith('uniba_') || (room.university || '').includes('UniBa')) {
             return getDirectionsUniBa(room);
+        }
+        if (room.id.startsWith('poliba_') || (room.university || '').includes('PoliBa')) {
+            return getDirectionsPoliBa(room);
+        }
+        if (room.id.startsWith('unisalento_') || room.id.startsWith('lecce_') || (room.university || '').includes('UniSalento')) {
+            return getDirectionsUniSalento(room);
+        }
+        if (room.id.startsWith('unifg_') || room.id.startsWith('fg_') || (room.university || '').includes('UniFg')) {
+            return getDirectionsUniFg(room);
+        }
+        if (room.id.startsWith('aba_') && ((room.university || '').includes('Bari') || (room.university || '').includes('Foggia') || (room.university || '').includes('Lecce'))) {
+            return getDirectionsAFAMPuglia(room);
+        }
+        if (room.id.startsWith('cons_') && ((room.university || '').includes('Bari') || (room.university || '').includes('Monopoli') || (room.university || '').includes('Taranto') || (room.university || '').includes('Foggia'))) {
+            return getDirectionsAFAMPuglia(room);
         }
 
 
@@ -1001,6 +1020,654 @@ export const RoomDetailScreen = ({ route, navigation }: any) => {
                     );
                 })()}
 
+                {(() => {
+                    const uni = (room.university || '');
+                    const isPoliBa = room.id.startsWith('poliba_') || uni.includes('PoliBa');
+                    if (!isPoliBa) return null;
+                    const isBariCampus = room.indirizzo.includes('Orabona');
+                    const isTarantoPaoloVI = room.indirizzo.includes('Turismo') || room.indirizzo.includes('Paolo VI');
+                    const isTarantoCittaVecchia = room.indirizzo.includes('Città Vecchia');
+                    const isDICAR = room.nome.includes('DICAR') || room.nome.includes('Architettura');
+                    const isCaianiello = room.nome.includes('Caianiello');
+                    const hasPreseCablate = room.servizi.some((s: string) => s.toLowerCase().includes('prese cablate'));
+                    const hasTavoliGrandi = room.servizi.some((s: string) => s.toLowerCase().includes('tavoli grandi'));
+                    return (
+                        <>
+                            {isCaianiello && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fff1f2', borderColor: '#fecdd3' }]}>
+                                    <Ionicons name="warning-outline" size={24} color="#be123c" />
+                                    <Text style={[styles.infoBoxText, { color: '#be123c' }]}>⚠️ Ansia da Sessione: La Caianiello si riempie prima delle 9:00 sotto sessione. Arrivo presto o cerca alternative (Corpo O, DMMM).</Text>
+                                </View>
+                            )}
+                            {isDICAR && hasTavoliGrandi && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fdf4ff', borderColor: '#f5d0fe' }]}>
+                                    <Ionicons name="resize-outline" size={24} color="#a21caf" />
+                                    <Text style={[styles.infoBoxText, { color: '#a21caf' }]}>📐 Architetti Alert: Tavoli extra-large per tavole A0, plastici e modellini. Se porti il tubo portadisegni, questo è il tuo posto.</Text>
+                                </View>
+                            )}
+                            {hasPreseCablate && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f0fdf4', borderColor: '#bbf7d0' }]}>
+                                    <Ionicons name="flash" size={24} color="#15803d" />
+                                    <Text style={[styles.infoBoxText, { color: '#15803d' }]}>⚡ Survival Mode: Prese cablate disponibili! Al PoliBa nessuno studia senza laptop alimentato — qui sei al sicuro.</Text>
+                                </View>
+                            )}
+                            {isTarantoPaoloVI && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fff7ed', borderColor: '#fed7aa' }]}>
+                                    <Ionicons name="car-outline" size={24} color="#c2410c" />
+                                    <Text style={[styles.infoBoxText, { color: '#c2410c' }]}>🚗 Attenzione: Questo polo è nel Quartiere Paolo VI, fuori dal centro città. Mezzo proprio consigliato. La buona notizia? Parcheggio immenso e gratuito.</Text>
+                                </View>
+                            )}
+                            {isTarantoCittaVecchia && (
+                                <View style={[styles.infoBox, { backgroundColor: '#eff6ff', borderColor: '#bfdbfe' }]}>
+                                    <Ionicons name="boat-outline" size={24} color="#2563eb" />
+                                    <Text style={[styles.infoBoxText, { color: '#2563eb' }]}>🏛️ Fascino Storico: Studi Restauro tra le mura del borgo antico. Parcheggia nella città nuova e prosegui a piedi via Ponte Girevole.</Text>
+                                </View>
+                            )}
+                            {isBariCampus && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f0f9ff', borderColor: '#bae6fd' }]}>
+                                    <Ionicons name="bus-outline" size={24} color="#0284c7" />
+                                    <Text style={[styles.infoBoxText, { color: '#0284c7' }]}>🚌 Campus PoliBa: Bus AMTAB 21 e 22 sono le linee degli studenti. Parcheggio in zona è controllato e difficile — meglio i mezzi o la bici.</Text>
+                                </View>
+                            )}
+                        </>
+                    );
+                })()}
+
+                {(() => {
+                    const uni = (room.university || '');
+                    const isUniSalento = room.id.startsWith('unisalento_') || room.id.startsWith('lecce_') || uni.includes('UniSalento');
+                    if (!isUniSalento) return null;
+                    const isEcotekne = room.indirizzo.includes('Monteroni') || room.indirizzo.includes('Ecotekne') || uni.includes('Ecotekne');
+                    const isCentro = room.indirizzo.includes('Valesio') || room.indirizzo.includes('San Nicola') || room.indirizzo.includes('Università') || room.id.includes('bernardini');
+                    const isBrindisi = room.indirizzo.includes('Brindisi') || room.indirizzo.includes('Appia');
+                    const isBernardini = room.id.includes('bernardini');
+                    const hasAC = room.servizi.some((s: string) => s.toLowerCase().includes('aria condizionata'));
+                    const isOutdoor = room.tags?.includes('Outdoor');
+                    return (
+                        <>
+                            {isEcotekne && !isOutdoor && (
+                                <View style={[styles.infoBox, { backgroundColor: '#eff6ff', borderColor: '#bfdbfe' }]}>
+                                    <Ionicons name="bus-outline" size={24} color="#2563eb" />
+                                    <Text style={[styles.infoBoxText, { color: '#2563eb' }]}>🚌 Il Leggendario Bus 27: La linea SGM 27 (e la 27 Express) collega il centro al Campus Ecotekne. Negli orari di punta (8:30 e 13:30) è preso d'assalto — parti presto!</Text>
+                                </View>
+                            )}
+                            {hasAC && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f0fdf4', borderColor: '#bbf7d0' }]}>
+                                    <Ionicons name="snow-outline" size={24} color="#15803d" />
+                                    <Text style={[styles.infoBoxText, { color: '#15803d' }]}>❄️ Aria Condizionata Garantita: Da maggio a settembre questo è IL fattore decisivo per la scelta dell'aula. L'Ecotekne d'estate è una spianata rovente — qui sei al fresco.</Text>
+                                </View>
+                            )}
+                            {isOutdoor && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fff7ed', borderColor: '#fed7aa' }]}>
+                                    <Ionicons name="sunny-outline" size={24} color="#c2410c" />
+                                    <Text style={[styles.infoBoxText, { color: '#c2410c' }]}>☀️ Attenzione Caldo: L'Ecotekne è una spianata d'asfalto e pini. A giugno-luglio fa MOLTO caldo. Porta acqua e crema solare se studi all'aperto.</Text>
+                                </View>
+                            )}
+                            {isCentro && !isBernardini && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fef3c7', borderColor: '#fcd34d' }]}>
+                                    <Ionicons name="restaurant-outline" size={24} color="#d97706" />
+                                    <Text style={[styles.infoBoxText, { color: '#d97706' }]}>🥐 Pausa Rustico: Sei nel cuore barocco di Lecce! A due passi trovi forni e rosticcerie storiche per il rituale del Rustico leccese (sfoglia, besciamella, pomodoro, mozzarella). Imperdibile.</Text>
+                                </View>
+                            )}
+                            {isBernardini && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fdf4ff', borderColor: '#f5d0fe' }]}>
+                                    <Ionicons name="library-outline" size={24} color="#a21caf" />
+                                    <Text style={[styles.infoBoxText, { color: '#a21caf' }]}>📚 Hub Alternativo: La Bernardini è la civica "requisita" dagli universitari. Perfetta per chi non vuole prendere il Bus 27 nei giorni senza lezioni all'Ecotekne. Orario esteso fino alle 20.</Text>
+                                </View>
+                            )}
+                            {isBernardini && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fef3c7', borderColor: '#fcd34d', marginTop: 12 }]}>
+                                    <Ionicons name="restaurant-outline" size={24} color="#d97706" />
+                                    <Text style={[styles.infoBoxText, { color: '#d97706' }]}>🥐 Zona Rustico: Piazzetta Carducci è nel cuore della movida leccese. Il Rustico è a portata di mano a ogni pausa studio.</Text>
+                                </View>
+                            )}
+                            {isBrindisi && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fff7ed', borderColor: '#fed7aa' }]}>
+                                    <Ionicons name="car-outline" size={24} color="#c2410c" />
+                                    <Text style={[styles.infoBoxText, { color: '#c2410c' }]}>🚗 Sede Isolata: La Cittadella della Ricerca è sulla SS7 Appia, fuori città. Auto o bus extraurbano STP consigliati. Parcheggio interno sconfinato.</Text>
+                                </View>
+                            )}
+                        </>
+                    );
+                })()}
+
+                {(() => {
+                    const uni = (room.university || '');
+                    const isUniFg = room.id.startsWith('unifg_') || room.id.startsWith('fg_') || uni.includes('UniFg');
+                    if (!isUniFg) return null;
+                    const isCentroStorico = room.indirizzo.includes('Arpi');
+                    const isSemiCentro = room.indirizzo.includes('Papa Giovanni') || room.indirizzo.includes('Caggese') || room.id.includes('magna_capitana');
+                    const isPeriferia = room.indirizzo.includes('Napoli') || room.indirizzo.includes('Pinto');
+                    const isMagnaCapitana = room.id.includes('magna_capitana');
+                    const isDAFNE = room.id.includes('agraria') || room.nome.includes('DAFNE');
+                    const isBiomedico = room.id.includes('biomedico');
+                    const isBarletta = room.indirizzo.includes('Barletta');
+                    const isDistaccata = uni.includes('-');
+                    const isOutdoor = room.tags?.includes('Outdoor');
+                    const hasLavoroGruppo = room.servizi.some((s: string) => s.toLowerCase().includes('lavoro di gruppo') || s.toLowerCase().includes('group work'));
+                    const isSilenzioTombale = room.id.includes('giurisprudenza');
+                    return (
+                        <>
+                            {isMagnaCapitana && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fdf4ff', borderColor: '#f5d0fe' }]}>
+                                    <Ionicons name="library-outline" size={24} color="#a21caf" />
+                                    <Text style={[styles.infoBoxText, { color: '#a21caf' }]}>🏦 Hub Cittadino: La Magna Capitana è uno dei centri culturali più grandi del Sud Italia — 500 posti! Usata al 90% da universitari quando Giurisprudenza ed Economia sono piene. La tua prima alternativa.</Text>
+                                </View>
+                            )}
+                            {isSilenzioTombale && (
+                                <View style={[styles.infoBox, { backgroundColor: '#eff6ff', borderColor: '#bfdbfe' }]}>
+                                    <Ionicons name="volume-mute-outline" size={24} color="#2563eb" />
+                                    <Text style={[styles.infoBoxText, { color: '#2563eb' }]}>🔇 Silenzio Tombale: Giurisprudenza richiede concentrazione assoluta. Per lavori di gruppo, meglio Economia (Via Caggese) a pochi passi, dove il chiacchiericcio a bassa voce è tollerato.</Text>
+                                </View>
+                            )}
+                            {hasLavoroGruppo && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f0fdf4', borderColor: '#bbf7d0' }]}>
+                                    <Ionicons name="people-outline" size={24} color="#15803d" />
+                                    <Text style={[styles.infoBoxText, { color: '#15803d' }]}>👥 Lavoro di Gruppo OK: Questa sala è più tollerante al chiacchiericcio. Ideale per progetti di gruppo e studio collaborativo.</Text>
+                                </View>
+                            )}
+                            {isOutdoor && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fff7ed', borderColor: '#fed7aa' }]}>
+                                    <Ionicons name="thunderstorm-outline" size={24} color="#c2410c" />
+                                    <Text style={[styles.infoBoxText, { color: '#c2410c' }]}>💨 Vento di Foggia: La città è nota per il Maestrale. Nelle giornate ventose, gli spazi outdoor sono sconsigliati — meglio ripararsi nelle aule interne.</Text>
+                                </View>
+                            )}
+                            {isDAFNE && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f0fdf4', borderColor: '#bbf7d0' }]}>
+                                    <Ionicons name="leaf-outline" size={24} color="#15803d" />
+                                    <Text style={[styles.infoBoxText, { color: '#15803d' }]}>🌾 Eccellenza Agraria: Il DAFNE è il fiore all'occhiello di UniFg, legato al Tavoliere (il granaio d'Italia). Aule adiacenti a laboratori di analisi sensoriale e serre. Tranquillità e aree verdi reali.</Text>
+                                </View>
+                            )}
+                            {isBiomedico && (
+                                <View style={[styles.infoBox, { backgroundColor: '#eff6ff', borderColor: '#bfdbfe' }]}>
+                                    <Ionicons name="flash" size={24} color="#2563eb" />
+                                    <Text style={[styles.infoBoxText, { color: '#2563eb' }]}>🆕 Polo Nuovo: Struttura moderna con prese funzionanti ovunque. Divide i flussi dal Policlinico — alternativa fresca per biologi e professioni sanitarie, a pochi metri da Agraria.</Text>
+                                </View>
+                            )}
+                            {(isCentroStorico || isSemiCentro) && !isMagnaCapitana && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fef3c7', borderColor: '#fcd34d' }]}>
+                                    <Ionicons name="restaurant-outline" size={24} color="#d97706" />
+                                    <Text style={[styles.infoBoxText, { color: '#d97706' }]}>🥖 Pausa Focaccia: Sei nel cuore di Foggia! La pausa studio si fa con la focaccia foggiana o il calzone con gli sponsali. Forni storici a ogni angolo tra Via Arpi e Largo Papa Giovanni.</Text>
+                                </View>
+                            )}
+                            {isBarletta && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f0f9ff', borderColor: '#bae6fd' }]}>
+                                    <Ionicons name="train-outline" size={24} color="#0284c7" />
+                                    <Text style={[styles.infoBoxText, { color: '#0284c7' }]}>🚂 Hub BAT: La Stazione FS di Barletta è a pochi minuti a piedi. Trenitalia e Ferrotramviaria (linea Bari-Barletta) — evita il viaggio fino a Foggia!</Text>
+                                </View>
+                            )}
+                            {isDistaccata && !isBarletta && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fff7ed', borderColor: '#fed7aa' }]}>
+                                    <Ionicons name="map-outline" size={24} color="#c2410c" />
+                                    <Text style={[styles.infoBoxText, { color: '#c2410c' }]}>📍 Polo Distaccato: Sede territoriale raggiungibile con treno regionale o bus extraurbano. Ideale per pendolari locali.</Text>
+                                </View>
+                            )}
+                            {isPeriferia && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f1f5f9', borderColor: '#e2e8f0' }]}>
+                                    <Ionicons name="car-outline" size={24} color="#475569" />
+                                    <Text style={[styles.infoBoxText, { color: '#475569' }]}>🏫 Zona Periferica: Atmosfera da polo tecnologico — ampi spazi, serre, parcheggi. Mondo diverso dal centro storico. Auto consigliata.</Text>
+                                </View>
+                            )}
+                        </>
+                    );
+                })()}
+
+                {(() => {
+                    const uni = (room.university || '');
+                    const isAFAMPuglia = (room.id.startsWith('aba_') || room.id.startsWith('cons_')) && (uni.includes('AFAM') || uni.includes('Cons.'));
+                    if (!isAFAMPuglia) return null;
+                    const isConservatorio = room.id.startsWith('cons_') || uni.includes('Cons.');
+                    const isAccademia = room.id.startsWith('aba_');
+                    const hasSporco = room.servizi.some((s: string) => s.toLowerCase().includes('sporco tollerato'));
+                    const hasTavoliGrandi = room.servizi.some((s: string) => s.toLowerCase().includes('tavoli grandi'));
+                    const hasSaleProva = room.servizi.some((s: string) => s.toLowerCase().includes('sale prova'));
+                    const isLecce = uni.includes('Lecce');
+                    const isTaranto = uni.includes('Taranto');
+                    const isMonopoli = uni.includes('Monopoli');
+                    const isPiccinni = room.id.includes('piccinni');
+                    return (
+                        <>
+                            {hasSporco && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fef3c7', borderColor: '#fcd34d' }]}>
+                                    <Ionicons name="brush-outline" size={24} color="#d97706" />
+                                    <Text style={[styles.infoBoxText, { color: '#d97706' }]}>🧱 Sporco Tollerato: Qui si lavora con gesso, creta e colori a olio. Niente salotti foderati — puoi macchiare liberamente. Porta il grembiule ma non la paura!</Text>
+                                </View>
+                            )}
+                            {hasTavoliGrandi && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fdf4ff', borderColor: '#f5d0fe' }]}>
+                                    <Ionicons name="resize-outline" size={24} color="#a21caf" />
+                                    <Text style={[styles.infoBoxText, { color: '#a21caf' }]}>📐 Srotolamento Progetti: Tavoli extra-large per scenografi e architetti. Perfetti per tavole A0, plastici, storyboard e progetti di grande formato.</Text>
+                                </View>
+                            )}
+                            {isPiccinni && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fff1f2', borderColor: '#fecdd3' }]}>
+                                    <Ionicons name="musical-notes-outline" size={24} color="#be123c" />
+                                    <Text style={[styles.infoBoxText, { color: '#be123c' }]}>🎹 Guerra del Pianoforte: Al Piccinni la lotta per un'aula con pianoforte è feroce. Le sale prova sono prenotabili — consulta il sistema di prenotazione dell'istituto in anticipo!</Text>
+                                </View>
+                            )}
+                            {hasSaleProva && !isPiccinni && (
+                                <View style={[styles.infoBox, { backgroundColor: '#eff6ff', borderColor: '#bfdbfe' }]}>
+                                    <Ionicons name="musical-notes-outline" size={24} color="#2563eb" />
+                                    <Text style={[styles.infoBoxText, { color: '#2563eb' }]}>🎵 Sale Prova: Spazi insonorizzati disponibili per la pratica strumentale. Qui non cerchi il silenzio — cerchi il rumore giusto!</Text>
+                                </View>
+                            )}
+                            {isConservatorio && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f0fdf4', borderColor: '#bbf7d0' }]}>
+                                    <Ionicons name="headset-outline" size={24} color="#15803d" />
+                                    <Text style={[styles.infoBoxText, { color: '#15803d' }]}>🎧 Rumore Necessario: Al conservatorio non si cerca il silenzio, si cercano le Sale Prova. Le postazioni d'ascolto sono fondamentali per lo studio di partitura e armonia.</Text>
+                                </View>
+                            )}
+                            {isAccademia && !hasSporco && (
+                                <View style={[styles.infoBox, { backgroundColor: '#eff6ff', borderColor: '#bfdbfe' }]}>
+                                    <Ionicons name="book-outline" size={24} color="#2563eb" />
+                                    <Text style={[styles.infoBoxText, { color: '#2563eb' }]}>🎨 Studio Teorico: Questa è una sala dedicata allo studio teorico e alla consultazione. Per il lavoro con materiali (gesso, creta, colori) cerca gli spazi "Sporco Tollerato".</Text>
+                                </View>
+                            )}
+                            {isLecce && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fff7ed', borderColor: '#fed7aa' }]}>
+                                    <Ionicons name="time-outline" size={24} color="#c2410c" />
+                                    <Text style={[styles.infoBoxText, { color: '#c2410c' }]}>⚠️ Orario Ridotto: L'ABA Lecce ha orari corti (biblioteca chiude alle 14!). Verifica sempre prima di uscire. Il chiostro ha orari più estesi.</Text>
+                                </View>
+                            )}
+                            {isTaranto && (
+                                <View style={[styles.infoBox, { backgroundColor: '#eff6ff', borderColor: '#bfdbfe' }]}>
+                                    <Ionicons name="boat-outline" size={24} color="#2563eb" />
+                                    <Text style={[styles.infoBoxText, { color: '#2563eb' }]}>🏛️ Città Vecchia: Il Conservatorio Paisiello è sull'isola storica. Attraversa il Ponte Girevole ed entra nei vicoli — auto sconsigliata, parcheggia nella città nuova.</Text>
+                                </View>
+                            )}
+                            {isMonopoli && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f0f9ff', borderColor: '#bae6fd' }]}>
+                                    <Ionicons name="water-outline" size={24} color="#0284c7" />
+                                    <Text style={[styles.infoBoxText, { color: '#0284c7' }]}>🌊 Vista Mare: Il Conservatorio Rota è un gioiello affacciato sull'Adriatico. Fondi del Maestro Nino Rota — vale il viaggio da solo!</Text>
+                                </View>
+                            )}
+                        </>
+                    );
+                })()}
+                {(() => {
+                    const uni = (room.university || '');
+                    const uniLC = uni.toLowerCase();
+                    const ind = (room.indirizzo || '').toLowerCase();
+                    const edif = (room.edificio || '').toLowerCase();
+                    const id = room.id;
+                    const allText = (uni + ' ' + room.indirizzo + ' ' + room.edificio + ' ' + room.nome).toLowerCase();
+
+                    // ======================== LOMBARDIA ========================
+                    const isUniMi = id.startsWith('unimi_') || uniLC === 'unimi';
+                    const isPoliMi = id.startsWith('polimi_') || uniLC.includes('polimi');
+                    const isUniMiB = id.startsWith('unimib_') || uniLC.includes('bicocca');
+                    const isUniPV = id.startsWith('unipv_') || uniLC.includes('unipv');
+                    const isUniBG = id.startsWith('unibg_') || uniLC.includes('unibg');
+                    const isUniBS = id.startsWith('unibs_') || uniLC.includes('unibs');
+                    const isInsubria = id.startsWith('uninsubria_') || uniLC.includes('insubria');
+                    const isIUSS = id.startsWith('iuss_') || uniLC.includes('iuss');
+
+                    // ======================== LAZIO ========================
+                    const isSapienza = id.startsWith('sapienza_') || id.startsWith('sap_') || uniLC.includes('sapienza');
+                    const isTorVergata = id.startsWith('torvergata_') || id.startsWith('tv_') || uniLC.includes('tor vergata');
+                    const isRomaTre = id.startsWith('romatre_') || id.startsWith('rm3_') || uniLC.includes('roma tre');
+                    const isForoItalico = id.startsWith('foro_') || uniLC.includes('foro italico');
+                    const isUniTus = id.startsWith('unitus_') || uniLC.includes('unitus');
+                    const isUniCas = id.startsWith('unicas_') || uniLC.includes('unicas') || uniLC.includes('cassino');
+
+                    // ======================== EMILIA-ROMAGNA ========================
+                    const isUniBo = id.startsWith('unibo_') || uniLC === 'unibo';
+                    const isUniFe = id.startsWith('unife_') || uniLC.includes('unife');
+                    const isUniMore = id.startsWith('unimore_') || uniLC.includes('unimore');
+                    const isUniPr = id.startsWith('unipr_') || uniLC.includes('unipr');
+
+                    // ======================== FVG ========================
+                    const isUniTs = id.startsWith('units_') || uniLC.includes('units') || uniLC.includes('trieste');
+                    const isUniUd = id.startsWith('uniud_') || uniLC.includes('uniud');
+                    const isTriesteElite = id.startsWith('sissa_') || id.startsWith('ictp_') || uniLC.includes('sissa') || uniLC.includes('ictp');
+
+                    // ======================== PIEMONTE ========================
+                    const isPoliTo = id.startsWith('polito_') || uniLC.includes('polito');
+                    const isUniTo = id.startsWith('unito_') || uniLC === 'unito';
+                    const isUPO = id.startsWith('upo_') || uniLC.includes('upo') || uniLC.includes('piemonte orientale');
+
+                    // ======================== MARCHE ========================
+                    const isUniVPM = id.startsWith('univpm_') || uniLC.includes('univpm') || uniLC.includes('politecnica');
+                    const isUniMC = id.startsWith('unimc_') || uniLC.includes('macerata');
+                    const isUniCam = id.startsWith('unicam_') || uniLC.includes('camerino');
+                    const isUniUrb = id.startsWith('uniurb_') || uniLC.includes('urbino');
+
+                    // ======================== CALABRIA ========================
+                    const isUniCal = id.startsWith('unical_') || uniLC.includes('unical') || uniLC.includes('calabria');
+                    const isUMG = id.startsWith('umg_') || uniLC.includes('catanzaro') || uniLC.includes('magna graecia');
+                    const isUniRC = id.startsWith('unirc_') || uniLC.includes('mediterranea') || uniLC.includes('reggio');
+
+                    // ======================== CAMPANIA (non-Federico II) ========================
+                    const isVanvitelli = id.startsWith('vanvitelli_') || id.startsWith('v_') || uniLC.includes('vanvitelli');
+                    const isParthenope = id.startsWith('parthenope_') || uniLC.includes('parthenope');
+                    const isOrientale = id.startsWith('orientale_') || uniLC.includes('orientale');
+                    const isUniSa = id.startsWith('unisa_') || uniLC.includes('salerno');
+                    const isUniSannio = id.startsWith('unisannio_') || uniLC.includes('sannio');
+                    const isBenincasa = id.startsWith('benincasa_') || uniLC.includes('benincasa');
+
+                    // ======================== ABRUZZO (non-UniVaq/UniTe/UniMol) ========================
+                    const isGSSI = id.startsWith('gssi_') || uniLC.includes('gssi');
+                    const isUdA = id.startsWith('uda_') || uniLC.includes('d\'annunzio') || uniLC.includes('chieti');
+
+                    // Skip if already covered by other blocks
+                    const isAlreadyCovered =
+                        id.startsWith('unimol_') || uniLC === 'unimol' ||
+                        id.startsWith('univaq_') || id.startsWith('adsu_') || uniLC === 'univaq' ||
+                        id.startsWith('unite_') || uniLC === 'unite' ||
+                        id.startsWith('unibas_') || id.includes('potenza_') || id.includes('matera') ||
+                        id.startsWith('uniba_') || uniLC.includes('uniba') ||
+                        id.startsWith('poliba_') || uniLC.includes('poliba') ||
+                        id.startsWith('unisalento_') || id.startsWith('lecce_') || uniLC.includes('unisalento') ||
+                        id.startsWith('unifg_') || id.startsWith('fg_') || uniLC.includes('unifg') ||
+                        (id.startsWith('aba_') || id.startsWith('cons_')) && (uniLC.includes('afam') || uniLC.includes('cons.')) ||
+                        id.startsWith('unina_') ||
+                        uniLC === 'afam' || id.startsWith('abaq_') || id.includes('isia');
+
+                    if (isAlreadyCovered) return null;
+
+                    return (
+                        <>
+                            {/* LOMBARDIA */}
+                            {isUniMi && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f0fdf4', borderColor: '#bbf7d0' }]}>
+                                    <Ionicons name="subway-outline" size={24} color="#15803d" />
+                                    <Text style={[styles.infoBoxText, { color: '#15803d' }]}>🚇 Milano Metro: La Statale è nel cuore di Milano. Sedi sparse tra Città Studi (M2 Piola), Centro (M3 Missori) e Bicocca. Metro fondamentale — abbonamento ATM caldamente consigliato.</Text>
+                                </View>
+                            )}
+                            {isPoliMi && (
+                                <View style={[styles.infoBox, { backgroundColor: '#eff6ff', borderColor: '#bfdbfe' }]}>
+                                    <Ionicons name="business-outline" size={24} color="#2563eb" />
+                                    <Text style={[styles.infoBoxText, { color: '#2563eb' }]}>🏗️ Campus PoliMi: Leonardo (M2 Piola) è il campus storico, Bovisa (M5 Lilla) quello moderno. Le aule studio si riempiono velocemente durante le sessioni — arriva presto!</Text>
+                                </View>
+                            )}
+                            {isUniMiB && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fdf4ff', borderColor: '#f5d0fe' }]}>
+                                    <Ionicons name="leaf-outline" size={24} color="#a21caf" />
+                                    <Text style={[styles.infoBoxText, { color: '#a21caf' }]}>🌿 Campus Bicocca: Quartiere universitario autosufficiente con edifici moderni. Tutto a portata di mano: biblioteche, mense, bar. Fermata M5 Bicocca o tram 7.</Text>
+                                </View>
+                            )}
+                            {isUniPV && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fff7ed', borderColor: '#fed7aa' }]}>
+                                    <Ionicons name="school-outline" size={24} color="#c2410c" />
+                                    <Text style={[styles.infoBoxText, { color: '#c2410c' }]}>🏛️ Collegi Storici: Pavia ha il sistema dei Collegi universitari più antico d'Italia. Le biblioteche di Collegio sono gioielli nascosti — alcune aperte anche di sera!</Text>
+                                </View>
+                            )}
+                            {isUniBG && (
+                                <View style={[styles.infoBox, { backgroundColor: '#ecfdf5', borderColor: '#a7f3d0' }]}>
+                                    <Ionicons name="trail-sign-outline" size={24} color="#059669" />
+                                    <Text style={[styles.infoBoxText, { color: '#059669' }]}>⛰️ Città Alta vs Bassa: La sede di Ingegneria è in Dalmine (periferia), Umanistica in centro. Per Città Alta usa la funicolare — vale la salita per la vista!</Text>
+                                </View>
+                            )}
+                            {isUniBS && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f0f9ff', borderColor: '#bae6fd' }]}>
+                                    <Ionicons name="subway-outline" size={24} color="#0284c7" />
+                                    <Text style={[styles.infoBoxText, { color: '#0284c7' }]}>🚇 Metro Brescia: La metro automatica collega le sedi principali. Fermata "Europa" per campus, "San Faustino" per centro storico. Rapida e comoda!</Text>
+                                </View>
+                            )}
+                            {isInsubria && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f0fdf4', borderColor: '#bbf7d0' }]}>
+                                    <Ionicons name="water-outline" size={24} color="#15803d" />
+                                    <Text style={[styles.infoBoxText, { color: '#15803d' }]}>🏔️ Due Laghi, Due Città: Sedi a Varese e Como — paesaggi mozzafiato ma spostarsi tra le due richiede 40+ minuti in treno. Organizza la giornata per sede!</Text>
+                                </View>
+                            )}
+                            {isIUSS && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fdf4ff', borderColor: '#f5d0fe' }]}>
+                                    <Ionicons name="diamond-outline" size={24} color="#a21caf" />
+                                    <Text style={[styles.infoBoxText, { color: '#a21caf' }]}>💎 Eccellenza: Lo IUSS è una scuola superiore d'eccellenza. Spazi esclusivi e raccolti dentro Palazzo del Maino — un privilegio studiare qui.</Text>
+                                </View>
+                            )}
+
+                            {/* LAZIO */}
+                            {isSapienza && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fff1f2', borderColor: '#fecdd3' }]}>
+                                    <Ionicons name="map-outline" size={24} color="#be123c" />
+                                    <Text style={[styles.infoBoxText, { color: '#be123c' }]}>🗺️ Labirinto Sapienza: La Città Universitaria è enorme (52 edifici!). Usa l'app campus come GPS. Le biblioteche migliori: Alessandrina (centro) e Matematica (silenziosa). M Termini / B Castro Pretorio.</Text>
+                                </View>
+                            )}
+                            {isTorVergata && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fff7ed', borderColor: '#fed7aa' }]}>
+                                    <Ionicons name="bus-outline" size={24} color="#c2410c" />
+                                    <Text style={[styles.infoBoxText, { color: '#c2410c' }]}>🚌 Campus Periferico: Tor Vergata è fuori Roma — usa Metro A Anagnina + bus navetta. Il campus è vasto, porta scarpe comode. Mensa interna essenziale!</Text>
+                                </View>
+                            )}
+                            {isRomaTre && (
+                                <View style={[styles.infoBox, { backgroundColor: '#eff6ff', borderColor: '#bfdbfe' }]}>
+                                    <Ionicons name="train-outline" size={24} color="#2563eb" />
+                                    <Text style={[styles.infoBoxText, { color: '#2563eb' }]}>🚉 Zona Ostiense: Roma Tre è concentrata intorno a Via Ostiense. Metro B Basilica S. Paolo e stazione Ostiense. Quartiere vivo con street food e locali studenteschi!</Text>
+                                </View>
+                            )}
+                            {isForoItalico && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f0fdf4', borderColor: '#bbf7d0' }]}>
+                                    <Ionicons name="fitness-outline" size={24} color="#15803d" />
+                                    <Text style={[styles.infoBoxText, { color: '#15803d' }]}>🏟️ Campus Sportivo: Il Foro Italico è un complesso monumentale affacciato sul Tevere. Spazi unici per studiare tra mosaici e impianti olimpici. Tram 2 da Piazzale Flaminio.</Text>
+                                </View>
+                            )}
+                            {isUniTus && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fef3c7', borderColor: '#fcd34d' }]}>
+                                    <Ionicons name="compass-outline" size={24} color="#d97706" />
+                                    <Text style={[styles.infoBoxText, { color: '#d97706' }]}>🏰 Viterbo Medievale: Sedi sparse nel centro storico medievale. Atmosfera unica ma orientarsi è un'avventura! Il quartiere San Pellegrino è incantevole per studiare.</Text>
+                                </View>
+                            )}
+                            {isUniCas && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f0f9ff', borderColor: '#bae6fd' }]}>
+                                    <Ionicons name="business-outline" size={24} color="#0284c7" />
+                                    <Text style={[styles.infoBoxText, { color: '#0284c7' }]}>🏭 Campus Folcara: L'Università di Cassino ha il campus principale a Folcara (collina). Auto consigliata o bus navetta dalla stazione FS. Abbazia di Montecassino a 10 min!</Text>
+                                </View>
+                            )}
+
+                            {/* EMILIA-ROMAGNA */}
+                            {isUniBo && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fef3c7', borderColor: '#fcd34d' }]}>
+                                    <Ionicons name="globe-outline" size={24} color="#d97706" />
+                                    <Text style={[styles.infoBoxText, { color: '#d97706' }]}>🎓 Alma Mater 5 Città: UniBo ha sedi a Bologna, Cesena, Forlì, Ravenna e Rimini. Via Zamboni è il cuore storico. Le biblioteche aperte fino a mezzanotte sono un tesoro!</Text>
+                                </View>
+                            )}
+                            {isUniFe && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f0fdf4', borderColor: '#bbf7d0' }]}>
+                                    <Ionicons name="bicycle-outline" size={24} color="#15803d" />
+                                    <Text style={[styles.infoBoxText, { color: '#15803d' }]}>🚲 Ferrara in Bici: Ferrara è la città delle biciclette. Il campus è raggiungibile pedalando dalle mura estensi. Noleggia una bici il primo giorno — non te ne pentirai!</Text>
+                                </View>
+                            )}
+                            {isUniMore && (
+                                <View style={[styles.infoBox, { backgroundColor: '#eff6ff', borderColor: '#bfdbfe' }]}>
+                                    <Ionicons name="swap-horizontal-outline" size={24} color="#2563eb" />
+                                    <Text style={[styles.infoBoxText, { color: '#2563eb' }]}>🔄 Modena + Reggio: UniMore ha due sedi principali collegate dal treno (25 min). Modena è il polo scientifico, Reggio quello umanistico. Controlla dove hai lezione!</Text>
+                                </View>
+                            )}
+                            {isUniPr && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fff7ed', borderColor: '#fed7aa' }]}>
+                                    <Ionicons name="restaurant-outline" size={24} color="#c2410c" />
+                                    <Text style={[styles.infoBoxText, { color: '#c2410c' }]}>🧀 Food Valley: Parma è la capitale del cibo italiano! Campus compatto e raggiungibile. Pausa pranzo? Prosciutterie e tortellerie ovunque — studia meglio a pancia piena!</Text>
+                                </View>
+                            )}
+
+                            {/* FRIULI-VENEZIA GIULIA */}
+                            {isUniTs && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f0f9ff', borderColor: '#bae6fd' }]}>
+                                    <Ionicons name="flag-outline" size={24} color="#0284c7" />
+                                    <Text style={[styles.infoBoxText, { color: '#0284c7' }]}>🌬️ Bora Alert: Trieste è la città della Bora — raffiche fino a 150 km/h! D'inverno copriti bene per raggiungere le sedi in collina. Il campus di Via Valerio è esposto.</Text>
+                                </View>
+                            )}
+                            {isUniUd && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f0fdf4', borderColor: '#bbf7d0' }]}>
+                                    <Ionicons name="leaf-outline" size={24} color="#15803d" />
+                                    <Text style={[styles.infoBoxText, { color: '#15803d' }]}>🏡 Campus Rizzi: Il polo scientifico è nel Campus dei Rizzi (periferia), le sedi umanistiche in centro storico. Bus n. 1 e 3 collegano tutto. Udine è a misura di studente!</Text>
+                                </View>
+                            )}
+                            {isTriesteElite && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fdf4ff', borderColor: '#f5d0fe' }]}>
+                                    <Ionicons name="telescope-outline" size={24} color="#a21caf" />
+                                    <Text style={[styles.infoBoxText, { color: '#a21caf' }]}>🔬 Eccellenza Internazionale: SISSA e ICTP sono centri di ricerca avanzata. Ambienti esclusivi con vista sul Golfo di Trieste. Accesso limitato ma spazi studio formidabili.</Text>
+                                </View>
+                            )}
+
+                            {/* PIEMONTE */}
+                            {isPoliTo && (
+                                <View style={[styles.infoBox, { backgroundColor: '#eff6ff', borderColor: '#bfdbfe' }]}>
+                                    <Ionicons name="business-outline" size={24} color="#2563eb" />
+                                    <Text style={[styles.infoBoxText, { color: '#2563eb' }]}>🏗️ Campus Torino: Il PoliTo ha sedi a Corso Duca degli Abruzzi (centro) e Lingotto/Mirafiori (periferia). Metro M1 ferma al campus. Le aule studio del Politecnico sono tra le migliori del Nord!</Text>
+                                </View>
+                            )}
+                            {isUniTo && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fef3c7', borderColor: '#fcd34d' }]}>
+                                    <Ionicons name="library-outline" size={24} color="#d97706" />
+                                    <Text style={[styles.infoBoxText, { color: '#d97706' }]}>📚 Torino Multicampus: Sedi sparse dal centro (Palazzo Nuovo, Via Po) al Campus Luigi Einaudi (CLE, moderno e luminoso). Tram e bus GTT coprono tutto — tessera studenti scontata!</Text>
+                                </View>
+                            )}
+                            {isUPO && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fff7ed', borderColor: '#fed7aa' }]}>
+                                    <Ionicons name="train-outline" size={24} color="#c2410c" />
+                                    <Text style={[styles.infoBoxText, { color: '#c2410c' }]}>🚂 3 Città, 1 Ateneo: UPO ha sedi a Vercelli, Novara e Alessandria. Treni regionali frequenti tra le città (20-40 min). Ogni sede ha la sua identità — Novara è la più moderna!</Text>
+                                </View>
+                            )}
+
+                            {/* MARCHE */}
+                            {isUniVPM && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f0f9ff', borderColor: '#bae6fd' }]}>
+                                    <Ionicons name="boat-outline" size={24} color="#0284c7" />
+                                    <Text style={[styles.infoBoxText, { color: '#0284c7' }]}>⚓ Ancona Porto: La Politecnica delle Marche è affacciata sull'Adriatico. Le sedi di Ingegneria sono a Monte Dago (collina) — vista mare spettacolare ma salita impegnativa!</Text>
+                                </View>
+                            )}
+                            {isUniMC && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fef3c7', borderColor: '#fcd34d' }]}>
+                                    <Ionicons name="compass-outline" size={24} color="#d97706" />
+                                    <Text style={[styles.infoBoxText, { color: '#d97706' }]}>🏰 Macerata in Collina: Ateneo piccolo ma affascinante, tutto in centro storico. Le sedi sono palazzi storici — studiare tra affreschi e cortili rinascimentali!</Text>
+                                </View>
+                            )}
+                            {isUniCam && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f0fdf4', borderColor: '#bbf7d0' }]}>
+                                    <Ionicons name="snow-outline" size={24} color="#15803d" />
+                                    <Text style={[styles.infoBoxText, { color: '#15803d' }]}>🏔️ Camerino Montana: Università in montagna (661m slm). D'inverno può nevicare — controlla le strade! Comunità piccola e unitissima, tutti si conoscono.</Text>
+                                </View>
+                            )}
+                            {isUniUrb && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fdf4ff', borderColor: '#f5d0fe' }]}>
+                                    <Ionicons name="diamond-outline" size={24} color="#a21caf" />
+                                    <Text style={[styles.infoBoxText, { color: '#a21caf' }]}>🎨 Urbino Rinascimentale: Città UNESCO patrimonio dell'umanità. Studiare nel Palazzo Ducale è un'esperienza unica. Tutto a piedi ma le salite sono serie!</Text>
+                                </View>
+                            )}
+
+                            {/* CALABRIA */}
+                            {isUniCal && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fff7ed', borderColor: '#fed7aa' }]}>
+                                    <Ionicons name="home-outline" size={24} color="#c2410c" />
+                                    <Text style={[styles.infoBoxText, { color: '#c2410c' }]}>🏘️ Campus Arcavacata: UniCal ha il campus residenziale più grande d'Italia a Rende. Vivi e studi nello stesso posto — tutto a portata di mano ma auto utile per uscire!</Text>
+                                </View>
+                            )}
+                            {isUMG && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f0fdf4', borderColor: '#bbf7d0' }]}>
+                                    <Ionicons name="medkit-outline" size={24} color="#15803d" />
+                                    <Text style={[styles.infoBoxText, { color: '#15803d' }]}>🏥 Campus Germaneto: L'Università Magna Graecia è al Campus di Germaneto, fuori Catanzaro. Area ospedaliera — mensa e servizi interni sono fondamentali. Bus AMC dal centro.</Text>
+                                </View>
+                            )}
+                            {isUniRC && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f0f9ff', borderColor: '#bae6fd' }]}>
+                                    <Ionicons name="water-outline" size={24} color="#0284c7" />
+                                    <Text style={[styles.infoBoxText, { color: '#0284c7' }]}>🌊 Stretto di Messina: La Mediterranea è affacciata sullo Stretto! Le sedi di Architettura e Ingegneria hanno viste incredibili. Lungomare Falcomatà perfetto per le pause studio.</Text>
+                                </View>
+                            )}
+
+                            {/* CAMPANIA (non-Federico II) */}
+                            {isVanvitelli && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fff1f2', borderColor: '#fecdd3' }]}>
+                                    <Ionicons name="swap-horizontal-outline" size={24} color="#be123c" />
+                                    <Text style={[styles.infoBoxText, { color: '#be123c' }]}>🔄 Napoli + Caserta: La Vanvitelli ha sedi in entrambe le città. A Caserta sei vicino alla Reggia — ambiente regale! A Napoli le sedi sono sparse. Treno Napoli-Caserta ogni 20 min.</Text>
+                                </View>
+                            )}
+                            {isParthenope && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f0f9ff', borderColor: '#bae6fd' }]}>
+                                    <Ionicons name="sunny-outline" size={24} color="#0284c7" />
+                                    <Text style={[styles.infoBoxText, { color: '#0284c7' }]}>🌅 Vista Golfo: La Parthenope è l'università con la vista più bella d'Italia! Sede di Via Amm. Acton affacciata su Castel dell'Ovo e Vesuvio. Concentrarsi è la vera sfida!</Text>
+                                </View>
+                            )}
+                            {isOrientale && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fef3c7', borderColor: '#fcd34d' }]}>
+                                    <Ionicons name="globe-outline" size={24} color="#d97706" />
+                                    <Text style={[styles.infoBoxText, { color: '#d97706' }]}>🌏 Centro Storico Profondo: L'Orientale è immersa nei vicoli di Napoli — Palazzo Corigliano e Palazzo Du Mesnil sono gioielli. ZTL attiva: muoviti a piedi o con metro L1!</Text>
+                                </View>
+                            )}
+                            {isUniSa && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fff7ed', borderColor: '#fed7aa' }]}>
+                                    <Ionicons name="bus-outline" size={24} color="#c2410c" />
+                                    <Text style={[styles.infoBoxText, { color: '#c2410c' }]}>🏫 Campus Fisciano: Uno dei campus più grandi del Sud. Isolato ma autosufficiente (mense, palestre, residenze). Bus BUSITALIA da Salerno ogni 15 min. Parcheggio ampio ma arriva presto!</Text>
+                                </View>
+                            )}
+                            {isUniSannio && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f0fdf4', borderColor: '#bbf7d0' }]}>
+                                    <Ionicons name="leaf-outline" size={24} color="#15803d" />
+                                    <Text style={[styles.infoBoxText, { color: '#15803d' }]}>🏛️ Benevento Storica: Ateneo raccolto nel centro storico di Benevento. L'Arco di Traiano è a 5 minuti! Città piccola e vivibile — tutto a portata di piedi.</Text>
+                                </View>
+                            )}
+                            {isBenincasa && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fdf4ff', borderColor: '#f5d0fe' }]}>
+                                    <Ionicons name="school-outline" size={24} color="#a21caf" />
+                                    <Text style={[styles.infoBoxText, { color: '#a21caf' }]}>🎓 Ateneo di Nicchia: La Suor Orsola Benincasa è sul Vomero, in una posizione panoramica privilegiata. Ambiente raccolto e familiare — tutti si conoscono. Funicolare Centrale per arrivare!</Text>
+                                </View>
+                            )}
+
+                            {/* ABRUZZO extra */}
+                            {isGSSI && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f8fafc', borderColor: '#cbd5e1' }]}>
+                                    <Ionicons name="diamond-outline" size={24} color="#475569" />
+                                    <Text style={[styles.infoBoxText, { color: '#475569' }]}>💎 Eccellenza L'Aquila: Il GSSI è una scuola superiore post-sisma — moderna e internazionale. Accesso riservato ma spazi di altissima qualità nel centro ricostruito.</Text>
+                                </View>
+                            )}
+                            {isUdA && (
+                                <View style={[styles.infoBox, { backgroundColor: '#eff6ff', borderColor: '#bfdbfe' }]}>
+                                    <Ionicons name="swap-horizontal-outline" size={24} color="#2563eb" />
+                                    <Text style={[styles.infoBoxText, { color: '#2563eb' }]}>🔄 Chieti + Pescara: Due città, un ateneo. Chieti (Campus Madonna delle Piane) per Medicina, Pescara (Viale Pindaro) per Economia e Lingue. Navetta gratuita tra i campus!</Text>
+                                </View>
+                            )}
+                        </>
+                    );
+                })()}
+                {(() => {
+                    const isUniNa = room.id.startsWith('unina_');
+                    if (!isUniNa) return null;
+                    const ind = (room.indirizzo || '').toLowerCase();
+                    const edif = (room.edificio || '').toLowerCase();
+                    const isCentro = ind.includes('mezzocannone') || ind.includes('umberto') || ind.includes('porta di massa') || ind.includes('bellini') || ind.includes('monteoliveto') || ind.includes('rodinò') || ind.includes('pietà') || ind.includes('marcellino') || ind.includes('gravina');
+                    const isMSA = ind.includes('monte s. angelo') || ind.includes('cintia') || edif.includes('monte s. angelo') || room.id.includes('msa_');
+                    const isFuorigrotta = ind.includes('claudio') || ind.includes('tecchio') || ind.includes('agnano');
+                    const isAgnano = ind.includes('agnano');
+                    const isPoliclinico = ind.includes('pansini') || ind.includes('montesano') || ind.includes('amicis') || edif.includes('policlinico');
+                    const isScampia = ind.includes('scampia') || ind.includes('gaetano quagliariello');
+                    return (
+                        <>
+                            {isCentro && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fff1f2', borderColor: '#fecdd3' }]}>
+                                    <Ionicons name="warning-outline" size={24} color="#be123c" />
+                                    <Text style={[styles.infoBoxText, { color: '#be123c' }]}>🚫 Trappola ZTL: Zona a Traffico Limitato attiva! Parcheggio impossibile tra Mezzocannone e Porta di Massa. Lascia l'auto ai Colli Aminei o a Brin e prendi la Metro Linea 1.</Text>
+                                </View>
+                            )}
+                            {isCentro && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fef3c7', borderColor: '#fcd34d' }]}>
+                                    <Ionicons name="pizza-outline" size={24} color="#d97706" />
+                                    <Text style={[styles.infoBoxText, { color: '#d97706' }]}>🍕 Sopravvivenza Gastronomica: Sei nel cuore di Napoli! Pizze a portafoglio, cuoppo fritto e taralli a portata di mano. Via Mezzocannone e Piazza Bellini sono il paradiso dello street food studentesco.</Text>
+                                </View>
+                            )}
+                            {(isMSA || isAgnano) && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fff7ed', borderColor: '#fed7aa' }]}>
+                                    <Ionicons name="car-outline" size={24} color="#c2410c" />
+                                    <Text style={[styles.infoBoxText, { color: '#c2410c' }]}>🅿️ Parcheggio Early Bird: Il parcheggio studenti si riempie entro le 08:45. Se arrivi in auto dalla provincia, parti presto o valuta la Cumana (fermata Mostra per MSA).</Text>
+                                </View>
+                            )}
+                            {(isMSA || isFuorigrotta || isPoliclinico) && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f0fdf4', borderColor: '#bbf7d0' }]}>
+                                    <Ionicons name="restaurant-outline" size={24} color="#15803d" />
+                                    <Text style={[styles.infoBoxText, { color: '#15803d' }]}>🍽️ Mensa ADISURC: Fuori dai cancelli c'è il vuoto cosmico. Usa la mensa universitaria interna o i bar dei dipartimenti — sono il tuo salvavita per il pranzo nei poli periferici.</Text>
+                                </View>
+                            )}
+                            {isScampia && (
+                                <View style={[styles.infoBox, { backgroundColor: '#eff6ff', borderColor: '#bfdbfe' }]}>
+                                    <Ionicons name="bus-outline" size={24} color="#2563eb" />
+                                    <Text style={[styles.infoBoxText, { color: '#2563eb' }]}>🏥 Polo Scampia: Sede moderna ma isolata. Metro Linea 1 (stazione Piscinola) + navetta gratuita. Mensa interna disponibile.</Text>
+                                </View>
+                            )}
+                        </>
+                    );
+                })()}
+
                 <View style={styles.directionsContainer}>
                     {directions.map((dir, index) => {
                         const getIcon = () => {
@@ -1079,9 +1746,10 @@ const styles = StyleSheet.create({
     },
     scrollContent: {
         padding: 20,
+        paddingBottom: 40,
     },
     header: {
-        marginBottom: 24,
+        marginBottom: 16,
     },
     headerTitle: {
         fontSize: 26,
@@ -1095,6 +1763,7 @@ const styles = StyleSheet.create({
     },
     directionsContainer: {
         gap: 20,
+        marginTop: 8,
     },
     directionPoint: {
         flexDirection: 'row',
@@ -1137,7 +1806,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#ecfdf5',
         padding: 16,
         borderRadius: 12,
-        marginTop: 32,
+        marginTop: 12,
+        marginBottom: 6,
         borderWidth: 1,
         borderColor: '#a7f3d0',
     },

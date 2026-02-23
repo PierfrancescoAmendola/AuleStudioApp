@@ -19,7 +19,8 @@ export const torVergataRooms: StudyRoom[] = [
         indirizzo: 'Via Columbia 2, Roma',
         university: 'Tor Vergata',
         occupancy_rate: 'Alto',
-        notes: 'Biblioteca principale. Prenotazione obbligatoria tramite app "Affluences".'
+        notes: 'Biblioteca principale. Prenotazione obbligatoria tramite app "Affluences".',
+        tags: ['Biblioteca', 'WiFi', '⚡ Prese', '❄️ Climatizzato'],
     },
     {
         id: 'tor_eco_reading',
@@ -35,7 +36,8 @@ export const torVergataRooms: StudyRoom[] = [
         longitude: 12.6122,
         indirizzo: 'Via Columbia 2, Roma',
         university: 'Tor Vergata',
-        notes: 'Spazio meno formale, ottimo per ripetere tra una lezione e l\'altra.'
+        notes: 'Spazio meno formale, ottimo per ripetere tra una lezione e l\'altra.',
+        tags: ['Aula Studio', 'WiFi', '❄️ Climatizzato'],
     },
     {
         id: 'tor_eco_acquario',
@@ -51,7 +53,8 @@ export const torVergataRooms: StudyRoom[] = [
         longitude: 12.6120,
         indirizzo: 'Via Columbia 2, Roma',
         university: 'Tor Vergata',
-        notes: 'Zona vetrata nell\'atrio. Molto usata per lavori di gruppo, un po\' rumorosa.'
+        notes: 'Zona vetrata nell\'atrio. Molto usata per lavori di gruppo, un po\' rumorosa.',
+        tags: ['Aula Studio', 'WiFi'],
     },
 
     // ============================================================
@@ -71,7 +74,8 @@ export const torVergataRooms: StudyRoom[] = [
         longitude: 12.6230,
         indirizzo: 'Via del Politecnico 1, Roma',
         university: 'Tor Vergata',
-        notes: 'Spazio silenzioso. Ottima per consultare testi tecnici e norme.'
+        notes: 'Spazio silenzioso. Ottima per consultare testi tecnici e norme.',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'tor_ing_aule_studio',
@@ -87,7 +91,8 @@ export const torVergataRooms: StudyRoom[] = [
         longitude: 12.6230,
         indirizzo: 'Via del Politecnico 1, Roma',
         university: 'Tor Vergata',
-        notes: 'Aule dedicate allo studio libero quando non ci sono lezioni. Controllare monitor all\'ingresso.'
+        notes: 'Aule dedicate allo studio libero quando non ci sono lezioni. Controllare monitor all\'ingresso.',
+        tags: ['Aula Studio', 'WiFi', '❄️ Climatizzato'],
     },
     {
         id: 'tor_ing_civile',
@@ -103,6 +108,7 @@ export const torVergataRooms: StudyRoom[] = [
         longitude: 12.6235,
         indirizzo: 'Via del Politecnico 1, Roma',
         university: 'Tor Vergata',
+        tags: ['Aula Studio', 'WiFi', '🔇 Silenzio'],
     },
 
     // ============================================================
@@ -122,7 +128,8 @@ export const torVergataRooms: StudyRoom[] = [
         longitude: 12.6140,
         indirizzo: 'Via Columbia 1, Roma',
         university: 'Tor Vergata',
-        notes: 'Prenotazione obbligatoria con Affluences. Ambiente molto tranquillo.'
+        notes: 'Prenotazione obbligatoria con Affluences. Ambiente molto tranquillo.',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'tor_lettere_atrio',
@@ -138,7 +145,8 @@ export const torVergataRooms: StudyRoom[] = [
         longitude: 12.6138,
         indirizzo: 'Via Columbia 1, Roma',
         university: 'Tor Vergata',
-        notes: 'L\'immenso atrio è pieno di tavoli. Caotico ma vitale per gruppi.'
+        notes: 'L\'immenso atrio è pieno di tavoli. Caotico ma vitale per gruppi.',
+        tags: ['Aula Studio', 'WiFi'],
     },
 
     // ============================================================
@@ -159,7 +167,8 @@ export const torVergataRooms: StudyRoom[] = [
         indirizzo: 'Via Montpellier 1, Roma',
         university: 'Tor Vergata',
         occupancy_rate: 'Molto Alto',
-        notes: 'La più ambita. Prenotare con giorni di anticipo su Affluences.'
+        notes: 'La più ambita. Prenotare con giorni di anticipo su Affluences.',
+        tags: ['Biblioteca', 'Medicina', 'WiFi'],
     },
     {
         id: 'tor_med_aulette',
@@ -175,7 +184,8 @@ export const torVergataRooms: StudyRoom[] = [
         longitude: 12.6355,
         indirizzo: 'Via Montpellier 1, Roma',
         university: 'Tor Vergata',
-        notes: 'Chiedere in portineria quali aule sono libere per lo studio oggi.'
+        notes: 'Chiedere in portineria quali aule sono libere per lo studio oggi.',
+        tags: ['Aula Studio', 'Medicina', 'WiFi'],
     },
 
     // ============================================================
@@ -195,7 +205,8 @@ export const torVergataRooms: StudyRoom[] = [
         longitude: 12.6280,
         indirizzo: 'Via della Ricerca Scientifica 1, Roma',
         university: 'Tor Vergata',
-        notes: 'Situata nel gigantesco edificio giallo (Sogene). Unica aperta sabato mattina.'
+        notes: 'Situata nel gigantesco edificio giallo (Sogene). Unica aperta sabato mattina.',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'tor_scienze_acquario',
@@ -211,7 +222,8 @@ export const torVergataRooms: StudyRoom[] = [
         longitude: 12.6280,
         indirizzo: 'Via della Ricerca Scientifica 1, Roma',
         university: 'Tor Vergata',
-        notes: 'Postazioni studio informali lungo i corridoi chilometrici.'
+        notes: 'Postazioni studio informali lungo i corridoi chilometrici.',
+        tags: ['Aula Studio', 'WiFi', '❄️ Climatizzato'],
     },
 
     // ============================================================
@@ -231,7 +243,8 @@ export const torVergataRooms: StudyRoom[] = [
         longitude: 12.6080,
         indirizzo: 'Via Orazio Raimondo 18, Roma',
         university: 'Tor Vergata',
-        notes: 'Nel complesso del Rettorato (la "Croce").'
+        notes: 'Nel complesso del Rettorato (la "Croce").',
+        tags: ['Biblioteca', 'WiFi', '🔇 Silenzio'],
     },
     {
         id: 'tor_cappella',
@@ -247,7 +260,8 @@ export const torVergataRooms: StudyRoom[] = [
         longitude: 12.6090,
         indirizzo: 'Via Salamanca 26, Roma',
         university: 'Tor Vergata',
-        notes: 'Davanti al Rettorato. Unica risorsa per la Domenica pomeriggio (15:00-20:00).'
+        notes: 'Davanti al Rettorato. Unica risorsa per la Domenica pomeriggio (15:00-20:00).',
+        tags: ['Aula Studio', 'WiFi', '🔇 Silenzio'],
     },
 
     // ============================================================
@@ -267,7 +281,8 @@ export const torVergataRooms: StudyRoom[] = [
         longitude: 12.6300,
         indirizzo: 'Via di Passolombardo 341, Roma',
         university: 'Tor Vergata',
-        notes: 'Resort studentesco. Accessibile (spesso serve documento o consumazione al bar).'
+        notes: 'Resort studentesco. Accessibile (spesso serve documento o consumazione al bar).',
+        tags: ['Aula Studio', 'Campus', 'WiFi', '☕ Ristoro'],
     },
     {
         id: 'tor_laziodisco_cambridge',
@@ -283,7 +298,8 @@ export const torVergataRooms: StudyRoom[] = [
         longitude: 12.6160,
         indirizzo: 'Via Cambridge 115, Roma',
         university: 'Tor Vergata',
-        notes: 'Edificio arancione tra Ingegneria ed Economia. Punto strategico per pranzo+studio.'
+        notes: 'Edificio arancione tra Ingegneria ed Economia. Punto strategico per pranzo+studio.',
+        tags: ['Mensa/Ristoro', 'WiFi', '☕ Ristoro'],
     }
 ];
 

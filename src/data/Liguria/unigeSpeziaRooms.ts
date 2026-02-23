@@ -19,7 +19,8 @@ export const unigeSpeziaRooms: StudyRoom[] = [
         indirizzo: 'Viale Nicolò Fieschi 16/18, La Spezia',
         university: 'UniGe - Polo SP',
         occupancy_rate: 'Medio',
-        notes: 'Biblioteca tecnica focus nautica/meccanica.'
+        notes: 'Biblioteca tecnica focus nautica/meccanica.',
+        tags: ['Biblioteca', 'Campus', 'WiFi', '🔇 Silenzio'],
     },
     {
         id: 'sp_campus_aule_studio',
@@ -35,7 +36,8 @@ export const unigeSpeziaRooms: StudyRoom[] = [
         longitude: 9.8155,
         indirizzo: 'Viale Fieschi, La Spezia',
         university: 'UniGe - Polo SP',
-        notes: 'Spazi moderni ex ospedale militare.'
+        notes: 'Spazi moderni ex ospedale militare.',
+        tags: ['Aula Studio', 'Campus', '❄️ Climatizzato', '👥 Gruppi OK'],
     },
     {
         id: 'sp_campus_lab_design',
@@ -51,7 +53,8 @@ export const unigeSpeziaRooms: StudyRoom[] = [
         longitude: 9.8160,
         indirizzo: 'Viale Fieschi, La Spezia',
         university: 'UniGe - Polo SP',
-        notes: 'Per Yacht Design.'
+        notes: 'Per Yacht Design.',
+        tags: ['Laboratorio', 'Campus'],
     },
     {
         id: 'sp_campus_mensa',
@@ -67,7 +70,8 @@ export const unigeSpeziaRooms: StudyRoom[] = [
         longitude: 9.8150,
         indirizzo: 'Campus Marconi, La Spezia',
         university: 'UniGe - Polo SP',
-        notes: 'Spazio pausa/studio.'
+        notes: 'Spazio pausa/studio.',
+        tags: ['Mensa/Ristoro', 'Campus'],
     },
     // ============================================================
     // LA SPEZIA CENTRO (Civiche e Multimediale)
@@ -87,7 +91,8 @@ export const unigeSpeziaRooms: StudyRoom[] = [
         indirizzo: 'Via del Canaletto 100, La Spezia',
         university: 'UniGe - Polo SP',
         occupancy_rate: 'Altissimo',
-        notes: 'Top moderna ex industriale.'
+        notes: 'Top moderna ex industriale.',
+        tags: ['Biblioteca', 'Campus', 'WiFi'],
     },
     {
         id: 'sp_mazzini',
@@ -103,7 +108,8 @@ export const unigeSpeziaRooms: StudyRoom[] = [
         longitude: 9.8180,
         indirizzo: 'Corso Cavour 251, La Spezia',
         university: 'UniGe - Polo SP',
-        notes: 'Atmosfera ottocentesca.'
+        notes: 'Atmosfera ottocentesca.',
+        tags: ['Biblioteca', 'Campus'],
     },
     {
         id: 'sp_mediateca',
@@ -119,7 +125,8 @@ export const unigeSpeziaRooms: StudyRoom[] = [
         longitude: 9.8150,
         indirizzo: 'Via Firenze 37, La Spezia',
         university: 'UniGe - Polo SP',
-        notes: 'Informale per ricerche visive.'
+        notes: 'Informale per ricerche visive.',
+        tags: ['Aula Studio', 'Campus', '☕ Ristoro'],
     },
     // ============================================================
     // OUTDOOR NAUTICO
@@ -138,7 +145,8 @@ export const unigeSpeziaRooms: StudyRoom[] = [
         longitude: 9.8250,
         indirizzo: 'Viale Italia, La Spezia',
         university: 'UniGe - Polo SP',
-        notes: 'Laboratorio vivo design nautico.'
+        notes: 'Laboratorio vivo design nautico.',
+        tags: ['Aula Studio', 'Campus', '❄️ Climatizzato'],
     },
 ];
 

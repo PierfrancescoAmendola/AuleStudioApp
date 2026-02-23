@@ -19,7 +19,8 @@ export const romaTreRooms: StudyRoom[] = [
         indirizzo: 'Via Ostiense 163, Roma',
         university: 'Roma Tre',
         occupancy_rate: 'Molto Alto',
-        notes: 'Una delle poche biblioteche aperte fino a tardi (23:00). Ingresso piano terra.'
+        notes: 'Una delle poche biblioteche aperte fino a tardi (23:00). Ingresso piano terra.',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'r3_umanistica_petrocchi',
@@ -35,7 +36,8 @@ export const romaTreRooms: StudyRoom[] = [
         longitude: 12.4800,
         indirizzo: 'Via Ostiense 236, Roma',
         university: 'Roma Tre',
-        notes: 'Sede centrale umanistica. C\'è anche una sala studio nell\'edificio adiacente aperta fino alle 23:00.'
+        notes: 'Sede centrale umanistica. C\'è anche una sala studio nell\'edificio adiacente aperta fino alle 23:00.',
+        tags: ['Biblioteca', 'WiFi', '⚡ Prese'],
     },
     {
         id: 'r3_sala_studio_236',
@@ -52,7 +54,8 @@ export const romaTreRooms: StudyRoom[] = [
         indirizzo: 'Via Ostiense 236, Roma',
         university: 'Roma Tre',
         occupancy_rate: 'Alto',
-        notes: 'Ottima per chi studia la sera in zona Ostiense.'
+        notes: 'Ottima per chi studia la sera in zona Ostiense.',
+        tags: ['Aula Studio', 'WiFi'],
     },
     {
         id: 'r3_sc_politiche',
@@ -68,7 +71,8 @@ export const romaTreRooms: StudyRoom[] = [
         longitude: 12.4785,
         indirizzo: 'Via Gabriello Chiabrera 199, Roma',
         university: 'Roma Tre',
-        notes: 'In zona San Paolo, molto frequentata dagli studenti di SP.'
+        notes: 'In zona San Paolo, molto frequentata dagli studenti di SP.',
+        tags: ['Biblioteca', 'WiFi', '🌙 H24'],
     },
     {
         id: 'r3_dams_micciche',
@@ -84,7 +88,8 @@ export const romaTreRooms: StudyRoom[] = [
         longitude: 12.4820,
         indirizzo: 'Via Ostiense 139, Roma',
         university: 'Roma Tre',
-        notes: 'Specializzata in cinema e teatro.'
+        notes: 'Specializzata in cinema e teatro.',
+        tags: ['Biblioteca', 'WiFi'],
     },
 
     // ============================================================
@@ -105,7 +110,8 @@ export const romaTreRooms: StudyRoom[] = [
         indirizzo: 'Via Silvio D\'Amico 77, Roma',
         university: 'Roma Tre',
         occupancy_rate: 'Alto',
-        notes: 'Una delle più moderne e frequentate.'
+        notes: 'Una delle più moderne e frequentate.',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'r3_ing_vasca_navale',
@@ -121,7 +127,8 @@ export const romaTreRooms: StudyRoom[] = [
         longitude: 12.4720,
         indirizzo: 'Via della Vasca Navale 79, Roma',
         university: 'Roma Tre',
-        notes: 'Sede centrale per Ingegneria e Scienze.'
+        notes: 'Sede centrale per Ingegneria e Scienze.',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'r3_aula_arata',
@@ -138,7 +145,8 @@ export const romaTreRooms: StudyRoom[] = [
         indirizzo: 'Via della Vasca Navale 79, Roma',
         university: 'Roma Tre',
         occupancy_rate: 'Medio',
-        notes: 'Di fronte alla mensa LazioDisco. Molto comoda per il "dopo cena" universitario.'
+        notes: 'Di fronte alla mensa LazioDisco. Molto comoda per il "dopo cena" universitario.',
+        tags: ['Aula Studio', 'WiFi', '☕ Ristoro'],
     },
     {
         id: 'r3_torri_scienze',
@@ -154,7 +162,8 @@ export const romaTreRooms: StudyRoom[] = [
         longitude: 12.4750,
         indirizzo: 'Lungotevere Dante 376, Roma',
         university: 'Roma Tre',
-        notes: 'Sede distaccata molto tranquilla lungo il Tevere.'
+        notes: 'Sede distaccata molto tranquilla lungo il Tevere.',
+        tags: ['Biblioteca', 'WiFi'],
     },
 
     // ============================================================
@@ -174,7 +183,8 @@ export const romaTreRooms: StudyRoom[] = [
         longitude: 12.4740,
         indirizzo: 'Largo Giovanni Battista Marzi 10, Roma',
         university: 'Roma Tre',
-        notes: 'Situata nell\'affascinante complesso dell\'Ex-Mattatoio. Atmosfera unica.'
+        notes: 'Situata nell\'affascinante complesso dell\'Ex-Mattatoio. Atmosfera unica.',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'r3_aula_pelanda',
@@ -190,7 +200,8 @@ export const romaTreRooms: StudyRoom[] = [
         longitude: 12.4735,
         indirizzo: 'Piazza Orazio Giustiniani 4, Roma',
         university: 'Roma Tre',
-        notes: 'Aperta anche Sabato e Domenica! Spazio gestito con il Comune di Roma.'
+        notes: 'Aperta anche Sabato e Domenica! Spazio gestito con il Comune di Roma.',
+        tags: ['Aula Studio', 'WiFi'],
     },
     {
         id: 'r3_arch_padiglioni',
@@ -206,7 +217,8 @@ export const romaTreRooms: StudyRoom[] = [
         longitude: 12.4740,
         indirizzo: 'Largo G.B. Marzi 10, Roma',
         university: 'Roma Tre',
-        notes: 'Spazi liberi per studenti di architettura.'
+        notes: 'Spazi liberi per studenti di architettura.',
+        tags: ['Aula Studio', 'WiFi'],
     },
 
     // ============================================================
@@ -226,7 +238,8 @@ export const romaTreRooms: StudyRoom[] = [
         longitude: 12.5050,
         indirizzo: 'Via del Castro Pretorio 20, Roma',
         university: 'Roma Tre',
-        notes: 'Comodissima per i pendolari che arrivano a Termini.'
+        notes: 'Comodissima per i pendolari che arrivano a Termini.',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'r3_formazione_amedeo',
@@ -242,6 +255,7 @@ export const romaTreRooms: StudyRoom[] = [
         longitude: 12.5030,
         indirizzo: 'Via Principe Amedeo 184, Roma',
         university: 'Roma Tre',
+        tags: ['Aula Studio', 'WiFi'],
     }
 ];
 

@@ -17,7 +17,8 @@ export const parthenopeRooms: StudyRoom[] = [
         indirizzo: 'Via Generale Parisi 13, Napoli',
         university: 'Parthenope',
         occupancy_rate: 'Alto',
-        notes: 'Grande spazio aperto all\'ingresso, ottimo per lavori di gruppo.'
+        notes: 'Grande spazio aperto all\'ingresso, ottimo per lavori di gruppo.',
+        tags: ['Aula Studio', 'WiFi', '☕ Ristoro'],
     },
     {
         id: 'pa_pacanowski_b_c',
@@ -32,7 +33,8 @@ export const parthenopeRooms: StudyRoom[] = [
         latitude: 40.8322,
         longitude: 14.2465,
         indirizzo: 'Via Generale Parisi 13, Napoli',
-        notes: 'Aule recentemente inaugurate, molto moderne e silenziose.'
+        notes: 'Aule recentemente inaugurate, molto moderne e silenziose.',
+        tags: ['Aula Studio', 'WiFi', '🔇 Silenzio'],
     },
 
     // --- VILLA DORIA D'ANGRI (Via Petrarca - Posillipo) ---
@@ -50,6 +52,7 @@ export const parthenopeRooms: StudyRoom[] = [
         longitude: 14.2185,
         indirizzo: 'Via Francesco Petrarca 80, Napoli',
         university: 'Parthenope',
+        tags: ['Aula Studio', 'WiFi'],
     },
     {
         id: 'pa_villa_mergellina',
@@ -92,7 +95,8 @@ export const parthenopeRooms: StudyRoom[] = [
         latitude: 40.8248,
         longitude: 14.2185,
         indirizzo: 'Via Francesco Petrarca 80, Napoli',
-        notes: 'Aula ad alta tecnologia, tavoli per lavoro collaborativo.'
+        notes: 'Aula ad alta tecnologia, tavoli per lavoro collaborativo.',
+        tags: ['Aula Studio', '❄️ Climatizzato'],
     },
 
     // --- CENTRO DIREZIONALE (ISOLA C4) ---
@@ -110,6 +114,7 @@ export const parthenopeRooms: StudyRoom[] = [
         longitude: 14.2815,
         indirizzo: 'Centro Direzionale Isola C4, Napoli',
         university: 'Parthenope',
+        tags: ['Biblioteca', 'WiFi', '❄️ Climatizzato', '🅿️ Parcheggio'],
     },
 
     // --- VIA ACTON (Sede Centrale) ---

@@ -19,7 +19,8 @@ export const politoRooms: StudyRoom[] = [
         indirizzo: 'Corso Duca degli Abruzzi 24, 10129 Torino',
         university: 'PoliTo',
         occupancy_rate: 'Altissimo',
-        notes: 'Il tempio degli ingegneri. Silenzio assoluto obbligatorio. Durante la sessione è una battaglia trovare posto. Verificare orari su portale biblioteche PoliTo.'
+        notes: 'Il tempio degli ingegneri. Silenzio assoluto obbligatorio. Durante la sessione è una battaglia trovare posto. Verificare orari su portale biblioteche PoliTo.',
+        tags: ['Biblioteca', 'WiFi', '🔇 Silenzio', '🖨️ Stampa'],
     },
     {
         id: 'polito_cittadella_aule',
@@ -36,7 +37,8 @@ export const politoRooms: StudyRoom[] = [
         indirizzo: 'Via Boggio / Corso Castelfidardo, 10129 Torino',
         university: 'PoliTo',
         occupancy_rate: 'Alto',
-        notes: 'Spazi enormi, moderni e industriali. Perfetti per progetti di gruppo e teamwork (rumore tollerato). NON è una biblioteca: è un Open Space. Accesso principale da Via Boggio. Vari piani disponibili.'
+        notes: 'Spazi enormi, moderni e industriali. Perfetti per progetti di gruppo e teamwork (rumore tollerato). NON è una biblioteca: è un Open Space. Accesso principale da Via Boggio. Vari piani disponibili.',
+        tags: ['Aula Studio', 'WiFi', '❄️ Climatizzato', '☕ Ristoro', '👥 Gruppi OK'],
     },
     // ============================================================
     // TORINO - CASTELLO DEL VALENTINO (Architettura)
@@ -56,7 +58,8 @@ export const politoRooms: StudyRoom[] = [
         indirizzo: 'Viale Mattioli 39, 10125 Torino',
         university: 'PoliTo',
         occupancy_rate: 'Alto',
-        notes: 'Patrimonio UNESCO. Studio in un palazzo del \'600 con vista sul Po. Ingresso dal parco o da Viale Mattioli. Tavoli ampi per tavole A0 e plastici.'
+        notes: 'Patrimonio UNESCO. Studio in un palazzo del \'600 con vista sul Po. Ingresso dal parco o da Viale Mattioli. Tavoli ampi per tavole A0 e plastici.',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'polito_valentino_cortile',
@@ -72,7 +75,8 @@ export const politoRooms: StudyRoom[] = [
         longitude: 7.6845,
         indirizzo: 'Parco del Valentino, 10125 Torino',
         university: 'PoliTo',
-        notes: 'Aule studio a cielo aperto in primavera/estate. Connettività WiFi limitata. Perfetto per rilassarsi o lavorare su plastici.'
+        notes: 'Aule studio a cielo aperto in primavera/estate. Connettività WiFi limitata. Perfetto per rilassarsi o lavorare su plastici.',
+        tags: ['Outdoor'],
     },
     // ============================================================
     // SEDI DISTACCATE (Rete Politecnica Piemonte)
@@ -92,7 +96,8 @@ export const politoRooms: StudyRoom[] = [
         indirizzo: 'Viale Teresa Michel 5, 15121 Alessandria',
         university: 'PoliTo',
         occupancy_rate: 'Medio',
-        notes: 'Forte legame con il territorio industriale. Verificare orari sul sito del polo.'
+        notes: 'Forte legame con il territorio industriale. Verificare orari sul sito del polo.',
+        tags: ['Aula Studio', 'Campus', 'WiFi', '🅿️ Parcheggio'],
     },
     {
         id: 'polito_biella_cittastudi',
@@ -109,7 +114,8 @@ export const politoRooms: StudyRoom[] = [
         indirizzo: 'Corso Giuseppe Pella 2b, 13900 Biella',
         university: 'PoliTo',
         occupancy_rate: 'Medio',
-        notes: 'Campus condiviso con altre istituzioni. Ambiente innovativo e ben attrezzato.'
+        notes: 'Campus condiviso con altre istituzioni. Ambiente innovativo e ben attrezzato.',
+        tags: ['Aula Studio', 'Campus', 'WiFi', '☕ Ristoro', '🅿️ Parcheggio'],
     },
     {
         id: 'polito_mondovi',
@@ -126,7 +132,8 @@ export const politoRooms: StudyRoom[] = [
         indirizzo: 'Via Cottolengo 29, 12084 Mondovì (CN)',
         university: 'PoliTo',
         occupancy_rate: 'Basso',
-        notes: 'Sede storica nella parte alta di Mondovì (Piazza). Raggiungibile con funicolare da Breo. Per arrivarci serve la Funicolare Mondovì Breo→Piazza!'
+        notes: 'Sede storica nella parte alta di Mondovì (Piazza). Raggiungibile con funicolare da Breo. Per arrivarci serve la Funicolare Mondovì Breo→Piazza!',
+        tags: ['Aula Studio', 'Campus', 'WiFi'],
     },
     {
         id: 'polito_vercelli',
@@ -143,7 +150,8 @@ export const politoRooms: StudyRoom[] = [
         indirizzo: 'Piazza Sant\'Eusebio 5, 13100 Vercelli',
         university: 'PoliTo',
         occupancy_rate: 'Basso',
-        notes: 'Avamposto nel vercellese. Vicino alla stazione ferroviaria.'
+        notes: 'Avamposto nel vercellese. Vicino alla stazione ferroviaria.',
+        tags: ['Aula Studio', 'Campus', 'WiFi'],
     }
 ];
 

@@ -20,7 +20,8 @@ export const uniudRooms: StudyRoom[] = [
         indirizzo: 'Via delle Scienze 206, Udine',
         university: 'UniUd',
         occupancy_rate: 'Molto Alto',
-        notes: '⭐ Biblioteca principale scientifica. Moderna e capiente. Ideale per Ingegneria, Agraria, Matematica. Campus "americano" con parcheggio enorme e mensa. INVERNO: zona ventosa e fredda!'
+        notes: '⭐ Biblioteca principale scientifica. Moderna e capiente. Ideale per Ingegneria, Agraria, Matematica. Campus "americano" con parcheggio enorme e mensa. INVERNO: zona ventosa e fredda!',
+        tags: ['Biblioteca', 'Campus', 'WiFi', '🅿️ Parcheggio', '👥 Gruppi OK'],
     },
     {
         id: 'uniud_rizzi_nuova',
@@ -36,7 +37,8 @@ export const uniudRooms: StudyRoom[] = [
         longitude: 13.2100,
         indirizzo: 'Via Fausto Schiavi 44, Udine',
         university: 'UniUd',
-        notes: 'Estensione moderna BST. Spazi aggiuntivi per studio individuale. Luminosa con molta luce naturale.'
+        notes: 'Estensione moderna BST. Spazi aggiuntivi per studio individuale. Luminosa con molta luce naturale.',
+        tags: ['Biblioteca'],
     },
     {
         id: 'uniud_rizzi_comuni',
@@ -52,7 +54,8 @@ export const uniudRooms: StudyRoom[] = [
         longitude: 13.2120,
         indirizzo: 'Via delle Scienze 206, Udine',
         university: 'UniUd',
-        notes: 'Aree comuni vivaci per lavori gruppo. Non silenziosissime. Ideale per progetti collaborativi.'
+        notes: 'Aree comuni vivaci per lavori gruppo. Non silenziosissime. Ideale per progetti collaborativi.',
+        tags: ['Aula Studio', 'Campus', '☕ Ristoro', '👥 Gruppi OK'],
     },
     // ============================================================
     // UDINE - POLO MEDICINA (Kolbe / Ospedale)
@@ -71,7 +74,8 @@ export const uniudRooms: StudyRoom[] = [
         longitude: 13.2252,
         indirizzo: 'Piazzale Santa Maria della Misericordia 15, Udine',
         university: 'UniUd',
-        notes: 'Polo principale Medicina/Professioni Sanitarie. Vicino ospedale Santa Maria della Misericordia. A 10 min dal Rizzi.'
+        notes: 'Polo principale Medicina/Professioni Sanitarie. Vicino ospedale Santa Maria della Misericordia. A 10 min dal Rizzi.',
+        tags: ['Aula Studio', 'Campus', 'Medicina', 'WiFi', '☕ Ristoro', '🔇 Silenzio'],
     },
     // ============================================================
     // UDINE CENTRO - UMANISTICA / FORMAZIONE
@@ -91,7 +95,8 @@ export const uniudRooms: StudyRoom[] = [
         longitude: 13.2305,
         indirizzo: 'Via Palladio 8, Udine',
         university: 'UniUd',
-        notes: '🎨⭐ Palazzo storico elegante con affreschi. Per Lettere, Beni Culturali. Atmosfera "Mitteleuropea" con giardino. INSIDER TIP: A 19:00 chiude e sei già in centro per il tajut (aperitivo friulano)!'
+        notes: '🎨⭐ Palazzo storico elegante con affreschi. Per Lettere, Beni Culturali. Atmosfera "Mitteleuropea" con giardino. INSIDER TIP: A 19:00 chiude e sei già in centro per il tajut (aperitivo friulano)!',
+        tags: ['Biblioteca', '🔇 Silenzio'],
     },
     {
         id: 'uniud_formazione_margreth',
@@ -107,7 +112,8 @@ export const uniudRooms: StudyRoom[] = [
         longitude: 13.2300,
         indirizzo: 'Via Margreth 3, Udine',
         university: 'UniUd',
-        notes: 'Parte umanistica/formazione. Zona centro tranquilla.'
+        notes: 'Parte umanistica/formazione. Zona centro tranquilla.',
+        tags: ['Biblioteca'],
     },
     // ============================================================
     // UDINE CENTRO - ECONOMIA / GIURISPRUDENZA
@@ -126,7 +132,8 @@ export const uniudRooms: StudyRoom[] = [
         longitude: 13.2350,
         indirizzo: 'Via Tomadini 30/A, Udine',
         university: 'UniUd',
-        notes: 'Unificata Economia/Giurisprudenza. Centrale e ben servita. Zona residenziale tranquilla.'
+        notes: 'Unificata Economia/Giurisprudenza. Centrale e ben servita. Zona residenziale tranquilla.',
+        tags: ['Biblioteca'],
     },
     {
         id: 'uniud_antonini',
@@ -142,7 +149,8 @@ export const uniudRooms: StudyRoom[] = [
         longitude: 13.2325,
         indirizzo: 'Via Petracco 8, Udine',
         university: 'UniUd',
-        notes: '🏛️ Sede Lingue con spazi studio. Palazzo storico accogliente e caldo d\'inverno. Atmosfera "cozy" rispetto al cemento dei Rizzi.'
+        notes: '🏛️ Sede Lingue con spazi studio. Palazzo storico accogliente e caldo d\'inverno. Atmosfera "cozy" rispetto al cemento dei Rizzi.',
+        tags: ['Aula Studio'],
     },
     // ============================================================
     // UDINE - BIBLIOTECA CIVICA JOPPI
@@ -163,7 +171,8 @@ export const uniudRooms: StudyRoom[] = [
         indirizzo: 'Riva Bartolini 5, Udine',
         university: 'UniUd',
         occupancy_rate: 'Altissimo',
-        notes: '☕⭐ Non UniUd ma usatissima. Sala Corgnali storica bellissima. INSIDER TIP: Location perfetta per Studio + Vita Sociale! Alle 19:00 chiude e sei GIÀ in Piazza San Giacomo o Via Mercatovecchio per il TAJUT (aperitivo friulano). Studio + Socialità a km 0!'
+        notes: '☕⭐ Non UniUd ma usatissima. Sala Corgnali storica bellissima. INSIDER TIP: Location perfetta per Studio + Vita Sociale! Alle 19:00 chiude e sei GIÀ in Piazza San Giacomo o Via Mercatovecchio per il TAJUT (aperitivo friulano). Studio + Socialità a km 0!',
+        tags: ['Biblioteca', 'Centro'],
     },
     // ============================================================
     // SEDI DISTACCATE
@@ -182,7 +191,8 @@ export const uniudRooms: StudyRoom[] = [
         longitude: 12.6605,
         indirizzo: 'Via Prasecco 3/A, Pordenone',
         university: 'UniUd',
-        notes: 'Polo Ingegneria Gestionale UniUd. Zona industriale con parcheggi ampi.'
+        notes: 'Polo Ingegneria Gestionale UniUd. Zona industriale con parcheggi ampi.',
+        tags: ['Aula Studio', 'Campus', '🅿️ Parcheggio'],
     },
     {
         id: 'uniud_gorizia',
@@ -198,7 +208,8 @@ export const uniudRooms: StudyRoom[] = [
         longitude: 13.6208,
         indirizzo: 'Via Santa Chiara 1, Gorizia',
         university: 'UniUd',
-        notes: '🌍 Sede Relazioni Pubbliche/DAMS. Stesso edificio di UniTS! Confine Slovenia a 10 min per spesa/pranzo economico Nova Gorica.'
+        notes: '🌍 Sede Relazioni Pubbliche/DAMS. Stesso edificio di UniTS! Confine Slovenia a 10 min per spesa/pranzo economico Nova Gorica.',
+        tags: ['Aula Studio', 'Campus'],
     },
     {
         id: 'uniud_gemona',
@@ -214,7 +225,8 @@ export const uniudRooms: StudyRoom[] = [
         longitude: 13.1385,
         indirizzo: 'Piazzale del Castello, Gemona del Friuli',
         university: 'UniUd',
-        notes: '🏃 Polo Scienze Motorie. Non solo libri ma pratica sportiva! Zona alta storica ricostruita post-terremoto. Palestre convenzionate vicine.'
+        notes: '🏃 Polo Scienze Motorie. Non solo libri ma pratica sportiva! Zona alta storica ricostruita post-terremoto. Palestre convenzionate vicine.',
+        tags: ['Aula Studio'],
     },
 ];
 

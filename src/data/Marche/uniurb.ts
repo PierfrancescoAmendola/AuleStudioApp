@@ -19,7 +19,8 @@ export const uniurbRooms: StudyRoom[] = [
         indirizzo: 'Via San Girolamo 8, Urbino',
         university: 'UniUrb',
         occupancy_rate: 'Alto',
-        notes: 'Ex monastero. Celle monaci per studio.'
+        notes: 'Ex monastero. Celle monaci per studio.',
+        tags: ['Biblioteca', '🔇 Silenzio'],
     },
     {
         id: 'uniurb_volponi',
@@ -35,7 +36,8 @@ export const uniurbRooms: StudyRoom[] = [
         longitude: 12.6358,
         indirizzo: 'Via Saffi 15, Urbino',
         university: 'UniUrb',
-        notes: 'Spazi comuni vivaci Via Saffi.'
+        notes: 'Spazi comuni vivaci Via Saffi.',
+        tags: ['Aula Studio', 'Campus'],
     },
     {
         id: 'uniurb_bonaventura',
@@ -51,7 +53,8 @@ export const uniurbRooms: StudyRoom[] = [
         longitude: 12.6365,
         indirizzo: 'Via Matteotti 1, Urbino',
         university: 'UniUrb',
-        notes: 'Di fronte Duomo/Palazzo Ducale.'
+        notes: 'Di fronte Duomo/Palazzo Ducale.',
+        tags: ['Biblioteca'],
     },
     // ============================================================
     // URBINO - COLLEGI DE CARLO (Residenziale)
@@ -70,7 +73,8 @@ export const uniurbRooms: StudyRoom[] = [
         longitude: 12.6250,
         indirizzo: 'Via dei Cappuccini, Urbino',
         university: 'UniUrb',
-        notes: 'Capolavoro De Carlo. Vista Urbino.'
+        notes: 'Capolavoro De Carlo. Vista Urbino.',
+        tags: ['Aula Studio', '☕ Ristoro'],
     },
     // ============================================================
     // URBINO - POLO SCIENTIFICO (Crocicchia/Sogesta)
@@ -89,7 +93,8 @@ export const uniurbRooms: StudyRoom[] = [
         longitude: 12.6500,
         indirizzo: 'Località Crocicchia, Urbino',
         university: 'UniUrb',
-        notes: 'Fuori mura, verde.'
+        notes: 'Fuori mura, verde.',
+        tags: ['Biblioteca', 'Campus', '🅿️ Parcheggio'],
     },
     // ============================================================
     // FANO - POLO BIOTECNOLOGIE
@@ -108,7 +113,8 @@ export const uniurbRooms: StudyRoom[] = [
         longitude: 13.0150,
         indirizzo: 'Via Arco d\'Augusto 2, Fano',
         university: 'UniUrb',
-        notes: 'Vicino Arco Augusto.'
+        notes: 'Vicino Arco Augusto.',
+        tags: ['Aula Studio', 'Centro'],
     },
     {
         id: 'fano_memo',
@@ -124,7 +130,8 @@ export const uniurbRooms: StudyRoom[] = [
         longitude: 13.0180,
         indirizzo: 'Piazza Amiani, Fano',
         university: 'UniUrb',
-        notes: 'Innovativa ex industriale.'
+        notes: 'Innovativa ex industriale.',
+        tags: ['Aula Studio'],
     },
     // ============================================================
     // PESARO - POLO PSICOLOGIA
@@ -143,7 +150,8 @@ export const uniurbRooms: StudyRoom[] = [
         longitude: 12.9050,
         indirizzo: 'Via Passeri 102, Pesaro',
         university: 'UniUrb',
-        notes: 'Hub studenti Pesaro.'
+        notes: 'Hub studenti Pesaro.',
+        tags: ['Biblioteca'],
     },
 ];
 

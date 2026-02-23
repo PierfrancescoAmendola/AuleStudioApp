@@ -19,7 +19,8 @@ export const afamLiguriaRooms: StudyRoom[] = [
         indirizzo: 'Largo Pertini 4, Genova',
         university: 'AFAM',
         occupancy_rate: 'Basso',
-        notes: 'Biblioteca in palazzo storico De Ferrari.'
+        notes: 'Biblioteca in palazzo storico De Ferrari.',
+        tags: ['Biblioteca', '🔇 Silenzio'],
     },
     {
         id: 'aba_ligustica_lab',
@@ -35,7 +36,8 @@ export const afamLiguriaRooms: StudyRoom[] = [
         longitude: 8.9342,
         indirizzo: 'Largo Pertini 4, Genova',
         university: 'AFAM',
-        notes: 'Spazi creativi principali.'
+        notes: 'Spazi creativi principali.',
+        tags: ['Laboratorio'],
     },
     // ============================================================
     // GENOVA - CONSERVATORIO NICCOLÒ PAGANINI
@@ -54,7 +56,8 @@ export const afamLiguriaRooms: StudyRoom[] = [
         longitude: 8.9555,
         indirizzo: 'Via Francesco Pozzo 28, Genova Albaro',
         university: 'AFAM',
-        notes: 'Villa storica Albaro.'
+        notes: 'Villa storica Albaro.',
+        tags: ['Biblioteca'],
     },
     {
         id: 'cons_paganini_aule',
@@ -70,7 +73,8 @@ export const afamLiguriaRooms: StudyRoom[] = [
         longitude: 8.9555,
         indirizzo: 'Via Francesco Pozzo 28, Genova',
         university: 'AFAM',
-        notes: 'Aule insonorizzate.'
+        notes: 'Aule insonorizzate.',
+        tags: ['Aula Studio'],
     },
     // ============================================================
     // LA SPEZIA - CONSERVATORIO GIACOMO PUCCINI
@@ -89,7 +93,8 @@ export const afamLiguriaRooms: StudyRoom[] = [
         longitude: 9.8155,
         indirizzo: 'Via XX Settembre 34, La Spezia',
         university: 'AFAM',
-        notes: 'Villa Liberty iconica.'
+        notes: 'Villa Liberty iconica.',
+        tags: ['Biblioteca'],
     },
     // ============================================================
     // SANREMO - ACCADEMIA DI BELLE ARTI
@@ -108,7 +113,8 @@ export const afamLiguriaRooms: StudyRoom[] = [
         longitude: 7.7740,
         indirizzo: 'Via Val del Ponte 34, Sanremo',
         university: 'AFAM',
-        notes: 'Focus eventi/Festival.'
+        notes: 'Focus eventi/Festival.',
+        tags: ['Laboratorio'],
     },
     {
         id: 'sanremo_civica',
@@ -124,7 +130,8 @@ export const afamLiguriaRooms: StudyRoom[] = [
         longitude: 7.7760,
         indirizzo: 'Piazza Nota 6, Sanremo',
         university: 'AFAM',
-        notes: 'Alternativa teorica.'
+        notes: 'Alternativa teorica.',
+        tags: ['Biblioteca'],
     },
 ];
 

@@ -19,7 +19,8 @@ export const iussRooms: StudyRoom[] = [
         indirizzo: 'Piazza della Vittoria 15, Pavia',
         university: 'IUSS',
         occupancy_rate: 'Medio',
-        notes: 'Sede principale e prestigiosa. Le aule, quando non usate per le lezioni magistrali, sono accessibili agli allievi per lo studio.'
+        notes: 'Sede principale e prestigiosa. Le aule, quando non usate per le lezioni magistrali, sono accessibili agli allievi per lo studio.',
+        tags: ['Aula Studio', 'WiFi', '🔇 Silenzio'],
     },
     {
         id: 'iuss_sala_camino',
@@ -35,7 +36,8 @@ export const iussRooms: StudyRoom[] = [
         longitude: 9.1550,
         indirizzo: 'Piazza della Vittoria 15, Pavia',
         university: 'IUSS',
-        notes: 'Sala storica utilizzata per seminari e studio avanzato. Accesso spesso regolato o su richiesta.'
+        notes: 'Sala storica utilizzata per seminari e studio avanzato. Accesso spesso regolato o su richiesta.',
+        tags: ['Aula Studio', 'WiFi'],
     },
 
     // ============================================================
@@ -55,7 +57,8 @@ export const iussRooms: StudyRoom[] = [
         longitude: 9.1580,
         indirizzo: 'Lungoticino Sforza 56, Pavia',
         university: 'IUSS',
-        notes: 'Sede principalmente dedicata agli uffici e ai dottorati di ricerca.'
+        notes: 'Sede principalmente dedicata agli uffici e ai dottorati di ricerca.',
+        tags: ['Aula Studio', 'WiFi'],
     },
 
     // ============================================================
@@ -75,7 +78,8 @@ export const iussRooms: StudyRoom[] = [
         longitude: 9.1590,
         indirizzo: 'Piazza del Collegio Borromeo 9, Pavia',
         university: 'IUSS',
-        notes: 'Molti allievi IUSS risiedono qui. Biblioteca prestigiosa accessibile agli ospiti autorizzati.'
+        notes: 'Molti allievi IUSS risiedono qui. Biblioteca prestigiosa accessibile agli ospiti autorizzati.',
+        tags: ['Biblioteca', 'WiFi', '☕ Ristoro'],
     },
     {
         id: 'iuss_collegio_ghislieri',
@@ -91,7 +95,8 @@ export const iussRooms: StudyRoom[] = [
         longitude: 9.1525,
         indirizzo: 'Piazza Ghislieri 5, Pavia',
         university: 'IUSS',
-        notes: 'Altro pilastro storico dello IUSS. Accesso regolato.'
+        notes: 'Altro pilastro storico dello IUSS. Accesso regolato.',
+        tags: ['Biblioteca', 'WiFi'],
     },
 
     // ============================================================
@@ -111,7 +116,8 @@ export const iussRooms: StudyRoom[] = [
         longitude: 9.1610,
         indirizzo: 'Via Ferrata (Area Ex Marelli), Pavia',
         university: 'IUSS',
-        notes: 'Nuova sede inaugurata nel 2021. Ospita la Classe di Scienze, Tecnologie e Società. Spazi moderni.'
+        notes: 'Nuova sede inaugurata nel 2021. Ospita la Classe di Scienze, Tecnologie e Società. Spazi moderni.',
+        tags: ['Laboratorio', 'WiFi'],
     },
     {
         id: 'iuss_aula_magna',
@@ -127,7 +133,8 @@ export const iussRooms: StudyRoom[] = [
         longitude: 9.1550,
         indirizzo: 'Piazza della Vittoria 15, Pavia',
         university: 'IUSS',
-        notes: 'Quando non ci sono eventi, può essere usata come spazio studio di prestigio.'
+        notes: 'Quando non ci sono eventi, può essere usata come spazio studio di prestigio.',
+        tags: ['Aula Studio', 'WiFi', '🔇 Silenzio'],
     },
     {
         id: 'iuss_biblioteca_unipv',
@@ -143,7 +150,8 @@ export const iussRooms: StudyRoom[] = [
         longitude: 9.1535,
         indirizzo: 'Strada Nuova 65, Pavia',
         university: 'IUSS',
-        notes: 'Gli allievi IUSS hanno accesso alla storica Biblioteca Universitaria di Pavia (una delle più antiche d\'Italia!).'
+        notes: 'Gli allievi IUSS hanno accesso alla storica Biblioteca Universitaria di Pavia (una delle più antiche d\'Italia!).',
+        tags: ['Biblioteca', 'WiFi'],
     }
 ];
 

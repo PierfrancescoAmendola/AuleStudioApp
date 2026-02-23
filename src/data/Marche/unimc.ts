@@ -19,7 +19,8 @@ export const unimcRooms: StudyRoom[] = [
         indirizzo: 'Piazza Oberdan 4, Macerata',
         university: 'UniMC',
         occupancy_rate: 'Altissimo',
-        notes: 'Fulcro ateneo. Piani alti silenzio, piano terra social.'
+        notes: 'Fulcro ateneo. Piani alti silenzio, piano terra social.',
+        tags: ['Aula Studio', 'Campus', 'WiFi', '❄️ Climatizzato'],
     },
     {
         id: 'unimc_pantaleoni',
@@ -35,7 +36,8 @@ export const unimcRooms: StudyRoom[] = [
         longitude: 13.4505,
         indirizzo: 'Via della Pescheria Vecchia, Macerata',
         university: 'UniMC',
-        notes: 'Astronave blu. Corridoi/tavoli gruppo.'
+        notes: 'Astronave blu. Corridoi/tavoli gruppo.',
+        tags: ['Aula Studio', 'Campus', '☕ Ristoro'],
     },
     {
         id: 'unimc_giuridica',
@@ -51,7 +53,8 @@ export const unimcRooms: StudyRoom[] = [
         longitude: 13.4520,
         indirizzo: "Piaggia dell'Università, Macerata",
         university: 'UniMC',
-        notes: 'Ambiente austero centro.'
+        notes: 'Ambiente austero centro.',
+        tags: ['Biblioteca', '🔇 Silenzio'],
     },
     {
         id: 'unimc_mozzi_borgetti',
@@ -67,7 +70,8 @@ export const unimcRooms: StudyRoom[] = [
         longitude: 13.4510,
         indirizzo: 'Piazza Vittorio Veneto 2, Macerata',
         university: 'UniMC',
-        notes: 'Civica top storica. Galleria Specchi.'
+        notes: 'Civica top storica. Galleria Specchi.',
+        tags: ['Biblioteca'],
     },
     // ============================================================
     // CIVITANOVA MARCHE
@@ -86,7 +90,8 @@ export const unimcRooms: StudyRoom[] = [
         longitude: 13.7250,
         indirizzo: 'Viale Vittorio Veneto 124, Civitanova Marche',
         university: 'UniMC',
-        notes: 'Hub pendolari costa.'
+        notes: 'Hub pendolari costa.',
+        tags: ['Biblioteca', 'WiFi'],
     },
     // ============================================================
     // JESI
@@ -105,7 +110,8 @@ export const unimcRooms: StudyRoom[] = [
         longitude: 13.2430,
         indirizzo: 'Via Angeloni 3, Jesi',
         university: 'UniMC',
-        notes: 'Sede distaccata.'
+        notes: 'Sede distaccata.',
+        tags: ['Aula Studio'],
     },
     {
         id: 'jesi_planettiana',
@@ -121,7 +127,8 @@ export const unimcRooms: StudyRoom[] = [
         longitude: 13.2440,
         indirizzo: 'Piazza Colocci, Jesi',
         university: 'UniMC',
-        notes: 'Sala Mappamondo iconica.'
+        notes: 'Sala Mappamondo iconica.',
+        tags: ['Biblioteca'],
     },
     // ============================================================
     // FERMO
@@ -140,7 +147,8 @@ export const unimcRooms: StudyRoom[] = [
         longitude: 13.7170,
         indirizzo: 'Piazza del Popolo, Fermo',
         university: 'UniMC',
-        notes: 'Centro Fermo.'
+        notes: 'Centro Fermo.',
+        tags: ['Biblioteca', 'Campus'],
     },
 ];
 

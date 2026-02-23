@@ -19,7 +19,8 @@ export const unitusRooms: StudyRoom[] = [
         indirizzo: 'Via Santa Maria in Gradi 4, Viterbo',
         university: 'Unitus',
         occupancy_rate: 'Alto',
-        notes: 'Situata in un ex convento medievale bellissimo. È la sede del Rettorato. Atmosfera molto suggestiva.'
+        notes: 'Situata in un ex convento medievale bellissimo. È la sede del Rettorato. Atmosfera molto suggestiva.',
+        tags: ['Biblioteca', 'Campus', 'WiFi', '🔇 Silenzio'],
     },
     {
         id: 'unitus_sancarlo_aule',
@@ -35,7 +36,8 @@ export const unitusRooms: StudyRoom[] = [
         longitude: 12.1020,
         indirizzo: 'Via San Carlo 32, Viterbo',
         university: 'Unitus',
-        notes: 'Sede del Dipartimento di Studi Umanistici. Le aule vuote vengono usate per lo studio (chiedere in portineria).'
+        notes: 'Sede del Dipartimento di Studi Umanistici. Le aule vuote vengono usate per lo studio (chiedere in portineria).',
+        tags: ['Aula Studio', 'WiFi'],
     },
     {
         id: 'unitus_paradiso_eco',
@@ -51,7 +53,8 @@ export const unitusRooms: StudyRoom[] = [
         longitude: 12.1015,
         indirizzo: 'Via del Paradiso 47, Viterbo',
         university: 'Unitus',
-        notes: 'Sede di Economia (DEIM). Ambiente più piccolo e raccolto rispetto a Riello.'
+        notes: 'Sede di Economia (DEIM). Ambiente più piccolo e raccolto rispetto a Riello.',
+        tags: ['Aula Studio', 'WiFi'],
     },
 
     // ============================================================
@@ -72,7 +75,8 @@ export const unitusRooms: StudyRoom[] = [
         indirizzo: 'Via San Camillo de Lellis, Viterbo',
         university: 'Unitus',
         occupancy_rate: 'Alto',
-        notes: 'La biblioteca principale per Agraria, Scienze e Ingegneria. Appena fuori dalle mura.'
+        notes: 'La biblioteca principale per Agraria, Scienze e Ingegneria. Appena fuori dalle mura.',
+        tags: ['Biblioteca', 'Campus', 'WiFi', '❄️ Climatizzato', '🅿️ Parcheggio'],
     },
     {
         id: 'unitus_riello_bloccof',
@@ -88,7 +92,8 @@ export const unitusRooms: StudyRoom[] = [
         longitude: 12.0975,
         indirizzo: 'Largo dell\'Università, Viterbo',
         university: 'Unitus',
-        notes: 'Spazio moderno dedicato agli studenti di Ingegneria e DEIM.'
+        notes: 'Spazio moderno dedicato agli studenti di Ingegneria e DEIM.',
+        tags: ['Aula Studio', 'Campus', 'WiFi', '❄️ Climatizzato'],
     },
 
     // ============================================================
@@ -108,7 +113,8 @@ export const unitusRooms: StudyRoom[] = [
         longitude: 11.7950,
         indirizzo: 'Piazza Giuseppe Verdi 1, Civitavecchia (RM)',
         university: 'Unitus',
-        notes: 'Sede distaccata sul mare. Ospita corsi di Biologia ed Economia circolare.'
+        notes: 'Sede distaccata sul mare. Ospita corsi di Biologia ed Economia circolare.',
+        tags: ['Aula Studio', 'Campus', 'WiFi'],
     },
 
     // ============================================================
@@ -128,7 +134,8 @@ export const unitusRooms: StudyRoom[] = [
         longitude: 12.8630,
         indirizzo: 'Via Cintia 106, Rieti',
         university: 'Unitus',
-        notes: 'Nel cuore di Rieti. Sede storica della Sabina Universitas.'
+        notes: 'Nel cuore di Rieti. Sede storica della Sabina Universitas.',
+        tags: ['Aula Studio', 'Centro', 'WiFi', '🔇 Silenzio'],
     },
     {
         id: 'unitus_rieti_ciancarelli',
@@ -144,7 +151,8 @@ export const unitusRooms: StudyRoom[] = [
         longitude: 12.8550,
         indirizzo: 'Via Angelo Maria Ricci 35/A, Rieti',
         university: 'Unitus',
-        notes: 'Sede operativa dei corsi di Scienze della Montagna e Ingegneria.'
+        notes: 'Sede operativa dei corsi di Scienze della Montagna e Ingegneria.',
+        tags: ['Aula Studio', 'Campus', 'WiFi', '🅿️ Parcheggio'],
     }
 ];
 

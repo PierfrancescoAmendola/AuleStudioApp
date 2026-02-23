@@ -19,7 +19,8 @@ export const afamPiemonteRooms: StudyRoom[] = [
         indirizzo: 'Via Accademia Albertina 6, Torino',
         university: 'AFAM',
         occupancy_rate: 'Medio',
-        notes: 'Ambiente storico straordinario. Studiare circondati da gessi e tele antiche. Accademia classica con tradizione secolare — affresco, scultura, pittura.'
+        notes: 'Ambiente storico straordinario. Studiare circondati da gessi e tele antiche. Accademia classica con tradizione secolare — affresco, scultura, pittura.',
+        tags: ['Biblioteca', '❄️ Climatizzato', '🔇 Silenzio'],
     },
     {
         id: 'aba_albertina_lab',
@@ -35,7 +36,8 @@ export const afamPiemonteRooms: StudyRoom[] = [
         longitude: 7.6880,
         indirizzo: 'Via Accademia Albertina 6, Torino',
         university: 'AFAM',
-        notes: 'Spazi operativi per arti visive. Tradizione classica — cavalletti, modelli dal vero, atelier di scultura.'
+        notes: 'Spazi operativi per arti visive. Tradizione classica — cavalletti, modelli dal vero, atelier di scultura.',
+        tags: ['Laboratorio', '❄️ Climatizzato'],
     },
     // ============================================================
     // TORINO - IED & IAAD (Design Hubs)
@@ -54,7 +56,8 @@ export const afamPiemonteRooms: StudyRoom[] = [
         longitude: 7.6740,
         indirizzo: 'Via San Quintino 39, Torino',
         university: 'AFAM',
-        notes: '💡 Hub creativo internazionale. Zona Crocetta/Porta Nuova — comodo per pendolari in treno. Non è silenzio da biblioteca: è il ronzio delle ventole che renderizzano 3D. Prese e tavoli spaziosi ovunque.'
+        notes: '💡 Hub creativo internazionale. Zona Crocetta/Porta Nuova — comodo per pendolari in treno. Non è silenzio da biblioteca: è il ronzio delle ventole che renderizzano 3D. Prese e tavoli spaziosi ovunque.',
+        tags: ['Laboratorio', 'WiFi', '⚡ Prese', '❄️ Climatizzato'],
     },
     {
         id: 'iaad_torino_open',
@@ -70,7 +73,8 @@ export const afamPiemonteRooms: StudyRoom[] = [
         longitude: 7.6935,
         indirizzo: 'Via Pisa 5, Torino',
         university: 'AFAM',
-        notes: '💡 Quartiere Aurora, di fianco alla Nuvola Lavazza — ex zona industriale ora distretto creativo. Raggiungibile da Porta Susa con bus (non a piedi con plastici pesanti!). Prese e tavoli spaziosi per modelli e prototipi.'
+        notes: '💡 Quartiere Aurora, di fianco alla Nuvola Lavazza — ex zona industriale ora distretto creativo. Raggiungibile da Porta Susa con bus (non a piedi con plastici pesanti!). Prese e tavoli spaziosi per modelli e prototipi.',
+        tags: ['Aula Studio', 'WiFi', '⚡ Prese'],
     },
     // ============================================================
     // CONSERVATORI TORINO E PROVINCIA
@@ -89,7 +93,8 @@ export const afamPiemonteRooms: StudyRoom[] = [
         longitude: 7.6830,
         indirizzo: 'Via Mazzini 11, Torino',
         university: 'AFAM',
-        notes: '🎵 INSIDER TIP: Piazza Bodoni è il "salotto musicale" di Torino. Durante la bella stagione e prima dei diplomi, gli studenti si esercitano a finestre aperte o direttamente in piazza — ascolto gratuito! 📍 8 min a piedi da Porta Nuova (fattibile anche con violoncello). Biblioteca musicale di altissimo livello.'
+        notes: '🎵 INSIDER TIP: Piazza Bodoni è il "salotto musicale" di Torino. Durante la bella stagione e prima dei diplomi, gli studenti si esercitano a finestre aperte o direttamente in piazza — ascolto gratuito! 📍 8 min a piedi da Porta Nuova (fattibile anche con violoncello). Biblioteca musicale di altissimo livello.',
+        tags: ['Biblioteca', '🔇 Silenzio'],
     },
     {
         id: 'cons_vivaldi_al',
@@ -105,7 +110,8 @@ export const afamPiemonteRooms: StudyRoom[] = [
         longitude: 8.6180,
         indirizzo: 'Via Parma 1, Alessandria',
         university: 'AFAM',
-        notes: 'Eccellenza per chitarra e musica classica. 📍 10 min a piedi dalla stazione FS (percorso piano, fattibile con strumenti). Zona pedonale centrale.'
+        notes: 'Eccellenza per chitarra e musica classica. 📍 10 min a piedi dalla stazione FS (percorso piano, fattibile con strumenti). Zona pedonale centrale.',
+        tags: ['Biblioteca'],
     },
     {
         id: 'cons_cantelli_no',
@@ -121,7 +127,8 @@ export const afamPiemonteRooms: StudyRoom[] = [
         longitude: 8.6220,
         indirizzo: 'Via Collegio Gallarini 1, Novara',
         university: 'AFAM',
-        notes: 'Intima e raccolta. 📍 12 min a piedi dalla stazione FS (percorso pianeggiante, gestibile con strumenti). Ottimi collegamenti Milano (40 min) e Torino (1h).'
+        notes: 'Intima e raccolta. 📍 12 min a piedi dalla stazione FS (percorso pianeggiante, gestibile con strumenti). Ottimi collegamenti Milano (40 min) e Torino (1h).',
+        tags: ['Biblioteca'],
     },
     {
         id: 'cons_ghedini_cn',
@@ -137,7 +144,8 @@ export const afamPiemonteRooms: StudyRoom[] = [
         longitude: 7.5485,
         indirizzo: 'Via Roma 19, Cuneo',
         university: 'AFAM',
-        notes: '🎹 Famoso per Musica Elettronica (laboratorio METS). Chi studia qui porta sintetizzatori, laptop e hardware pesante. Aule attrezzate con cavi e prese. 📍 15 min a piedi dalla stazione FS. ⚠️ Via Roma è pedonale: perfetta per pause pranzo nei dehors, ma attenzione allo scarico strumenti dall\'auto (ZTL con permesso temporaneo).'
+        notes: '🎹 Famoso per Musica Elettronica (laboratorio METS). Chi studia qui porta sintetizzatori, laptop e hardware pesante. Aule attrezzate con cavi e prese. 📍 15 min a piedi dalla stazione FS. ⚠️ Via Roma è pedonale: perfetta per pause pranzo nei dehors, ma attenzione allo scarico strumenti dall\'auto (ZTL con permesso temporaneo).',
+        tags: ['Biblioteca', '⚡ Prese'],
     },
     // ============================================================
     // ALTRE ACCADEMIE E ISTITUTI
@@ -156,7 +164,8 @@ export const afamPiemonteRooms: StudyRoom[] = [
         longitude: 8.6190,
         indirizzo: 'Via Costantino Porta 25, Novara',
         university: 'AFAM',
-        notes: '💻 Focus nuovi media e fumetto digitale. A differenza delle accademie storiche (Albertina = affresco/scultura), qui si cerca WiFi ultra-stabile e spazio per tavolette grafiche, non cavalletti. 📍 15 min a piedi dalla stazione FS.'
+        notes: '💻 Focus nuovi media e fumetto digitale. A differenza delle accademie storiche (Albertina = affresco/scultura), qui si cerca WiFi ultra-stabile e spazio per tavolette grafiche, non cavalletti. 📍 15 min a piedi dalla stazione FS.',
+        tags: ['Laboratorio', 'WiFi', '⚡ Prese'],
     },
     {
         id: 'aba_cuneo_centro',
@@ -172,7 +181,8 @@ export const afamPiemonteRooms: StudyRoom[] = [
         longitude: 7.5480,
         indirizzo: 'Via Roma 17, Cuneo',
         university: 'AFAM',
-        notes: 'Nel salotto buono di Cuneo (Via Roma pedonale). Tavoli spaziosi per progettazione. ⚠️ Stessa nota ZTL del Ghedini per scarico materiali.'
+        notes: 'Nel salotto buono di Cuneo (Via Roma pedonale). Tavoli spaziosi per progettazione. ⚠️ Stessa nota ZTL del Ghedini per scarico materiali.',
+        tags: ['Aula Studio'],
     }
 ];
 

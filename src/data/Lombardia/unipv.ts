@@ -19,7 +19,8 @@ export const unipvRooms: StudyRoom[] = [
         indirizzo: 'Corso Strada Nuova 65, Pavia',
         university: 'Unipv',
         occupancy_rate: 'Alto',
-        notes: 'Le aule studio storiche nei cortili (Volta, Caduti, Magnolie). Aperte fino a tardi e spesso anche il weekend (8:00-19:00).'
+        notes: 'Le aule studio storiche nei cortili (Volta, Caduti, Magnolie). Aperte fino a tardi e spesso anche il weekend (8:00-19:00).',
+        tags: ['Aula Studio', 'WiFi'],
     },
     {
         id: 'unipv_santommaso_biblio',
@@ -35,7 +36,8 @@ export const unipvRooms: StudyRoom[] = [
         longitude: 9.1575,
         indirizzo: 'Piazza del Lino 2, Pavia',
         university: 'Unipv',
-        notes: 'Sede principale di Lettere. Biblioteca moderna e molto frequentata. Orario esteso.'
+        notes: 'Sede principale di Lettere. Biblioteca moderna e molto frequentata. Orario esteso.',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'unipv_giurisprudenza',
@@ -51,7 +53,8 @@ export const unipvRooms: StudyRoom[] = [
         longitude: 9.1560,
         indirizzo: 'Corso Strada Nuova 65, Pavia',
         university: 'Unipv',
-        notes: 'Il Salone Teresiano è monumentale. Studiare qui è un\'esperienza.'
+        notes: 'Il Salone Teresiano è monumentale. Studiare qui è un\'esperienza.',
+        tags: ['Biblioteca', 'WiFi', '🔇 Silenzio'],
     },
     {
         id: 'unipv_sanfelice_eco',
@@ -67,7 +70,8 @@ export const unipvRooms: StudyRoom[] = [
         longitude: 9.1520,
         indirizzo: 'Via San Felice 5, Pavia',
         university: 'Unipv',
-        notes: 'Sede di Economia. Comprende la suggestiva "Chiesetta" adibita ad aula studio.'
+        notes: 'Sede di Economia. Comprende la suggestiva "Chiesetta" adibita ad aula studio.',
+        tags: ['Aula Studio', 'WiFi'],
     },
 
     // ============================================================
@@ -87,7 +91,8 @@ export const unipvRooms: StudyRoom[] = [
         longitude: 9.1360,
         indirizzo: 'Via Ferrata 1, Pavia',
         university: 'Unipv',
-        notes: 'La biblioteca principale del polo scientifico (Ingegneria, Matematica).'
+        notes: 'La biblioteca principale del polo scientifico (Ingegneria, Matematica).',
+        tags: ['Biblioteca', 'Campus', 'WiFi', '☕ Ristoro', '🅿️ Parcheggio'],
     },
     {
         id: 'unipv_cravino_aule',
@@ -103,7 +108,8 @@ export const unipvRooms: StudyRoom[] = [
         longitude: 9.1365,
         indirizzo: 'Via Ferrata 5, Pavia',
         university: 'Unipv',
-        notes: 'Aule studio libere nell\'edificio della didattica (soprannominate "Melanzane" per il colore).'
+        notes: 'Aule studio libere nell\'edificio della didattica (soprannominate "Melanzane" per il colore).',
+        tags: ['Aula Studio', 'WiFi'],
     },
     {
         id: 'unipv_fisica_volta',
@@ -119,6 +125,7 @@ export const unipvRooms: StudyRoom[] = [
         longitude: 9.1390,
         indirizzo: 'Via Bassi 6, Pavia',
         university: 'Unipv',
+        tags: ['Biblioteca', 'WiFi', '🔇 Silenzio'],
     },
 
     // ============================================================
@@ -138,7 +145,8 @@ export const unipvRooms: StudyRoom[] = [
         longitude: 10.0210,
         indirizzo: 'Corso Garibaldi 178, Cremona',
         university: 'Unipv',
-        notes: 'Sede prestigiosa unica in Italia. Venerdì chiude alle 12:30.'
+        notes: 'Sede prestigiosa unica in Italia. Venerdì chiude alle 12:30.',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'unipv_cremona_attanasi',
@@ -154,6 +162,7 @@ export const unipvRooms: StudyRoom[] = [
         longitude: 10.0210,
         indirizzo: 'Corso Garibaldi 178, Cremona',
         university: 'Unipv',
+        tags: ['Aula Studio'],
     },
 
     // ============================================================
@@ -173,7 +182,8 @@ export const unipvRooms: StudyRoom[] = [
         longitude: 9.1560,
         indirizzo: 'Corso Strada Nuova 65, Pavia',
         university: 'Unipv',
-        notes: 'Aula studio piccola e raccolta nel Cortile Volta. Aperta anche sabato 8-19.'
+        notes: 'Aula studio piccola e raccolta nel Cortile Volta. Aperta anche sabato 8-19.',
+        tags: ['Aula Studio', 'WiFi'],
     },
     {
         id: 'unipv_aula_scpol',
@@ -189,7 +199,8 @@ export const unipvRooms: StudyRoom[] = [
         longitude: 9.1560,
         indirizzo: 'Corso Strada Nuova 65, Pavia',
         university: 'Unipv',
-        notes: 'Aula studio gestita dal Dipartimento di Scienze Politiche. Orari lunghi.'
+        notes: 'Aula studio gestita dal Dipartimento di Scienze Politiche. Orari lunghi.',
+        tags: ['Aula Studio', 'WiFi'],
     },
     {
         id: 'unipv_biblio_scpol',
@@ -205,7 +216,8 @@ export const unipvRooms: StudyRoom[] = [
         longitude: 9.1560,
         indirizzo: 'Corso Strada Nuova 65, Pavia',
         university: 'Unipv',
-        notes: 'Biblioteca dipartimentale con orario esteso fino alle 19.'
+        notes: 'Biblioteca dipartimentale con orario esteso fino alle 19.',
+        tags: ['Biblioteca', 'WiFi', '🔇 Silenzio'],
     },
     {
         id: 'unipv_sala_diritto_privato',
@@ -221,7 +233,8 @@ export const unipvRooms: StudyRoom[] = [
         longitude: 9.1560,
         indirizzo: 'Corso Strada Nuova 65, Pavia',
         university: 'Unipv',
-        notes: '90 posti! Una delle sale più grandi. Nel Cortile dei Caduti.'
+        notes: '90 posti! Una delle sale più grandi. Nel Cortile dei Caduti.',
+        tags: ['Aula Studio', 'WiFi'],
     },
     {
         id: 'unipv_chiesetta_sanfelice',
@@ -238,7 +251,8 @@ export const unipvRooms: StudyRoom[] = [
         indirizzo: 'Via San Felice 5, Pavia',
         university: 'Unipv',
         occupancy_rate: 'Medio',
-        notes: 'Una vera chiesetta sconsacrata trasformata in aula studio! Ambiente unico e silenzioso.'
+        notes: 'Una vera chiesetta sconsacrata trasformata in aula studio! Ambiente unico e silenzioso.',
+        tags: ['Aula Studio', 'WiFi'],
     },
 
     // ============================================================
@@ -258,7 +272,8 @@ export const unipvRooms: StudyRoom[] = [
         longitude: 9.1365,
         indirizzo: 'Via Ferrata 5, Pavia',
         university: 'Unipv',
-        notes: 'Seconda aula "Melanzana" al primo piano. Meno affollata di quella al PT.'
+        notes: 'Seconda aula "Melanzana" al primo piano. Meno affollata di quella al PT.',
+        tags: ['Aula Studio', 'WiFi', '🔇 Silenzio'],
     },
     {
         id: 'unipv_golgi_spallanzani',
@@ -274,7 +289,8 @@ export const unipvRooms: StudyRoom[] = [
         longitude: 9.1365,
         indirizzo: 'Via Ferrata 5, Pavia',
         university: 'Unipv',
-        notes: 'Piccola aula studio ideale per chi cerca massima concentrazione.'
+        notes: 'Piccola aula studio ideale per chi cerca massima concentrazione.',
+        tags: ['Aula Studio', 'WiFi'],
     },
     {
         id: 'unipv_biblio_scienze',
@@ -290,7 +306,8 @@ export const unipvRooms: StudyRoom[] = [
         longitude: 9.1355,
         indirizzo: 'Via Taramelli 12, Pavia',
         university: 'Unipv',
-        notes: 'Biblioteca per Biologia e Scienze Naturali. Prenotazione Affluences consigliata.'
+        notes: 'Biblioteca per Biologia e Scienze Naturali. Prenotazione Affluences consigliata.',
+        tags: ['Biblioteca', 'Campus', 'WiFi'],
     },
 
     // ============================================================
@@ -311,7 +328,8 @@ export const unipvRooms: StudyRoom[] = [
         indirizzo: 'Viale Golgi 19, Pavia',
         university: 'Unipv',
         occupancy_rate: 'Alto',
-        notes: 'La biblioteca principale per Medicina. Aperta fino alle 20, sabato 10:30-19:00!'
+        notes: 'La biblioteca principale per Medicina. Aperta fino alle 20, sabato 10:30-19:00!',
+        tags: ['Biblioteca', 'Campus', 'Medicina', 'WiFi'],
     },
     {
         id: 'unipv_campus_salute_aule',
@@ -327,7 +345,8 @@ export const unipvRooms: StudyRoom[] = [
         longitude: 9.1425,
         indirizzo: 'Viale Golgi 19, Pavia',
         university: 'Unipv',
-        notes: 'Aule studio dedicate nel nuovo Campus della Salute. Sabato 8-18:30.'
+        notes: 'Aule studio dedicate nel nuovo Campus della Salute. Sabato 8-18:30.',
+        tags: ['Aula Studio', 'Campus', 'WiFi', '☕ Ristoro'],
     },
     {
         id: 'unipv_fondazione_mondino',
@@ -343,7 +362,8 @@ export const unipvRooms: StudyRoom[] = [
         longitude: 9.1380,
         indirizzo: 'Via Mondino 2, Pavia',
         university: 'Unipv',
-        notes: 'Per studenti di Neuroscienze e specializzandi. Ambiente ospedaliero.'
+        notes: 'Per studenti di Neuroscienze e specializzandi. Ambiente ospedaliero.',
+        tags: ['Aula Studio', 'WiFi'],
     }
 ];
 

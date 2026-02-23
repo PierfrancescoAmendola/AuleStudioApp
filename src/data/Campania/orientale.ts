@@ -17,7 +17,8 @@ export const orientaleRooms: StudyRoom[] = [
         indirizzo: 'Largo San Giovanni Maggiore 30, Napoli',
         university: 'L\'Orientale',
         occupancy_rate: 'Alto',
-        notes: 'Aula piccola e tranquilla nel seminterrato, spesso usata per studio intenso.'
+        notes: 'Aula piccola e tranquilla nel seminterrato, spesso usata per studio intenso.',
+        tags: ['Aula Studio', '⚡ Prese', '🔇 Silenzio'],
     },
     {
         id: 'or_giusso_r1',
@@ -92,6 +93,7 @@ export const orientaleRooms: StudyRoom[] = [
         indirizzo: 'Via Nuova Marina 59, Napoli',
         university: 'L\'Orientale',
         occupancy_rate: 'Medio',
+        tags: ['Aula Studio', 'WiFi', '⚡ Prese', '❄️ Climatizzato'],
     },
     {
         id: 'or_med_self_access',
@@ -106,7 +108,8 @@ export const orientaleRooms: StudyRoom[] = [
         latitude: 40.8435,
         longitude: 14.2588,
         indirizzo: 'Via Nuova Marina 59, Napoli',
-        notes: 'Laboratorio dedicato allo studio autonomo delle lingue.'
+        notes: 'Laboratorio dedicato allo studio autonomo delle lingue.',
+        tags: ['Aula Studio', 'WiFi'],
     },
     {
         id: 'or_med_lab_5_4',
@@ -138,6 +141,7 @@ export const orientaleRooms: StudyRoom[] = [
         longitude: 14.2595,
         indirizzo: 'Via Duomo 219, Napoli',
         university: 'L\'Orientale',
+        tags: ['Aula Studio', 'WiFi', '🔇 Silenzio'],
     },
 
     // --- PALAZZO CORIGLIANO (Piazza San Domenico) ---
@@ -154,7 +158,8 @@ export const orientaleRooms: StudyRoom[] = [
         latitude: 40.8493,
         longitude: 14.2542,
         indirizzo: 'Piazza San Domenico Maggiore 12, Napoli',
-        notes: 'Una delle biblioteche più belle, specializzata in studi asiatici.'
+        notes: 'Una delle biblioteche più belle, specializzata in studi asiatici.',
+        tags: ['Biblioteca', '🔇 Silenzio'],
     }
 ];
 

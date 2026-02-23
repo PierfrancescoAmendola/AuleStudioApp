@@ -19,7 +19,8 @@ export const unimolPescheRooms: StudyRoom[] = [
         indirizzo: 'Contrada Fonte Lappone, 86090 Pesche (IS)',
         university: 'UniMol',
         occupancy_rate: 'Medio',
-        notes: 'Biblioteca principale. Orario: lun-ven 8:30-13:00, lun-gio 14:00-17:00. Verifica aggiornamenti su BiblioUniMol.'
+        notes: 'Biblioteca principale. Orario: lun-ven 8:30-13:00, lun-gio 14:00-17:00. Verifica aggiornamenti su BiblioUniMol.',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'unimol_pesche_lab_open',
@@ -35,7 +36,8 @@ export const unimolPescheRooms: StudyRoom[] = [
         longitude: 14.276510,
         indirizzo: 'Contrada Fonte Lappone, Pesche',
         university: 'UniMol',
-        notes: 'Spazi non ufficiali. Disponibilità soggetta all\'orario delle lezioni e delle attività di laboratorio.'
+        notes: 'Spazi non ufficiali. Disponibilità soggetta all\'orario delle lezioni e delle attività di laboratorio.',
+        tags: ['Laboratorio', 'WiFi'],
     },
     {
         id: 'unimol_pesche_mensa',
@@ -51,7 +53,8 @@ export const unimolPescheRooms: StudyRoom[] = [
         longitude: 14.276510,
         indirizzo: 'Contrada Fonte Lappone, Pesche',
         university: 'UniMol',
-        notes: 'Spazio principalmente destinato alla pausa pranzo. Utilizzo per studio possibile ma non garantito negli orari di picco.'
+        notes: 'Spazio principalmente destinato alla pausa pranzo. Utilizzo per studio possibile ma non garantito negli orari di picco.',
+        tags: ['Mensa/Ristoro'],
     },
     {
         id: 'unimol_pesche_outdoor',
@@ -67,7 +70,8 @@ export const unimolPescheRooms: StudyRoom[] = [
         longitude: 14.2810,
         indirizzo: 'Riserva Pesche',
         university: 'UniMol',
-        notes: 'Area naturale vicina al campus. Ideale per studio individuale in condizioni meteorologiche favorevoli. Non è una struttura universitaria attrezzata.'
+        notes: 'Area naturale vicina al campus. Ideale per studio individuale in condizioni meteorologiche favorevoli. Non è una struttura universitaria attrezzata.',
+        tags: ['Aula Studio'],
     },
 ];
 

@@ -18,7 +18,8 @@ export const unifeRooms: StudyRoom[] = [
         indirizzo: 'Corso Ercole I d\'Este 37, Ferrara',
         university: 'UniFe',
         occupancy_rate: 'Alto',
-        notes: 'Biblioteca più grande dell\'Ateneo nel cinquecentesco Palazzo Trotti Mosti.'
+        notes: 'Biblioteca più grande dell\'Ateneo nel cinquecentesco Palazzo Trotti Mosti.',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'unife_economia',
@@ -34,7 +35,8 @@ export const unifeRooms: StudyRoom[] = [
         longitude: 11.6190,
         indirizzo: 'Via Voltapaletto 11, Ferrara',
         university: 'UniFe',
-        notes: 'Palazzo quattrocentesco restaurato.'
+        notes: 'Palazzo quattrocentesco restaurato.',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'unife_lettere_filosofia',
@@ -50,7 +52,8 @@ export const unifeRooms: StudyRoom[] = [
         longitude: 11.6250,
         indirizzo: 'Via Savonarola 27, Ferrara',
         university: 'UniFe',
-        notes: 'Biblioteca umanistica con ricco patrimonio multimediale.'
+        notes: 'Biblioteca umanistica con ricco patrimonio multimediale.',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'unife_ariostea',
@@ -67,7 +70,8 @@ export const unifeRooms: StudyRoom[] = [
         indirizzo: 'Via delle Scienze 17, Ferrara',
         university: 'UniFe',
         occupancy_rate: 'Molto Alto',
-        notes: 'Biblioteca comunale storica, molto usata da studenti UniFe.'
+        notes: 'Biblioteca comunale storica, molto usata da studenti UniFe.',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'unife_turchi_bagno',
@@ -83,7 +87,8 @@ export const unifeRooms: StudyRoom[] = [
         longitude: 11.6215,
         indirizzo: 'Corso Ercole I d\'Este 32, Ferrara',
         university: 'UniFe',
-        notes: 'Biblioteca specializzata con orto botanico.'
+        notes: 'Biblioteca specializzata con orto botanico.',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'unife_dipartimento_umanistico',
@@ -99,7 +104,8 @@ export const unifeRooms: StudyRoom[] = [
         longitude: 11.6215,
         indirizzo: 'Via Paradiso 12 / Via delle Scienze 41b, Ferrara',
         university: 'UniFe',
-        notes: 'Spazi studio dipartimentali umanistici.'
+        notes: 'Spazi studio dipartimentali umanistici.',
+        tags: ['Aula Studio', 'WiFi', '👥 Gruppi OK'],
     },
     {
         id: 'unife_polo_adelardi',
@@ -115,7 +121,8 @@ export const unifeRooms: StudyRoom[] = [
         longitude: 11.6230,
         indirizzo: 'Via Adelardi 33, Ferrara',
         university: 'UniFe',
-        notes: 'Grande hub studio centrale.'
+        notes: 'Grande hub studio centrale.',
+        tags: ['Aula Studio', 'Campus', 'WiFi'],
     },
     {
         id: 'unife_mortara',
@@ -131,7 +138,8 @@ export const unifeRooms: StudyRoom[] = [
         longitude: 11.6330,
         indirizzo: 'Via Mortara 94, Ferrara',
         university: 'UniFe',
-        notes: 'Spazio esterno storico, aperto fino sera.'
+        notes: 'Spazio esterno storico, aperto fino sera.',
+        tags: ['Aula Studio', 'WiFi'],
     },
     // ============================================================
     // FERRARA - POLO SCIENTIFICO-TECNOLOGICO
@@ -151,7 +159,8 @@ export const unifeRooms: StudyRoom[] = [
         indirizzo: 'Via Giuseppe Saragat 1, Ferrara',
         university: 'UniFe',
         occupancy_rate: 'Alto',
-        notes: 'Biblioteca centrale per scienze e tecnologie.'
+        notes: 'Biblioteca centrale per scienze e tecnologie.',
+        tags: ['Biblioteca', 'Campus', 'WiFi'],
     },
     {
         id: 'unife_saragat_hub',
@@ -167,7 +176,8 @@ export const unifeRooms: StudyRoom[] = [
         longitude: 11.6281,
         indirizzo: 'Via Saragat 1, Ferrara',
         university: 'UniFe',
-        notes: 'Grande sala studio moderna.'
+        notes: 'Grande sala studio moderna.',
+        tags: ['Aula Studio', 'Campus', 'WiFi', '❄️ Climatizzato'],
     },
     {
         id: 'unife_architettura',
@@ -183,7 +193,8 @@ export const unifeRooms: StudyRoom[] = [
         longitude: 11.6170,
         indirizzo: 'Via Quartieri 8, Ferrara',
         university: 'UniFe',
-        notes: 'Biblioteca specializzata con sale studio.'
+        notes: 'Biblioteca specializzata con sale studio.',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'unife_matematica',
@@ -199,7 +210,8 @@ export const unifeRooms: StudyRoom[] = [
         longitude: 11.6150,
         indirizzo: 'Via Machiavelli 30, Ferrara',
         university: 'UniFe',
-        notes: 'Biblioteca e grandi sale studio.'
+        notes: 'Biblioteca e grandi sale studio.',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'unife_chimico_biologica',
@@ -215,7 +227,8 @@ export const unifeRooms: StudyRoom[] = [
         longitude: 11.6105,
         indirizzo: 'Via Borsari 46 / Piazzetta Sgarbi 2, Ferrara',
         university: 'UniFe',
-        notes: 'Biblioteca e hub chimico-biomedico.'
+        notes: 'Biblioteca e hub chimico-biomedico.',
+        tags: ['Biblioteca', 'Medicina', 'WiFi'],
     },
     // ============================================================
     // FERRARA - POLO OSPEDALIERO CONA (Medicina)
@@ -234,7 +247,8 @@ export const unifeRooms: StudyRoom[] = [
         longitude: 11.6978,
         indirizzo: 'Via Aldo Moro 8, Cona (FE)',
         university: 'UniFe',
-        notes: 'Sala lettura biomedica.'
+        notes: 'Sala lettura biomedica.',
+        tags: ['Biblioteca', 'Medicina', 'WiFi'],
     },
     {
         id: 'unife_cona_hub',
@@ -250,7 +264,8 @@ export const unifeRooms: StudyRoom[] = [
         longitude: 11.6978,
         indirizzo: 'Via Aldo Moro 22, Cona (FE)',
         university: 'UniFe',
-        notes: 'Grandi sale studio.'
+        notes: 'Grandi sale studio.',
+        tags: ['Aula Studio', 'Campus', 'Medicina', 'WiFi'],
     },
     // ============================================================
     // ROVIGO - SEDE DISTACCATA GIURISPRUDENZA
@@ -270,7 +285,8 @@ export const unifeRooms: StudyRoom[] = [
         indirizzo: 'Via Domenico Angeli 28 (Corso del Popolo 149), Rovigo',
         university: 'UniFe',
         occupancy_rate: 'Medio',
-        notes: 'Sede principale Giurisprudenza Rovigo.'
+        notes: 'Sede principale Giurisprudenza Rovigo.',
+        tags: ['Biblioteca', 'Campus', 'WiFi'],
     },
     {
         id: 'unife_rovigo_aule',
@@ -286,7 +302,8 @@ export const unifeRooms: StudyRoom[] = [
         longitude: 11.7897,
         indirizzo: 'Corso del Popolo / Palazzo Cezza, Rovigo',
         university: 'UniFe',
-        notes: 'Aule studio, incluse nuove a Palazzo Cezza.'
+        notes: 'Aule studio, incluse nuove a Palazzo Cezza.',
+        tags: ['Aula Studio', 'Campus', 'WiFi', '👥 Gruppi OK', '🖨️ Stampa'],
     },
     // ============================================================
     // ALTRE SEDI
@@ -305,7 +322,8 @@ export const unifeRooms: StudyRoom[] = [
         longitude: 11.3050,
         indirizzo: 'Pieve di Cento (BO)',
         university: 'UniFe',
-        notes: 'Polo minore. Verificare orari.'
+        notes: 'Polo minore. Verificare orari.',
+        tags: ['Aula Studio', 'Campus', 'WiFi'],
     },
     {
         id: 'unife_darsena',
@@ -321,7 +339,8 @@ export const unifeRooms: StudyRoom[] = [
         longitude: 11.6400,
         indirizzo: 'Via Darsena 73, Ferrara',
         university: 'UniFe',
-        notes: 'Spazio esterno per studenti, zona Darsena.'
+        notes: 'Spazio esterno per studenti, zona Darsena.',
+        tags: ['Aula Studio', 'WiFi'],
     },
 ];
 

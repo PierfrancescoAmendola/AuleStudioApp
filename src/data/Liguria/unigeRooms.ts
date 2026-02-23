@@ -20,7 +20,8 @@ export const unigeRooms: StudyRoom[] = [
         indirizzo: 'Via Balbi 40, Genova',
         university: 'UniGe',
         occupancy_rate: 'Alto',
-        notes: '⭐ Biblioteca centrale storica in ex hotel Liberty. Via Balbi è Patrimonio UNESCO! Letteralmente di fronte Stazione Principe (2 min a piedi). Ambiente monumentale con soffitti affrescati.'
+        notes: '⭐ Biblioteca centrale storica in ex hotel Liberty. Via Balbi è Patrimonio UNESCO! Letteralmente di fronte Stazione Principe (2 min a piedi). Ambiente monumentale con soffitti affrescati.',
+        tags: ['Biblioteca', 'WiFi', '🔇 Silenzio'],
     },
     {
         id: 'unige_giuri_cabella',
@@ -36,7 +37,8 @@ export const unigeRooms: StudyRoom[] = [
         longitude: 8.9265,
         indirizzo: 'Via Balbi 5, Genova',
         university: 'UniGe',
-        notes: 'Ambiente classico Via Balbi per studenti Giuri. Palazzo barocco con aule affrescate. Stazione Principe a 3 min a piedi.'
+        notes: 'Ambiente classico Via Balbi per studenti Giuri. Palazzo barocco con aule affrescate. Stazione Principe a 3 min a piedi.',
+        tags: ['Sala Lettura'],
     },
     // ============================================================
     // GENOVA - DARSENA / PORTO ANTICO (Economia)
@@ -56,7 +58,8 @@ export const unigeRooms: StudyRoom[] = [
         longitude: 8.9255,
         indirizzo: 'Via Vivaldi 5, Darsena, Genova',
         university: 'UniGe',
-        notes: '🌊 Affacciata sul Porto Antico! Vista incredibile su Acquario e mare. Ambiente moderno diverso dalle sedi storiche. Metro Darsena diretta o 10 min discesa a piedi da Principe.'
+        notes: '🌊 Affacciata sul Porto Antico! Vista incredibile su Acquario e mare. Ambiente moderno diverso dalle sedi storiche. Metro Darsena diretta o 10 min discesa a piedi da Principe.',
+        tags: ['Biblioteca'],
     },
     // ============================================================
     // GENOVA - ALBERGO DEI POVERI (Scienze Politiche, Lingue)
@@ -76,7 +79,8 @@ export const unigeRooms: StudyRoom[] = [
         longitude: 8.9285,
         indirizzo: 'Piazzale Brignole 2, Genova',
         university: 'UniGe',
-        notes: '⛰️ ATTENZIONE: Edificio monumentale in ZONA ALTA con salita ripida! Non confondere Piazzale Brignole (qui, zona Circonvallazione a Monte) con Stazione Brignole (in basso). Usa Bus AMT 35/36. Vista panoramica mozzafiato sul porto.'
+        notes: '⛰️ ATTENZIONE: Edificio monumentale in ZONA ALTA con salita ripida! Non confondere Piazzale Brignole (qui, zona Circonvallazione a Monte) con Stazione Brignole (in basso). Usa Bus AMT 35/36. Vista panoramica mozzafiato sul porto.',
+        tags: ['Biblioteca'],
     },
     // ============================================================
     // GENOVA - SARZANO (Architettura)
@@ -96,7 +100,8 @@ export const unigeRooms: StudyRoom[] = [
         longitude: 8.9320,
         indirizzo: 'Stradone Sant\'Agostino 37, Genova',
         university: 'UniGe',
-        notes: '🏰⭐ Nel cuore del centro storico medievale! VANTAGGIO ENORME: Metro Sarzano/Sant\'Agostino diretta (unica sede centro servita da metro). Chiostro interno atmosferico. Centro storico altrimenti labirintico.'
+        notes: '🏰⭐ Nel cuore del centro storico medievale! VANTAGGIO ENORME: Metro Sarzano/Sant\'Agostino diretta (unica sede centro servita da metro). Chiostro interno atmosferico. Centro storico altrimenti labirintico.',
+        tags: ['Biblioteca'],
     },
     // ============================================================
     // GENOVA - ALBARO (Ingegneria)
@@ -117,7 +122,8 @@ export const unigeRooms: StudyRoom[] = [
         indirizzo: 'Via Montallegro 1, Albaro, Genova',
         university: 'UniGe',
         occupancy_rate: 'Alto',
-        notes: '🎨⭐ PROBABILMENTE LA SEDE DI INGEGNERIA PIÙ BELLA D\'ITALIA! Villa storica del \'500 con affreschi originali e parco. Studi tra soffitti decorati in quartiere chic Albaro. Bus 42/43 da Brignole. Ambiente unico ma un po\' isolato.'
+        notes: '🎨⭐ PROBABILMENTE LA SEDE DI INGEGNERIA PIÙ BELLA D\'ITALIA! Villa storica del \'500 con affreschi originali e parco. Studi tra soffitti decorati in quartiere chic Albaro. Bus 42/43 da Brignole. Ambiente unico ma un po\' isolato.',
+        tags: ['Biblioteca', '🔇 Silenzio'],
     },
     // ============================================================
     // GENOVA - SAN MARTINO (Medicina / Scienze)
@@ -137,7 +143,8 @@ export const unigeRooms: StudyRoom[] = [
         longitude: 8.9690,
         indirizzo: 'Largo Rosanna Benzi 10, Genova',
         university: 'UniGe',
-        notes: '🏥 Dentro complesso ospedaliero San Martino. ATTENZIONE: Labirintico! Segui indicazioni "Polo Didattico Medicina". Mensa e bar ospedale. Bus 18/48 da Brignole. Organizzati per orientarti alla prima visita.'
+        notes: '🏥 Dentro complesso ospedaliero San Martino. ATTENZIONE: Labirintico! Segui indicazioni "Polo Didattico Medicina". Mensa e bar ospedale. Bus 18/48 da Brignole. Organizzati per orientarti alla prima visita.',
+        tags: ['Biblioteca', 'Campus', 'Medicina', '❄️ Climatizzato', '☕ Ristoro'],
     },
     {
         id: 'unige_scienze_valletta',
@@ -153,7 +160,8 @@ export const unigeRooms: StudyRoom[] = [
         longitude: 8.9520,
         indirizzo: 'Corso Europa 26, Genova',
         university: 'UniGe',
-        notes: 'Vicino polo Ingegneria Albaro (10 min a piedi). Zona est Genova, meno monumentale ma funzionale. Bus 42/43 da Brignole.'
+        notes: 'Vicino polo Ingegneria Albaro (10 min a piedi). Zona est Genova, meno monumentale ma funzionale. Bus 42/43 da Brignole.',
+        tags: ['Biblioteca', '🅿️ Parcheggio'],
     },
     // ============================================================
     // GENOVA - BIBLIOTECA CIVICA BERIO
@@ -174,7 +182,8 @@ export const unigeRooms: StudyRoom[] = [
         indirizzo: 'Via del Seminario 16, Genova',
         university: 'UniGe',
         occupancy_rate: 'Altissimo',
-        notes: '🎭⭐ IL PUNTO D\'INCONTRO! Civica principale a 5 min da Piazza De Ferrari (centro assoluto). Chiostro interno oasi di pace. MEGLIO per socialità e studio interdisciplinare - qui trovi studenti di TUTTE le facoltà. FILA SPESSO in sessione - arriva presto!'
+        notes: '🎭⭐ IL PUNTO D\'INCONTRO! Civica principale a 5 min da Piazza De Ferrari (centro assoluto). Chiostro interno oasi di pace. MEGLIO per socialità e studio interdisciplinare - qui trovi studenti di TUTTE le facoltà. FILA SPESSO in sessione - arriva presto!',
+        tags: ['Biblioteca', 'WiFi', '❄️ Climatizzato'],
     },
 ];
 

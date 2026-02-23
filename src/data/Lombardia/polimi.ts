@@ -19,7 +19,8 @@ export const polimiRooms: StudyRoom[] = [
         indirizzo: 'Piazza Leonardo da Vinci 32, Milano',
         university: 'PoliMi',
         occupancy_rate: 'Altissimo',
-        notes: 'La biblioteca centrale. Prenotazione obbligatoria tramite app Affluences.'
+        notes: 'La biblioteca centrale. Prenotazione obbligatoria tramite app Affluences.',
+        tags: ['Biblioteca', 'Campus', 'WiFi', '🔇 Silenzio'],
     },
     {
         id: 'polimi_leo_acquario',
@@ -35,7 +36,8 @@ export const polimiRooms: StudyRoom[] = [
         longitude: 9.2275,
         indirizzo: 'Piazza Leonardo da Vinci 32, Milano',
         university: 'PoliMi',
-        notes: 'Storica aula studio vetrata. Meno formale della biblioteca.'
+        notes: 'Storica aula studio vetrata. Meno formale della biblioteca.',
+        tags: ['Aula Studio', 'WiFi'],
     },
     {
         id: 'polimi_leo_interfacolta',
@@ -51,6 +53,7 @@ export const polimiRooms: StudyRoom[] = [
         longitude: 9.2275,
         indirizzo: 'Piazza Leonardo da Vinci 32, Milano',
         university: 'PoliMi',
+        tags: ['Aula Studio', 'WiFi'],
     },
     {
         id: 'polimi_leo_patio',
@@ -66,7 +69,8 @@ export const polimiRooms: StudyRoom[] = [
         longitude: 9.2285,
         indirizzo: 'Via Ampère 2, Milano',
         university: 'PoliMi',
-        notes: 'Uno dei pochi spazi aperti 24 ore su 24 (lato Architettura).'
+        notes: 'Uno dei pochi spazi aperti 24 ore su 24 (lato Architettura).',
+        tags: ['Aula Studio', 'WiFi', '❄️ Climatizzato', '🌙 H24'],
     },
 
     // ============================================================
@@ -86,7 +90,8 @@ export const polimiRooms: StudyRoom[] = [
         longitude: 9.1650,
         indirizzo: 'Via Candiani 72, Milano',
         university: 'PoliMi',
-        notes: 'Nel cuore del polo del Design. Molto moderna.'
+        notes: 'Nel cuore del polo del Design. Molto moderna.',
+        tags: ['Biblioteca', 'Campus', 'WiFi'],
     },
     {
         id: 'polimi_bovisa_lamasa',
@@ -102,7 +107,8 @@ export const polimiRooms: StudyRoom[] = [
         longitude: 9.1580,
         indirizzo: 'Via La Masa 34, Milano',
         university: 'PoliMi',
-        notes: 'Sede dei dipartimenti di Ingegneria Meccanica, Aerospaziale ed Energia.'
+        notes: 'Sede dei dipartimenti di Ingegneria Meccanica, Aerospaziale ed Energia.',
+        tags: ['Biblioteca', 'Campus', 'WiFi', '🔇 Silenzio'],
     },
     {
         id: 'polimi_bovisa_bl27',
@@ -118,7 +124,8 @@ export const polimiRooms: StudyRoom[] = [
         longitude: 9.1585,
         indirizzo: 'Via La Masa 34, Milano',
         university: 'PoliMi',
-        notes: 'Spesso accessibile fino a tarda notte.'
+        notes: 'Spesso accessibile fino a tarda notte.',
+        tags: ['Aula Studio', 'Campus', 'WiFi'],
     },
 
     // ============================================================
@@ -138,7 +145,8 @@ export const polimiRooms: StudyRoom[] = [
         longitude: 9.0950,
         indirizzo: 'Via Valleggio 11, Como',
         university: 'PoliMi',
-        notes: 'Vicino alla stazione Como Borghi.'
+        notes: 'Vicino alla stazione Como Borghi.',
+        tags: ['Biblioteca', 'Campus', 'WiFi'],
     },
 
     // ============================================================
@@ -158,7 +166,8 @@ export const polimiRooms: StudyRoom[] = [
         longitude: 9.3980,
         indirizzo: 'Via Previati 1/c, Lecco',
         university: 'PoliMi',
-        notes: 'Campus di nuova costruzione, molto luminoso.'
+        notes: 'Campus di nuova costruzione, molto luminoso.',
+        tags: ['Biblioteca', 'Campus', 'WiFi'],
     },
     {
         id: 'polimi_lecco_b04',
@@ -174,6 +183,7 @@ export const polimiRooms: StudyRoom[] = [
         longitude: 9.3982,
         indirizzo: 'Via Previati 1/c, Lecco',
         university: 'PoliMi',
+        tags: ['Aula Studio', 'WiFi', '🔇 Silenzio'],
     },
 
     // ============================================================
@@ -193,7 +203,8 @@ export const polimiRooms: StudyRoom[] = [
         longitude: 10.7920,
         indirizzo: 'Piazza d\'Arco 3, Mantova',
         university: 'PoliMi',
-        notes: 'Il Campus chiude alle 24:00, le aule studio spesso seguono orari lunghi.'
+        notes: 'Il Campus chiude alle 24:00, le aule studio spesso seguono orari lunghi.',
+        tags: ['Biblioteca', 'Campus', 'Centro', 'WiFi'],
     },
 
     // ============================================================
@@ -213,7 +224,8 @@ export const polimiRooms: StudyRoom[] = [
         longitude: 9.2295,
         indirizzo: 'Via Bonardi 9, Milano',
         university: 'PoliMi',
-        notes: 'Chiamato "La Nave" per la sua forma e le finestre a oblò. È il cuore pulsante di Architettura. Spesso caotico ma creativo.'
+        notes: 'Chiamato "La Nave" per la sua forma e le finestre a oblò. È il cuore pulsante di Architettura. Spesso caotico ma creativo.',
+        tags: ['Aula Studio', 'WiFi', '❄️ Climatizzato'],
     },
     {
         id: 'polimi_leo_trifoglio',
@@ -229,7 +241,8 @@ export const polimiRooms: StudyRoom[] = [
         longitude: 9.2290,
         indirizzo: 'Via Bonardi 9, Milano',
         university: 'PoliMi',
-        notes: 'Edificio progettato da Gio Ponti. Gli spazi studio sono nell\'atrio e ai piani bassi.'
+        notes: 'Edificio progettato da Gio Ponti. Gli spazi studio sono nell\'atrio e ai piani bassi.',
+        tags: ['Aula Studio', 'WiFi'],
     },
     {
         id: 'polimi_leo_matematica',
@@ -245,7 +258,8 @@ export const polimiRooms: StudyRoom[] = [
         longitude: 9.2295,
         indirizzo: 'Via Bonardi 9, Milano',
         university: 'PoliMi',
-        notes: 'Una gemma nascosta dentro la Nave. Se cerchi silenzio vero mentre sotto c\'è il caos, vieni qui.'
+        notes: 'Una gemma nascosta dentro la Nave. Se cerchi silenzio vero mentre sotto c\'è il caos, vieni qui.',
+        tags: ['Biblioteca', 'WiFi', '🔇 Silenzio'],
     },
     {
         id: 'polimi_leo_sottomarino',
@@ -261,7 +275,8 @@ export const polimiRooms: StudyRoom[] = [
         longitude: 9.2290,
         indirizzo: 'Piazza Leonardo da Vinci 32, Milano',
         university: 'PoliMi',
-        notes: 'Situata nei sotterranei di Chimica/Fisica. Ideale per chi vuole isolarsi dal mondo.'
+        notes: 'Situata nei sotterranei di Chimica/Fisica. Ideale per chi vuole isolarsi dal mondo.',
+        tags: ['Aula Studio', 'WiFi', '🔇 Silenzio'],
     },
 
     // ============================================================
@@ -281,7 +296,8 @@ export const polimiRooms: StudyRoom[] = [
         longitude: 9.1660,
         indirizzo: 'Via Candiani 72, Milano',
         university: 'PoliMi',
-        notes: 'Il punto di riferimento per gli studenti di Design. Forma ovale caratteristica, ambiente open space.'
+        notes: 'Il punto di riferimento per gli studenti di Design. Forma ovale caratteristica, ambiente open space.',
+        tags: ['Aula Studio', 'WiFi', '👥 Gruppi OK'],
     },
     {
         id: 'polimi_bovisa_collina',
@@ -297,7 +313,8 @@ export const polimiRooms: StudyRoom[] = [
         longitude: 9.1590,
         indirizzo: 'Via La Masa 34, Milano',
         university: 'PoliMi',
-        notes: 'Edificio B23. È uno spazio ibrido con vetrate sul verde. Molto "chill" rispetto alle biblioteche.'
+        notes: 'Edificio B23. È uno spazio ibrido con vetrate sul verde. Molto "chill" rispetto alle biblioteche.',
+        tags: ['Aula Studio', 'Campus', 'WiFi'],
     },
     {
         id: 'polimi_bovisa_mn',
@@ -313,7 +330,8 @@ export const polimiRooms: StudyRoom[] = [
         longitude: 9.1640,
         indirizzo: 'Via Candiani 72, Milano',
         university: 'PoliMi',
-        notes: 'Spesso usato per mangiare e studiare contemporaneamente.'
+        notes: 'Spesso usato per mangiare e studiare contemporaneamente.',
+        tags: ['Mensa/Ristoro', 'WiFi'],
     },
 
     // ============================================================
@@ -333,7 +351,8 @@ export const polimiRooms: StudyRoom[] = [
         longitude: 10.7920,
         indirizzo: 'Piazza d\'Arco 3, Mantova',
         university: 'PoliMi',
-        notes: 'Studiare sotto affreschi storici. Un\'esperienza unica del polo di Mantova.'
+        notes: 'Studiare sotto affreschi storici. Un\'esperienza unica del polo di Mantova.',
+        tags: ['Aula Studio', 'Campus', '🔇 Silenzio'],
     },
     {
         id: 'polimi_piacenza_vegezzi',
@@ -349,7 +368,8 @@ export const polimiRooms: StudyRoom[] = [
         longitude: 9.7050,
         indirizzo: 'Via Scalabrini 113, Piacenza',
         university: 'PoliMi',
-        notes: 'Il cuore pulsante della vita studentesca a Piacenza, oltre alla biblioteca.'
+        notes: 'Il cuore pulsante della vita studentesca a Piacenza, oltre alla biblioteca.',
+        tags: ['Aula Studio', 'Campus', 'WiFi'],
     },
 
     // ============================================================
@@ -369,7 +389,8 @@ export const polimiRooms: StudyRoom[] = [
         longitude: 10.0300,
         indirizzo: 'Via S.L. Bissolati 34, Cremona',
         university: 'PoliMi',
-        notes: 'Aperta anche la Domenica (14:00-20:00), un grande vantaggio.'
+        notes: 'Aperta anche la Domenica (14:00-20:00), un grande vantaggio.',
+        tags: ['Aula Studio', 'WiFi'],
     },
 
     // ============================================================
@@ -389,7 +410,8 @@ export const polimiRooms: StudyRoom[] = [
         longitude: 9.7050,
         indirizzo: 'Via Scalabrini 113, Piacenza',
         university: 'PoliMi',
-        notes: 'Polo principale per Architettura e Ingegneria Meccanica fuori Milano.'
+        notes: 'Polo principale per Architettura e Ingegneria Meccanica fuori Milano.',
+        tags: ['Biblioteca', 'Campus', 'WiFi'],
     },
 
     // ============================================================
@@ -409,7 +431,8 @@ export const polimiRooms: StudyRoom[] = [
         longitude: 9.2275,
         indirizzo: 'Piazza Leonardo da Vinci 32, Milano',
         university: 'PoliMi',
-        notes: 'Struttura coperta al piano terra dell\'Edificio 2. Ottima per pause studio.'
+        notes: 'Struttura coperta al piano terra dell\'Edificio 2. Ottima per pause studio.',
+        tags: ['Aula Studio', 'WiFi', '❄️ Climatizzato'],
     },
     {
         id: 'polimi_leo_edificio16c',
@@ -425,7 +448,8 @@ export const polimiRooms: StudyRoom[] = [
         longitude: 9.2300,
         indirizzo: 'Via Golgi 40, Milano',
         university: 'PoliMi',
-        notes: 'Poco conosciuta, ideale per chi cerca tranquillità.'
+        notes: 'Poco conosciuta, ideale per chi cerca tranquillità.',
+        tags: ['Aula Studio', 'WiFi', '🔇 Silenzio'],
     },
     {
         id: 'polimi_leo_golgi22',
@@ -441,7 +465,8 @@ export const polimiRooms: StudyRoom[] = [
         longitude: 9.2310,
         indirizzo: 'Via Golgi 20, Milano',
         university: 'PoliMi',
-        notes: 'Nell\'area dei dipartimenti di Chimica e Materiali.'
+        notes: 'Nell\'area dei dipartimenti di Chimica e Materiali.',
+        tags: ['Aula Studio', 'Campus', 'WiFi'],
     },
     {
         id: 'polimi_leo_golgi25',
@@ -457,7 +482,8 @@ export const polimiRooms: StudyRoom[] = [
         longitude: 9.2315,
         indirizzo: 'Via Golgi 39, Milano',
         university: 'PoliMi',
-        notes: 'Zona Bioingegneria, spazi negli atri.'
+        notes: 'Zona Bioingegneria, spazi negli atri.',
+        tags: ['Aula Studio', 'Campus', 'WiFi'],
     },
     {
         id: 'polimi_leo_golgi26',
@@ -473,7 +499,8 @@ export const polimiRooms: StudyRoom[] = [
         longitude: 9.2320,
         indirizzo: 'Via Ponzio 34, Milano',
         university: 'PoliMi',
-        notes: 'Area dipartimento di Elettronica.'
+        notes: 'Area dipartimento di Elettronica.',
+        tags: ['Aula Studio', 'Campus', 'WiFi'],
     },
 
     // ============================================================
@@ -493,7 +520,8 @@ export const polimiRooms: StudyRoom[] = [
         longitude: 9.1582,
         indirizzo: 'Via La Masa 34, Milano',
         university: 'PoliMi',
-        notes: 'Aula studio dedicata nel seminterrato del B20 (La Masa).'
+        notes: 'Aula studio dedicata nel seminterrato del B20 (La Masa).',
+        tags: ['Aula Studio', 'WiFi', '🔇 Silenzio'],
     },
     {
         id: 'polimi_bovisa_b24',
@@ -509,7 +537,8 @@ export const polimiRooms: StudyRoom[] = [
         longitude: 9.1588,
         indirizzo: 'Via La Masa 34, Milano',
         university: 'PoliMi',
-        notes: 'Alternativa poco affollata nel campus La Masa.'
+        notes: 'Alternativa poco affollata nel campus La Masa.',
+        tags: ['Aula Studio', 'WiFi'],
     },
     {
         id: 'polimi_bovisa_b12',
@@ -525,7 +554,8 @@ export const polimiRooms: StudyRoom[] = [
         longitude: 9.1584,
         indirizzo: 'Via La Masa 34, Milano',
         university: 'PoliMi',
-        notes: 'Spazi comuni distribuiti su due piani.'
+        notes: 'Spazi comuni distribuiti su due piani.',
+        tags: ['Aula Studio', 'WiFi'],
     },
     {
         id: 'polimi_bovisa_b2',
@@ -541,7 +571,8 @@ export const polimiRooms: StudyRoom[] = [
         longitude: 9.1655,
         indirizzo: 'Via Candiani 72, Milano',
         university: 'PoliMi',
-        notes: 'Spazi comuni su seminterrato, piano terra e secondo piano. Cuore del Design.'
+        notes: 'Spazi comuni su seminterrato, piano terra e secondo piano. Cuore del Design.',
+        tags: ['Aula Studio', 'WiFi'],
     },
     {
         id: 'polimi_bovisa_b8_aula',
@@ -557,7 +588,8 @@ export const polimiRooms: StudyRoom[] = [
         longitude: 9.1660,
         indirizzo: 'Via Candiani 72, Milano',
         university: 'PoliMi',
-        notes: 'Aula studio al secondo piano, separata dall\'Ovale al piano terra.'
+        notes: 'Aula studio al secondo piano, separata dall\'Ovale al piano terra.',
+        tags: ['Aula Studio', 'WiFi', '🔇 Silenzio'],
     },
 
     // ============================================================
@@ -577,7 +609,8 @@ export const polimiRooms: StudyRoom[] = [
         longitude: 9.2282,
         indirizzo: 'Piazza Leonardo da Vinci 32, Milano',
         university: 'PoliMi',
-        notes: 'Raccoglie il patrimonio librario più antico del Politecnico. Ambiente suggestivo.'
+        notes: 'Raccoglie il patrimonio librario più antico del Politecnico. Ambiente suggestivo.',
+        tags: ['Biblioteca', 'WiFi', '🔇 Silenzio'],
     },
 
     // ============================================================
@@ -597,7 +630,8 @@ export const polimiRooms: StudyRoom[] = [
         longitude: 9.1650,
         indirizzo: 'Via Candiani 72, Milano',
         university: 'PoliMi',
-        notes: 'Nel seminterrato dell\'edificio della Biblioteca Candiani. Segue gli stessi orari.'
+        notes: 'Nel seminterrato dell\'edificio della Biblioteca Candiani. Segue gli stessi orari.',
+        tags: ['Aula Studio', 'WiFi', '🔇 Silenzio'],
     },
     {
         id: 'polimi_bovisa_bl27_studio',
@@ -613,7 +647,8 @@ export const polimiRooms: StudyRoom[] = [
         longitude: 9.1585,
         indirizzo: 'Via La Masa 34, Milano',
         university: 'PoliMi',
-        notes: 'Aula studio dedicata al piano terra. Spazi comuni anche al primo piano.'
+        notes: 'Aula studio dedicata al piano terra. Spazi comuni anche al primo piano.',
+        tags: ['Aula Studio', 'WiFi'],
     },
     {
         id: 'polimi_bovisa_collina_primo',
@@ -629,7 +664,8 @@ export const polimiRooms: StudyRoom[] = [
         longitude: 9.1590,
         indirizzo: 'Via La Masa 34, Milano',
         university: 'PoliMi',
-        notes: 'Primo piano della Collina, più tranquillo rispetto al piano terra.'
+        notes: 'Primo piano della Collina, più tranquillo rispetto al piano terra.',
+        tags: ['Aula Studio', 'WiFi'],
     },
     {
         id: 'polimi_bovisa_b30_meeting',
@@ -645,7 +681,8 @@ export const polimiRooms: StudyRoom[] = [
         longitude: 9.1592,
         indirizzo: 'Via La Masa 34, Milano',
         university: 'PoliMi',
-        notes: 'Sala riunioni prenotabile per lavori di gruppo. Prenota su Affluences o sito PoliMi.'
+        notes: 'Sala riunioni prenotabile per lavori di gruppo. Prenota su Affluences o sito PoliMi.',
+        tags: ['Aula Studio', 'WiFi', '👥 Gruppi OK'],
     },
     {
         id: 'polimi_bovisa_b24_self',
@@ -661,7 +698,8 @@ export const polimiRooms: StudyRoom[] = [
         longitude: 9.1588,
         indirizzo: 'Via La Masa 34, Milano',
         university: 'PoliMi',
-        notes: 'Zona self-service con possibilità di mangiare e studiare. Ambiente informale.'
+        notes: 'Zona self-service con possibilità di mangiare e studiare. Ambiente informale.',
+        tags: ['Aula Studio', 'WiFi', '❄️ Climatizzato'],
     }
 ];
 

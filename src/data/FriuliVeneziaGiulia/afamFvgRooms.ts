@@ -20,7 +20,8 @@ export const afamFvgRooms: StudyRoom[] = [
         indirizzo: 'Via Carlo Ghega 12, 34132 Trieste',
         university: 'AFAM',
         occupancy_rate: 'Basso',
-        notes: '🎻⭐ Biblioteca storica con fondi antichi. Atmosfera austro-ungarica seria e "mitteleuropea". Silenzio rigoroso. INSIDER TIP: A 2 min a piedi c\'è il Caffè Tommaseo (il più antico di Trieste) storicamente legato alla musica classica - studiare lì con caffè viennese è tradizione!'
+        notes: '🎻⭐ Biblioteca storica con fondi antichi. Atmosfera austro-ungarica seria e "mitteleuropea". Silenzio rigoroso. INSIDER TIP: A 2 min a piedi c\'è il Caffè Tommaseo (il più antico di Trieste) storicamente legato alla musica classica - studiare lì con caffè viennese è tradizione!',
+        tags: ['Biblioteca', '🔇 Silenzio'],
     },
     {
         id: 'cons_ts_aule_pratica',
@@ -36,7 +37,8 @@ export const afamFvgRooms: StudyRoom[] = [
         longitude: 13.7768,
         indirizzo: 'Via Carlo Ghega 12, Trieste',
         university: 'AFAM',
-        notes: '🎹 Aule individuali per pratica strumentale. Prenotazione online obbligatoria (portale Conservatorio). Pianoforti a coda disponibili.'
+        notes: '🎹 Aule individuali per pratica strumentale. Prenotazione online obbligatoria (portale Conservatorio). Pianoforti a coda disponibili.',
+        tags: ['Aula Studio'],
     },
     {
         id: 'cons_ts_sala_comune',
@@ -52,7 +54,8 @@ export const afamFvgRooms: StudyRoom[] = [
         longitude: 13.7768,
         indirizzo: 'Via Carlo Ghega 12, Trieste',
         university: 'AFAM',
-        notes: 'Spazio informale per attesa aule o studio teorico. Ambiente sociale ma rispettoso.'
+        notes: 'Spazio informale per attesa aule o studio teorico. Ambiente sociale ma rispettoso.',
+        tags: ['Aula Studio'],
     },
     // ============================================================
     // CONSERVATORIO "JACOPO TOMADINI" - UDINE
@@ -72,7 +75,8 @@ export const afamFvgRooms: StudyRoom[] = [
         longitude: 13.2355,
         indirizzo: 'Piazza Primo Maggio 29, Udine',
         university: 'AFAM',
-        notes: '🌳 Biblioteca luminosa affacciata su Piazza Primo Maggio (il "Giardin Grande"). Vista Castello Udine e prato verde.'
+        notes: '🌳 Biblioteca luminosa affacciata su Piazza Primo Maggio (il "Giardin Grande"). Vista Castello Udine e prato verde.',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'cons_ud_aule_pratica',
@@ -88,7 +92,8 @@ export const afamFvgRooms: StudyRoom[] = [
         longitude: 13.2355,
         indirizzo: 'Piazza Primo Maggio 29, Udine',
         university: 'AFAM',
-        notes: '🎺 Aule insonorizzate per esercizio individuale. Prenotazione obbligatoria online.'
+        notes: '🎺 Aule insonorizzate per esercizio individuale. Prenotazione obbligatoria online.',
+        tags: ['Aula Studio'],
     },
     {
         id: 'cons_ud_giardin_grande',
@@ -104,7 +109,8 @@ export const afamFvgRooms: StudyRoom[] = [
         longitude: 13.2355,
         indirizzo: 'Piazza Primo Maggio, Udine',
         university: 'AFAM',
-        notes: '🌳⭐ Prato ICONICO per studio all\'aperto! D\'primavera/estate è IL campus a cielo aperto degli studenti di musica. Vista Castello Udine. Luogo perfetto per ripasso all\'aperto o pause sociali. Tradizione studentesca!'
+        notes: '🌳⭐ Prato ICONICO per studio all\'aperto! D\'primavera/estate è IL campus a cielo aperto degli studenti di musica. Vista Castello Udine. Luogo perfetto per ripasso all\'aperto o pause sociali. Tradizione studentesca!',
+        tags: ['Outdoor'],
     },
     // ============================================================
     // ACCADEMIA DI BELLE ARTI "G.B. TIEPOLO" - UDINE
@@ -124,7 +130,8 @@ export const afamFvgRooms: StudyRoom[] = [
         longitude: 13.2405,
         indirizzo: 'Viale Ungheria 22, Udine',
         university: 'AFAM',
-        notes: '🎨💻 Spazi moderni per design digitale. iMac con software professionale. Laboratori attrezzati per grafica e multimedia.'
+        notes: '🎨💻 Spazi moderni per design digitale. iMac con software professionale. Laboratori attrezzati per grafica e multimedia.',
+        tags: ['Laboratorio', 'Campus', '❄️ Climatizzato'],
     },
     {
         id: 'aba_ud_atelier_pittura',
@@ -140,7 +147,8 @@ export const afamFvgRooms: StudyRoom[] = [
         longitude: 13.2405,
         indirizzo: 'Viale Ungheria 22, Udine',
         university: 'AFAM',
-        notes: '🎨 Spazi creativi tradizionali con luce naturale. Cavalletti e materiali disponibili per pratica.'
+        notes: '🎨 Spazi creativi tradizionali con luce naturale. Cavalletti e materiali disponibili per pratica.',
+        tags: ['Aula Studio', 'Campus'],
     },
     {
         id: 'aba_ud_biblioteca',
@@ -156,7 +164,8 @@ export const afamFvgRooms: StudyRoom[] = [
         longitude: 13.2405,
         indirizzo: 'Viale Ungheria 22, Udine',
         university: 'AFAM',
-        notes: '📚 Biblioteca specializzata arti visive. Collezione storia dell\'arte e tecniche artistiche. Orari più rigidi rispetto università pubblica (ente riconosciuto privato/statale ibrido).'
+        notes: '📚 Biblioteca specializzata arti visive. Collezione storia dell\'arte e tecniche artistiche. Orari più rigidi rispetto università pubblica (ente riconosciuto privato/statale ibrido).',
+        tags: ['Biblioteca', 'Campus'],
     },
 ];
 

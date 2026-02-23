@@ -19,7 +19,8 @@ export const unibgRooms: StudyRoom[] = [
         indirizzo: 'Via Salvecchio 19, Bergamo (Città Alta)',
         university: 'UniBg',
         occupancy_rate: 'Alto',
-        notes: 'La più famosa di Città Alta. Si trova nel seminterrato, ottima per concentrazione totale.'
+        notes: 'La più famosa di Città Alta. Si trova nel seminterrato, ottima per concentrazione totale.',
+        tags: ['Aula Studio', 'WiFi', '⚡ Prese', '🔇 Silenzio'],
     },
     {
         id: 'unibg_pignolo_biblio',
@@ -35,7 +36,8 @@ export const unibgRooms: StudyRoom[] = [
         longitude: 9.6700,
         indirizzo: 'Via Pignolo 123, Bergamo',
         university: 'UniBg',
-        notes: 'Situata in un palazzo rinascimentale tra Città Alta e Bassa. Aperta anche Sabato mattina (8:30-12:30).'
+        notes: 'Situata in un palazzo rinascimentale tra Città Alta e Bassa. Aperta anche Sabato mattina (8:30-12:30).',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'unibg_santagostino',
@@ -51,7 +53,8 @@ export const unibgRooms: StudyRoom[] = [
         longitude: 9.6680,
         indirizzo: 'Piazzale Sant\'Agostino 2, Bergamo',
         university: 'UniBg',
-        notes: 'Sede monumentale. Studiare nel chiostro o nelle aule libere è un must.'
+        notes: 'Sede monumentale. Studiare nel chiostro o nelle aule libere è un must.',
+        tags: ['Aula Studio', 'WiFi'],
     },
     {
         id: 'unibg_rosate_4piano',
@@ -67,7 +70,8 @@ export const unibgRooms: StudyRoom[] = [
         longitude: 9.6590,
         indirizzo: 'Piazza Rosate 2, Bergamo',
         university: 'UniBg',
-        notes: 'Sede del Dipartimento di Lingue. Vista spettacolare dai piani alti.'
+        notes: 'Sede del Dipartimento di Lingue. Vista spettacolare dai piani alti.',
+        tags: ['Aula Studio', 'WiFi'],
     },
 
     // ============================================================
@@ -88,7 +92,8 @@ export const unibgRooms: StudyRoom[] = [
         indirizzo: 'Via dei Caniana 2, Bergamo',
         university: 'UniBg',
         occupancy_rate: 'Molto Alto',
-        notes: 'Cuore pulsante del campus "basso". Aperta anche Sabato mattina (8:30-12:30).'
+        notes: 'Cuore pulsante del campus "basso". Aperta anche Sabato mattina (8:30-12:30).',
+        tags: ['Biblioteca', 'WiFi', '🌙 H24'],
     },
     {
         id: 'unibg_caniana_mensa',
@@ -104,7 +109,8 @@ export const unibgRooms: StudyRoom[] = [
         longitude: 9.6570,
         indirizzo: 'Via dei Caniana 2, Bergamo',
         university: 'UniBg',
-        notes: 'Usata come aula studio al di fuori degli orari di punta del pranzo. Ambiente informale.'
+        notes: 'Usata come aula studio al di fuori degli orari di punta del pranzo. Ambiente informale.',
+        tags: ['Aula Studio', 'WiFi'],
     },
     {
         id: 'unibg_caniana_moroni',
@@ -120,6 +126,7 @@ export const unibgRooms: StudyRoom[] = [
         longitude: 9.6570,
         indirizzo: 'Via dei Caniana 2, Bergamo',
         university: 'UniBg',
+        tags: ['Aula Studio', 'WiFi'],
     },
 
     // ============================================================
@@ -139,7 +146,8 @@ export const unibgRooms: StudyRoom[] = [
         longitude: 9.6050,
         indirizzo: 'Viale Marconi 5, Dalmine (BG)',
         university: 'UniBg',
-        notes: 'Biblioteca tecnica specializzata. Orari lun-ven.'
+        notes: 'Biblioteca tecnica specializzata. Orari lun-ven.',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'unibg_dalmine_edificio_c',
@@ -155,7 +163,8 @@ export const unibgRooms: StudyRoom[] = [
         longitude: 9.6055,
         indirizzo: 'Viale Marconi 5, Dalmine',
         university: 'UniBg',
-        notes: 'Aperto anche per consumare pasti portati da casa (fascia 12:15-14:00).'
+        notes: 'Aperto anche per consumare pasti portati da casa (fascia 12:15-14:00).',
+        tags: ['Aula Studio', 'WiFi'],
     },
 
     // ============================================================
@@ -175,7 +184,8 @@ export const unibgRooms: StudyRoom[] = [
         longitude: 9.6650,
         indirizzo: 'Via San Bernardino 74, Bergamo',
         university: 'UniBg',
-        notes: 'NON universitaria ma fondamentale: è aperta fino alle 22:30 (lun-ven) ed è il rifugio serale degli studenti. Vicina a Caniana.'
+        notes: 'NON universitaria ma fondamentale: è aperta fino alle 22:30 (lun-ven) ed è il rifugio serale degli studenti. Vicina a Caniana.',
+        tags: ['Biblioteca', 'WiFi'],
     },
 
     // ============================================================
@@ -195,7 +205,8 @@ export const unibgRooms: StudyRoom[] = [
         longitude: 9.6052,
         indirizzo: 'Viale Marconi 5, Dalmine (BG)',
         university: 'UniBg',
-        notes: '74 posti! Una delle sale più grandi di Dalmine.'
+        notes: '74 posti! Una delle sale più grandi di Dalmine.',
+        tags: ['Aula Studio', 'WiFi', '🔇 Silenzio'],
     },
     {
         id: 'unibg_dalmine_pasubio_terra',
@@ -211,7 +222,8 @@ export const unibgRooms: StudyRoom[] = [
         longitude: 9.6045,
         indirizzo: 'Via Pasubio 7b, Dalmine (BG)',
         university: 'UniBg',
-        notes: 'Adiacente alla Biblioteca di Ingegneria.'
+        notes: 'Adiacente alla Biblioteca di Ingegneria.',
+        tags: ['Aula Studio', 'WiFi'],
     },
     {
         id: 'unibg_dalmine_pasubio_mensa',
@@ -227,7 +239,8 @@ export const unibgRooms: StudyRoom[] = [
         longitude: 9.6045,
         indirizzo: 'Via Pasubio 7b, Dalmine (BG)',
         university: 'UniBg',
-        notes: 'Sala mensa usata come aula studio. 68 posti.'
+        notes: 'Sala mensa usata come aula studio. 68 posti.',
+        tags: ['Aula Studio', 'WiFi'],
     },
 
     // ============================================================
@@ -248,7 +261,8 @@ export const unibgRooms: StudyRoom[] = [
         indirizzo: 'Via Pignolo 123, Bergamo',
         university: 'UniBg',
         occupancy_rate: 'Alto',
-        notes: '109 posti! La più grande aula studio del campus umanistico. Al quarto piano interrato.'
+        notes: '109 posti! La più grande aula studio del campus umanistico. Al quarto piano interrato.',
+        tags: ['Aula Studio', 'WiFi', '🔇 Silenzio'],
     },
     {
         id: 'unibg_pignolo_alasca',
@@ -264,7 +278,8 @@ export const unibgRooms: StudyRoom[] = [
         longitude: 9.6700,
         indirizzo: 'Via Pignolo 123, Bergamo',
         university: 'UniBg',
-        notes: 'Piccola sala al piano terra. Ideale per chi cerca tranquillità.'
+        notes: 'Piccola sala al piano terra. Ideale per chi cerca tranquillità.',
+        tags: ['Aula Studio', 'WiFi', '❄️ Climatizzato'],
     },
     {
         id: 'unibg_salvecchio_4',
@@ -280,7 +295,8 @@ export const unibgRooms: StudyRoom[] = [
         longitude: 9.6608,
         indirizzo: 'Via Salvecchio 4, Bergamo (Città Alta)',
         university: 'UniBg',
-        notes: 'Spazio aggiuntivo vicino al Bunker ma meno affollato.'
+        notes: 'Spazio aggiuntivo vicino al Bunker ma meno affollato.',
+        tags: ['Aula Studio', 'WiFi'],
     },
     {
         id: 'unibg_salvecchio_saletta',
@@ -296,7 +312,8 @@ export const unibgRooms: StudyRoom[] = [
         longitude: 9.6610,
         indirizzo: 'Via Salvecchio 19, Bergamo (Città Alta)',
         university: 'UniBg',
-        notes: 'Per chi cerca massima concentrazione in uno spazio intimo.'
+        notes: 'Per chi cerca massima concentrazione in uno spazio intimo.',
+        tags: ['Aula Studio', 'WiFi', '🔇 Silenzio'],
     },
     {
         id: 'unibg_salvecchio_cla',
@@ -312,7 +329,8 @@ export const unibgRooms: StudyRoom[] = [
         longitude: 9.6610,
         indirizzo: 'Via Salvecchio 19, Bergamo (Città Alta)',
         university: 'UniBg',
-        notes: 'Per studio delle lingue. Postazioni con PC e risorse multimediali.'
+        notes: 'Per studio delle lingue. Postazioni con PC e risorse multimediali.',
+        tags: ['Aula Studio', 'WiFi'],
     },
     {
         id: 'unibg_santagostino_lab3',
@@ -328,7 +346,8 @@ export const unibgRooms: StudyRoom[] = [
         longitude: 9.6680,
         indirizzo: 'Piazzale Sant\'Agostino 2, Bergamo',
         university: 'UniBg',
-        notes: 'Laboratorio informatico utilizzabile anche come aula studio.'
+        notes: 'Laboratorio informatico utilizzabile anche come aula studio.',
+        tags: ['Laboratorio', 'WiFi'],
     },
     {
         id: 'unibg_sanlorenzo_mensa',
@@ -344,7 +363,8 @@ export const unibgRooms: StudyRoom[] = [
         longitude: 9.6670,
         indirizzo: 'Via San Lorenzo, Bergamo',
         university: 'UniBg',
-        notes: '152 posti! Sala mensa usata come aula studio. Ambiente sociale e informale.'
+        notes: '152 posti! Sala mensa usata come aula studio. Ambiente sociale e informale.',
+        tags: ['Aula Studio', 'WiFi', '☕ Ristoro'],
     }
 ];
 

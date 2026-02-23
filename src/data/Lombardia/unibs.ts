@@ -19,7 +19,8 @@ export const unibsRooms: StudyRoom[] = [
         indirizzo: 'Contrada Santa Chiara 50, Brescia',
         university: 'UniBS',
         occupancy_rate: 'Alto',
-        notes: 'Situata in un ex monastero ristrutturato. Ambiente molto suggestivo e silenzioso.'
+        notes: 'Situata in un ex monastero ristrutturato. Ambiente molto suggestivo e silenzioso.',
+        tags: ['Biblioteca', 'WiFi', '🔇 Silenzio'],
     },
     {
         id: 'unibs_sanfaustino_brixia',
@@ -35,7 +36,8 @@ export const unibsRooms: StudyRoom[] = [
         longitude: 10.2185,
         indirizzo: 'Via San Faustino 74/B, Brescia',
         university: 'UniBS',
-        notes: 'Il punto di riferimento per lo studio serale in centro. Spesso affollata.'
+        notes: 'Il punto di riferimento per lo studio serale in centro. Spesso affollata.',
+        tags: ['Aula Studio', 'WiFi'],
     },
     {
         id: 'unibs_battaglie_eco',
@@ -51,7 +53,8 @@ export const unibsRooms: StudyRoom[] = [
         longitude: 10.2170,
         indirizzo: 'Via delle Battaglie 58, Brescia',
         university: 'UniBS',
-        notes: 'Nel cuore del quartiere Carmine.'
+        notes: 'Nel cuore del quartiere Carmine.',
+        tags: ['Aula Studio', 'WiFi', '❄️ Climatizzato'],
     },
 
     // ============================================================
@@ -72,6 +75,7 @@ export const unibsRooms: StudyRoom[] = [
         indirizzo: 'Via Branze 38, Brescia',
         university: 'UniBS',
         occupancy_rate: 'Medio',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'unibs_ing_acquario',
@@ -87,7 +91,8 @@ export const unibsRooms: StudyRoom[] = [
         longitude: 10.2310,
         indirizzo: 'Via Branze 38, Brescia',
         university: 'UniBS',
-        notes: 'Famosa aula vetrata. Si può parlare (moderatamente) e mangiare qualcosa.'
+        notes: 'Famosa aula vetrata. Si può parlare (moderatamente) e mangiare qualcosa.',
+        tags: ['Aula Studio', 'WiFi'],
     },
     {
         id: 'unibs_ing_branze43',
@@ -103,6 +108,7 @@ export const unibsRooms: StudyRoom[] = [
         longitude: 10.2305,
         indirizzo: 'Via Branze 43, Brescia',
         university: 'UniBS',
+        tags: ['Aula Studio', 'WiFi'],
     },
 
     // ============================================================
@@ -122,7 +128,8 @@ export const unibsRooms: StudyRoom[] = [
         longitude: 10.2320,
         indirizzo: 'Viale Europa 11, Brescia',
         university: 'UniBS',
-        notes: 'Adiacente agli Spedali Civili di Brescia.'
+        notes: 'Adiacente agli Spedali Civili di Brescia.',
+        tags: ['Biblioteca', 'Medicina', 'WiFi', '🔇 Silenzio'],
     },
     {
         id: 'unibs_med_polifunzionale',
@@ -138,7 +145,8 @@ export const unibsRooms: StudyRoom[] = [
         longitude: 10.2325,
         indirizzo: 'Viale Europa 11, Brescia',
         university: 'UniBS',
-        notes: 'Spazio moderno e informale per gli studenti di Medicina e Professioni Sanitarie.'
+        notes: 'Spazio moderno e informale per gli studenti di Medicina e Professioni Sanitarie.',
+        tags: ['Aula Studio', 'Medicina', 'WiFi'],
     },
 
     // ============================================================
@@ -158,7 +166,8 @@ export const unibsRooms: StudyRoom[] = [
         longitude: 10.7900,
         indirizzo: 'Via Scarsellini 2, Mantova',
         university: 'UniBS',
-        notes: 'Sede dei corsi di Economia e gestione aziendale a Mantova.'
+        notes: 'Sede dei corsi di Economia e gestione aziendale a Mantova.',
+        tags: ['Biblioteca', 'Centro', 'WiFi'],
     },
 
     // ============================================================
@@ -178,7 +187,8 @@ export const unibsRooms: StudyRoom[] = [
         longitude: 9.9250,
         indirizzo: 'Viale Mazzini 6, Chiari (BS)',
         university: 'UniBS',
-        notes: 'Piccola aula studio all\'interno della sede del corso di Infermieristica.'
+        notes: 'Piccola aula studio all\'interno della sede del corso di Infermieristica.',
+        tags: ['Aula Studio', 'Campus', 'Medicina', 'WiFi'],
     },
 
     // ============================================================
@@ -199,7 +209,8 @@ export const unibsRooms: StudyRoom[] = [
         indirizzo: 'Via Branze, Brescia',
         university: 'UniBS',
         occupancy_rate: 'Altissimo',
-        notes: '⚡ L\'UNICA aula studio H24 di Brescia! Chiude solo 5:00-8:30. Il rifugio notturno degli studenti.'
+        notes: '⚡ L\'UNICA aula studio H24 di Brescia! Chiude solo 5:00-8:30. Il rifugio notturno degli studenti.',
+        tags: ['Aula Studio', 'Campus', 'WiFi', '❄️ Climatizzato', '🌙 H24'],
     },
     {
         id: 'unibs_nord_v3_grande',
@@ -215,7 +226,8 @@ export const unibsRooms: StudyRoom[] = [
         longitude: 10.2300,
         indirizzo: 'Via Branze, Brescia',
         university: 'UniBS',
-        notes: 'Aperta anche Sabato e Domenica 9-22! 80 posti.'
+        notes: 'Aperta anche Sabato e Domenica 9-22! 80 posti.',
+        tags: ['Aula Studio', 'Campus', 'WiFi'],
     },
     {
         id: 'unibs_nord_v3_piccola',
@@ -231,7 +243,8 @@ export const unibsRooms: StudyRoom[] = [
         longitude: 10.2300,
         indirizzo: 'Via Branze, Brescia',
         university: 'UniBS',
-        notes: 'Versione più raccolta della V3. Stessi orari.'
+        notes: 'Versione più raccolta della V3. Stessi orari.',
+        tags: ['Aula Studio', 'Campus', 'WiFi'],
     },
     {
         id: 'unibs_nord_emeroteca',
@@ -247,7 +260,8 @@ export const unibsRooms: StudyRoom[] = [
         longitude: 10.2300,
         indirizzo: 'Via Branze, Brescia',
         university: 'UniBS',
-        notes: 'Spazio informale nell\'atrio. Aperta fino a tardi.'
+        notes: 'Spazio informale nell\'atrio. Aperta fino a tardi.',
+        tags: ['Aula Studio', 'Campus', 'WiFi'],
     },
     {
         id: 'unibs_nord_emiliani',
@@ -263,7 +277,8 @@ export const unibsRooms: StudyRoom[] = [
         longitude: 10.2300,
         indirizzo: 'Via Branze, Brescia',
         university: 'UniBS',
-        notes: '72 posti. Aperta anche Sabato e Domenica.'
+        notes: '72 posti. Aperta anche Sabato e Domenica.',
+        tags: ['Aula Studio', 'Campus', 'WiFi'],
     },
 
     // ============================================================
@@ -283,7 +298,8 @@ export const unibsRooms: StudyRoom[] = [
         longitude: 10.2305,
         indirizzo: 'Via Branze 43, Brescia',
         university: 'UniBS',
-        notes: '65 posti individuali al piano interrato.'
+        notes: '65 posti individuali al piano interrato.',
+        tags: ['Aula Studio', 'WiFi', '🔇 Silenzio'],
     },
     {
         id: 'unibs_ing_branze_pc',
@@ -299,7 +315,8 @@ export const unibsRooms: StudyRoom[] = [
         longitude: 10.2310,
         indirizzo: 'Via Branze 38, Brescia',
         university: 'UniBS',
-        notes: 'Aula con 30 postazioni PC.'
+        notes: 'Aula con 30 postazioni PC.',
+        tags: ['Aula Studio', 'WiFi', '🔇 Silenzio'],
     },
     {
         id: 'unibs_ing_branze_individuale',
@@ -315,7 +332,8 @@ export const unibsRooms: StudyRoom[] = [
         longitude: 10.2310,
         indirizzo: 'Via Branze 38, Brescia',
         university: 'UniBS',
-        notes: 'Aula silenziosa per studio individuale. 44 posti.'
+        notes: 'Aula silenziosa per studio individuale. 44 posti.',
+        tags: ['Aula Studio', 'WiFi', '🔇 Silenzio'],
     },
 
     // ============================================================
@@ -335,7 +353,8 @@ export const unibsRooms: StudyRoom[] = [
         longitude: 10.2175,
         indirizzo: 'Via Battaglie 50, Brescia',
         university: 'UniBS',
-        notes: 'Nel suggestivo Palazzo Calini. 48 posti.'
+        notes: 'Nel suggestivo Palazzo Calini. 48 posti.',
+        tags: ['Aula Studio', 'WiFi'],
     },
     {
         id: 'unibs_calini_magna',
@@ -351,7 +370,8 @@ export const unibsRooms: StudyRoom[] = [
         longitude: 10.2175,
         indirizzo: 'Via Battaglie 50, Brescia',
         university: 'UniBS',
-        notes: 'Aula raccolta sopra l\'Aula Magna.'
+        notes: 'Aula raccolta sopra l\'Aula Magna.',
+        tags: ['Aula Studio', 'WiFi', '🔇 Silenzio'],
     },
     {
         id: 'unibs_silenzio',
@@ -367,7 +387,8 @@ export const unibsRooms: StudyRoom[] = [
         longitude: 10.2185,
         indirizzo: 'Via San Faustino, Brescia',
         university: 'UniBS',
-        notes: 'Solo 6 posti. Per chi cerca silenzio TOTALE.'
+        notes: 'Solo 6 posti. Per chi cerca silenzio TOTALE.',
+        tags: ['Aula Studio', '🔇 Silenzio'],
     },
 
     // ============================================================
@@ -388,7 +409,8 @@ export const unibsRooms: StudyRoom[] = [
         indirizzo: 'Viale Europa 11, Brescia',
         university: 'UniBS',
         occupancy_rate: 'Alto',
-        notes: '220 posti! La più grande di Medicina.'
+        notes: '220 posti! La più grande di Medicina.',
+        tags: ['Aula Studio', 'Medicina', 'WiFi', '☕ Ristoro'],
     },
     {
         id: 'unibs_med_exbar',
@@ -404,7 +426,8 @@ export const unibsRooms: StudyRoom[] = [
         longitude: 10.2320,
         indirizzo: 'Viale Europa 11, Brescia',
         university: 'UniBS',
-        notes: 'Ex spazio bar riconvertito. 68 posti.'
+        notes: 'Ex spazio bar riconvertito. 68 posti.',
+        tags: ['Sala Lettura', 'Medicina', 'WiFi'],
     }
 ];
 

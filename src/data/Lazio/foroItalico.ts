@@ -19,7 +19,8 @@ export const foroItalicoRooms: StudyRoom[] = [
         indirizzo: 'Piazza Lauro de Bosis 15, Roma',
         university: 'Foro Italico',
         occupancy_rate: 'Alto',
-        notes: 'La sala principale. Suggestiva ma i posti finiscono subito. Chiusa Sabato/Domenica.'
+        notes: 'La sala principale. Suggestiva ma i posti finiscono subito. Chiusa Sabato/Domenica.',
+        tags: ['Biblioteca', 'WiFi', '🔇 Silenzio'],
     },
     {
         id: 'foro_sala_acquario',
@@ -35,7 +36,8 @@ export const foroItalicoRooms: StudyRoom[] = [
         longitude: 12.4580,
         indirizzo: 'Piazza Lauro de Bosis 15, Roma',
         university: 'Foro Italico',
-        notes: 'Non è una vera biblioteca, ma un\'area vetrata nell\'atrio. Si può parlare e mangiare.'
+        notes: 'Non è una vera biblioteca, ma un\'area vetrata nell\'atrio. Si può parlare e mangiare.',
+        tags: ['Aula Studio', 'WiFi', '❄️ Climatizzato'],
     },
     {
         id: 'foro_aule_vuote',
@@ -51,7 +53,8 @@ export const foroItalicoRooms: StudyRoom[] = [
         longitude: 12.4582,
         indirizzo: 'Piazza Lauro de Bosis 15, Roma',
         university: 'Foro Italico',
-        notes: 'Gli studenti usano le aule monumentali per studiare quando non c\'è lezione. Chiedere in portineria quali sono libere.'
+        notes: 'Gli studenti usano le aule monumentali per studiare quando non c\'è lezione. Chiedere in portineria quali sono libere.',
+        tags: ['Aula Studio', 'WiFi', '❄️ Climatizzato'],
     },
 
     // ============================================================
@@ -71,7 +74,8 @@ export const foroItalicoRooms: StudyRoom[] = [
         longitude: 12.4570,
         indirizzo: 'Largo Lauro de Bosis (Lato Ostello), Roma',
         university: 'Foro Italico',
-        notes: 'Spazio all\'interno dello studentato/ostello. Spesso accessibile anche ai non residenti se si chiede con gentilezza.'
+        notes: 'Spazio all\'interno dello studentato/ostello. Spesso accessibile anche ai non residenti se si chiede con gentilezza.',
+        tags: ['Aula Studio', 'WiFi'],
     },
     {
         id: 'foro_bar_ateneo',
@@ -87,7 +91,8 @@ export const foroItalicoRooms: StudyRoom[] = [
         longitude: 12.4575,
         indirizzo: 'Piazza Lauro de Bosis 15, Roma',
         university: 'Foro Italico',
-        notes: 'Usatissimo per lavori di gruppo e studio informale davanti a un caffè.'
+        notes: 'Usatissimo per lavori di gruppo e studio informale davanti a un caffè.',
+        tags: ['Aula Studio', 'WiFi', '☕ Ristoro'],
     },
 
     // ============================================================
@@ -108,7 +113,8 @@ export const foroItalicoRooms: StudyRoom[] = [
         indirizzo: 'Via dei Campi Sportivi 48, Roma',
         university: 'Foro Italico',
         occupancy_rate: 'Basso',
-        notes: 'Fondamentale per le tesi. È la biblioteca dello sport più fornita d\'Italia. Orari stretti (chiude presto).'
+        notes: 'Fondamentale per le tesi. È la biblioteca dello sport più fornita d\'Italia. Orari stretti (chiude presto).',
+        tags: ['Biblioteca', 'WiFi'],
     },
 
     // ============================================================
@@ -128,7 +134,8 @@ export const foroItalicoRooms: StudyRoom[] = [
         longitude: 12.4560,
         indirizzo: 'Viale dello Stadio dei Marmi, Roma',
         university: 'Foro Italico',
-        notes: 'Nelle belle giornate è l\'aula studio preferita. Si studia seduti sui marmi bianchi tra un allenamento e l\'altro.'
+        notes: 'Nelle belle giornate è l\'aula studio preferita. Si studia seduti sui marmi bianchi tra un allenamento e l\'altro.',
+        tags: ['Aula Studio', 'WiFi'],
     },
 
     // ============================================================
@@ -148,7 +155,8 @@ export const foroItalicoRooms: StudyRoom[] = [
         longitude: 12.4880,
         indirizzo: 'Largo Giulio Onesti 1, Roma',
         university: 'Foro Italico',
-        notes: 'Solo per chi ha corsi pratici al CPO. Si studia nella hall o al bar del centro sportivo.'
+        notes: 'Solo per chi ha corsi pratici al CPO. Si studia nella hall o al bar del centro sportivo.',
+        tags: ['Aula Studio', '☕ Ristoro', '🅿️ Parcheggio'],
     }
 ];
 

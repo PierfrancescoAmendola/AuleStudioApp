@@ -19,7 +19,8 @@ export const afamMarcheRooms: StudyRoom[] = [
         indirizzo: 'Via Santa Chiara 36, Urbino',
         university: 'AFAM',
         occupancy_rate: 'Altissimo',
-        notes: 'Comunità creativa. Ex monastero.'
+        notes: 'Comunità creativa. Ex monastero.',
+        tags: ['Aula Studio', '❄️ Climatizzato'],
     },
     // ============================================================
     // URBINO - ACCADEMIA BELLE ARTI
@@ -38,7 +39,8 @@ export const afamMarcheRooms: StudyRoom[] = [
         longitude: 12.6350,
         indirizzo: 'Via dei Maceri 2, Urbino',
         university: 'AFAM',
-        notes: 'Laboratori attivi.'
+        notes: 'Laboratori attivi.',
+        tags: ['Aula Studio'],
     },
     // ============================================================
     // MACERATA - ACCADEMIA BELLE ARTI
@@ -57,7 +59,8 @@ export const afamMarcheRooms: StudyRoom[] = [
         longitude: 13.4515,
         indirizzo: 'Piazza Vittorio Veneto 5, Macerata',
         university: 'AFAM',
-        notes: 'Centro storico.'
+        notes: 'Centro storico.',
+        tags: ['Aula Studio'],
     },
     {
         id: 'macerata_mozzi',
@@ -73,7 +76,8 @@ export const afamMarcheRooms: StudyRoom[] = [
         longitude: 13.4510,
         indirizzo: 'Piazza Vittorio Veneto 2, Macerata',
         university: 'AFAM',
-        notes: 'Civica iconica accanto.'
+        notes: 'Civica iconica accanto.',
+        tags: ['Biblioteca'],
     },
     // ============================================================
     // PESARO - CONSERVATORIO ROSSINI
@@ -92,7 +96,8 @@ export const afamMarcheRooms: StudyRoom[] = [
         longitude: 12.9120,
         indirizzo: 'Piazza Olivieri 5, Pesaro',
         university: 'AFAM',
-        notes: 'Biblioteca musicale top.'
+        notes: 'Biblioteca musicale top.',
+        tags: ['Biblioteca'],
     },
     {
         id: 'pesaro_sangiovanni',
@@ -108,7 +113,8 @@ export const afamMarcheRooms: StudyRoom[] = [
         longitude: 12.9050,
         indirizzo: 'Via Passeri 102, Pesaro',
         university: 'AFAM',
-        notes: 'Hub studenti Pesaro.'
+        notes: 'Hub studenti Pesaro.',
+        tags: ['Biblioteca'],
     },
     // ============================================================
     // FERMO - CONSERVATORIO PERGOLESI
@@ -127,7 +133,8 @@ export const afamMarcheRooms: StudyRoom[] = [
         longitude: 13.7190,
         indirizzo: 'Via dell\'Università 16, Fermo',
         university: 'AFAM',
-        notes: 'Vista Girfalco.'
+        notes: 'Vista Girfalco.',
+        tags: ['Aula Studio'],
     },
     {
         id: 'fermo_spezioli',
@@ -143,7 +150,8 @@ export const afamMarcheRooms: StudyRoom[] = [
         longitude: 13.7170,
         indirizzo: 'Piazza del Popolo, Fermo',
         university: 'AFAM',
-        notes: 'Civica centro.'
+        notes: 'Civica centro.',
+        tags: ['Biblioteca', 'Campus'],
     },
     // ============================================================
     // ANCONA - POLIARTE
@@ -162,7 +170,8 @@ export const afamMarcheRooms: StudyRoom[] = [
         longitude: 13.5100,
         indirizzo: 'Via Valle Miano 41b, Ancona',
         university: 'AFAM',
-        notes: 'Privata dinamica.'
+        notes: 'Privata dinamica.',
+        tags: ['Aula Studio', 'Campus'],
     },
 ];
 

@@ -20,7 +20,8 @@ export const unigeSavonaRooms: StudyRoom[] = [
         indirizzo: 'Via Armando Magliotto 2, Savona',
         university: 'UniGe',
         occupancy_rate: 'Medio',
-        notes: '🌱 Biblioteca principale del Living Lab! Campus moderna alimentata da smart grid (produce la propria energia). Box insonorizzati per concentrazione. PARCHEGGIO GRATUITO interno - paradiso per pendolari vs caos Genova!'
+        notes: '🌱 Biblioteca principale del Living Lab! Campus moderna alimentata da smart grid (produce la propria energia). Box insonorizzati per concentrazione. PARCHEGGIO GRATUITO interno - paradiso per pendolari vs caos Genova!',
+        tags: ['Biblioteca', 'Campus', 'WiFi', '🅿️ Parcheggio'],
     },
     {
         id: 'unige_sv_lagorio',
@@ -36,7 +37,8 @@ export const unigeSavonaRooms: StudyRoom[] = [
         longitude: 8.4652,
         indirizzo: 'Via Magliotto 2, Savona',
         university: 'UniGe',
-        notes: 'Spazi ideali per lavori di gruppo. Focus Ingegneria/Comunicazione. Ambiente moderno e collaborativo. Campus compatto - tutto a 5 min a piedi.'
+        notes: 'Spazi ideali per lavori di gruppo. Focus Ingegneria/Comunicazione. Ambiente moderno e collaborativo. Campus compatto - tutto a 5 min a piedi.',
+        tags: ['Aula Studio', '❄️ Climatizzato', '🅿️ Parcheggio', '👥 Gruppi OK'],
     },
     {
         id: 'unige_sv_branca',
@@ -52,7 +54,8 @@ export const unigeSavonaRooms: StudyRoom[] = [
         longitude: 8.4645,
         indirizzo: 'Via Magliotto 2, Savona',
         university: 'UniGe',
-        notes: '⚽ Vicino agli impianti sportivi! Atmosfera dinamica e sportiva - molti atleti studiano qui. Perfetto per chi alterna studio e allenamento (Scienze Motorie).'
+        notes: '⚽ Vicino agli impianti sportivi! Atmosfera dinamica e sportiva - molti atleti studiano qui. Perfetto per chi alterna studio e allenamento (Scienze Motorie).',
+        tags: ['Aula Studio'],
     },
     {
         id: 'unige_sv_mensa',
@@ -68,7 +71,8 @@ export const unigeSavonaRooms: StudyRoom[] = [
         longitude: 8.4655,
         indirizzo: 'Campus Savona',
         university: 'UniGe',
-        notes: '🌳 Studio outdoor sul prato! Tavoli esterni immersi nel verde del campus. Mensa disponibile - organizzati per giornata intera. Atmosfera rilassata vs Genova caotica.'
+        notes: '🌳 Studio outdoor sul prato! Tavoli esterni immersi nel verde del campus. Mensa disponibile - organizzati per giornata intera. Atmosfera rilassata vs Genova caotica.',
+        tags: ['Mensa/Ristoro', 'Campus'],
     },
     {
         id: 'unige_sv_sport',
@@ -84,7 +88,8 @@ export const unigeSavonaRooms: StudyRoom[] = [
         longitude: 8.4640,
         indirizzo: 'Campus Savona',
         university: 'UniGe',
-        notes: '⚽ SPORT SCIENCE HUB! Gradinate e prato vicino impianti. Atmosfera dinamica con atleti che corrono/nuotano. Perfetto per ripasso leggero post-allenamento. Scienze Motorie cuore pulsante.'
+        notes: '⚽ SPORT SCIENCE HUB! Gradinate e prato vicino impianti. Atmosfera dinamica con atleti che corrono/nuotano. Perfetto per ripasso leggero post-allenamento. Scienze Motorie cuore pulsante.',
+        tags: ['Aula Studio', 'Campus'],
     },
     // ============================================================
     // SAVONA CENTRO (Civica e Outdoor)
@@ -105,7 +110,8 @@ export const unigeSavonaRooms: StudyRoom[] = [
         indirizzo: 'Piazza Monturbano 1, Savona',
         university: 'UniGe',
         occupancy_rate: 'Alto',
-        notes: '📚 Civica principale di Savona! Ex convento storico usatissima da studenti UniGe. Centro città pianeggiante a 10 min a piedi dalla stazione. Ambiente silenzioso e concentrato.'
+        notes: '📚 Civica principale di Savona! Ex convento storico usatissima da studenti UniGe. Centro città pianeggiante a 10 min a piedi dalla stazione. Ambiente silenzioso e concentrato.',
+        tags: ['Biblioteca', 'Centro', '🔇 Silenzio'],
     },
     {
         id: 'sv_priamar',
@@ -121,7 +127,8 @@ export const unigeSavonaRooms: StudyRoom[] = [
         longitude: 8.4850,
         indirizzo: 'Corso Mazzini, Savona',
         university: 'UniGe',
-        notes: '🏰⭐ SPOT ICONICO VISTA PORTO! Fortezza storica con bastioni e vista mare spettacolare. Perfetto per ripasso leggero o lettura outdoor. Panchine panoramiche. NON per studio intenso ma per rilassarsi studiando con panorama!'
+        notes: '🏰⭐ SPOT ICONICO VISTA PORTO! Fortezza storica con bastioni e vista mare spettacolare. Perfetto per ripasso leggero o lettura outdoor. Panchine panoramiche. NON per studio intenso ma per rilassarsi studiando con panorama!',
+        tags: ['Outdoor'],
     },
 ];
 

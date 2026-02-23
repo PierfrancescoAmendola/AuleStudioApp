@@ -19,7 +19,8 @@ export const univpmRooms: StudyRoom[] = [
         indirizzo: 'Via Brecce Bianche 12, Ancona',
         university: 'UNIVPM',
         occupancy_rate: 'Altissimo',
-        notes: 'Biblioteca principale polo. Moderna, capiente.'
+        notes: 'Biblioteca principale polo. Moderna, capiente.',
+        tags: ['Biblioteca', 'WiFi', '☕ Ristoro'],
     },
     {
         id: 'univpm_montedago_aule',
@@ -35,7 +36,8 @@ export const univpmRooms: StudyRoom[] = [
         longitude: 13.5165,
         indirizzo: 'Via Brecce Bianche, Ancona',
         university: 'UNIVPM',
-        notes: 'Spazi vivaci per gruppo.'
+        notes: 'Spazi vivaci per gruppo.',
+        tags: ['Aula Studio', '👥 Gruppi OK'],
     },
     {
         id: 'univpm_montedago_mensa',
@@ -51,7 +53,8 @@ export const univpmRooms: StudyRoom[] = [
         longitude: 13.5160,
         indirizzo: 'Via Brecce Bianche, Ancona',
         university: 'UNIVPM',
-        notes: 'Prato per studio.'
+        notes: 'Prato per studio.',
+        tags: ['Mensa/Ristoro'],
     },
     // ============================================================
     // ANCONA - POLO VILLAREY (Economia)
@@ -70,7 +73,8 @@ export const univpmRooms: StudyRoom[] = [
         longitude: 13.5130,
         indirizzo: 'Piazzale Martelli 8, Ancona',
         university: 'UNIVPM',
-        notes: 'Ex caserma storica con chiostro.'
+        notes: 'Ex caserma storica con chiostro.',
+        tags: ['Biblioteca'],
     },
     // ============================================================
     // ANCONA - POLO TORRETTE (Medicina)
@@ -89,7 +93,8 @@ export const univpmRooms: StudyRoom[] = [
         longitude: 13.4670,
         indirizzo: 'Via Conca 71, Ancona',
         university: 'UNIVPM',
-        notes: 'Dentro ospedale.'
+        notes: 'Dentro ospedale.',
+        tags: ['Biblioteca', 'Campus', 'Medicina'],
     },
     // ============================================================
     // ANCONA - BIBLIOTECA CIVICA BENINCASA
@@ -108,7 +113,8 @@ export const univpmRooms: StudyRoom[] = [
         longitude: 13.5110,
         indirizzo: 'Piazza Plebiscito 33, Ancona',
         university: 'UNIVPM',
-        notes: 'Civica iconica centro.'
+        notes: 'Civica iconica centro.',
+        tags: ['Biblioteca'],
     },
     // ============================================================
     // ASCOLI PICENO (Architettura)
@@ -127,7 +133,8 @@ export const univpmRooms: StudyRoom[] = [
         longitude: 13.5755,
         indirizzo: 'Viale Rimembranza, Ascoli Piceno',
         university: 'UNIVPM',
-        notes: 'Sede bellissima Architettura.'
+        notes: 'Sede bellissima Architettura.',
+        tags: ['Aula Studio'],
     },
     // ============================================================
     // FERMO (Ingegneria Gestionale)
@@ -146,7 +153,8 @@ export const univpmRooms: StudyRoom[] = [
         longitude: 13.7180,
         indirizzo: 'Via Montani 1, Fermo',
         university: 'UNIVPM',
-        notes: 'Sede piccola curata.'
+        notes: 'Sede piccola curata.',
+        tags: ['Aula Studio', 'Centro'],
     },
     // ============================================================
     // SAN BENEDETTO DEL TRONTO (Economia)
@@ -165,7 +173,8 @@ export const univpmRooms: StudyRoom[] = [
         longitude: 13.8805,
         indirizzo: 'Via del Mare 220, San Benedetto del Tronto',
         university: 'UNIVPM',
-        notes: 'Rilassato balneare.'
+        notes: 'Rilassato balneare.',
+        tags: ['Aula Studio', 'Campus'],
     },
     // ============================================================
     // PESARO (Ingegneria)
@@ -184,7 +193,8 @@ export const univpmRooms: StudyRoom[] = [
         longitude: 12.9050,
         indirizzo: 'Via Passeri 102, Pesaro',
         university: 'UNIVPM',
-        notes: 'Civica top per studenti Pesaro.'
+        notes: 'Civica top per studenti Pesaro.',
+        tags: ['Biblioteca', '☕ Ristoro'],
     },
 ];
 

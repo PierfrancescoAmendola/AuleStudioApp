@@ -19,7 +19,8 @@ export const unitoRooms: StudyRoom[] = [
         indirizzo: 'Lungo Dora Siena 100/A, 10153 Torino',
         university: 'UniTo',
         occupancy_rate: 'Altissimo (specialmente in sessione)',
-        notes: 'La biblioteca più grande e spettacolare di UniTo (progetto Norman Foster). Ospita oltre 650.000 volumi. Orario ridotto in agosto e durante le festività.'
+        notes: 'La biblioteca più grande e spettacolare di UniTo (progetto Norman Foster). Ospita oltre 650.000 volumi. Orario ridotto in agosto e durante le festività.',
+        tags: ['Biblioteca', 'Campus', 'WiFi', '☕ Ristoro', '🖨️ Stampa'],
     },
     {
         id: 'unito_cle_spaziomai',
@@ -36,7 +37,8 @@ export const unitoRooms: StudyRoom[] = [
         indirizzo: 'Lungo Dora Siena 100/A, 10153 Torino',
         university: 'UniTo',
         occupancy_rate: 'Alto la sera in sessione',
-        notes: 'Aula studio con orario prolungato. Accesso consentito anche a studenti PoliTo (con registrazione). Chiusa in agosto.'
+        notes: 'Aula studio con orario prolungato. Accesso consentito anche a studenti PoliTo (con registrazione). Chiusa in agosto.',
+        tags: ['Aula Studio', 'Campus', 'WiFi', '⚡ Prese'],
     },
     // ============================================================
     // TORINO - PALAZZO NUOVO (Umanistica)
@@ -56,7 +58,8 @@ export const unitoRooms: StudyRoom[] = [
         indirizzo: 'Via Sant\'Ottavio 20, 10124 Torino',
         university: 'UniTo',
         occupancy_rate: 'Alto',
-        notes: 'Cuore dei dipartimenti umanistici. Vicinissima alla Mole Antonelliana. Verificare orari durante le pause didattiche.'
+        notes: 'Cuore dei dipartimenti umanistici. Vicinissima alla Mole Antonelliana. Verificare orari durante le pause didattiche.',
+        tags: ['Biblioteca', 'WiFi', '🖨️ Stampa'],
     },
     // ============================================================
     // TORINO - MOLINETTE (Medicina)
@@ -76,7 +79,8 @@ export const unitoRooms: StudyRoom[] = [
         indirizzo: 'Corso Dogliotti 14, 10126 Torino',
         university: 'UniTo',
         occupancy_rate: 'Alto',
-        notes: 'La biblioteca osserva orario spezzato: 9:00-12:30 e 14:30-17:00. Verificare eventuali variazioni.'
+        notes: 'La biblioteca osserva orario spezzato: 9:00-12:30 e 14:30-17:00. Verificare eventuali variazioni.',
+        tags: ['Biblioteca', 'Campus', 'Medicina', 'WiFi'],
     },
     // ============================================================
     // GRUGLIASCO - Campus SAMEV (Agraria, Veterinaria)
@@ -96,7 +100,8 @@ export const unitoRooms: StudyRoom[] = [
         indirizzo: 'Largo Paolo Braccini 2, 10095 Grugliasco (TO)',
         university: 'UniTo',
         occupancy_rate: 'Medio',
-        notes: 'Campus immerso nel verde con spazi studio anche all\'aperto. Presenti animali e serre didattiche.'
+        notes: 'Campus immerso nel verde con spazi studio anche all\'aperto. Presenti animali e serre didattiche.',
+        tags: ['Biblioteca', 'Campus', 'WiFi', '☕ Ristoro', '🅿️ Parcheggio'],
     },
     // ============================================================
     // ORBASSANO - Polo San Luigi (Medicina)
@@ -116,7 +121,8 @@ export const unitoRooms: StudyRoom[] = [
         indirizzo: 'Regione Gonzole 10, 10043 Orbassano (TO)',
         university: 'UniTo',
         occupancy_rate: 'Medio',
-        notes: 'Biblioteca con apertura solo mattutina (9:00-12:30). Decentrata ma moderna.'
+        notes: 'Biblioteca con apertura solo mattutina (9:00-12:30). Decentrata ma moderna.',
+        tags: ['Biblioteca', 'Campus', 'Medicina', 'WiFi', '🅿️ Parcheggio'],
     },
     // ============================================================
     // SEDI REGIONALI (principali)
@@ -136,7 +142,8 @@ export const unitoRooms: StudyRoom[] = [
         indirizzo: 'Via Ferraris di Celle 2, 12100 Cuneo',
         university: 'UniTo - Cuneo',
         occupancy_rate: 'Medio',
-        notes: 'Sede nel centro di Cuneo. Verificare orari estivi.'
+        notes: 'Sede nel centro di Cuneo. Verificare orari estivi.',
+        tags: ['Biblioteca', 'Centro', 'WiFi'],
     },
     {
         id: 'unito_biella_cittastudi',
@@ -153,7 +160,8 @@ export const unitoRooms: StudyRoom[] = [
         indirizzo: 'Corso Giuseppe Pella 2b, 13900 Biella',
         university: 'UniTo - Biella',
         occupancy_rate: 'Medio',
-        notes: 'Campus condiviso con altre istituzioni. Ambiente innovativo.'
+        notes: 'Campus condiviso con altre istituzioni. Ambiente innovativo.',
+        tags: ['Biblioteca', 'Campus', 'WiFi', '☕ Ristoro', '🅿️ Parcheggio'],
     },
     {
         id: 'unito_alba_ampelion',
@@ -170,7 +178,8 @@ export const unitoRooms: StudyRoom[] = [
         indirizzo: 'Corso Enotria 2, 12051 Alba (CN)',
         university: 'UniTo - Alba',
         occupancy_rate: 'Basso',
-        notes: 'Centro di eccellenza per studi enologici. Spazi studio limitati ma suggestivi.'
+        notes: 'Centro di eccellenza per studi enologici. Spazi studio limitati ma suggestivi.',
+        tags: ['Aula Studio', 'Campus', 'WiFi'],
     },
     {
         id: 'unito_asti_astiss',
@@ -187,7 +196,8 @@ export const unitoRooms: StudyRoom[] = [
         indirizzo: 'Piazzale Fabrizio De André, 14100 Asti',
         university: 'UniTo - Asti',
         occupancy_rate: 'Medio',
-        notes: 'Polo vivace con più corsi di laurea.'
+        notes: 'Polo vivace con più corsi di laurea.',
+        tags: ['Aula Studio', 'Campus', 'WiFi', '☕ Ristoro'],
     },
     {
         id: 'unito_savigliano_monica',
@@ -204,7 +214,8 @@ export const unitoRooms: StudyRoom[] = [
         indirizzo: 'Via Garibaldi 6, 12038 Savigliano (CN)',
         university: 'UniTo - Savigliano',
         occupancy_rate: 'Basso-Medio',
-        notes: 'Sede in edificio storico di grande suggestione.'
+        notes: 'Sede in edificio storico di grande suggestione.',
+        tags: ['Aula Studio', 'WiFi', '🔇 Silenzio'],
     },
     {
         id: 'unito_ivrea_officina',
@@ -221,7 +232,8 @@ export const unitoRooms: StudyRoom[] = [
         indirizzo: 'Via Montenavale, 10015 Ivrea (TO)',
         university: 'UniTo - Ivrea',
         occupancy_rate: 'Basso',
-        notes: 'Sede in ex stabilimento Olivetti, recentemente ristrutturata.'
+        notes: 'Sede in ex stabilimento Olivetti, recentemente ristrutturata.',
+        tags: ['Aula Studio', 'Campus', 'WiFi', '🅿️ Parcheggio'],
     }
 ];
 

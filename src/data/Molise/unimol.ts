@@ -22,7 +22,8 @@ export const unimolCampobassoRooms: StudyRoom[] = [
         indirizzo: 'Viale Alessandro Manzoni, 86100 Campobasso',
         university: 'UniMol',
         occupancy_rate: 'Alto (specie in sessione)',
-        notes: 'Hub principale. Accesso con badge universitario. Prenotazione consigliata per i box vetrata.'
+        notes: 'Hub principale. Accesso con badge universitario. Prenotazione consigliata per i box vetrata.',
+        tags: ['Aula Studio', 'WiFi', '🔇 Silenzio', '🖨️ Stampa'],
     },
     {
         id: 'unimol_sala_leonardo',
@@ -39,7 +40,8 @@ export const unimolCampobassoRooms: StudyRoom[] = [
         indirizzo: 'Via Francesco De Sanctis, 86100 Campobasso',
         university: 'UniMol',
         occupancy_rate: 'Medio-Alto',
-        notes: 'Accesso riservato a studenti UniMol. **Prenotazione obbligatoria** tramite portale Esse3/App UniMol.'
+        notes: 'Accesso riservato a studenti UniMol. **Prenotazione obbligatoria** tramite portale Esse3/App UniMol.',
+        tags: ['Aula Studio', 'WiFi', '⚡ Prese', '❄️ Climatizzato', '🔇 Silenzio'],
     },
     {
         id: 'unimol_aula_studio_economia',
@@ -56,7 +58,8 @@ export const unimolCampobassoRooms: StudyRoom[] = [
         indirizzo: 'Viale Manzoni (angolo Via De Sanctis), 86100 Campobasso',
         university: 'UniMol',
         occupancy_rate: 'Variabile',
-        notes: 'Spesso utilizzata per studio informale tra le lezioni. Controllare calendario aule.'
+        notes: 'Spesso utilizzata per studio informale tra le lezioni. Controllare calendario aule.',
+        tags: ['Aula Studio', 'WiFi', '👥 Gruppi OK'],
     },
     // ============================================================
     // CAMPOBASSO - POLO MEDICINA (Tappino)
@@ -76,7 +79,8 @@ export const unimolCampobassoRooms: StudyRoom[] = [
         indirizzo: 'Contrada Tappino, 86100 Campobasso',
         university: 'UniMol',
         occupancy_rate: 'Medio',
-        notes: "Accesso diretto dall'ingresso principale del polo didattico. **Attenzione**: orari possono ridursi in estate."
+        notes: "Accesso diretto dall'ingresso principale del polo didattico. **Attenzione**: orari possono ridursi in estate.",
+        tags: ['Biblioteca', 'Campus', 'Medicina', 'WiFi'],
     },
     // ============================================================
     // CAMPOBASSO - BIBLIOTECA CIVICA (Servizio esterno convenzionato)
@@ -96,7 +100,8 @@ export const unimolCampobassoRooms: StudyRoom[] = [
         indirizzo: 'Via Giuseppe Garibaldi, 25, 86100 Campobasso',
         university: 'UniMol',
         occupancy_rate: 'Medio',
-        notes: 'Struttura convenzionata. Accesso aperto a tutti. Non è necessario badge universitario.'
+        notes: 'Struttura convenzionata. Accesso aperto a tutti. Non è necessario badge universitario.',
+        tags: ['Biblioteca', 'WiFi', '🔇 Silenzio'],
     }
 ];
 
@@ -119,7 +124,8 @@ export const unimolIserniaRooms: StudyRoom[] = [
         indirizzo: 'Via Sant\'Ippolito, 86170 Isernia',
         university: 'UniMol',
         occupancy_rate: 'Medio',
-        notes: 'Biblioteca di riferimento per i corsi del polo (es. Beni Culturali). Verifica orari su BiblioUniMol.'
+        notes: 'Biblioteca di riferimento per i corsi del polo (es. Beni Culturali). Verifica orari su BiblioUniMol.',
+        tags: ['Biblioteca', 'Campus', 'WiFi', '🖨️ Stampa'],
     },
     {
         id: 'unimol_isernia_sala_leonardo',
@@ -136,7 +142,8 @@ export const unimolIserniaRooms: StudyRoom[] = [
         indirizzo: 'Via Sant\'Ippolito, 86170 Isernia',
         university: 'UniMol',
         occupancy_rate: 'Alto',
-        notes: '**Accesso solo con prenotazione online del posto**. Controlla la disponibilità sul portale Esse3/UniMol.'
+        notes: '**Accesso solo con prenotazione online del posto**. Controlla la disponibilità sul portale Esse3/UniMol.',
+        tags: ['Aula Studio', 'WiFi', '⚡ Prese', '❄️ Climatizzato', '🔇 Silenzio'],
     },
     {
         id: 'unimol_isernia_aule_informali',
@@ -153,7 +160,8 @@ export const unimolIserniaRooms: StudyRoom[] = [
         indirizzo: 'Via Sant\'Ippolito, 86170 Isernia',
         university: 'UniMol',
         occupancy_rate: 'Variabile',
-        notes: 'Aule libere non prenotate quando non ci sono lezioni. Controlla le bacheche per gli orari dei corsi.'
+        notes: 'Aule libere non prenotate quando non ci sono lezioni. Controlla le bacheche per gli orari dei corsi.',
+        tags: ['Aula Studio', 'WiFi', '👥 Gruppi OK'],
     },
     // ============================================================
     // ISERNIA - BIBLIOTECA COMUNALE (Servizio esterno)
@@ -173,7 +181,8 @@ export const unimolIserniaRooms: StudyRoom[] = [
         indirizzo: 'Corso Marcelli, 28, 86170 Isernia',
         university: 'UniMol',
         occupancy_rate: 'Medio',
-        notes: 'Biblioteca civica in centro storico. Accesso libero a tutti. Ambiente molto suggestivo.'
+        notes: 'Biblioteca civica in centro storico. Accesso libero a tutti. Ambiente molto suggestivo.',
+        tags: ['Biblioteca', 'WiFi', '🔇 Silenzio'],
     },
     // ============================================================
     // ISERNIA - MUSEO PALEOLITICO (Area ricerca/studio)
@@ -193,7 +202,8 @@ export const unimolIserniaRooms: StudyRoom[] = [
         indirizzo: 'Contrada Ramiera Vecchia, 86170 Isernia',
         university: 'UniMol',
         occupancy_rate: 'Basso',
-        notes: 'Spazio riservato principalmente a studenti e ricercatori dei corsi di Archeologia e Beni Culturali. Accedere in orario museale.'
+        notes: 'Spazio riservato principalmente a studenti e ricercatori dei corsi di Archeologia e Beni Culturali. Accedere in orario museale.',
+        tags: ['Outdoor', 'WiFi'],
     }
 ];
 

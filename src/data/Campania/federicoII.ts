@@ -724,8 +724,8 @@ export const getDirectionsForRoom = (room: StudyRoom): DirectionsFromLocation[] 
                 note: 'Ampio parcheggio studenti disponibile.'
             }
         ];
-    } 
-    
+    }
+
     // --- FUORIGROTTA (CLAUDIO / TECCHIO / AGNANO) ---
     else if (edificio.includes('via claudio') || edificio.includes('tecchio') || indirizzo.includes('agnano')) {
         if (indirizzo.includes('agnano')) {
@@ -758,8 +758,8 @@ export const getDirectionsForRoom = (room: StudyRoom): DirectionsFromLocation[] 
                 tempoStimato: '5 min',
             }
         ];
-    } 
-    
+    }
+
     // --- CENTRO STORICO (UMANISTICA / GIURISPRUDENZA / ARCHITETTURA / SCIENZE POLITICHE) ---
     else if (edificio.includes('centro storico') || indirizzo.includes('mezzocannone') || indirizzo.includes('umberto') || indirizzo.includes('porta di massa') || indirizzo.includes('bellini') || indirizzo.includes('monteoliveto') || indirizzo.includes('rodinò') || indirizzo.includes('pietà') || indirizzo.includes('marcellino')) {
         return [
@@ -776,8 +776,8 @@ export const getDirectionsForRoom = (room: StudyRoom): DirectionsFromLocation[] 
                 tempoStimato: '5 min',
             }
         ];
-    } 
-    
+    }
+
     // --- POLICLINICO / FARMACIA / BIOTECNOLOGIE ---
     else if (edificio.includes('policlinico') || indirizzo.includes('pansini') || indirizzo.includes('montesano') || indirizzo.includes('amicis')) {
         return [

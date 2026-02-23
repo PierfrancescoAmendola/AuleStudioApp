@@ -19,7 +19,8 @@ export const unicamRooms: StudyRoom[] = [
         indirizzo: 'Via Madonna delle Carceri, Camerino',
         university: 'UniCam',
         occupancy_rate: 'Alto',
-        notes: 'Simbolo rinascita post-sisma. Moderno antisismico.'
+        notes: 'Simbolo rinascita post-sisma. Moderno antisismico.',
+        tags: ['Aula Studio', 'Campus', 'WiFi', '☕ Ristoro'],
     },
     {
         id: 'unicam_biblio_giuridica',
@@ -35,7 +36,8 @@ export const unicamRooms: StudyRoom[] = [
         longitude: 13.0605,
         indirizzo: 'Via Madonna delle Carceri, Camerino',
         university: 'UniCam',
-        notes: 'Biblioteca principale polo.'
+        notes: 'Biblioteca principale polo.',
+        tags: ['Biblioteca', 'Campus', '🔇 Silenzio'],
     },
     {
         id: 'unicam_chip',
@@ -51,7 +53,8 @@ export const unicamRooms: StudyRoom[] = [
         longitude: 13.0610,
         indirizzo: 'Via Madonna delle Carceri, Camerino',
         university: 'UniCam',
-        notes: 'Avanguardia chimica/farmacia.'
+        notes: 'Avanguardia chimica/farmacia.',
+        tags: ['Aula Studio'],
     },
     {
         id: 'unicam_mensa',
@@ -67,7 +70,8 @@ export const unicamRooms: StudyRoom[] = [
         longitude: 13.0600,
         indirizzo: 'Via Madonna delle Carceri, Camerino',
         university: 'UniCam',
-        notes: 'Prato per studio.'
+        notes: 'Prato per studio.',
+        tags: ['Mensa/Ristoro', 'Campus'],
     },
     // ============================================================
     // ASCOLI PICENO - ANNUNZIATA (Architettura/Design)
@@ -87,7 +91,8 @@ export const unicamRooms: StudyRoom[] = [
         indirizzo: 'Viale Rimembranza, Ascoli Piceno',
         university: 'UniCam',
         occupancy_rate: 'Altissimo',
-        notes: 'Sede top Architettura.'
+        notes: 'Sede top Architettura.',
+        tags: ['Aula Studio'],
     },
     // ============================================================
     // MATELICA - VETERINARIA
@@ -106,7 +111,8 @@ export const unicamRooms: StudyRoom[] = [
         longitude: 13.0105,
         indirizzo: 'Via Circonvallazione 93/95, Matelica',
         university: 'UniCam',
-        notes: 'Polo specifico veterinaria.'
+        notes: 'Polo specifico veterinaria.',
+        tags: ['Aula Studio', 'Campus'],
     },
     // ============================================================
     // SAN BENEDETTO DEL TRONTO - NUTRIZIONE
@@ -125,7 +131,8 @@ export const unicamRooms: StudyRoom[] = [
         longitude: 13.8820,
         indirizzo: 'Via del Mare, San Benedetto del Tronto',
         university: 'UniCam',
-        notes: 'Polo nutrizionale.'
+        notes: 'Polo nutrizionale.',
+        tags: ['Aula Studio', 'Campus'],
     },
 ];
 

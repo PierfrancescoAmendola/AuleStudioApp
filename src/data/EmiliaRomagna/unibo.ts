@@ -18,7 +18,8 @@ export const uniboRooms: StudyRoom[] = [
         indirizzo: 'Via Zamboni 33/35, Bologna',
         university: 'UniBo',
         occupancy_rate: 'Alto',
-        notes: 'Biblioteca centrale dell\'Università fondata nel 1712. Oltre 1.250.000 volumi. Palazzo storico con affreschi.'
+        notes: 'Biblioteca centrale dell\'Università fondata nel 1712. Oltre 1.250.000 volumi. Palazzo storico con affreschi.',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'unibo_cicu',
@@ -35,7 +36,8 @@ export const uniboRooms: StudyRoom[] = [
         indirizzo: 'Via Zamboni 27/29, Bologna',
         university: 'UniBo',
         occupancy_rate: 'Molto Alto',
-        notes: 'Una delle poche biblioteche aperte fino a mezzanotte! Perfetta per studenti di Giurisprudenza.'
+        notes: 'Una delle poche biblioteche aperte fino a mezzanotte! Perfetta per studenti di Giurisprudenza.',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'unibo_bur',
@@ -51,7 +53,8 @@ export const uniboRooms: StudyRoom[] = [
         longitude: 11.3532,
         indirizzo: 'Via Zamboni 36, Bologna',
         university: 'UniBo',
-        notes: 'Biblioteca umanistica con orario esteso fino a tarda sera.'
+        notes: 'Biblioteca umanistica con orario esteso fino a tarda sera.',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'unibo_filosofia',
@@ -67,7 +70,8 @@ export const uniboRooms: StudyRoom[] = [
         longitude: 11.3540,
         indirizzo: 'Via Zamboni 38, Bologna',
         university: 'UniBo',
-        notes: 'Biblioteca specializzata in discipline filosofiche.'
+        notes: 'Biblioteca specializzata in discipline filosofiche.',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'unibo_orientalistica',
@@ -83,7 +87,8 @@ export const uniboRooms: StudyRoom[] = [
         longitude: 11.3531,
         indirizzo: 'Via Zamboni 33, Bologna',
         university: 'UniBo',
-        notes: 'Collezioni su civiltà asiatiche, letterature orientali e antropologia.'
+        notes: 'Collezioni su civiltà asiatiche, letterature orientali e antropologia.',
+        tags: ['Biblioteca', 'Campus', 'WiFi'],
     },
     {
         id: 'unibo_lilec',
@@ -99,7 +104,8 @@ export const uniboRooms: StudyRoom[] = [
         longitude: 11.3458,
         indirizzo: 'Via Cartoleria 5, Bologna',
         university: 'UniBo',
-        notes: 'Biblioteca del Dipartimento di Lingue. Ingresso da Via dei Chiari 25/A. 369 posti totali.'
+        notes: 'Biblioteca del Dipartimento di Lingue. Ingresso da Via dei Chiari 25/A. 369 posti totali.',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'unibo_comunicazione',
@@ -115,7 +121,8 @@ export const uniboRooms: StudyRoom[] = [
         longitude: 11.3395,
         indirizzo: 'Via Azzo Gardino 23, Bologna',
         university: 'UniBo',
-        notes: 'Biblioteca specializzata in scienze della comunicazione con scaffale aperto.'
+        notes: 'Biblioteca specializzata in scienze della comunicazione con scaffale aperto.',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'unibo_storia',
@@ -131,7 +138,8 @@ export const uniboRooms: StudyRoom[] = [
         longitude: 11.3510,
         indirizzo: 'Piazza San Giovanni in Monte 2, Bologna',
         university: 'UniBo',
-        notes: 'Include sezioni di archeologia e storia antica.'
+        notes: 'Include sezioni di archeologia e storia antica.',
+        tags: ['Biblioteca', 'WiFi'],
     },
     // ============================================================
     // SEDE BOLOGNA - SALE STUDIO PLESSO BELMELORO (Giurisprudenza)
@@ -150,7 +158,8 @@ export const uniboRooms: StudyRoom[] = [
         longitude: 11.3570,
         indirizzo: 'Via Andreatta 2-4, Bologna',
         university: 'UniBo',
-        notes: 'Sala studio per studenti di Giurisprudenza.'
+        notes: 'Sala studio per studenti di Giurisprudenza.',
+        tags: ['Aula Studio', 'WiFi'],
     },
     {
         id: 'unibo_belmeloro_andreatta8',
@@ -166,7 +175,8 @@ export const uniboRooms: StudyRoom[] = [
         longitude: 11.3572,
         indirizzo: 'Via Andreatta 8, Bologna',
         university: 'UniBo',
-        notes: 'Sala studio con postazioni PC nel complesso di Giurisprudenza.'
+        notes: 'Sala studio con postazioni PC nel complesso di Giurisprudenza.',
+        tags: ['Aula Studio', 'WiFi'],
     },
     {
         id: 'unibo_filopanti',
@@ -182,7 +192,8 @@ export const uniboRooms: StudyRoom[] = [
         longitude: 11.3560,
         indirizzo: 'Viale Filopanti 9, Bologna',
         university: 'UniBo',
-        notes: 'Sala studio con orario mattutino. Sezione della Biblioteca Giuridica.'
+        notes: 'Sala studio con orario mattutino. Sezione della Biblioteca Giuridica.',
+        tags: ['Aula Studio', 'WiFi'],
     },
     // ============================================================
     // SEDE BOLOGNA - SCIENZE POLITICHE E SOCIALI
@@ -201,7 +212,8 @@ export const uniboRooms: StudyRoom[] = [
         longitude: 11.3470,
         indirizzo: 'Strada Maggiore 45, Bologna',
         university: 'UniBo',
-        notes: 'Biblioteca nel prestigioso Palazzo Hercolani.'
+        notes: 'Biblioteca nel prestigioso Palazzo Hercolani.',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'unibo_lab_hercolani_pt',
@@ -217,7 +229,8 @@ export const uniboRooms: StudyRoom[] = [
         longitude: 11.3470,
         indirizzo: 'Strada Maggiore 45, Bologna',
         university: 'UniBo',
-        notes: 'Laboratorio informatico per studenti di Scienze Politiche e Sociali. Non è ad accesso libero.'
+        notes: 'Laboratorio informatico per studenti di Scienze Politiche e Sociali. Non è ad accesso libero.',
+        tags: ['Laboratorio', 'WiFi'],
     },
     {
         id: 'unibo_lab_hercolani_p1',
@@ -233,7 +246,8 @@ export const uniboRooms: StudyRoom[] = [
         longitude: 11.3470,
         indirizzo: 'Strada Maggiore 45, Bologna',
         university: 'UniBo',
-        notes: 'Secondo laboratorio informatico. Aperto 45 ore settimanali. Non ad accesso libero.'
+        notes: 'Secondo laboratorio informatico. Aperto 45 ore settimanali. Non ad accesso libero.',
+        tags: ['Laboratorio', 'WiFi'],
     },
     {
         id: 'unibo_lab_sanpetronio',
@@ -249,7 +263,8 @@ export const uniboRooms: StudyRoom[] = [
         longitude: 11.3450,
         indirizzo: 'Via San Petronio Vecchio, Bologna',
         university: 'UniBo',
-        notes: 'Laboratorio a libero accesso per studenti di Scienze Politiche.'
+        notes: 'Laboratorio a libero accesso per studenti di Scienze Politiche.',
+        tags: ['Laboratorio', 'WiFi', '❄️ Climatizzato'],
     },
     // ============================================================
     // SEDE BOLOGNA - AREA SCIENTIFICA
@@ -268,7 +283,8 @@ export const uniboRooms: StudyRoom[] = [
         longitude: 11.3560,
         indirizzo: 'Piazza di Porta San Donato 5, Bologna',
         university: 'UniBo',
-        notes: 'Biblioteca specializzata in matematica.'
+        notes: 'Biblioteca specializzata in matematica.',
+        tags: ['Biblioteca', 'WiFi', '🔇 Silenzio'],
     },
     {
         id: 'unibo_fisica',
@@ -284,7 +300,8 @@ export const uniboRooms: StudyRoom[] = [
         longitude: 11.3550,
         indirizzo: 'Via Irnerio 46, Bologna',
         university: 'UniBo',
-        notes: 'Biblioteca del Dipartimento di Fisica.'
+        notes: 'Biblioteca del Dipartimento di Fisica.',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'unibo_astronomia',
@@ -300,7 +317,8 @@ export const uniboRooms: StudyRoom[] = [
         longitude: 11.3400,
         indirizzo: 'Via Ranzani 1, Bologna',
         university: 'UniBo',
-        notes: 'Biblioteca specializzata in astronomia.'
+        notes: 'Biblioteca specializzata in astronomia.',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'unibo_biologia',
@@ -316,7 +334,8 @@ export const uniboRooms: StudyRoom[] = [
         longitude: 11.3545,
         indirizzo: 'Via Selmi 3, Bologna',
         university: 'UniBo',
-        notes: 'Biblioteca per studenti di biologia. Zone via Selmi e via Irnerio 42.'
+        notes: 'Biblioteca per studenti di biologia. Zone via Selmi e via Irnerio 42.',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'unibo_geologia',
@@ -332,7 +351,8 @@ export const uniboRooms: StudyRoom[] = [
         longitude: 11.3558,
         indirizzo: 'Piazza di Porta San Donato 1, Bologna',
         university: 'UniBo',
-        notes: 'Biblioteca specializzata in geologia. Include sede in Via Zamboni 67.'
+        notes: 'Biblioteca specializzata in geologia. Include sede in Via Zamboni 67.',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'unibo_architettura_dore',
@@ -348,7 +368,8 @@ export const uniboRooms: StudyRoom[] = [
         longitude: 11.3280,
         indirizzo: 'Viale Risorgimento 2, Bologna',
         university: 'UniBo',
-        notes: 'Biblioteca di Architettura aperta fino a mezzanotte.'
+        notes: 'Biblioteca di Architettura aperta fino a mezzanotte.',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'unibo_architettura_foraboschi',
@@ -364,7 +385,8 @@ export const uniboRooms: StudyRoom[] = [
         longitude: 11.3150,
         indirizzo: 'Via Terracini 28, Bologna',
         university: 'UniBo',
-        notes: 'Biblioteca di Ingegneria e Architettura.'
+        notes: 'Biblioteca di Ingegneria e Architettura.',
+        tags: ['Biblioteca', 'WiFi'],
     },
     // ============================================================
     // SEDE BOLOGNA - ALTRE BIBLIOTECHE SPECIALIZZATE
@@ -383,7 +405,8 @@ export const uniboRooms: StudyRoom[] = [
         longitude: 11.3450,
         indirizzo: 'Via Filippo Re 6, Bologna',
         university: 'UniBo',
-        notes: 'Biblioteca per studenti di Scienze dell\'Educazione.'
+        notes: 'Biblioteca per studenti di Scienze dell\'Educazione.',
+        tags: ['Biblioteca', 'WiFi'],
     },
     // ============================================================
     // SEDE BOLOGNA - ECONOMIA E AZIENDALE (AGGIUNTA)
@@ -403,7 +426,8 @@ export const uniboRooms: StudyRoom[] = [
         indirizzo: 'Piazza Scaravilli 1-2, Bologna',
         university: 'UniBo',
         occupancy_rate: 'Molto Alto',
-        notes: 'Una delle biblioteche più frequentate per Economia e Management. Orario prolungato.'
+        notes: 'Una delle biblioteche più frequentate per Economia e Management. Orario prolungato.',
+        tags: ['Biblioteca', 'WiFi'],
     },
     // ============================================================
     // SEDE BOLOGNA - INGEGNERIA (AGGIUNTA)
@@ -422,7 +446,8 @@ export const uniboRooms: StudyRoom[] = [
         longitude: 11.3140,
         indirizzo: 'Via Terracini 24-28, Bologna',
         university: 'UniBo',
-        notes: 'Biblioteca principale per Ingegneria Civile, Chimica, Meccanica.'
+        notes: 'Biblioteca principale per Ingegneria Civile, Chimica, Meccanica.',
+        tags: ['Biblioteca', 'WiFi'],
     },
     // ============================================================
     // SEDE BOLOGNA - MEDICINA E AREA SANITARIA (AGGIUNTE PRINCIPALI)
@@ -441,7 +466,8 @@ export const uniboRooms: StudyRoom[] = [
         longitude: 11.3540,
         indirizzo: 'Via Irnerio 48, Bologna',
         university: 'UniBo',
-        notes: 'Biblioteca centrale per Medicina e Chirurgia.'
+        notes: 'Biblioteca centrale per Medicina e Chirurgia.',
+        tags: ['Biblioteca', 'Medicina', 'WiFi'],
     },
     {
         id: 'unibo_medicina_sorsola',
@@ -458,7 +484,8 @@ export const uniboRooms: StudyRoom[] = [
         indirizzo: 'Via Massarenti 9, Bologna',
         university: 'UniBo',
         occupancy_rate: 'Alto',
-        notes: 'Grande biblioteca ospedaliera con orario prolungato.'
+        notes: 'Grande biblioteca ospedaliera con orario prolungato.',
+        tags: ['Biblioteca', 'Medicina', 'WiFi'],
     },
     // ============================================================
     // SEDE BOLOGNA - PSICOLOGIA E STATISTICA (AGGIUNTE)
@@ -477,7 +504,8 @@ export const uniboRooms: StudyRoom[] = [
         longitude: 11.3600,
         indirizzo: 'Viale Berti Pichat 5, Bologna',
         university: 'UniBo',
-        notes: 'Biblioteca per Psicologia e Scienze della Formazione.'
+        notes: 'Biblioteca per Psicologia e Scienze della Formazione.',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'unibo_statistica',
@@ -493,7 +521,8 @@ export const uniboRooms: StudyRoom[] = [
         longitude: 11.3520,
         indirizzo: 'Via Belle Arti 41, Bologna',
         university: 'UniBo',
-        notes: 'Biblioteca specializzata in Statistica e Scienze dei Dati.'
+        notes: 'Biblioteca specializzata in Statistica e Scienze dei Dati.',
+        tags: ['Biblioteca', 'WiFi'],
     },
     // ============================================================
     // SEDE BOLOGNA - SALE STUDIO AGGIUNTIVE
@@ -512,7 +541,8 @@ export const uniboRooms: StudyRoom[] = [
         longitude: 11.3510,
         indirizzo: 'Via Zamboni 25, Bologna',
         university: 'UniBo',
-        notes: 'Sala studio storica vicino alla zona universitaria.'
+        notes: 'Sala studio storica vicino alla zona universitaria.',
+        tags: ['Aula Studio', 'WiFi'],
     },
     // ============================================================
     // CAMPUS CESENA
@@ -532,7 +562,8 @@ export const uniboRooms: StudyRoom[] = [
         indirizzo: 'Via dei Mulini 23/25, Cesena (FC)',
         university: 'UniBo',
         occupancy_rate: 'Medio',
-        notes: 'Sala studio con orario continuato fino a sera. Domenica aperta 12:00-21:00.'
+        notes: 'Sala studio con orario continuato fino a sera. Domenica aperta 12:00-21:00.',
+        tags: ['Aula Studio', 'WiFi'],
     },
     {
         id: 'unibo_cesena_beta',
@@ -549,7 +580,8 @@ export const uniboRooms: StudyRoom[] = [
         indirizzo: 'Piazzale Karl Marx 131, Cesena (FC)',
         university: 'UniBo',
         occupancy_rate: 'Medio',
-        notes: 'Seconda sala studio di Cesena. Domenica aperta 12:00-20:00.'
+        notes: 'Seconda sala studio di Cesena. Domenica aperta 12:00-20:00.',
+        tags: ['Aula Studio', 'WiFi'],
     },
     {
         id: 'unibo_cesena_campus',
@@ -565,7 +597,8 @@ export const uniboRooms: StudyRoom[] = [
         longitude: 12.2470,
         indirizzo: 'Via dell\'Università 50, Cesena (FC)',
         university: 'UniBo',
-        notes: 'Grande sala polivalente con possibilità di consumare il pasto a pranzo.'
+        notes: 'Grande sala polivalente con possibilità di consumare il pasto a pranzo.',
+        tags: ['Aula Studio', 'Campus', 'WiFi', '🖨️ Stampa'],
     },
     {
         id: 'unibo_cesena_scialimenti',
@@ -581,7 +614,8 @@ export const uniboRooms: StudyRoom[] = [
         longitude: 12.2425,
         indirizzo: 'Piazza Goidanich 60, Cesena (FC)',
         university: 'UniBo',
-        notes: 'Sala studio presso la sede di Scienze degli Alimenti.'
+        notes: 'Sala studio presso la sede di Scienze degli Alimenti.',
+        tags: ['Aula Studio', 'WiFi'],
     },
     {
         id: 'unibo_cesenatico',
@@ -597,7 +631,8 @@ export const uniboRooms: StudyRoom[] = [
         longitude: 12.4010,
         indirizzo: 'Via Magrini 31, Cesenatico (FC)',
         university: 'UniBo',
-        notes: 'Sala studio nella sede di Acquacoltura a Cesenatico.'
+        notes: 'Sala studio nella sede di Acquacoltura a Cesenatico.',
+        tags: ['Aula Studio', 'WiFi'],
     },
     {
         id: 'unibo_cesena_ingegneria',
@@ -613,7 +648,8 @@ export const uniboRooms: StudyRoom[] = [
         longitude: 12.2460,
         indirizzo: 'Via dell\'Università 50, Cesena (FC)',
         university: 'UniBo',
-        notes: 'Biblioteca del Dipartimento di Ingegneria (aggiunta per completezza).'
+        notes: 'Biblioteca del Dipartimento di Ingegneria (aggiunta per completezza).',
+        tags: ['Biblioteca', 'WiFi'],
     },
     // ============================================================
     // CAMPUS FORLÌ
@@ -633,7 +669,8 @@ export const uniboRooms: StudyRoom[] = [
         indirizzo: 'Corso della Repubblica, Forlì (FC)',
         university: 'UniBo',
         occupancy_rate: 'Medio',
-        notes: 'Biblioteca del Campus di Forlì con orario esteso fino a mezzanotte.'
+        notes: 'Biblioteca del Campus di Forlì con orario esteso fino a mezzanotte.',
+        tags: ['Biblioteca', 'Campus', 'WiFi'],
     },
     {
         id: 'unibo_forli_teachinghub',
@@ -649,7 +686,8 @@ export const uniboRooms: StudyRoom[] = [
         longitude: 12.0350,
         indirizzo: 'Viale Corridoni 20, Forlì (FC)',
         university: 'UniBo',
-        notes: 'Grande complesso moderno con molteplici sale studio (aggiunta).'
+        notes: 'Grande complesso moderno con molteplici sale studio (aggiunta).',
+        tags: ['Aula Studio', 'Campus', 'WiFi'],
     },
     // ============================================================
     // CAMPUS RAVENNA
@@ -669,7 +707,8 @@ export const uniboRooms: StudyRoom[] = [
         indirizzo: 'Via Mariani 5, Ravenna (RA)',
         university: 'UniBo',
         occupancy_rate: 'Medio',
-        notes: 'Biblioteca con orario esteso fino a mezzanotte. Campus internazionale.'
+        notes: 'Biblioteca con orario esteso fino a mezzanotte. Campus internazionale.',
+        tags: ['Biblioteca', 'Campus', 'WiFi'],
     },
     {
         id: 'unibo_ravenna_lab',
@@ -685,7 +724,8 @@ export const uniboRooms: StudyRoom[] = [
         longitude: 12.1990,
         indirizzo: 'Via Sant\'Alberto 163, Ravenna (RA)',
         university: 'UniBo',
-        notes: 'Spazi per lo studio con laboratori informatici.'
+        notes: 'Spazi per lo studio con laboratori informatici.',
+        tags: ['Laboratorio', 'Campus', 'WiFi'],
     },
     {
         id: 'unibo_ravenna_venier',
@@ -701,7 +741,8 @@ export const uniboRooms: StudyRoom[] = [
         longitude: 12.2020,
         indirizzo: 'Via degli Ariani 1, Ravenna (RA)',
         university: 'UniBo',
-        notes: 'Biblioteca specializzata in Beni Culturali (aggiunta).'
+        notes: 'Biblioteca specializzata in Beni Culturali (aggiunta).',
+        tags: ['Biblioteca', 'WiFi'],
     },
     // ============================================================
     // CAMPUS RIMINI
@@ -721,7 +762,8 @@ export const uniboRooms: StudyRoom[] = [
         indirizzo: 'Via Cattaneo, Rimini (RN)',
         university: 'UniBo',
         occupancy_rate: 'Medio',
-        notes: 'Biblioteca aperta 7 giorni su 7 con orario serale. Spazi per coworking.'
+        notes: 'Biblioteca aperta 7 giorni su 7 con orario serale. Spazi per coworking.',
+        tags: ['Biblioteca', 'Campus', 'WiFi'],
     },
     {
         id: 'unibo_rimini_sale',
@@ -737,7 +779,8 @@ export const uniboRooms: StudyRoom[] = [
         longitude: 12.5650,
         indirizzo: 'Centro Storico, Rimini (RN)',
         university: 'UniBo',
-        notes: 'Sale studio nel centro storico di Rimini, vicino alla stazione.'
+        notes: 'Sale studio nel centro storico di Rimini, vicino alla stazione.',
+        tags: ['Aula Studio', 'Campus', 'Centro', 'WiFi', '👥 Gruppi OK'],
     },
     {
         id: 'unibo_rimini_vittoria',
@@ -753,7 +796,8 @@ export const uniboRooms: StudyRoom[] = [
         longitude: 12.5700,
         indirizzo: 'Via Angherà 22, Rimini (RN)',
         university: 'UniBo',
-        notes: 'Sala studio presso sede di Medicina e Farmacia (aggiunta).'
+        notes: 'Sala studio presso sede di Medicina e Farmacia (aggiunta).',
+        tags: ['Aula Studio', 'Medicina', 'WiFi', '❄️ Climatizzato'],
     },
     // ============================================================
     // SEDE IMOLA
@@ -772,7 +816,8 @@ export const uniboRooms: StudyRoom[] = [
         longitude: 11.7148,
         indirizzo: 'Palazzo Vespignani, Imola (BO)',
         university: 'UniBo',
-        notes: 'Sala studio con servizio fotocopie e stampa. Verificare posti con app Affluences.'
+        notes: 'Sala studio con servizio fotocopie e stampa. Verificare posti con app Affluences.',
+        tags: ['Aula Studio', 'WiFi', '🖨️ Stampa'],
     },
     {
         id: 'unibo_imola_biblioteca',
@@ -788,7 +833,8 @@ export const uniboRooms: StudyRoom[] = [
         longitude: 11.7145,
         indirizzo: 'Imola (BO)',
         university: 'UniBo',
-        notes: 'Biblioteca comunale disponibile per studenti UniBo. Verificare orari sul sito.'
+        notes: 'Biblioteca comunale disponibile per studenti UniBo. Verificare orari sul sito.',
+        tags: ['Biblioteca', 'WiFi'],
     },
     // ============================================================
     // BOLOGNA - BIBLIOTECHE COMUNALI (disponibili per studenti UniBo)
@@ -808,7 +854,8 @@ export const uniboRooms: StudyRoom[] = [
         indirizzo: 'Piazza Nettuno, Bologna',
         university: 'UniBo',
         occupancy_rate: 'Molto Alto',
-        notes: 'Biblioteca civica in pieno centro con scavi archeologici visibili sotto il pavimento di cristallo. Molto frequentata.'
+        notes: 'Biblioteca civica in pieno centro con scavi archeologici visibili sotto il pavimento di cristallo. Molto frequentata.',
+        tags: ['Aula Studio', 'WiFi'],
     },
 ];
 

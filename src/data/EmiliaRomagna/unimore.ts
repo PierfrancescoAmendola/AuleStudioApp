@@ -18,7 +18,8 @@ export const unimoreRooms: StudyRoom[] = [
         indirizzo: 'Via Giuseppe Campi 213/C, Modena',
         university: 'UniMoRe',
         occupancy_rate: 'Alto',
-        notes: 'Biblioteca scientifica principale. Include Orto Botanico e Aula 100 Posti (accesso libero).'
+        notes: 'Biblioteca scientifica principale. Include Orto Botanico e Aula 100 Posti (accesso libero).',
+        tags: ['Biblioteca', 'Campus', 'WiFi', '👥 Gruppi OK'],
     },
     {
         id: 'unimore_bsi_aula100',
@@ -34,7 +35,8 @@ export const unimoreRooms: StudyRoom[] = [
         longitude: 10.9382,
         indirizzo: 'Via Giuseppe Campi 213/C, Modena',
         university: 'UniMoRe',
-        notes: 'Spazio studio iconico nella BSI, aperto anche weekend in periodi esame (verificare).'
+        notes: 'Spazio studio iconico nella BSI, aperto anche weekend in periodi esame (verificare).',
+        tags: ['Aula Studio', 'Campus', 'WiFi', '❄️ Climatizzato', '🔇 Silenzio'],
     },
     {
         id: 'unimore_ingegneria',
@@ -51,7 +53,8 @@ export const unimoreRooms: StudyRoom[] = [
         indirizzo: 'Via Pietro Vivarelli 10, Modena',
         university: 'UniMoRe',
         occupancy_rate: 'Alto',
-        notes: 'Biblioteca con salette per studio di gruppo (si può parlare). Prenotazione sale online.'
+        notes: 'Biblioteca con salette per studio di gruppo (si può parlare). Prenotazione sale online.',
+        tags: ['Biblioteca', 'WiFi', '👥 Gruppi OK'],
     },
     {
         id: 'unimore_ingegneria_salegroup',
@@ -67,7 +70,8 @@ export const unimoreRooms: StudyRoom[] = [
         longitude: 10.9415,
         indirizzo: 'Via Pietro Vivarelli 10, Modena',
         university: 'UniMoRe',
-        notes: '2 salette dedicate (Sala 1 accesso libero, Sala 2 prenotabile). Ideali per lavori di gruppo.'
+        notes: '2 salette dedicate (Sala 1 accesso libero, Sala 2 prenotabile). Ideali per lavori di gruppo.',
+        tags: ['Aula Studio', 'WiFi'],
     },
     // ============================================================
     // MODENA - AREA CENTRO / FORO BOARIO
@@ -87,7 +91,8 @@ export const unimoreRooms: StudyRoom[] = [
         indirizzo: 'Viale Jacopo Berengario 51 (Foro Boario), Modena',
         university: 'UniMoRe',
         occupancy_rate: 'Medio',
-        notes: 'Biblioteca specializzata in economia e management.'
+        notes: 'Biblioteca specializzata in economia e management.',
+        tags: ['Biblioteca', 'WiFi', '🔇 Silenzio'],
     },
     {
         id: 'unimore_giuridica',
@@ -103,7 +108,8 @@ export const unimoreRooms: StudyRoom[] = [
         longitude: 10.9250,
         indirizzo: 'Via Camatta 16 / Area Centro, Modena',
         university: 'UniMoRe',
-        notes: 'Biblioteca giuridica con orario esteso (fino 21:00 in alcuni periodi).'
+        notes: 'Biblioteca giuridica con orario esteso (fino 21:00 in alcuni periodi).',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'unimore_umanistica',
@@ -119,7 +125,8 @@ export const unimoreRooms: StudyRoom[] = [
         longitude: 10.9245,
         indirizzo: 'Largo Sant\'Eufemia 19, Modena',
         university: 'UniMoRe',
-        notes: 'Biblioteca per lettere, filosofia, lingue e beni culturali.'
+        notes: 'Biblioteca per lettere, filosofia, lingue e beni culturali.',
+        tags: ['Biblioteca', 'WiFi', '🖨️ Stampa'],
     },
     // ============================================================
     // MODENA - POLICLINICO (Area Medica)
@@ -138,7 +145,8 @@ export const unimoreRooms: StudyRoom[] = [
         longitude: 10.9385,
         indirizzo: 'Largo del Pozzo 71, Modena',
         university: 'UniMoRe',
-        notes: 'Biblioteca medica con aula studio prenotabile online. Vicino al Policlinico.'
+        notes: 'Biblioteca medica con aula studio prenotabile online. Vicino al Policlinico.',
+        tags: ['Biblioteca', 'Medicina', 'WiFi'],
     },
     // ============================================================
     // MODENA - BIBLIOTECHE STORICHE E COMUNALI
@@ -158,7 +166,8 @@ export const unimoreRooms: StudyRoom[] = [
         indirizzo: 'Largo Porta Sant\'Agostino 337, Modena',
         university: 'UniMoRe',
         occupancy_rate: 'Basso',
-        notes: 'Biblioteca storica UNESCO con manoscritti rari.'
+        notes: 'Biblioteca storica UNESCO con manoscritti rari.',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'modena_delfini',
@@ -175,7 +184,8 @@ export const unimoreRooms: StudyRoom[] = [
         indirizzo: 'Corso Canalgrande 103, Modena',
         university: 'UniMoRe',
         occupancy_rate: 'Alto',
-        notes: 'Biblioteca comunale principale, molto frequentata dagli studenti.'
+        notes: 'Biblioteca comunale principale, molto frequentata dagli studenti.',
+        tags: ['Biblioteca', 'WiFi'],
     },
     // ============================================================
     // REGGIO EMILIA - SEDE UNIVERSITARIA
@@ -195,7 +205,8 @@ export const unimoreRooms: StudyRoom[] = [
         indirizzo: 'Viale Antonio Allegri 9, Reggio Emilia',
         university: 'UniMoRe',
         occupancy_rate: 'Medio',
-        notes: 'Biblioteca principale Reggio, aperta fino alle 20:30.'
+        notes: 'Biblioteca principale Reggio, aperta fino alle 20:30.',
+        tags: ['Biblioteca', 'Campus', 'WiFi'],
     },
     {
         id: 'unimore_reggio_desu',
@@ -211,7 +222,8 @@ export const unimoreRooms: StudyRoom[] = [
         longitude: 10.6120,
         indirizzo: 'Viale Antonio Timavo 93, Reggio Emilia',
         university: 'UniMoRe',
-        notes: 'Spazi studio e laboratori per Educazione e Scienze Umane (aggiunta per completezza).'
+        notes: 'Spazi studio e laboratori per Educazione e Scienze Umane (aggiunta per completezza).',
+        tags: ['Aula Studio', 'WiFi'],
     },
     {
         id: 'unimore_reggio_tecnopolo',
@@ -227,7 +239,8 @@ export const unimoreRooms: StudyRoom[] = [
         longitude: 10.6420,
         indirizzo: 'Piazzale Europa 1, Reggio Emilia',
         university: 'UniMoRe',
-        notes: 'Tecnopolo moderno nel recupero industriale.'
+        notes: 'Tecnopolo moderno nel recupero industriale.',
+        tags: ['Aula Studio', 'Campus', 'WiFi'],
     },
     // ============================================================
     // CARPI - TECNOPOLO
@@ -247,7 +260,8 @@ export const unimoreRooms: StudyRoom[] = [
         indirizzo: 'Via Corbolani 1/A, Carpi (MO)',
         university: 'UniMoRe',
         occupancy_rate: 'Basso',
-        notes: 'Edificio moderno a energia quasi zero per Ingegneria Sostenibile.'
+        notes: 'Edificio moderno a energia quasi zero per Ingegneria Sostenibile.',
+        tags: ['Aula Studio', 'Campus', 'WiFi', '👥 Gruppi OK'],
     },
 ];
 

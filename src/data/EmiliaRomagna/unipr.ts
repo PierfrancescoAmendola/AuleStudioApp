@@ -19,7 +19,8 @@ export const uniprRooms: StudyRoom[] = [
         indirizzo: 'Parco Area delle Scienze 59/A, Parma',
         university: 'UniPr',
         occupancy_rate: 'Medio',
-        notes: 'Biblioteca scientifica principale del Campus. Include sale studio e riunioni prenotabili.'
+        notes: 'Biblioteca scientifica principale del Campus. Include sale studio e riunioni prenotabili.',
+        tags: ['Biblioteca', 'Campus', 'WiFi'],
     },
     {
         id: 'unipr_campus_aule',
@@ -35,7 +36,8 @@ export const uniprRooms: StudyRoom[] = [
         longitude: 10.3090,
         indirizzo: 'Parco Area delle Scienze 181/A, Parma',
         university: 'UniPr',
-        notes: 'Grande plesso con aule studio, laboratori e spazi aperti. Campus di 77 ettari con tutti i servizi.'
+        notes: 'Grande plesso con aule studio, laboratori e spazi aperti. Campus di 77 ettari con tutti i servizi.',
+        tags: ['Aula Studio', 'Campus', 'WiFi'],
     },
     {
         id: 'unipr_campus_bar_cimas',
@@ -51,7 +53,8 @@ export const uniprRooms: StudyRoom[] = [
         longitude: 10.3088,
         indirizzo: 'Parco Area delle Scienze, Parma',
         university: 'UniPr',
-        notes: 'Spazi bar che fungono da aula studio durante il giorno.'
+        notes: 'Spazi bar che fungono da aula studio durante il giorno.',
+        tags: ['Aula Studio', 'Campus', 'WiFi', '☕ Ristoro'],
     },
     // ============================================================
     // PARMA - CENTRO STORICO (Area Kennedy / D'Azeglio / Ospedale)
@@ -71,7 +74,8 @@ export const uniprRooms: StudyRoom[] = [
         indirizzo: 'Via John Fitzgerald Kennedy 8, Parma',
         university: 'UniPr',
         occupancy_rate: 'Molto Alto',
-        notes: 'Biblioteca aperta più a lungo: lun-gio fino 24:00, ven fino 20:00.'
+        notes: 'Biblioteca aperta più a lungo: lun-gio fino 24:00, ven fino 20:00.',
+        tags: ['Biblioteca', 'Campus', 'WiFi'],
     },
     {
         id: 'unipr_paolotti',
@@ -88,7 +92,8 @@ export const uniprRooms: StudyRoom[] = [
         indirizzo: 'Via Massimo D\'Azeglio 85, Parma',
         university: 'UniPr',
         occupancy_rate: 'Alto',
-        notes: 'Biblioteca umanistica nel chiostro storico.'
+        notes: 'Biblioteca umanistica nel chiostro storico.',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'unipr_medicina',
@@ -105,7 +110,8 @@ export const uniprRooms: StudyRoom[] = [
         indirizzo: 'Via Antonio Gramsci 14, Parma',
         university: 'UniPr',
         occupancy_rate: 'Alto',
-        notes: 'Grande biblioteca medica su 2 piani. Tessera magnetica gratuita per ingresso.'
+        notes: 'Grande biblioteca medica su 2 piani. Tessera magnetica gratuita per ingresso.',
+        tags: ['Biblioteca', 'Medicina', 'WiFi'],
     },
     {
         id: 'unipr_giurisprudenza',
@@ -121,7 +127,8 @@ export const uniprRooms: StudyRoom[] = [
         longitude: 10.3278,
         indirizzo: 'Via dell\'Università 12, Parma',
         university: 'UniPr',
-        notes: 'Biblioteca giuridica nella sede centrale storica (aggiunta per completezza).'
+        notes: 'Biblioteca giuridica nella sede centrale storica (aggiunta per completezza).',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'unipr_veterinaria',
@@ -137,7 +144,8 @@ export const uniprRooms: StudyRoom[] = [
         longitude: 10.2940,
         indirizzo: 'Strada del Taglio 10, Parma',
         university: 'UniPr',
-        notes: 'Biblioteca veterinaria distaccata (zona nord-ovest Parma).'
+        notes: 'Biblioteca veterinaria distaccata (zona nord-ovest Parma).',
+        tags: ['Biblioteca', 'Medicina', 'WiFi'],
     },
     // ============================================================
     // PARMA - POLO DIDATTICO VICOLO SANTA MARIA / KENNEDY
@@ -157,7 +165,8 @@ export const uniprRooms: StudyRoom[] = [
         indirizzo: 'Vicolo Santa Maria / Via Kennedy, Parma',
         university: 'UniPr',
         occupancy_rate: 'Medio',
-        notes: 'Polo aperto anche il sabato.'
+        notes: 'Polo aperto anche il sabato.',
+        tags: ['Aula Studio', 'Campus', 'WiFi'],
     },
     // ============================================================
     // PARMA - BIBLIOTECHE STORICHE E COMUNALI
@@ -177,7 +186,8 @@ export const uniprRooms: StudyRoom[] = [
         indirizzo: 'Piazzale della Pilotta 3, Parma',
         university: 'UniPr',
         occupancy_rate: 'Basso',
-        notes: 'Biblioteca monumentale UNESCO. Prenotazione obbligatoria.'
+        notes: 'Biblioteca monumentale UNESCO. Prenotazione obbligatoria.',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'parma_guanda',
@@ -194,7 +204,8 @@ export const uniprRooms: StudyRoom[] = [
         indirizzo: 'Vicolo Asse 5, Parma',
         university: 'UniPr',
         occupancy_rate: 'Medio',
-        notes: 'Biblioteca comunale con giardino storico.'
+        notes: 'Biblioteca comunale con giardino storico.',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'parma_civica',
@@ -210,7 +221,8 @@ export const uniprRooms: StudyRoom[] = [
         longitude: 10.3295,
         indirizzo: 'Vicino Palazzo Pilotta, Parma',
         university: 'UniPr',
-        notes: 'Biblioteca comunale principale.'
+        notes: 'Biblioteca comunale principale.',
+        tags: ['Biblioteca', 'Centro', 'WiFi'],
     },
 ];
 

@@ -19,7 +19,8 @@ export const unigeHealthDecentralizedRooms: StudyRoom[] = [
         indirizzo: 'Via G.B. Ghio 9, Chiavari',
         university: 'UniGe - Polo Chiavari',
         occupancy_rate: 'Alto',
-        notes: 'Spazio principale per Infermieristica/Fisioterapia. Familiare e funzionale.'
+        notes: 'Spazio principale per Infermieristica/Fisioterapia. Familiare e funzionale.',
+        tags: ['Biblioteca', 'Campus', 'Medicina', 'WiFi', '❄️ Climatizzato'],
     },
     {
         id: 'unige_health_chiavari_mensa',
@@ -35,7 +36,8 @@ export const unigeHealthDecentralizedRooms: StudyRoom[] = [
         longitude: 9.3252,
         indirizzo: 'Via G.B. Ghio 9, Chiavari',
         university: 'UniGe - Polo Chiavari',
-        notes: 'Cortile per studio informale.'
+        notes: 'Cortile per studio informale.',
+        tags: ['Mensa/Ristoro', 'Campus'],
     },
     {
         id: 'chiavari_economica',
@@ -51,7 +53,8 @@ export const unigeHealthDecentralizedRooms: StudyRoom[] = [
         longitude: 9.3235,
         indirizzo: 'Via Ravaschieri 15, Chiavari',
         university: 'UniGe - Polo Chiavari',
-        notes: '🏆 Una delle biblioteche più belle della Liguria, atmosfera storica unica.'
+        notes: '🏆 Una delle biblioteche più belle della Liguria, atmosfera storica unica.',
+        tags: ['Biblioteca', 'Campus', '🔇 Silenzio'],
     },
     {
         id: 'chiavari_outdoor',
@@ -67,7 +70,8 @@ export const unigeHealthDecentralizedRooms: StudyRoom[] = [
         longitude: 9.3200,
         indirizzo: 'Corso Valparaiso/Parasio, Chiavari',
         university: 'UniGe - Polo Chiavari',
-        notes: 'Lungomare o borgo Parasio per respirare aria di mare mentre si ripassa.'
+        notes: 'Lungomare o borgo Parasio per respirare aria di mare mentre si ripassa.',
+        tags: ['Outdoor', 'Campus'],
     },
     // ============================================================
     // PIETRA LIGURE (ASL2 Santa Corona)
@@ -86,7 +90,8 @@ export const unigeHealthDecentralizedRooms: StudyRoom[] = [
         longitude: 8.2755,
         indirizzo: 'Via XXV Aprile 38, Pietra Ligure',
         university: 'UniGe - Polo Pietra',
-        notes: '📍 Situata nel vasto complesso del Santa Corona. Molto frequentata da studenti di Medicina e professioni sanitarie.'
+        notes: '📍 Situata nel vasto complesso del Santa Corona. Molto frequentata da studenti di Medicina e professioni sanitarie.',
+        tags: ['Biblioteca', 'Campus', 'Medicina', 'WiFi'],
     },
     {
         id: 'pietra_civica',
@@ -102,7 +107,8 @@ export const unigeHealthDecentralizedRooms: StudyRoom[] = [
         longitude: 8.2800,
         indirizzo: 'Piazza Martiri della Libertà, Pietra Ligure',
         university: 'UniGe - Polo Pietra',
-        notes: 'Alternativa tranquilla in centro città, climatizzata d\'estate.'
+        notes: 'Alternativa tranquilla in centro città, climatizzata d\'estate.',
+        tags: ['Biblioteca', 'Campus', '❄️ Climatizzato'],
     },
 ];
 

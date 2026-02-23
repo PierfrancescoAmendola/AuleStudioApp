@@ -20,7 +20,8 @@ export const unitsRooms: StudyRoom[] = [
         indirizzo: 'Piazzale Europa 1, Trieste',
         university: 'UniTS',
         occupancy_rate: 'Molto Alto',
-        notes: '⭐ Sala lettura principale con vista spettacolare sul Golfo. ATTENZIONE BORA: il campus è espostissimo al vento! Con Bora forte (>80km/h) il bus 17 è affollato e possibili ritardi. Porta giacca a vento anche d\'estate!'
+        notes: '⭐ Sala lettura principale con vista spettacolare sul Golfo. ATTENZIONE BORA: il campus è espostissimo al vento! Con Bora forte (>80km/h) il bus 17 è affollato e possibili ritardi. Porta giacca a vento anche d\'estate!',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'units_edificio_h3',
@@ -36,7 +37,8 @@ export const unitsRooms: StudyRoom[] = [
         longitude: 13.7930,
         indirizzo: 'Via Alfonso Valerio 6/2, Trieste',
         university: 'UniTS',
-        notes: '⭐ Edificio moderno più amato dagli studenti. Luminoso e confortevole. A 5 min a piedi dalla BGA ma OCCHIO ALLA BORA nei giorni di vento forte!'
+        notes: '⭐ Edificio moderno più amato dagli studenti. Luminoso e confortevole. A 5 min a piedi dalla BGA ma OCCHIO ALLA BORA nei giorni di vento forte!',
+        tags: ['Aula Studio', 'Campus', '❄️ Climatizzato'],
     },
     {
         id: 'units_acquario',
@@ -52,7 +54,8 @@ export const unitsRooms: StudyRoom[] = [
         longitude: 13.7925,
         indirizzo: 'Piazzale Europa 1, Trieste',
         university: 'UniTS',
-        notes: 'Sala vetrata informale per studio rapido tra lezioni. Ambiente sociale ma funzionale.'
+        notes: 'Sala vetrata informale per studio rapido tra lezioni. Ambiente sociale ma funzionale.',
+        tags: ['Aula Studio', '❄️ Climatizzato'],
     },
     {
         id: 'units_dipartimentali_campus',
@@ -68,7 +71,8 @@ export const unitsRooms: StudyRoom[] = [
         longitude: 13.7920,
         indirizzo: 'Parco Piazzale Europa, Trieste',
         university: 'UniTS',
-        notes: 'Spazi dipartimentali integrati (Fisica Ed. C, Ingegneria Ed. D, Chimica Ed. E). Campus compatto tutto raggiungibile a piedi in 10 min.'
+        notes: 'Spazi dipartimentali integrati (Fisica Ed. C, Ingegneria Ed. D, Chimica Ed. E). Campus compatto tutto raggiungibile a piedi in 10 min.',
+        tags: ['Biblioteca', 'Campus'],
     },
     // ============================================================
     // TRIESTE - CENTRO STORICO (Umanistica, Interpreti)
@@ -88,7 +92,8 @@ export const unitsRooms: StudyRoom[] = [
         longitude: 13.7700,
         indirizzo: 'Androna Baciocchi 4, Trieste',
         university: 'UniTS',
-        notes: '⭐ Nel quartiere San Giusto. Atmosfera storica ideale per Umanistica. Centro città compatto: tutto raggiungibile a piedi in 15-20 min dalla Stazione.'
+        notes: '⭐ Nel quartiere San Giusto. Atmosfera storica ideale per Umanistica. Centro città compatto: tutto raggiungibile a piedi in 15-20 min dalla Stazione.',
+        tags: ['Biblioteca', 'Centro', '🔇 Silenzio'],
     },
     {
         id: 'units_sslmit_filzi',
@@ -104,7 +109,8 @@ export const unitsRooms: StudyRoom[] = [
         longitude: 13.7760,
         indirizzo: 'Via Fabio Filzi 14, Trieste',
         university: 'UniTS',
-        notes: '⭐ Ambiente internazionale per lingue. Sede storica SSLMIT con forte identità multilinguistica.'
+        notes: '⭐ Ambiente internazionale per lingue. Sede storica SSLMIT con forte identità multilinguistica.',
+        tags: ['Biblioteca'],
     },
     // ============================================================
     // TRIESTE - MEDICINA (Cattinara)
@@ -125,7 +131,8 @@ export const unitsRooms: StudyRoom[] = [
         indirizzo: 'Strada di Fiume 447, Trieste',
         university: 'UniTS',
         occupancy_rate: 'Alto',
-        notes: '⚠️ IMPORTANTE: Cattinara è ISOLATO dal Campus Europa e dal Centro (30 min bus). Non è possibile "saltare" in centro per pranzo. Organizzati per restare qui tutto il giorno! Mensa ospedaliera disponibile. Esclusiva Medicina.'
+        notes: '⚠️ IMPORTANTE: Cattinara è ISOLATO dal Campus Europa e dal Centro (30 min bus). Non è possibile "saltare" in centro per pranzo. Organizzati per restare qui tutto il giorno! Mensa ospedaliera disponibile. Esclusiva Medicina.',
+        tags: ['Biblioteca', 'Campus', 'Medicina', '☕ Ristoro', '🔇 Silenzio'],
     },
     // ============================================================
     // TRIESTE - BIBLIOTECHE PUBBLICHE & CAFFÈ ICONICI
@@ -146,7 +153,8 @@ export const unitsRooms: StudyRoom[] = [
         indirizzo: 'Largo Papa Giovanni XXIII 6, Trieste',
         university: 'UniTS',
         occupancy_rate: 'Altissimo',
-        notes: '⭐ LA preferita del centro/Borgo Teresiano. Affollata soprattutto periodo sessione. Arriva presto!'
+        notes: '⭐ LA preferita del centro/Borgo Teresiano. Affollata soprattutto periodo sessione. Arriva presto!',
+        tags: ['Biblioteca', '🔇 Silenzio'],
     },
     {
         id: 'ts_biblio_hortis',
@@ -162,7 +170,8 @@ export const unitsRooms: StudyRoom[] = [
         longitude: 13.7710,
         indirizzo: 'Piazza Hortis 4, Trieste',
         university: 'UniTS',
-        notes: '🎨 Quartiere Cavana, vibe joyceiana e letteraria. Per chi ama l\'atmosfera storica di Trieste.'
+        notes: '🎨 Quartiere Cavana, vibe joyceiana e letteraria. Per chi ama l\'atmosfera storica di Trieste.',
+        tags: ['Biblioteca'],
     },
     {
         id: 'ts_caffe_sanmarco',
@@ -178,7 +187,8 @@ export const unitsRooms: StudyRoom[] = [
         longitude: 13.7785,
         indirizzo: 'Via Cesare Battisti 18, Trieste',
         university: 'UniTS',
-        notes: '🎨⭐ LEGGENDARIO! Studiare qui è tradizione triestina centenaria (Svevo, Joyce, Saba). Caffè + Libreria. Non è solo un bar, è quasi una biblioteca pubblica letteraria. Ambiente unico, consuma qualcosa e rispetta il luogo!'
+        notes: '🎨⭐ LEGGENDARIO! Studiare qui è tradizione triestina centenaria (Svevo, Joyce, Saba). Caffè + Libreria. Non è solo un bar, è quasi una biblioteca pubblica letteraria. Ambiente unico, consuma qualcosa e rispetta il luogo!',
+        tags: ['Aula Studio', 'WiFi'],
     },
     // ============================================================
     // GORIZIA - POLO INTERNAZIONALE
@@ -198,7 +208,8 @@ export const unitsRooms: StudyRoom[] = [
         longitude: 13.6205,
         indirizzo: 'Via Santa Chiara 1, Gorizia',
         university: 'UniTS',
-        notes: '🌍⭐ Sede prestigiosa Diplomatici e Internazionale. INSIDER TIP: A 10 min a piedi c\'è il confine con Nova Gorica (Slovenia) - molti studenti vanno lì per spesa/pranzo economico! A 10 min da Via Alviano.'
+        notes: '🌍⭐ Sede prestigiosa Diplomatici e Internazionale. INSIDER TIP: A 10 min a piedi c\'è il confine con Nova Gorica (Slovenia) - molti studenti vanno lì per spesa/pranzo economico! A 10 min da Via Alviano.',
+        tags: ['Biblioteca', 'Campus'],
     },
     {
         id: 'units_gorizia_alviano',
@@ -214,7 +225,8 @@ export const unitsRooms: StudyRoom[] = [
         longitude: 13.6180,
         indirizzo: 'Via Luigi Alviano 18, Gorizia',
         university: 'UniTS',
-        notes: 'Sede operativa lezioni. Vibe internazionale. Nova Gorica (Slovenia) a 10 min a piedi per shopping economico!'
+        notes: 'Sede operativa lezioni. Vibe internazionale. Nova Gorica (Slovenia) a 10 min a piedi per shopping economico!',
+        tags: ['Aula Studio', 'Campus', 'WiFi', '☕ Ristoro'],
     },
     // ============================================================
     // PORDENONE & PORTOGRUARO
@@ -233,7 +245,8 @@ export const unitsRooms: StudyRoom[] = [
         longitude: 12.6600,
         indirizzo: 'Via Prasecco 3/A, Pordenone',
         university: 'UniTS',
-        notes: 'Polo Ingegneria/Design. Zona industriale, parcheggi ampi. Da Trieste 1h 10min treno.'
+        notes: 'Polo Ingegneria/Design. Zona industriale, parcheggi ampi. Da Trieste 1h 10min treno.',
+        tags: ['Biblioteca', 'Campus', '☕ Ristoro', '🅿️ Parcheggio'],
     },
     {
         id: 'units_portogruaro',
@@ -249,7 +262,8 @@ export const unitsRooms: StudyRoom[] = [
         longitude: 12.8370,
         indirizzo: 'Via Seminario 34, Portogruaro (VE)',
         university: 'UniTS',
-        notes: 'Polo Educazione/Infermieristica. Villa Martinelli storica con parco. Piccolo e tranquillo. Da Trieste 1h 30min treno.'
+        notes: 'Polo Educazione/Infermieristica. Villa Martinelli storica con parco. Piccolo e tranquillo. Da Trieste 1h 30min treno.',
+        tags: ['Biblioteca', 'Campus'],
     },
 ];
 

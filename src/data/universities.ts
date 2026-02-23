@@ -56,6 +56,10 @@ import { politoRooms } from './Piemonte/polito';
 import { upoRooms } from './Piemonte/upo';
 import { afamPiemonteRooms } from './Piemonte/afamPiemonte';
 import { unibaRooms } from './Puglia/uniba';
+import { polibaRooms } from './Puglia/poliba';
+import { unisalentoRooms } from './Puglia/unisalento';
+import { unifgRooms } from './Puglia/unifg';
+import { afamPugliaRooms } from './Puglia/afamPuglia';
 
 
 
@@ -1482,6 +1486,104 @@ export const universities: University[] = [
         ],
         color: '#dc2626', // Red-600 (UniBa brand)
         darkColor: '#991b1b', // Red-800
+    },
+    {
+        id: 'poliba',
+        name: 'PoliBa',
+        fullName: 'Politecnico di Bari',
+        city: 'Bari / Taranto',
+        regionName: 'Puglia',
+        region: {
+            latitude: 41.10,
+            longitude: 16.88,
+            latitudeDelta: 1.5,
+            longitudeDelta: 1.5,
+        },
+        studyRooms: polibaRooms,
+        availableFilters: [
+            'Tutti',
+            'Biblioteche',
+            'Aule Studio',
+            'Laboratori',
+            'Campus',
+            'Taranto',
+            'Architettura'
+        ],
+        color: '#2563eb', // Blue-600 (PoliBa brand)
+        darkColor: '#1e40af', // Blue-800
+    },
+    {
+        id: 'unisalento',
+        name: 'UniSalento',
+        fullName: 'Università del Salento',
+        city: 'Lecce / Brindisi',
+        regionName: 'Puglia',
+        region: {
+            latitude: 40.40,
+            longitude: 18.00,
+            latitudeDelta: 0.8,
+            longitudeDelta: 0.8,
+        },
+        studyRooms: unisalentoRooms,
+        availableFilters: [
+            'Tutti',
+            'Centro Storico',
+            'Ecotekne',
+            'Brindisi',
+            'Biblioteche',
+            'Aria Condizionata'
+        ],
+        color: '#f59e0b', // Amber-500 (Salento sun)
+        darkColor: '#d97706', // Amber-600
+    },
+    {
+        id: 'unifg',
+        name: 'UniFg',
+        fullName: 'Università degli Studi di Foggia',
+        city: 'Foggia / Barletta / Gargano',
+        regionName: 'Puglia',
+        region: {
+            latitude: 41.46,
+            longitude: 15.55,
+            latitudeDelta: 1.0,
+            longitudeDelta: 1.5,
+        },
+        studyRooms: unifgRooms,
+        availableFilters: [
+            'Tutti',
+            'Centro Storico',
+            'Semi-Centro',
+            'Periferia',
+            'Poli Distaccati',
+            'Lavoro di Gruppo',
+            'Biblioteche'
+        ],
+        color: '#16a34a', // Green-600 (Agraria/Tavoliere)
+        darkColor: '#14532d', // Green-900
+    },
+    {
+        id: 'afamPuglia',
+        name: 'AFAM Puglia',
+        fullName: 'Accademie e Conservatori Puglia (ABA Bari, Foggia, Lecce, Cons. Piccinni, Rota, Paisiello, Giordano)',
+        city: 'Bari / Foggia / Lecce / Taranto / Monopoli',
+        regionName: 'Puglia',
+        region: {
+            latitude: 41.10,
+            longitude: 16.87,
+            latitudeDelta: 2.0,
+            longitudeDelta: 2.0,
+        },
+        studyRooms: afamPugliaRooms,
+        availableFilters: [
+            'Tutti',
+            'Accademie',
+            'Conservatori',
+            'Sporco Tollerato',
+            'Tavoli Grandi',
+            'Sale Prova'
+        ],
+        color: '#7c3aed', // Violet-600 (AFAM standard)
+        darkColor: '#4c1d95', // Violet-900
     },
 ];
 

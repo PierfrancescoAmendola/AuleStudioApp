@@ -19,7 +19,8 @@ export const upoRooms: StudyRoom[] = [
         indirizzo: 'Via Generale E. Perrone 18, 28100 Novara',
         university: 'UPO',
         occupancy_rate: 'Altissimo',
-        notes: 'Orario: lun-gio 9:00-13:00 e 14:00-18:00; ven 9:00-13:00. Prenotazione obbligatoria per postazioni PC e sofa/work station tramite MyBiblio o app biblioUPO. Ingresso pedonale da Via Perrone 18, auto da Via Passalacqua 9. Piano interrato (sala lettura).'
+        notes: 'Orario: lun-gio 9:00-13:00 e 14:00-18:00; ven 9:00-13:00. Prenotazione obbligatoria per postazioni PC e sofa/work station tramite MyBiblio o app biblioUPO. Ingresso pedonale da Via Perrone 18, auto da Via Passalacqua 9. Piano interrato (sala lettura).',
+        tags: ['Biblioteca', 'Campus', 'WiFi', '⚡ Prese', '🖨️ Stampa'],
     },
     {
         id: 'upo_novara_perrone_mensa',
@@ -35,7 +36,8 @@ export const upoRooms: StudyRoom[] = [
         longitude: 8.6185,
         indirizzo: 'Via Generale E. Perrone 18, 28100 Novara',
         university: 'UPO',
-        notes: 'Spazio informale per studio e pausa. Non richiede prenotazione. Perfetto per gruppi e socialità.'
+        notes: 'Spazio informale per studio e pausa. Non richiede prenotazione. Perfetto per gruppi e socialità.',
+        tags: ['Mensa/Ristoro', '👥 Gruppi OK'],
     },
     {
         id: 'upo_novara_nova',
@@ -52,7 +54,8 @@ export const upoRooms: StudyRoom[] = [
         indirizzo: 'Via Passalacqua, 28100 Novara',
         university: 'UPO',
         occupancy_rate: 'Medio',
-        notes: '💡 INSIDER TIP: Non è una biblioteca silenziosa — è un centro giovanile moderno dove si può parlare, fare brainstorming e bere un caffè senza ansie. Perfetto per la salute mentale universitaria. Apertura serale. Ideale come alternativa quando il Perrone scoppia.'
+        notes: '💡 INSIDER TIP: Non è una biblioteca silenziosa — è un centro giovanile moderno dove si può parlare, fare brainstorming e bere un caffè senza ansie. Perfetto per la salute mentale universitaria. Apertura serale. Ideale come alternativa quando il Perrone scoppia.',
+        tags: ['Aula Studio', 'WiFi', '☕ Ristoro', '👥 Gruppi OK'],
     },
     {
         id: 'upo_novara_solaroli',
@@ -68,7 +71,8 @@ export const upoRooms: StudyRoom[] = [
         longitude: 8.6202,
         indirizzo: 'Via Solaroli 17, Novara',
         university: 'UPO',
-        notes: 'ATTENZIONE: dal 16/12/2025 le pagine web della biblioteca sono confluite nel Sistema Bibliotecario di Ateneo. Verificare se i servizi sono stati trasferiti al Polo Perrone.'
+        notes: 'ATTENZIONE: dal 16/12/2025 le pagine web della biblioteca sono confluite nel Sistema Bibliotecario di Ateneo. Verificare se i servizi sono stati trasferiti al Polo Perrone.',
+        tags: ['Biblioteca', 'Campus', 'Medicina', '⚡ Prese'],
     },
     // ============================================================
     // ALESSANDRIA - POLO BORSALINO & DISIT
@@ -88,7 +92,8 @@ export const upoRooms: StudyRoom[] = [
         indirizzo: 'Via Cavour 84, 15121 Alessandria',
         university: 'UPO',
         occupancy_rate: 'Alto',
-        notes: 'Sede del DIGSPES in un ex stabilimento Borsalino (archeologia industriale). In pieno centro storico — si vive a piedi, parcheggio difficile. Palazzo affascinante con storia manifatturiera. Sedi satellite: Via Mondovì 8 e Corso Borsalino 44.'
+        notes: 'Sede del DIGSPES in un ex stabilimento Borsalino (archeologia industriale). In pieno centro storico — si vive a piedi, parcheggio difficile. Palazzo affascinante con storia manifatturiera. Sedi satellite: Via Mondovì 8 e Corso Borsalino 44.',
+        tags: ['Biblioteca', 'Centro', 'WiFi'],
     },
     {
         id: 'upo_alessandria_disit_biblio',
@@ -105,7 +110,8 @@ export const upoRooms: StudyRoom[] = [
         indirizzo: 'Viale Teresa Michel 11, 15121 Alessandria',
         university: 'UPO',
         occupancy_rate: 'Medio',
-        notes: 'Dipartimento di Scienze e Innovazione Tecnologica (DiSIT). Zona periferica, moderna e verde — l\'opposto di Borsalino. Tanto spazio e parcheggio facile. Ricezione al piano terra.'
+        notes: 'Dipartimento di Scienze e Innovazione Tecnologica (DiSIT). Zona periferica, moderna e verde — l\'opposto di Borsalino. Tanto spazio e parcheggio facile. Ricezione al piano terra.',
+        tags: ['Biblioteca', 'WiFi', '⚡ Prese', '❄️ Climatizzato', '🅿️ Parcheggio'],
     },
     // ============================================================
     // VERCELLI - POLO UMANISTICO (DISUM) — "Quiet & Historic"
@@ -125,7 +131,8 @@ export const upoRooms: StudyRoom[] = [
         indirizzo: 'Piazza Sant\'Eusebio 5, 13100 Vercelli',
         university: 'UPO',
         occupancy_rate: 'Medio',
-        notes: 'Sede principale DISUM. Chiostro storico con affreschi — calma assoluta rispetto ai grandi atenei metropolitani. Vicino alla Basilica di Sant\'Andrea.'
+        notes: 'Sede principale DISUM. Chiostro storico con affreschi — calma assoluta rispetto ai grandi atenei metropolitani. Vicino alla Basilica di Sant\'Andrea.',
+        tags: ['Aula Studio', 'Campus', 'WiFi', '🔇 Silenzio'],
     },
     {
         id: 'upo_vercelli_biblio',
@@ -142,7 +149,8 @@ export const upoRooms: StudyRoom[] = [
         indirizzo: 'Via Galileo Ferraris 54, 13100 Vercelli',
         university: 'UPO',
         occupancy_rate: 'Alto',
-        notes: 'Biblioteca principale del polo umanistico. Esperienza di calma assoluta. Vicina a Palazzo Tartara e all\'Ospedaletto.'
+        notes: 'Biblioteca principale del polo umanistico. Esperienza di calma assoluta. Vicina a Palazzo Tartara e all\'Ospedaletto.',
+        tags: ['Biblioteca', 'Campus', 'WiFi', '🔇 Silenzio', '🖨️ Stampa'],
     },
     {
         id: 'upo_vercelli_tartara',
@@ -159,7 +167,8 @@ export const upoRooms: StudyRoom[] = [
         indirizzo: 'Via Galileo Ferraris 109, 13100 Vercelli',
         university: 'UPO',
         occupancy_rate: 'Medio',
-        notes: 'Studi docenti e laboratori di ricerca del DISUM. Ingresso anche da Piazza Roma 16. Atmosfera storica.'
+        notes: 'Studi docenti e laboratori di ricerca del DISUM. Ingresso anche da Piazza Roma 16. Atmosfera storica.',
+        tags: ['Laboratorio', 'Campus', 'WiFi'],
     },
     {
         id: 'upo_vercelli_ospedaletto',
@@ -176,7 +185,8 @@ export const upoRooms: StudyRoom[] = [
         indirizzo: 'Viale Garibaldi 98, 13100 Vercelli',
         university: 'UPO',
         occupancy_rate: 'Basso',
-        notes: 'Aule didattiche del DISUM. Ingresso anche da Via Galileo Ferraris 109 e Piazza Roma. Ambiente tranquillo e storico.'
+        notes: 'Aule didattiche del DISUM. Ingresso anche da Via Galileo Ferraris 109 e Piazza Roma. Ambiente tranquillo e storico.',
+        tags: ['Aula Studio', 'Medicina', 'WiFi'],
     },
     // ============================================================
     // DISTACCATI (Asti, Biella, Verbania) — "Servizi Dedicati / Zero Stress"
@@ -196,7 +206,8 @@ export const upoRooms: StudyRoom[] = [
         indirizzo: 'Piazzale Fabrizio De André, 14100 Asti',
         university: 'UPO',
         occupancy_rate: 'Medio',
-        notes: 'Sede distaccata condivisa con UniTo. Ospita il Corso di Laurea in Servizio Sociale. Niente lotta per i posti — servizi pronti all\'uso. Contatto: tel. 0141 590423.'
+        notes: 'Sede distaccata condivisa con UniTo. Ospita il Corso di Laurea in Servizio Sociale. Niente lotta per i posti — servizi pronti all\'uso. Contatto: tel. 0141 590423.',
+        tags: ['Aula Studio', 'Campus', 'WiFi'],
     },
     {
         id: 'upo_biella_infermieristica',
@@ -213,7 +224,8 @@ export const upoRooms: StudyRoom[] = [
         indirizzo: 'Corso Giuseppe Pella 2b, 13900 Biella',
         university: 'UPO',
         occupancy_rate: 'Medio',
-        notes: 'Polo formativo per Infermieristica. Campus Città Studi (condiviso con PoliTo e UniTo). Laboratorio di Simulazione con postazione informatica per esercitazioni cliniche. Servizi dedicati, zero stress.'
+        notes: 'Polo formativo per Infermieristica. Campus Città Studi (condiviso con PoliTo e UniTo). Laboratorio di Simulazione con postazione informatica per esercitazioni cliniche. Servizi dedicati, zero stress.',
+        tags: ['Aula Studio', 'Campus', 'WiFi'],
     },
     {
         id: 'upo_verbania',
@@ -230,7 +242,8 @@ export const upoRooms: StudyRoom[] = [
         indirizzo: 'Piazza Martiri di Trarego, Verbania',
         university: 'UPO',
         occupancy_rate: 'Basso',
-        notes: 'ATTENZIONE: sede non verificata nelle fonti ufficiali recenti. Verificare l\'attivazione dei corsi prima di recarsi sul posto. Zero stress: nessuna lotta per i posti.'
+        notes: 'ATTENZIONE: sede non verificata nelle fonti ufficiali recenti. Verificare l\'attivazione dei corsi prima di recarsi sul posto. Zero stress: nessuna lotta per i posti.',
+        tags: ['Aula Studio', 'Campus'],
     }
 ];
 

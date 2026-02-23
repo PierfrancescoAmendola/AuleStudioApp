@@ -19,7 +19,8 @@ export const unicasRooms: StudyRoom[] = [
         indirizzo: 'Viale dell\'Università, Località Folcara, Cassino',
         university: 'Unicas',
         occupancy_rate: 'Alto',
-        notes: 'Biblioteca principale per l\'area umanistica. Venerdì chiude alle 13:45.'
+        notes: 'Biblioteca principale per l\'area umanistica. Venerdì chiude alle 13:45.',
+        tags: ['Biblioteca', 'Campus', 'WiFi', '⚡ Prese', '❄️ Climatizzato'],
     },
     {
         id: 'unicas_folcara_giuridica',
@@ -35,7 +36,8 @@ export const unicasRooms: StudyRoom[] = [
         longitude: 13.8490,
         indirizzo: 'Via S. Angelo, Località Folcara, Cassino',
         university: 'Unicas',
-        notes: 'Situata nel corpo centrale del Campus. Venerdì chiude alle 13:30.'
+        notes: 'Situata nel corpo centrale del Campus. Venerdì chiude alle 13:30.',
+        tags: ['Biblioteca', 'Campus', 'WiFi'],
     },
     {
         id: 'unicas_residenza_folcara',
@@ -51,7 +53,8 @@ export const unicasRooms: StudyRoom[] = [
         longitude: 13.8470,
         indirizzo: 'Campus Folcara, Cassino',
         university: 'Unicas',
-        notes: 'Accessibile principalmente ai residenti, ma spesso usata dagli studenti del campus per lo studio serale.'
+        notes: 'Accessibile principalmente ai residenti, ma spesso usata dagli studenti del campus per lo studio serale.',
+        tags: ['Aula Studio', 'Campus', 'WiFi', '☕ Ristoro'],
     },
 
     // ============================================================
@@ -72,7 +75,8 @@ export const unicasRooms: StudyRoom[] = [
         indirizzo: 'Via Gaetano Di Biasio 43, Cassino',
         university: 'Unicas',
         occupancy_rate: 'Medio',
-        notes: 'Situata nel polo cittadino, vicino alla stazione. Lunedì e Venerdì chiude alle 13:30.'
+        notes: 'Situata nel polo cittadino, vicino alla stazione. Lunedì e Venerdì chiude alle 13:30.',
+        tags: ['Biblioteca', 'WiFi', '🔇 Silenzio'],
     },
     {
         id: 'unicas_ing_aule',
@@ -88,7 +92,8 @@ export const unicasRooms: StudyRoom[] = [
         longitude: 13.8322,
         indirizzo: 'Via Gaetano Di Biasio 43, Cassino',
         university: 'Unicas',
-        notes: 'Aule didattiche usate per lo studio quando non ci sono lezioni. Verificare orari in portineria.'
+        notes: 'Aule didattiche usate per lo studio quando non ci sono lezioni. Verificare orari in portineria.',
+        tags: ['Aula Studio', 'WiFi'],
     },
 
     // ============================================================
@@ -108,7 +113,8 @@ export const unicasRooms: StudyRoom[] = [
         longitude: 13.3520,
         indirizzo: 'Piazza Domenico Marzi 1, Frosinone',
         university: 'Unicas',
-        notes: 'Piccola sala lettura nella sede distaccata. Orari ridotti: Lun/Mer anche pomeriggio (14:30-17:00).'
+        notes: 'Piccola sala lettura nella sede distaccata. Orari ridotti: Lun/Mer anche pomeriggio (14:30-17:00).',
+        tags: ['Sala Lettura', 'Campus', 'Centro', 'WiFi'],
     }
 ];
 

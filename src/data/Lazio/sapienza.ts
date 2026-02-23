@@ -19,7 +19,8 @@ export const sapienzaRooms: StudyRoom[] = [
         indirizzo: 'Via Cesare De Lollis 20, Roma (San Lorenzo)',
         university: 'La Sapienza',
         occupancy_rate: 'Sempre Alto',
-        notes: 'Il rifugio notturno per eccellenza. Serve documento Sapienza per entrare.'
+        notes: 'Il rifugio notturno per eccellenza. Serve documento Sapienza per entrare.',
+        tags: ['Aula Studio', 'WiFi', '🌙 H24'],
     },
     {
         id: 'sapienza_h24_goliardi',
@@ -35,7 +36,8 @@ export const sapienzaRooms: StudyRoom[] = [
         longitude: 12.5185,
         indirizzo: 'Via dei Goliardi 4, Roma',
         university: 'La Sapienza',
-        notes: 'Più piccola della De Lollis, spesso piena.'
+        notes: 'Più piccola della De Lollis, spesso piena.',
+        tags: ['Aula Studio', 'WiFi', '🌙 H24'],
     },
     {
         id: 'sapienza_h24_castro',
@@ -51,7 +53,8 @@ export const sapienzaRooms: StudyRoom[] = [
         longitude: 12.5120,
         indirizzo: 'Via del Castro Laurenziano 9, Roma',
         university: 'La Sapienza',
-        notes: 'Ingresso laterale Facoltà di Economia.'
+        notes: 'Ingresso laterale Facoltà di Economia.',
+        tags: ['Aula Studio', 'WiFi', '❄️ Climatizzato', '🌙 H24'],
     },
 
     // ============================================================
@@ -71,6 +74,7 @@ export const sapienzaRooms: StudyRoom[] = [
         longitude: 12.5140,
         indirizzo: 'Piazzale Aldo Moro 5, Roma',
         university: 'La Sapienza',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'sapienza_giurisprudenza',
@@ -86,6 +90,7 @@ export const sapienzaRooms: StudyRoom[] = [
         longitude: 12.5125,
         indirizzo: 'Piazzale Aldo Moro 5, Roma',
         university: 'La Sapienza',
+        tags: ['Biblioteca', 'WiFi', '🔇 Silenzio'],
     },
     {
         id: 'sapienza_scienzepolitiche',
@@ -101,6 +106,7 @@ export const sapienzaRooms: StudyRoom[] = [
         longitude: 12.5120,
         indirizzo: 'Piazzale Aldo Moro 5, Roma',
         university: 'La Sapienza',
+        tags: ['Aula Studio', 'WiFi'],
     },
     {
         id: 'sapienza_fisica_fermi',
@@ -116,7 +122,8 @@ export const sapienzaRooms: StudyRoom[] = [
         longitude: 12.5160,
         indirizzo: 'Piazzale Aldo Moro 5, Roma',
         university: 'La Sapienza',
-        notes: 'Luogo storico della fisica italiana.'
+        notes: 'Luogo storico della fisica italiana.',
+        tags: ['Biblioteca', 'WiFi', '🔇 Silenzio'],
     },
     {
         id: 'sapienza_chimica',
@@ -132,6 +139,7 @@ export const sapienzaRooms: StudyRoom[] = [
         longitude: 12.5150,
         indirizzo: 'Piazzale Aldo Moro 5, Roma',
         university: 'La Sapienza',
+        tags: ['Biblioteca', 'WiFi', '❄️ Climatizzato'],
     },
     {
         id: 'sapienza_statistica',
@@ -147,6 +155,7 @@ export const sapienzaRooms: StudyRoom[] = [
         longitude: 12.5122,
         indirizzo: 'Piazzale Aldo Moro 5, Roma',
         university: 'La Sapienza',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'sapienza_matematica',
@@ -162,6 +171,7 @@ export const sapienzaRooms: StudyRoom[] = [
         longitude: 12.5155,
         indirizzo: 'Piazzale Aldo Moro 5, Roma',
         university: 'La Sapienza',
+        tags: ['Biblioteca', 'WiFi', '🔇 Silenzio'],
     },
     {
         id: 'sapienza_farmacia',
@@ -177,6 +187,7 @@ export const sapienzaRooms: StudyRoom[] = [
         longitude: 12.5150,
         indirizzo: 'Piazzale Aldo Moro 5, Roma',
         university: 'La Sapienza',
+        tags: ['Aula Studio', 'WiFi'],
     },
 
     // ============================================================
@@ -196,6 +207,7 @@ export const sapienzaRooms: StudyRoom[] = [
         longitude: 12.5110,
         indirizzo: 'Viale del Policlinico 155, Roma',
         university: 'La Sapienza',
+        tags: ['Biblioteca', 'Medicina', 'WiFi'],
     },
     {
         id: 'sapienza_anatomia',
@@ -211,6 +223,7 @@ export const sapienzaRooms: StudyRoom[] = [
         longitude: 12.5135,
         indirizzo: 'Via Alfonso Borelli 50, Roma',
         university: 'La Sapienza',
+        tags: ['Biblioteca', 'WiFi'],
     },
 
     // ============================================================
@@ -230,7 +243,8 @@ export const sapienzaRooms: StudyRoom[] = [
         longitude: 12.5220,
         indirizzo: 'Viale dello Scalo S. Lorenzo 82, Roma',
         university: 'La Sapienza',
-        notes: 'Sede di Studi Orientali e Lettere. Molto colorata e luminosa.'
+        notes: 'Sede di Studi Orientali e Lettere. Molto colorata e luminosa.',
+        tags: ['Biblioteca', 'Campus', 'WiFi', '☕ Ristoro'],
     },
     {
         id: 'sapienza_psicologia',
@@ -246,6 +260,7 @@ export const sapienzaRooms: StudyRoom[] = [
         longitude: 12.5130,
         indirizzo: 'Via dei Marsi 78, Roma',
         university: 'La Sapienza',
+        tags: ['Biblioteca', 'WiFi', '🔇 Silenzio'],
     },
 
     // ============================================================
@@ -265,6 +280,7 @@ export const sapienzaRooms: StudyRoom[] = [
         longitude: 12.4930,
         indirizzo: 'Via Eudossiana 18, Roma',
         university: 'La Sapienza',
+        tags: ['Outdoor', 'WiFi', '☕ Ristoro'],
     },
     {
         id: 'sapienza_ing_acquario',
@@ -280,6 +296,7 @@ export const sapienzaRooms: StudyRoom[] = [
         longitude: 12.4930,
         indirizzo: 'Via Eudossiana 18, Roma',
         university: 'La Sapienza',
+        tags: ['Aula Studio', 'WiFi'],
     },
     {
         id: 'sapienza_ing_boezio',
@@ -295,6 +312,7 @@ export const sapienzaRooms: StudyRoom[] = [
         longitude: 12.4930,
         indirizzo: 'Via Eudossiana 18, Roma',
         university: 'La Sapienza',
+        tags: ['Biblioteca', 'WiFi'],
     },
 
     // ============================================================
@@ -314,6 +332,7 @@ export const sapienzaRooms: StudyRoom[] = [
         longitude: 12.4825,
         indirizzo: 'Via Antonio Gramsci 53, Roma',
         university: 'La Sapienza',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'sapienza_arch_borghese',
@@ -329,6 +348,7 @@ export const sapienzaRooms: StudyRoom[] = [
         longitude: 12.4760,
         indirizzo: 'Piazza Borghese 9, Roma',
         university: 'La Sapienza',
+        tags: ['Biblioteca', 'Centro', 'WiFi'],
     },
     {
         id: 'sapienza_arch_flaminia',
@@ -344,6 +364,7 @@ export const sapienzaRooms: StudyRoom[] = [
         longitude: 12.4740,
         indirizzo: 'Via Flaminia 70, Roma',
         university: 'La Sapienza',
+        tags: ['Aula Studio', 'WiFi'],
     },
 
     // ============================================================
@@ -363,7 +384,8 @@ export const sapienzaRooms: StudyRoom[] = [
         longitude: 12.5180,
         indirizzo: 'Via Carlo Fea 2, Roma (Nomentana)',
         university: 'La Sapienza',
-        notes: 'Una villa storica immersa nel verde. Ideale per studiare in tranquillità.'
+        notes: 'Una villa storica immersa nel verde. Ideale per studiare in tranquillità.',
+        tags: ['Biblioteca', 'WiFi', '🔇 Silenzio'],
     },
     {
         id: 'sapienza_economia',
@@ -379,6 +401,7 @@ export const sapienzaRooms: StudyRoom[] = [
         longitude: 12.5120,
         indirizzo: 'Via del Castro Laurenziano 9, Roma',
         university: 'La Sapienza',
+        tags: ['Biblioteca', 'WiFi', '❄️ Climatizzato'],
     },
     {
         id: 'sapienza_salaria',
@@ -394,6 +417,7 @@ export const sapienzaRooms: StudyRoom[] = [
         longitude: 12.5020,
         indirizzo: 'Via Salaria 113, Roma',
         university: 'La Sapienza',
+        tags: ['Biblioteca', 'WiFi'],
     },
     {
         id: 'sapienza_sc_formazione',
@@ -409,6 +433,7 @@ export const sapienzaRooms: StudyRoom[] = [
         longitude: 12.5030,
         indirizzo: 'Via Principe Amedeo 184, Roma',
         university: 'La Sapienza',
+        tags: ['Biblioteca', 'WiFi'],
     }
 ];
 

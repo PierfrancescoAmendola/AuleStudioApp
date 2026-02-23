@@ -29,6 +29,7 @@ import { GuideCarousel } from '../components/GuideCarousel';
 import { StudyRoomCard } from '../components/StudyRoomCard';
 import { StorageService } from '../services/storageService';
 import { getUniversityById } from '../data/universities';
+import { SmartWeatherCard } from '../components/SmartWeatherCard';
 
 interface StudyRoomsScreenProps {
     navigation: any;
@@ -258,6 +259,21 @@ export const StudyRoomsScreen: React.FC<StudyRoomsScreenProps> = ({ navigation }
         } else if (searchQuery.trim() !== '') {
             const lowercasedQuery = searchQuery.toLowerCase();
             filtered = filtered.filter(r => r.nome.toLowerCase().includes(lowercasedQuery));
+        } else if (selectedBuilding === '☀️ All\'Aperto') {
+            filtered = filtered.filter(r => {
+                const allText = (r.nome + ' ' + (r.tags || []).join(' ') + ' ' + r.servizi.join(' ')).toLowerCase();
+                return allText.includes('outdoor') || allText.includes('aperto') || allText.includes('chiostro') ||
+                    allText.includes('giardino') || allText.includes('parco') || allText.includes('pineta') ||
+                    allText.includes('gazebo') || allText.includes('terrazza') || allText.includes('cortile');
+            });
+        } else if (selectedBuilding === '🏠 Al Coperto') {
+            filtered = filtered.filter(r => {
+                const allText = (r.nome + ' ' + (r.tags || []).join(' ') + ' ' + r.servizi.join(' ')).toLowerCase();
+                const isOutdoor = allText.includes('outdoor') || allText.includes('aperto') || allText.includes('chiostro') ||
+                    allText.includes('giardino') || allText.includes('parco') || allText.includes('pineta') ||
+                    allText.includes('gazebo') || allText.includes('terrazza') || allText.includes('cortile');
+                return !isOutdoor;
+            });
         } else if (selectedBuilding !== 'Tutti') {
             // Generic filter logic: check if edificio includes key terms or equals
             if (university?.name === 'UniNa' && selectedBuilding === 'Centro Storico') {
@@ -1039,6 +1055,151 @@ export const StudyRoomsScreen: React.FC<StudyRoomsScreenProps> = ({ navigation }
                         room.indirizzo.includes(selectedBuilding)
                     );
                 }
+            } else if (university?.id === 'poliba') {
+                if (selectedBuilding === 'Biblioteche') {
+                    filtered = filtered.filter(r =>
+                        r.tags?.includes('Biblioteca') || r.nome.toLowerCase().includes('biblioteca')
+                    );
+                } else if (selectedBuilding === 'Aule Studio') {
+                    filtered = filtered.filter(r =>
+                        r.tags?.includes('Aula Studio') || r.nome.toLowerCase().includes('aule studio')
+                    );
+                } else if (selectedBuilding === 'Laboratori') {
+                    filtered = filtered.filter(r =>
+                        r.tags?.includes('Laboratorio') || r.nome.toLowerCase().includes('laborator')
+                    );
+                } else if (selectedBuilding === 'Campus') {
+                    filtered = filtered.filter(r =>
+                        r.indirizzo.includes('Orabona') || r.tags?.includes('Campus')
+                    );
+                } else if (selectedBuilding === 'Taranto') {
+                    filtered = filtered.filter(r =>
+                        r.indirizzo.includes('Taranto') ||
+                        (r.university || '').includes('Taranto') ||
+                        r.tags?.includes('Taranto')
+                    );
+                } else if (selectedBuilding === 'Architettura') {
+                    filtered = filtered.filter(r =>
+                        r.tags?.includes('Architettura') ||
+                        r.nome.includes('DICAR') ||
+                        r.nome.includes('Architettura') ||
+                        r.servizi.some(s => s.toLowerCase().includes('tavoli grandi'))
+                    );
+                } else {
+                    filtered = filtered.filter(room =>
+                        room.edificio.includes(selectedBuilding) ||
+                        room.indirizzo.includes(selectedBuilding)
+                    );
+                }
+            } else if (university?.id === 'unisalento') {
+                if (selectedBuilding === 'Centro Storico') {
+                    filtered = filtered.filter(r =>
+                        r.tags?.includes('Centro Storico') ||
+                        r.indirizzo.includes('Valesio') ||
+                        r.indirizzo.includes('San Nicola') ||
+                        r.indirizzo.includes('Università') ||
+                        r.id.includes('bernardini')
+                    );
+                } else if (selectedBuilding === 'Ecotekne') {
+                    filtered = filtered.filter(r =>
+                        r.tags?.includes('Ecotekne') ||
+                        r.indirizzo.includes('Monteroni') ||
+                        r.indirizzo.includes('Ecotekne') ||
+                        (r.university || '').includes('Ecotekne')
+                    );
+                } else if (selectedBuilding === 'Brindisi') {
+                    filtered = filtered.filter(r =>
+                        r.tags?.includes('Brindisi') ||
+                        r.indirizzo.includes('Brindisi') ||
+                        r.indirizzo.includes('Appia') ||
+                        (r.university || '').includes('Brindisi')
+                    );
+                } else if (selectedBuilding === 'Biblioteche') {
+                    filtered = filtered.filter(r =>
+                        r.tags?.includes('Biblioteca') ||
+                        r.tags?.includes('Biblioteca Civica') ||
+                        r.nome.toLowerCase().includes('biblioteca')
+                    );
+                } else if (selectedBuilding === 'Aria Condizionata') {
+                    filtered = filtered.filter(r =>
+                        r.servizi.some(s => s.toLowerCase().includes('aria condizionata'))
+                    );
+                } else {
+                    filtered = filtered.filter(room =>
+                        room.edificio.includes(selectedBuilding) ||
+                        room.indirizzo.includes(selectedBuilding)
+                    );
+                }
+            } else if (university?.id === 'unifg') {
+                if (selectedBuilding === 'Centro Storico') {
+                    filtered = filtered.filter(r =>
+                        r.tags?.includes('Centro Storico') ||
+                        r.indirizzo.includes('Arpi')
+                    );
+                } else if (selectedBuilding === 'Semi-Centro') {
+                    filtered = filtered.filter(r =>
+                        r.tags?.includes('Semi-Centro') ||
+                        r.indirizzo.includes('Papa Giovanni') ||
+                        r.indirizzo.includes('Caggese') ||
+                        r.id.includes('magna_capitana')
+                    );
+                } else if (selectedBuilding === 'Periferia') {
+                    filtered = filtered.filter(r =>
+                        r.tags?.includes('Periferia') ||
+                        r.indirizzo.includes('Napoli') ||
+                        r.indirizzo.includes('Pinto')
+                    );
+                } else if (selectedBuilding === 'Poli Distaccati') {
+                    filtered = filtered.filter(r =>
+                        r.tags?.includes('Polo Distaccato') ||
+                        (r.university || '').includes('-')
+                    );
+                } else if (selectedBuilding === 'Lavoro di Gruppo') {
+                    filtered = filtered.filter(r =>
+                        r.servizi.some(s => s.toLowerCase().includes('lavoro di gruppo') || s.toLowerCase().includes('group work'))
+                    );
+                } else if (selectedBuilding === 'Biblioteche') {
+                    filtered = filtered.filter(r =>
+                        r.tags?.includes('Biblioteca') ||
+                        r.tags?.includes('Biblioteca Civica') ||
+                        r.nome.toLowerCase().includes('biblioteca')
+                    );
+                } else {
+                    filtered = filtered.filter(room =>
+                        room.edificio.includes(selectedBuilding) ||
+                        room.indirizzo.includes(selectedBuilding)
+                    );
+                }
+            } else if (university?.id === 'afamPuglia') {
+                if (selectedBuilding === 'Accademie') {
+                    filtered = filtered.filter(r =>
+                        r.tags?.includes('Accademia') || r.id.startsWith('aba_')
+                    );
+                } else if (selectedBuilding === 'Conservatori') {
+                    filtered = filtered.filter(r =>
+                        r.tags?.includes('Conservatorio') || r.id.startsWith('cons_')
+                    );
+                } else if (selectedBuilding === 'Sporco Tollerato') {
+                    filtered = filtered.filter(r =>
+                        r.tags?.includes('🧱 Sporco Tollerato') ||
+                        r.servizi.some(s => s.toLowerCase().includes('sporco tollerato'))
+                    );
+                } else if (selectedBuilding === 'Tavoli Grandi') {
+                    filtered = filtered.filter(r =>
+                        r.tags?.includes('📐 Tavoli Grandi') ||
+                        r.servizi.some(s => s.toLowerCase().includes('tavoli grandi'))
+                    );
+                } else if (selectedBuilding === 'Sale Prova') {
+                    filtered = filtered.filter(r =>
+                        r.tags?.includes('🎹 Sale Prova') ||
+                        r.servizi.some(s => s.toLowerCase().includes('sale prova'))
+                    );
+                } else {
+                    filtered = filtered.filter(room =>
+                        room.edificio.includes(selectedBuilding) ||
+                        room.indirizzo.includes(selectedBuilding)
+                    );
+                }
             } else {
                 // For others, direct match or substring in Edificio OR Indirizzo (more robust)
                 filtered = filtered.filter(room =>
@@ -1131,6 +1292,19 @@ export const StudyRoomsScreen: React.FC<StudyRoomsScreenProps> = ({ navigation }
                     <Text style={styles.statLabel}>Posti Totali</Text>
                 </View>
             </View>
+
+            {university && (
+                <SmartWeatherCard
+                    city={university.city.split('/')[0].trim()}
+                    latitude={university.region.latitude}
+                    longitude={university.region.longitude}
+                    accentColor={university.color}
+                    onFilterSelect={(filter) => {
+                        setShowFavorites(false);
+                        setSelectedBuilding(filter === 'Outdoor' ? '☀️ All\'Aperto' : '🏠 Al Coperto');
+                    }}
+                />
+            )}
 
             <Animated.View style={[styles.section, { paddingHorizontal: 16, opacity: filtersAnim, transform: [{ translateY: filtersAnim.interpolate({ inputRange: [0, 1], outputRange: [20, 0] }) }] }]}>
                 <Text style={styles.sectionTitle}>Filtra per Edificio</Text>

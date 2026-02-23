@@ -20,7 +20,8 @@ export const triesteEliteRooms: StudyRoom[] = [
         indirizzo: 'Via Bonomea 265, 34136 Trieste',
         university: 'SISSA',
         occupancy_rate: 'Medio',
-        notes: '🌟⭐ Biblioteca centrale con vetrate sul Golfo. Accesso 24/7 con badge. Luogo iconico per PhD Physics/Math/Neuroscience. Vista mozzafiato ma ESPOSTA ALLA BORA (campus sul Carso alto)!'
+        notes: '🌟⭐ Biblioteca centrale con vetrate sul Golfo. Accesso 24/7 con badge. Luogo iconico per PhD Physics/Math/Neuroscience. Vista mozzafiato ma ESPOSTA ALLA BORA (campus sul Carso alto)!',
+        tags: ['Aula Studio', '❄️ Climatizzato', '🔇 Silenzio'],
     },
     {
         id: 'sissa_cantina_lounge',
@@ -36,7 +37,8 @@ export const triesteEliteRooms: StudyRoom[] = [
         longitude: 13.7728,
         indirizzo: 'Via Bonomea 265, Trieste',
         university: 'SISSA',
-        notes: '☕🌟 Cuore sociale SISSA. Tavoli esterni con vista panoramica su Trieste e Golfo. Ideale per pause o discussioni scientifiche informali. Atmosfera internazionale.'
+        notes: '☕🌟 Cuore sociale SISSA. Tavoli esterni con vista panoramica su Trieste e Golfo. Ideale per pause o discussioni scientifiche informali. Atmosfera internazionale.',
+        tags: ['Aula Studio'],
     },
     {
         id: 'sissa_sector_labs',
@@ -52,7 +54,8 @@ export const triesteEliteRooms: StudyRoom[] = [
         longitude: 13.7730,
         indirizzo: 'Via Bonomea 265, Trieste',
         university: 'SISSA',
-        notes: 'Biblioteche settoriali distribuite per area (Physics, Mathematics, Neuroscience). Silenzio assoluto, accesso riservato PhD/staff. Lavagne ovunque per equazioni.'
+        notes: 'Biblioteche settoriali distribuite per area (Physics, Mathematics, Neuroscience). Silenzio assoluto, accesso riservato PhD/staff. Lavagne ovunque per equazioni.',
+        tags: ['Aula Studio', '❄️ Climatizzato', '🔇 Silenzio'],
     },
     // ============================================================
     // ICTP - Strada Costiera (Miramare)
@@ -72,7 +75,8 @@ export const triesteEliteRooms: StudyRoom[] = [
         longitude: 13.7180,
         indirizzo: 'Strada Costiera 11, 34151 Trieste',
         university: 'ICTP',
-        notes: '🌍⭐ Biblioteca eccellente fisica teorica. Accesso con badge visitatore (richiedi a reception). Centro UNESCO per fisica teorica - comunità internazionale unica!'
+        notes: '🌍⭐ Biblioteca eccellente fisica teorica. Accesso con badge visitatore (richiedi a reception). Centro UNESCO per fisica teorica - comunità internazionale unica!',
+        tags: ['Aula Studio'],
     },
     {
         id: 'ictp_fermi_lounge',
@@ -88,7 +92,8 @@ export const triesteEliteRooms: StudyRoom[] = [
         longitude: 13.7185,
         indirizzo: 'Strada Costiera 11, Trieste',
         university: 'ICTP',
-        notes: '🏰 Spazio studio con vista Castello Miramare e parco/mare. Location da sogno per studiare fisica!'
+        notes: '🏰 Spazio studio con vista Castello Miramare e parco/mare. Location da sogno per studiare fisica!',
+        tags: ['Aula Studio'],
     },
     {
         id: 'ictp_adriatico',
@@ -104,7 +109,8 @@ export const triesteEliteRooms: StudyRoom[] = [
         longitude: 13.7175,
         indirizzo: 'Strada Costiera 11, Trieste',
         university: 'ICTP',
-        notes: 'Spazio per visiting scientists/PhD. Accesso regolato (ospiti ICTP). Vista mare spettacolare.'
+        notes: 'Spazio per visiting scientists/PhD. Accesso regolato (ospiti ICTP). Vista mare spettacolare.',
+        tags: ['Aula Studio', '🌙 H24'],
     },
     // ============================================================
     // MIB TRIESTE SCHOOL OF MANAGEMENT - Ferdinandeo
@@ -124,7 +130,8 @@ export const triesteEliteRooms: StudyRoom[] = [
         longitude: 13.7995,
         indirizzo: 'Largo Caduti di Nasiriya 1, Trieste',
         university: 'MIB',
-        notes: '💼🏛️ Sala storica in palazzo giallo asburgico. Ambiente executive elegante. Dress smart casual gradito. Location prestigiosa per MBA/Master.'
+        notes: '💼🏛️ Sala storica in palazzo giallo asburgico. Ambiente executive elegante. Dress smart casual gradito. Location prestigiosa per MBA/Master.',
+        tags: ['Aula Studio', 'WiFi'],
     },
     {
         id: 'mib_pavilion',
@@ -140,7 +147,8 @@ export const triesteEliteRooms: StudyRoom[] = [
         longitude: 13.7995,
         indirizzo: 'Largo Caduti di Nasiriya 1, Trieste',
         university: 'MIB',
-        notes: '💼 Estensione moderna vetrata per project work e team building. Sale attrezzate per case study.'
+        notes: '💼 Estensione moderna vetrata per project work e team building. Sale attrezzate per case study.',
+        tags: ['Aula Studio', '👥 Gruppi OK'],
     },
     {
         id: 'mib_library',
@@ -156,7 +164,8 @@ export const triesteEliteRooms: StudyRoom[] = [
         longitude: 13.7995,
         indirizzo: 'Largo Caduti di Nasiriya 1, Trieste',
         university: 'MIB',
-        notes: 'Biblioteca dedicata management/executive MBA. Collezione specializzata business internazionale.'
+        notes: 'Biblioteca dedicata management/executive MBA. Collezione specializzata business internazionale.',
+        tags: ['Aula Studio'],
     },
 ];
 

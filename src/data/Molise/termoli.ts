@@ -19,7 +19,8 @@ export const unimolTermoliRooms: StudyRoom[] = [
         indirizzo: 'Via Duca degli Abruzzi, 86039 Termoli (CB)',
         university: 'UniMol',
         occupancy_rate: 'Medio',
-        notes: 'Biblioteca di riferimento per i corsi del polo. Verifica gli orari estivi sul portale BiblioUniMol.'
+        notes: 'Biblioteca di riferimento per i corsi del polo. Verifica gli orari estivi sul portale BiblioUniMol.',
+        tags: ['Biblioteca', 'Campus', 'WiFi'],
     },
     {
         id: 'unimol_termoli_aule_studio',
@@ -36,7 +37,8 @@ export const unimolTermoliRooms: StudyRoom[] = [
         indirizzo: 'Via Duca degli Abruzzi, 86039 Termoli (CB)',
         university: 'UniMol',
         occupancy_rate: 'Variabile',
-        notes: 'Aule libere quando non ci sono lezioni. La disponibilità è massima al pomeriggio. Controlla le bacheche per l\'orario delle lezioni.'
+        notes: 'Aule libere quando non ci sono lezioni. La disponibilità è massima al pomeriggio. Controlla le bacheche per l\'orario delle lezioni.',
+        tags: ['Aula Studio', 'WiFi', '⚡ Prese', '❄️ Climatizzato'],
     },
     {
         id: 'unimol_termoli_mensa_relax',
@@ -53,7 +55,8 @@ export const unimolTermoliRooms: StudyRoom[] = [
         indirizzo: 'Via Duca degli Abruzzi, 86039 Termoli (CB)',
         university: 'UniMol',
         occupancy_rate: 'Basso',
-        notes: 'Spazio principalmente per la pausa pranzo. Ideale per studio informale o di gruppo al di fuori dell\'orario di punta (13:00-14:00).'
+        notes: 'Spazio principalmente per la pausa pranzo. Ideale per studio informale o di gruppo al di fuori dell\'orario di punta (13:00-14:00).',
+        tags: ['Mensa/Ristoro'],
     },
     // ============================================================
     // TERMOLI - BIBLIOTECA CIVICA (Servizio esterno)
@@ -73,7 +76,8 @@ export const unimolTermoliRooms: StudyRoom[] = [
         indirizzo: 'Corso Fratelli Brigida, 86039 Termoli (CB)',
         university: 'UniMol',
         occupancy_rate: 'Medio',
-        notes: 'Biblioteca civica in centro città. Accesso libero a tutti. Ambiente tranquillo e meno affollato della biblioteca universitaria.'
+        notes: 'Biblioteca civica in centro città. Accesso libero a tutti. Ambiente tranquillo e meno affollato della biblioteca universitaria.',
+        tags: ['Biblioteca', 'WiFi', '🔇 Silenzio'],
     },
     // ============================================================
     // TERMOLI - AREA STUDIO INFORMALE ALL'APERTO
@@ -92,7 +96,8 @@ export const unimolTermoliRooms: StudyRoom[] = [
         longitude: 14.995800,
         indirizzo: 'Borgo Vecchio, 86039 Termoli (CB)',
         university: 'UniMol',
-        notes: 'Area pubblica informale. Ideale per studio individuale in condizioni meteorologiche favorevoli. Ottima per pause rigeneranti. Non è uno spazio attrezzato con prese o tavoli dedicati.'
+        notes: 'Area pubblica informale. Ideale per studio individuale in condizioni meteorologiche favorevoli. Ottima per pause rigeneranti. Non è uno spazio attrezzato con prese o tavoli dedicati.',
+        tags: ['Aula Studio', '🔇 Silenzio'],
     },
 ];
 
