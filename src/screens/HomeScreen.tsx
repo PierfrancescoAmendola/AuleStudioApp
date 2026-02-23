@@ -317,37 +317,45 @@ export const HomeScreen: React.FC<Props> = ({ navigation }) => {
     );
 };
 
+/* ────────────────────────────────────────────────────────
+ *  HomeScreen — Premium Design System
+ *  Tokens: #f8fafc bg, #1e293b text, #64748b secondary,
+ *  #94a3b8 muted, layered #64748b shadows
+ * ──────────────────────────────────────────────────────── */
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#f1f5f9',
+        backgroundColor: '#f8fafc',
     },
+
+    /* ── Header ── */
     headerBackground: {
-        paddingBottom: 40,
-        borderBottomLeftRadius: 30,
-        borderBottomRightRadius: 30,
+        paddingBottom: 44,
+        borderBottomLeftRadius: 32,
+        borderBottomRightRadius: 32,
     },
     safeArea: {
-        paddingHorizontal: 20, // Creating a balanced container
+        paddingHorizontal: 20,
     },
     headerContent: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center', // Align icon and text vertically
+        alignItems: 'center',
         marginTop: 20,
         marginBottom: 16,
     },
     headerTextContainer: {
-        marginLeft: 16, // Explicit indent to push text "towards center"
+        marginLeft: 16,
     },
     greeting: {
-        fontSize: 16,
-        color: '#d1fae5',
-        fontWeight: '500',
+        fontSize: 15,
+        color: 'rgba(255,255,255,0.8)',
+        fontWeight: '600',
         marginBottom: 4,
+        letterSpacing: 0.2,
     },
     appName: {
-        fontSize: 32,
+        fontSize: 30,
         fontWeight: '800',
         color: '#ffffff',
         letterSpacing: -0.5,
@@ -358,12 +366,15 @@ const styles = StyleSheet.create({
     headerIcons: {
         flexDirection: 'row',
         alignItems: 'center',
-        gap: 8,
+        gap: 6,
     },
     settingsButton: {
-        padding: 8,
-        borderRadius: 12,
-        backgroundColor: 'rgba(255,255,255,0.15)',
+        width: 40,
+        height: 40,
+        borderRadius: 20,
+        backgroundColor: 'rgba(255,255,255,0.2)',
+        justifyContent: 'center',
+        alignItems: 'center',
         marginRight: 4,
     },
     favoriteButtonContainer: {
@@ -381,26 +392,30 @@ const styles = StyleSheet.create({
         shadowRadius: 2,
         elevation: 2,
     },
+
+    /* ── Subtitle ── */
     subtitle: {
-        fontSize: 16,
-        color: '#ecfdf5',
-        lineHeight: 24,
-        marginBottom: 30,
-        opacity: 0.95,
-        marginLeft: 16, // Align with greeting
-        marginRight: 16, // Prevent touching right edge
+        fontSize: 15,
+        color: 'rgba(255,255,255,0.85)',
+        lineHeight: 22,
+        marginBottom: 28,
+        marginLeft: 16,
+        marginRight: 16,
+        fontWeight: '500',
     },
+
+    /* ── Search Bar (floating, white, full-rounded) ── */
     searchContainer: {
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: '#ffffff',
-        height: 56,
-        borderRadius: 16,
-        paddingHorizontal: 16,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.1,
-        shadowRadius: 12,
+        height: 52,
+        borderRadius: 28,
+        paddingHorizontal: 18,
+        shadowColor: '#64748b',
+        shadowOffset: { width: 0, height: 6 },
+        shadowOpacity: 0.15,
+        shadowRadius: 16,
         elevation: 8,
     },
     searchIcon: {
@@ -409,87 +424,99 @@ const styles = StyleSheet.create({
     searchInput: {
         flex: 1,
         height: '100%',
-        fontSize: 16,
+        fontSize: 15,
         color: '#1e293b',
+        fontWeight: '500',
     },
+
+    /* ── List Container ── */
     listContainer: {
         flex: 1,
-        marginTop: -30,
-        backgroundColor: '#f1f5f9',
-        borderTopLeftRadius: 30,
-        borderTopRightRadius: 30,
+        marginTop: -28,
+        backgroundColor: '#f8fafc',
+        borderTopLeftRadius: 28,
+        borderTopRightRadius: 28,
     },
+
+    /* ── Region Filters ── */
     filterContainer: {
         paddingTop: 24,
         paddingBottom: 8,
     },
     sectionTitle: {
-        fontSize: 14,
-        fontWeight: '600',
-        color: '#64748b',
+        fontSize: 13,
+        fontWeight: '700',
+        color: '#94a3b8',
         marginBottom: 12,
-        marginLeft: 24, // Matches padding of scrollview content
+        marginLeft: 24,
         textTransform: 'uppercase',
-        letterSpacing: 0.5,
+        letterSpacing: 0.8,
     },
     filterScrollView: {
-        flexGrow: 0, // Prevent taking up all space
+        flexGrow: 0,
     },
     filterScrollViewContent: {
         paddingHorizontal: 20,
-        gap: 12,
+        gap: 8,
     },
     filterChip: {
-        paddingVertical: 8,
-        paddingHorizontal: 16,
-        borderRadius: 20,
+        paddingVertical: 9,
+        paddingHorizontal: 18,
+        borderRadius: 24,
         backgroundColor: '#ffffff',
-        borderWidth: 1,
+        borderWidth: 1.5,
         borderColor: '#e2e8f0',
-        elevation: 2,
-        shadowColor: '#000',
+        shadowColor: '#94a3b8',
         shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 0.05,
-        shadowRadius: 2,
+        shadowOpacity: 0.06,
+        shadowRadius: 4,
+        elevation: 1,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        minHeight: 36,
+        minHeight: 38,
     },
     selectedFilterChip: {
         backgroundColor: '#10b981',
         borderColor: '#10b981',
+        shadowColor: '#10b981',
+        shadowOpacity: 0.2,
     },
     filterChipText: {
         fontSize: 14,
         fontWeight: '600',
-        color: '#64748b',
+        color: '#475569',
     },
     selectedFilterChipText: {
         color: '#ffffff',
+        fontWeight: '700',
     },
+
+    /* ── Spacer ── */
     listHeaderDecorator: {
-        height: 10,
+        height: 12,
     },
+
+    /* ── University Cards ── */
     listContent: {
         paddingHorizontal: 20,
         paddingBottom: 40,
-        gap: 20,
+        gap: 16,
     },
     uniCard: {
-        borderRadius: 24,
+        borderRadius: 20,
         shadowColor: '#64748b',
-        shadowOffset: { width: 0, height: 8 },
-        shadowOpacity: 0.08,
+        shadowOffset: { width: 0, height: 6 },
+        shadowOpacity: 0.1,
         shadowRadius: 16,
-        elevation: 4,
-        marginBottom: 4,
+        elevation: 5,
+        marginBottom: 2,
     },
     cardGradient: {
-        padding: 24,
-        borderRadius: 24,
+        padding: 22,
+        borderRadius: 20,
         borderWidth: 1,
-        borderColor: '#ffffff',
+        borderColor: '#f1f5f9',
     },
     cardHeader: {
         flexDirection: 'row',
@@ -498,22 +525,23 @@ const styles = StyleSheet.create({
         marginBottom: 16,
     },
     iconContainer: {
-        width: 56,
-        height: 56,
-        borderRadius: 18,
+        width: 52,
+        height: 52,
+        borderRadius: 16,
         justifyContent: 'center',
         alignItems: 'center',
     },
     badgeContainer: {
         backgroundColor: '#f1f5f9',
         paddingHorizontal: 12,
-        paddingVertical: 6,
+        paddingVertical: 5,
         borderRadius: 20,
     },
     badgeText: {
         fontSize: 12,
         fontWeight: '700',
         textTransform: 'uppercase',
+        letterSpacing: 0.3,
     },
     badgeRow: {
         flexDirection: 'row',
@@ -530,23 +558,23 @@ const styles = StyleSheet.create({
         marginBottom: 4,
     },
     uniAcronym: {
-        fontSize: 28,
+        fontSize: 26,
         fontWeight: '800',
         color: '#1e293b',
         marginBottom: 4,
         letterSpacing: -0.5,
     },
     uniName: {
-        fontSize: 16,
+        fontSize: 15,
         color: '#64748b',
-        lineHeight: 22,
-        marginBottom: 20,
+        lineHeight: 21,
+        marginBottom: 18,
         fontWeight: '500',
     },
     divider: {
         height: 1,
-        backgroundColor: '#e2e8f0',
-        marginBottom: 16,
+        backgroundColor: '#f1f5f9',
+        marginBottom: 14,
     },
     cardFooter: {
         flexDirection: 'row',
@@ -564,13 +592,15 @@ const styles = StyleSheet.create({
         fontSize: 14,
     },
     arrowButton: {
-        width: 36,
-        height: 36,
-        borderRadius: 18,
-        backgroundColor: '#f8fafc',
+        width: 38,
+        height: 38,
+        borderRadius: 19,
+        backgroundColor: '#f1f5f9',
         justifyContent: 'center',
         alignItems: 'center',
     },
+
+    /* ── Empty State ── */
     emptyContainer: {
         alignItems: 'center',
         justifyContent: 'center',
@@ -580,21 +610,23 @@ const styles = StyleSheet.create({
     emptyText: {
         fontSize: 16,
         color: '#94a3b8',
-        fontWeight: '500',
+        fontWeight: '600',
     },
+
+    /* ── Tip Card ── */
     tipCard: {
         marginHorizontal: 20,
-        marginBottom: 20,
+        marginBottom: 16,
         borderRadius: 20,
         shadowColor: '#2563eb',
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.15,
-        shadowRadius: 8,
+        shadowRadius: 12,
         elevation: 6,
     },
     tipGradient: {
         borderRadius: 20,
-        padding: 16,
+        padding: 18,
     },
     tipContent: {
         flexDirection: 'row',
@@ -614,12 +646,12 @@ const styles = StyleSheet.create({
     },
     tipTitle: {
         color: '#ffffff',
-        fontSize: 16,
+        fontSize: 15,
         fontWeight: '700',
         marginBottom: 4,
     },
     tipDescription: {
-        color: '#bfdbfe',
+        color: 'rgba(255,255,255,0.8)',
         fontSize: 13,
         lineHeight: 18,
     },
