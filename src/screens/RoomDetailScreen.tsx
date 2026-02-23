@@ -62,6 +62,7 @@ import { getDirectionsUniTo } from '../data/Piemonte/unito';
 import { getDirectionsPoliTo } from '../data/Piemonte/polito';
 import { getDirectionsUPO } from '../data/Piemonte/upo';
 import { getDirectionsAFAMPiemonte } from '../data/Piemonte/afamPiemonte';
+import { getDirectionsUniBa } from '../data/Puglia/uniba';
 
 
 
@@ -252,6 +253,9 @@ export const RoomDetailScreen = ({ route, navigation }: any) => {
         }
         if (room.id.startsWith('isia_') || room.id.startsWith('aba_') || room.id.startsWith('cons_') || room.id.startsWith('poliarte_') || room.university === 'AFAM') {
             return getDirectionsAFAM_Marche(room);
+        }
+        if (room.id.startsWith('uniba_') || (room.university || '').includes('UniBa')) {
+            return getDirectionsUniBa(room);
         }
 
 
@@ -940,8 +944,62 @@ export const RoomDetailScreen = ({ route, navigation }: any) => {
                     );
                 })()}
 
-
-
+                {(() => {
+                    const uni = (room.university || '');
+                    const isUniBa = room.id.startsWith('uniba_') || uni.includes('UniBa');
+                    if (!isUniBa) return null;
+                    const isCentro = room.indirizzo.includes('Umberto') || room.indirizzo.includes('Battisti') || room.indirizzo.includes('Torretta');
+                    const isCampus = room.indirizzo.includes('Orabona') || room.indirizzo.includes('Amendola');
+                    const isPoliclinico = room.indirizzo.includes('Giulio Cesare');
+                    const isTaranto = room.indirizzo.includes('Taranto') || uni.includes('Taranto');
+                    const isValenzano = room.indirizzo.includes('Valenzano');
+                    return (
+                        <>
+                            {isCentro && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fef3c7', borderColor: '#fcd34d' }]}>
+                                    <Ionicons name="sunny-outline" size={24} color="#d97706" />
+                                    <Text style={[styles.infoBoxText, { color: '#d97706' }]}>Campus a cielo aperto: Piazza Umberto I è il crocevia degli studenti di giorno. Panchine, pendolari, vita universitaria. La sera può essere caotica.</Text>
+                                </View>
+                            )}
+                            {isCentro && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fff7ed', borderColor: '#fed7aa', marginTop: 12 }]}>
+                                    <Ionicons name="pizza-outline" size={24} color="#c2410c" />
+                                    <Text style={[styles.infoBoxText, { color: '#c2410c' }]}>Carburante Universitario: Via Nicolai/Via Crispi hanno i panifici storici. Panificio Fiore e Magda per la migliore focaccia barese e panzerotti.</Text>
+                                </View>
+                            )}
+                            {isTaranto && (
+                                <View style={[styles.infoBox, { backgroundColor: '#eff6ff', borderColor: '#bfdbfe' }]}>
+                                    <Ionicons name="boat-outline" size={24} color="#2563eb" />
+                                    <Text style={[styles.infoBoxText, { color: '#2563eb' }]}>Studio nell'Isola: chiostri dell'ex convento con il Mar Ionio da due lati. Esperienza unica. L'isola sta vivendo una forte riqualificazione studentesca.</Text>
+                                </View>
+                            )}
+                            {isTaranto && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fff1f2', borderColor: '#fecdd3', marginTop: 12 }]}>
+                                    <Ionicons name="warning-outline" size={24} color="#be123c" />
+                                    <Text style={[styles.infoBoxText, { color: '#be123c' }]}>Viabilità complessa: la Città Vecchia è un'isola. Parcheggia nella città nuova e prosegui a piedi o con bus Kyma.</Text>
+                                </View>
+                            )}
+                            {isCampus && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f0fdf4', borderColor: '#bbf7d0' }]}>
+                                    <Ionicons name="bus-outline" size={24} color="#15803d" />
+                                    <Text style={[styles.infoBoxText, { color: '#15803d' }]}>Navette Ufficiose: Bus AMTAB 21 e 22 sono le linee degli studenti per il Campus. Frequenti dal centro.</Text>
+                                </View>
+                            )}
+                            {isPoliclinico && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f0f9ff', borderColor: '#bae6fd' }]}>
+                                    <Ionicons name="train-outline" size={24} color="#0284c7" />
+                                    <Text style={[styles.infoBoxText, { color: '#0284c7' }]}>FSE Pendolari: Le Ferrovie Sud Est hanno una fermata comodissima per chi fa il pendolare dai paesi limitrofi. Metro L1 fermata "Policlinico" diretta.</Text>
+                                </View>
+                            )}
+                            {isValenzano && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fff7ed', borderColor: '#fed7aa' }]}>
+                                    <Ionicons name="car-outline" size={24} color="#c2410c" />
+                                    <Text style={[styles.infoBoxText, { color: '#c2410c' }]}>Polo Isolato: Valenzano è fuori Bari. Auto fortemente consigliata, oppure bus extraurbano Cotrap/FSE.</Text>
+                                </View>
+                            )}
+                        </>
+                    );
+                })()}
 
                 <View style={styles.directionsContainer}>
                     {directions.map((dir, index) => {

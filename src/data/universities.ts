@@ -55,6 +55,7 @@ import { unitoRooms } from './Piemonte/unito';
 import { politoRooms } from './Piemonte/polito';
 import { upoRooms } from './Piemonte/upo';
 import { afamPiemonteRooms } from './Piemonte/afamPiemonte';
+import { unibaRooms } from './Puglia/uniba';
 
 
 
@@ -1455,6 +1456,32 @@ export const universities: University[] = [
         ],
         color: '#8B0000', // Deep Art Red
         darkColor: '#4A0000',
+    },
+    {
+        id: 'uniba',
+        name: 'UniBa',
+        fullName: 'Università degli Studi di Bari Aldo Moro',
+        city: 'Bari / Taranto / Brindisi',
+        regionName: 'Puglia',
+        region: {
+            latitude: 41.10,
+            longitude: 16.87,
+            latitudeDelta: 1.5,
+            longitudeDelta: 1.5,
+        },
+        studyRooms: unibaRooms,
+        availableFilters: [
+            'Tutti',
+            'Centro Storico',
+            'Campus (Orabona)',
+            'Poggiofranco',
+            'Policlinico',
+            'Valenzano',
+            'Taranto',
+            'Brindisi'
+        ],
+        color: '#dc2626', // Red-600 (UniBa brand)
+        darkColor: '#991b1b', // Red-800
     },
 ];
 

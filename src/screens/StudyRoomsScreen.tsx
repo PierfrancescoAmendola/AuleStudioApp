@@ -64,6 +64,7 @@ export const StudyRoomsScreen: React.FC<StudyRoomsScreenProps> = ({ navigation }
     const udaPromptShown = useRef(false);
     const unitePromptShown = useRef(false);
     const uniprPromptShown = useRef(false);
+    const unibaPromptShown = useRef(false);
 
     // Animations
     const headerAnim = useRef(new Animated.Value(0)).current;
@@ -193,6 +194,27 @@ export const StudyRoomsScreen: React.FC<StudyRoomsScreenProps> = ({ navigation }
             );
         };
         maybePromptUniPr();
+    }, [university]);
+
+    // Prompt split-campus choice for UniBa the first time
+    useEffect(() => {
+        const maybePromptUniBa = async () => {
+            if (!university || university.id !== 'uniba' || unibaPromptShown.current) return;
+            const key = 'uniba_campus_prompt_shown';
+            const stored = await AsyncStorage.getItem(key);
+            if (stored === '1') { unibaPromptShown.current = true; return; }
+            unibaPromptShown.current = true;
+            Alert.alert(
+                'Dove sei oggi?',
+                'UniBa è divisa fra Centro (Ateneo), Campus (Orabona), Poggiofranco (Economia), Policlinico e sedi distaccate.',
+                [
+                    { text: 'Centro', onPress: () => { setSelectedBuilding('Centro Storico'); AsyncStorage.setItem(key, '1'); } },
+                    { text: 'Campus', onPress: () => { setSelectedBuilding('Campus (Orabona)'); AsyncStorage.setItem(key, '1'); } },
+                    { text: 'Altro', onPress: () => { AsyncStorage.setItem(key, '1'); }, style: 'cancel' },
+                ]
+            );
+        };
+        maybePromptUniBa();
     }, [university]);
 
     const requestLocation = async () => {
@@ -970,6 +992,46 @@ export const StudyRoomsScreen: React.FC<StudyRoomsScreenProps> = ({ navigation }
                 } else if (selectedBuilding === 'Prese Elettriche') {
                     filtered = filtered.filter(r =>
                         r.servizi.some(s => s.toLowerCase().includes('prese'))
+                    );
+                } else {
+                    filtered = filtered.filter(room =>
+                        room.edificio.includes(selectedBuilding) ||
+                        room.indirizzo.includes(selectedBuilding)
+                    );
+                }
+            } else if (university?.id === 'uniba') {
+                if (selectedBuilding === 'Centro Storico') {
+                    filtered = filtered.filter(r =>
+                        r.indirizzo.includes('Umberto') ||
+                        r.indirizzo.includes('Battisti') ||
+                        r.indirizzo.includes('Torretta')
+                    );
+                } else if (selectedBuilding === 'Campus (Orabona)') {
+                    filtered = filtered.filter(r =>
+                        r.indirizzo.includes('Orabona') ||
+                        r.indirizzo.includes('Amendola')
+                    );
+                } else if (selectedBuilding === 'Poggiofranco') {
+                    filtered = filtered.filter(r =>
+                        r.indirizzo.includes('Scolastica')
+                    );
+                } else if (selectedBuilding === 'Policlinico') {
+                    filtered = filtered.filter(r =>
+                        r.indirizzo.includes('Giulio Cesare')
+                    );
+                } else if (selectedBuilding === 'Valenzano') {
+                    filtered = filtered.filter(r =>
+                        r.indirizzo.includes('Valenzano')
+                    );
+                } else if (selectedBuilding === 'Taranto') {
+                    filtered = filtered.filter(r =>
+                        r.indirizzo.includes('Taranto') ||
+                        (r.university || '').includes('Taranto')
+                    );
+                } else if (selectedBuilding === 'Brindisi') {
+                    filtered = filtered.filter(r =>
+                        r.indirizzo.includes('Brindisi') ||
+                        (r.university || '').includes('Brindisi')
                     );
                 } else {
                     filtered = filtered.filter(room =>
