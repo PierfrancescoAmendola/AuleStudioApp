@@ -79,12 +79,12 @@ const DirectionPoint: React.FC<{ title: string; content: string; icon: keyof typ
             <Ionicons name={icon} size={24} color="#10b981" />
         </View>
         <View style={styles.directionTextContainer}>
-            <View>
+            <Text style={styles.directionTitle}>
                 {parseMarkdownBold(title, styles.directionTitle)}
-            </View>
-            <View>
+            </Text>
+            <Text style={styles.directionContent}>
                 {parseMarkdownBold(content, styles.directionContent)}
-            </View>
+            </Text>
         </View>
     </View>
 );
@@ -1687,8 +1687,8 @@ export const RoomDetailScreen = ({ route, navigation }: any) => {
                                     <Ionicons name={getIcon()} size={24} color={primaryColor} />
                                 </View>
                                 <View style={styles.directionTextContainer}>
-                                    <Text style={styles.directionTitle}>{dir.luogo}</Text>
-                                    <Text style={styles.directionContent}>{`${dir.descrizione}\n${dir.note || ''}`}</Text>
+                                    <Text style={styles.directionTitle}>{parseMarkdownBold(dir.luogo, styles.directionTitle)}</Text>
+                                    <Text style={styles.directionContent}>{parseMarkdownBold(`${dir.descrizione}\n${dir.note || ''}`, styles.directionContent)}</Text>
                                 </View>
                             </View>
                         );
