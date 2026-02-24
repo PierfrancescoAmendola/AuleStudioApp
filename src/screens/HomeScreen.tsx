@@ -155,9 +155,9 @@ export const HomeScreen: React.FC<Props> = ({ navigation }) => {
                                 style={styles.favoriteButtonInline}
                             >
                                 <Ionicons
-                                    name={isFavorite ? "star" : "star-outline"}
+                                    name={isFavorite ? "heart" : "heart-outline"}
                                     size={24}
-                                    color={isFavorite ? "#f59e0b" : "#9ca3af"}
+                                    color={isFavorite ? "#f50f0bff" : "#9ca3af"}
                                 />
                             </TouchableOpacity>
                         </View>
@@ -249,15 +249,15 @@ export const HomeScreen: React.FC<Props> = ({ navigation }) => {
                                 style={[
                                     styles.filterChip,
                                     selectedRegion === region && styles.selectedFilterChip,
-                                    region === 'Preferiti' && { backgroundColor: selectedRegion === 'Preferiti' ? '#f59e0b' : '#fffbeb', borderColor: selectedRegion === 'Preferiti' ? '#f59e0b' : '#fbbf24' }
+                                    region === 'Preferiti' && { backgroundColor: selectedRegion === 'Preferiti' ? '#f50f0bff' : '#fffbeb', borderColor: selectedRegion === 'Preferiti' ? '#f50f0bff' : '#fbbf24' }
                                 ]}
                                 onPress={() => setSelectedRegion(region)}
                             >
                                 {region === 'Preferiti' && (
                                     <Ionicons
-                                        name="star"
+                                        name="heart"
                                         size={14}
-                                        color={selectedRegion === 'Preferiti' ? '#ffffff' : '#f59e0b'}
+                                        color={selectedRegion === 'Preferiti' ? '#ffffff' : '#f50f0bff'}
                                         style={{ marginRight: 4 }}
                                     />
                                 )}

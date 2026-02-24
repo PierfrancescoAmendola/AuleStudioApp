@@ -1316,7 +1316,7 @@ export const StudyRoomsScreen: React.FC<StudyRoomsScreenProps> = ({ navigation }
                         ]}
                         onPress={() => { setShowFavorites(true); setSelectedBuilding('Tutti'); setSearchQuery(''); }}
                     >
-                        <Ionicons name="star" size={14} color={showFavorites ? "#ffffff" : "#f59e0b"} style={{ marginRight: 4 }} />
+                        <Ionicons name="heart" size={14} color={showFavorites ? "#ffffff" : "#f50f0bff"} style={{ marginRight: 4 }} />
                         <Text style={[styles.buildingButtonText, showFavorites && styles.selectedBuildingButtonText]}>
                             Preferiti
                         </Text>
