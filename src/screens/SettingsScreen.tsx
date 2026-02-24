@@ -486,67 +486,84 @@ Per domande sulla Privacy, contattaci a: support@unistudyitalia.app`;
     );
 };
 
+/* ────────────────────────────────────────────────────────
+ *  SettingsScreen — Premium Design System
+ *  Consistent tokens: #f8fafc, #1e293b, #64748b, #94a3b8
+ * ──────────────────────────────────────────────────────── */
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#f8fafc',
     },
+
+    /* ── Header ── */
     headerGradient: {
-        paddingBottom: 16,
+        paddingBottom: 18,
     },
     header: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        paddingHorizontal: 16,
+        paddingHorizontal: 20,
         paddingVertical: 12,
     },
     backButton: {
-        padding: 8,
+        width: 36,
+        height: 36,
+        borderRadius: 18,
+        backgroundColor: 'rgba(255,255,255,0.2)',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     headerTitle: {
         fontSize: 20,
-        fontWeight: '700',
+        fontWeight: '800',
         color: '#ffffff',
         letterSpacing: 0.3,
     },
     headerSpacer: {
-        width: 40,
+        width: 36,
     },
+
+    /* ── Content ── */
     content: {
         flex: 1,
         paddingHorizontal: 16,
     },
+
+    /* ── Sections ── */
     section: {
-        marginTop: 24,
+        marginTop: 28,
     },
     sectionTitle: {
-        fontSize: 13,
-        fontWeight: '600',
-        color: '#6b7280',
+        fontSize: 12,
+        fontWeight: '700',
+        color: '#94a3b8',
         textTransform: 'uppercase',
-        letterSpacing: 0.5,
-        marginBottom: 8,
-        marginLeft: 4,
+        letterSpacing: 0.8,
+        marginBottom: 10,
+        marginLeft: 6,
     },
     sectionCard: {
         backgroundColor: '#ffffff',
         borderRadius: 16,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
+        shadowColor: '#64748b',
+        shadowOffset: { width: 0, height: 3 },
         shadowOpacity: 0.08,
-        shadowRadius: 8,
+        shadowRadius: 10,
         elevation: 3,
         overflow: 'hidden',
     },
+
+    /* ── Setting Items ── */
     settingItem: {
         flexDirection: 'row',
         alignItems: 'center',
         padding: 16,
     },
     settingIconContainer: {
-        width: 44,
-        height: 44,
+        width: 42,
+        height: 42,
         borderRadius: 12,
         justifyContent: 'center',
         alignItems: 'center',
@@ -558,33 +575,36 @@ const styles = StyleSheet.create({
     settingTitle: {
         fontSize: 16,
         fontWeight: '600',
-        color: '#1f2937',
+        color: '#1e293b',
     },
     settingSubtitle: {
         fontSize: 13,
-        color: '#6b7280',
+        color: '#94a3b8',
         marginTop: 2,
     },
     divider: {
         height: 1,
-        backgroundColor: '#f3f4f6',
-        marginLeft: 74,
+        backgroundColor: '#f1f5f9',
+        marginLeft: 72,
     },
+
+    /* ── Footer ── */
     footer: {
         alignItems: 'center',
-        paddingVertical: 32,
+        paddingVertical: 36,
     },
     footerText: {
         fontSize: 14,
-        color: '#9ca3af',
-        fontWeight: '500',
+        color: '#94a3b8',
+        fontWeight: '600',
     },
     footerSubtext: {
         fontSize: 12,
-        color: '#d1d5db',
+        color: '#cbd5e1',
         marginTop: 4,
     },
-    // Modal Styles
+
+    /* ── Legal Modal ── */
     modalContainer: {
         flex: 1,
         backgroundColor: '#ffffff',
@@ -596,15 +616,20 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         paddingVertical: 16,
         borderBottomWidth: 1,
-        borderBottomColor: '#f3f4f6',
+        borderBottomColor: '#f1f5f9',
     },
     modalTitle: {
         fontSize: 20,
-        fontWeight: '700',
-        color: '#1f2937',
+        fontWeight: '800',
+        color: '#1e293b',
     },
     modalCloseButton: {
-        padding: 4,
+        width: 36,
+        height: 36,
+        borderRadius: 18,
+        backgroundColor: '#f1f5f9',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     modalContent: {
         flex: 1,
@@ -614,9 +639,10 @@ const styles = StyleSheet.create({
     legalText: {
         fontSize: 15,
         lineHeight: 24,
-        color: '#374151',
+        color: '#475569',
     },
-    // Feedback Modal Styles
+
+    /* ── Feedback Modal ── */
     feedbackContent: {
         flex: 1,
         paddingHorizontal: 20,
@@ -624,8 +650,9 @@ const styles = StyleSheet.create({
     },
     feedbackSubtitle: {
         fontSize: 15,
-        color: '#6b7280',
+        color: '#64748b',
         marginBottom: 20,
+        fontWeight: '500',
     },
     categoryGrid: {
         flexDirection: 'row',
@@ -639,17 +666,17 @@ const styles = StyleSheet.create({
         borderRadius: 16,
         padding: 20,
         alignItems: 'center',
-        shadowColor: '#000',
+        shadowColor: '#64748b',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.08,
-        shadowRadius: 8,
+        shadowRadius: 10,
         elevation: 3,
         borderWidth: 1,
-        borderColor: '#f3f4f6',
+        borderColor: '#f1f5f9',
     },
     categoryIcon: {
-        width: 56,
-        height: 56,
+        width: 52,
+        height: 52,
         borderRadius: 16,
         justifyContent: 'center',
         alignItems: 'center',
@@ -658,7 +685,7 @@ const styles = StyleSheet.create({
     categoryLabel: {
         fontSize: 14,
         fontWeight: '600',
-        color: '#1f2937',
+        color: '#1e293b',
         textAlign: 'center',
     },
     messageContainer: {
@@ -670,21 +697,21 @@ const styles = StyleSheet.create({
         backgroundColor: '#f8fafc',
         borderRadius: 16,
         padding: 16,
-        fontSize: 16,
-        color: '#1f2937',
-        borderWidth: 1,
-        borderColor: '#e5e7eb',
+        fontSize: 15,
+        color: '#1e293b',
+        borderWidth: 1.5,
+        borderColor: '#e2e8f0',
         marginBottom: 16,
         minHeight: 120,
         maxHeight: 180,
     },
     sendButton: {
         marginBottom: 20,
-        borderRadius: 16,
+        borderRadius: 14,
         overflow: 'hidden',
     },
     sendButtonDisabled: {
-        opacity: 0.7,
+        opacity: 0.6,
     },
     sendButtonGradient: {
         flexDirection: 'row',
@@ -697,5 +724,6 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: '700',
         color: '#ffffff',
+        letterSpacing: 0.3,
     },
 });

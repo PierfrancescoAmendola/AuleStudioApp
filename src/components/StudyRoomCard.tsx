@@ -3,6 +3,16 @@ import { View, Text, StyleSheet, TouchableOpacity, Linking, Platform } from 'rea
 import { Ionicons } from '@expo/vector-icons';
 import { StudyRoom } from '../types';
 
+/* ────────────────────────────────────────────────────────
+ *  StudyRoomCard — Premium, Airbnb-style room card
+ *  Design Philosophy:
+ *  · Generous padding & white space for breathability
+ *  · Soft shadows for a "floating" card feel
+ *  · Clear visual hierarchy: Name → Location → Details → Tags
+ *  · Dynamic primary color adapts to university theme
+ *  · Tag pills with subtle pastel backgrounds
+ * ──────────────────────────────────────────────────────── */
+
 interface StudyRoomCardProps {
     studyRoom: StudyRoom;
     onPress: (room: StudyRoom) => void;
@@ -24,123 +34,159 @@ export const StudyRoomCard = memo<StudyRoomCardProps>(
                 ios: `${scheme}${label}@${latLng}`,
                 android: `${scheme}${latLng}(${label})`
             });
-
-            if (url) {
-                Linking.openURL(url);
-            }
+            if (url) Linking.openURL(url);
         };
 
+        // Dynamic status colors
+        const statusBg = isOpen ? `${primaryColor}15` : '#fef2f215';
+        const statusColor = isOpen ? primaryColor : '#ef4444';
+
         return (
-            <TouchableOpacity style={styles.roomCard} onPress={() => onPress(studyRoom)} activeOpacity={0.9}>
-                <View style={styles.roomHeader}>
-                    <View style={styles.roomInfo}>
-                        <Text style={styles.roomName}>{studyRoom.nome}</Text>
-                        {studyRoom.tags && studyRoom.tags.length > 0 && (
-                            <View style={styles.tagsRow}>
-                                {studyRoom.tags.map((tag, idx) => (
-                                    <View key={idx} style={styles.tagBadge}>
-                                        <Text style={styles.tagText}>{tag}</Text>
-                                    </View>
-                                ))}
-                            </View>
-                        )}
+            <TouchableOpacity
+                style={styles.card}
+                onPress={() => onPress(studyRoom)}
+                activeOpacity={0.92}
+            >
+                {/* ─── Top Row: Name + Status/Favorite ─── */}
+                <View style={styles.topRow}>
+                    <View style={styles.nameBlock}>
+                        <Text style={styles.name} numberOfLines={2}>{studyRoom.nome}</Text>
                         <View style={styles.locationRow}>
-                            <Ionicons name="location" size={14} color="#6b7280" />
+                            <Ionicons name="location-outline" size={13} color="#94a3b8" />
                             <Text style={styles.locationText} numberOfLines={1}>
-                                {studyRoom.edificio} - Piano {studyRoom.piano}{distance !== undefined ? ` • ${distance} km` : ''}
+                                {studyRoom.edificio} · Piano {studyRoom.piano}
                             </Text>
                         </View>
-                        {distance !== undefined && (
-                            <View style={styles.distanceBadge}>
-                                <Ionicons name="navigate-outline" size={12} color={primaryColor} />
-                                <Text style={[styles.distanceBadgeText, { color: primaryColor }]}>{distance} km da te</Text>
-                            </View>
+                        {studyRoom.indirizzo && (
+                            <Text style={styles.addressText} numberOfLines={1}>{studyRoom.indirizzo}</Text>
                         )}
                     </View>
-                    <View style={styles.headerActions}>
-                        <View style={styles.statusContainer}>
-                            <View
-                                style={[
-                                    styles.statusDot,
-                                    { backgroundColor: isOpen ? primaryColor : '#ef4444' },
-                                ]}
-                            />
-                            <Text
-                                style={[
-                                    styles.statusText,
-                                    { color: isOpen ? primaryColor : '#ef4444' },
-                                ]}
-                            >
+                    <View style={styles.topActions}>
+                        {/* Status Badge */}
+                        <View style={[styles.statusBadge, { backgroundColor: statusBg }]}>
+                            <View style={[styles.statusDot, { backgroundColor: statusColor }]} />
+                            <Text style={[styles.statusLabel, { color: statusColor }]}>
                                 {isOpen ? 'Aperto' : 'Chiuso'}
                             </Text>
                         </View>
-                        {studyRoom.orarioChiusura >= '23:00' && (
-                            <View style={[styles.badgeContainer, { backgroundColor: '#e0e7ff' }]}>
-                                <Text style={[styles.badgeText, { color: '#4338ca' }]}>Fino alle 23</Text>
-                            </View>
-                        )}
-                        {studyRoom.extendedHours && (
-                            <View style={[styles.badgeContainer, { backgroundColor: '#eff6ff' }]}>
-                                <Text style={[styles.badgeText, { color: '#1d4ed8' }]}>Orario Esteso</Text>
-                            </View>
-                        )}
-                        {studyRoom.servizi.includes('Aperto Domenica') && (
-                            <View style={[styles.badgeContainer, { backgroundColor: '#fdf4ff' }]}>
-                                <Text style={[styles.badgeText, { color: '#a21caf' }]}>Dom</Text>
-                            </View>
-                        )}
-                        {studyRoom.servizi.some(s => s.toLowerCase().includes('affluences')) && (
-                            <View style={[styles.badgeContainer, { backgroundColor: '#fff7ed' }]}>
-                                <Text style={[styles.badgeText, { color: '#c2410c' }]}>Prenotazione</Text>
-                            </View>
-                        )}
-                        {studyRoom.servizi.some(s => s.toLowerCase().includes('h24') || s.includes('24 ore')) && (
-                            <View style={[styles.badgeContainer, { backgroundColor: '#dcfce7' }]}>
-                                <Text style={[styles.badgeText, { color: '#15803d' }]}>H24</Text>
-                            </View>
-                        )}
+                        {/* Favorite Button */}
                         {onToggleFavorite && (
-                            <TouchableOpacity onPress={() => onToggleFavorite(studyRoom.id)} style={styles.favButton}>
-                                <Ionicons name={isFavorite ? "star" : "star-outline"} size={22} color={isFavorite ? "#eab308" : "#9ca3af"} />
+                            <TouchableOpacity
+                                onPress={() => onToggleFavorite(studyRoom.id)}
+                                style={styles.favButton}
+                                hitSlop={{ top: 8, right: 8, bottom: 8, left: 8 }}
+                            >
+                                <Ionicons
+                                    name={isFavorite ? "heart" : "heart-outline"}
+                                    size={22}
+                                    color={isFavorite ? "#ef4444" : "#cbd5e1"}
+                                />
                             </TouchableOpacity>
                         )}
                     </View>
                 </View>
 
-                <View style={styles.detailsRow}>
-                    <View style={styles.capacityContainer}>
-                        <Ionicons name="people" size={16} color="#6b7280" />
-                        <Text style={styles.capacityText}>
-                            Capienza: {studyRoom.postiTotali} posti
-                        </Text>
-                    </View>
+                {/* ─── Divider ─── */}
+                <View style={styles.divider} />
 
-                    <View style={styles.scheduleContainer}>
-                        <Ionicons name="time" size={16} color="#6b7280" />
-                        <Text style={styles.scheduleText}>
-                            {studyRoom.orarioApertura} - {studyRoom.orarioChiusura}
-                        </Text>
+                {/* ─── Info Row: Capacity, Schedule, Distance ─── */}
+                <View style={styles.infoRow}>
+                    <View style={styles.infoItem}>
+                        <Ionicons name="people-outline" size={15} color="#64748b" />
+                        <Text style={styles.infoText}>{studyRoom.postiTotali} posti</Text>
                     </View>
+                    <View style={styles.infoSeparator} />
+                    <View style={styles.infoItem}>
+                        <Ionicons name="time-outline" size={15} color="#64748b" />
+                        <Text style={styles.infoText}>{studyRoom.orarioApertura} – {studyRoom.orarioChiusura}</Text>
+                    </View>
+                    {distance !== undefined && (
+                        <>
+                            <View style={styles.infoSeparator} />
+                            <View style={styles.infoItem}>
+                                <Ionicons name="navigate-outline" size={14} color={primaryColor} />
+                                <Text style={[styles.infoText, { color: primaryColor, fontWeight: '600' }]}>{distance} km</Text>
+                            </View>
+                        </>
+                    )}
                 </View>
 
-                <View style={styles.servicesContainer}>
-                    <Text style={styles.servicesTitle}>Servizi:</Text>
-                    <View style={styles.servicesList}>
-                        {studyRoom.servizi.map((servizio, index) => (
-                            <View key={index} style={styles.serviceTag}>
-                                <Text style={styles.serviceText} numberOfLines={1}>
-                                    {servizio}
-                                </Text>
+                {/* ─── Quick Badges (H24, Late night, Weekend, Booking) ─── */}
+                {(studyRoom.orarioChiusura >= '23:00' ||
+                    studyRoom.extendedHours ||
+                    studyRoom.servizi.includes('Aperto Domenica') ||
+                    studyRoom.servizi.some(s => s.toLowerCase().includes('h24') || s.includes('24 ore')) ||
+                    studyRoom.servizi.some(s => s.toLowerCase().includes('affluences')) ||
+                    studyRoom.occupancy_rate) && (
+                        <View style={styles.badgesRow}>
+                            {studyRoom.servizi.some(s => s.toLowerCase().includes('h24') || s.includes('24 ore')) && (
+                                <View style={[styles.badge, { backgroundColor: '#dcfce7' }]}>
+                                    <Text style={[styles.badgeLabel, { color: '#15803d' }]}>🌙 H24</Text>
+                                </View>
+                            )}
+                            {studyRoom.orarioChiusura >= '23:00' && !studyRoom.servizi.some(s => s.toLowerCase().includes('h24')) && (
+                                <View style={[styles.badge, { backgroundColor: '#e0e7ff' }]}>
+                                    <Text style={[styles.badgeLabel, { color: '#4338ca' }]}>Fino alle {studyRoom.orarioChiusura}</Text>
+                                </View>
+                            )}
+                            {studyRoom.extendedHours && (
+                                <View style={[styles.badge, { backgroundColor: '#eff6ff' }]}>
+                                    <Text style={[styles.badgeLabel, { color: '#1d4ed8' }]}>⏰ Esteso</Text>
+                                </View>
+                            )}
+                            {studyRoom.servizi.includes('Aperto Domenica') && (
+                                <View style={[styles.badge, { backgroundColor: '#fdf4ff' }]}>
+                                    <Text style={[styles.badgeLabel, { color: '#a21caf' }]}>📅 Dom</Text>
+                                </View>
+                            )}
+                            {studyRoom.servizi.some(s => s.toLowerCase().includes('affluences')) && (
+                                <View style={[styles.badge, { backgroundColor: '#fff7ed' }]}>
+                                    <Text style={[styles.badgeLabel, { color: '#c2410c' }]}>📋 Prenota</Text>
+                                </View>
+                            )}
+                            {studyRoom.occupancy_rate && (
+                                <View style={[styles.badge, {
+                                    backgroundColor: studyRoom.occupancy_rate === 'Molto Alto' ? '#fef2f2' :
+                                        studyRoom.occupancy_rate === 'Alto' ? '#fff7ed' : '#f0fdf4'
+                                }]}>
+                                    <Text style={[styles.badgeLabel, {
+                                        color: studyRoom.occupancy_rate === 'Molto Alto' ? '#b91c1c' :
+                                            studyRoom.occupancy_rate === 'Alto' ? '#c2410c' : '#15803d'
+                                    }]}>📊 {studyRoom.occupancy_rate}</Text>
+                                </View>
+                            )}
+                        </View>
+                    )}
+
+                {/* ─── Tags as Soft Pills ─── */}
+                {studyRoom.tags && studyRoom.tags.length > 0 && (
+                    <View style={styles.tagsContainer}>
+                        {studyRoom.tags.map((tag, idx) => (
+                            <View key={idx} style={styles.tagPill}>
+                                <Text style={styles.tagPillText}>{tag}</Text>
                             </View>
                         ))}
                     </View>
+                )}
+
+                {/* ─── Services as Mini Tags ─── */}
+                <View style={styles.servicesContainer}>
+                    {studyRoom.servizi.map((servizio, idx) => (
+                        <View key={idx} style={styles.servicePill}>
+                            <Text style={styles.servicePillText} numberOfLines={1}>{servizio}</Text>
+                        </View>
+                    ))}
                 </View>
 
-                <TouchableOpacity style={[styles.mapsButton, { backgroundColor: primaryColor }]} onPress={handleOpenMaps}>
-                    <Ionicons name="map" size={16} color="#ffffff" />
-                    <Text style={styles.mapsButtonText}>Come Arrivare</Text>
+                {/* ─── Action Button ─── */}
+                <TouchableOpacity
+                    style={[styles.actionButton, { backgroundColor: primaryColor }]}
+                    onPress={handleOpenMaps}
+                    activeOpacity={0.85}
+                >
+                    <Ionicons name="navigate-outline" size={16} color="#ffffff" />
+                    <Text style={styles.actionButtonText}>Come Arrivare</Text>
                 </TouchableOpacity>
-
             </TouchableOpacity>
         );
     },
@@ -156,173 +202,176 @@ export const StudyRoomCard = memo<StudyRoomCardProps>(
 
 StudyRoomCard.displayName = 'StudyRoomCard';
 
+/* ────────────────────────────────────────────────────────
+ *  Styles — Premium Design System
+ *  · Consistent 16px border radius
+ *  · Soft, layered shadows
+ *  · Generous 18-20px padding
+ *  · Typography: 1e293b (dark), 64748b (muted), 94a3b8 (subtle)
+ * ──────────────────────────────────────────────────────── */
 const styles = StyleSheet.create({
-    distanceBadge: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: 4,
-        marginTop: 4,
-        backgroundColor: '#f0fdf4',
-        paddingHorizontal: 8,
-        paddingVertical: 2,
-        borderRadius: 8,
-        alignSelf: 'flex-start',
-    },
-    distanceBadgeText: {
-        fontSize: 12,
-        fontWeight: '600',
-    },
-    roomCard: {
+    card: {
         backgroundColor: '#ffffff',
         borderRadius: 16,
-        padding: 16,
-        marginBottom: 16,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 4,
+        padding: 18,
+        marginBottom: 14,
+        marginHorizontal: 16,
+        // Layered shadow for depth
+        shadowColor: '#64748b',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.08,
+        shadowRadius: 12,
         elevation: 3,
     },
-    roomHeader: {
+    topRow: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginBottom: 12,
         alignItems: 'flex-start',
     },
-    roomInfo: {
+    nameBlock: {
         flex: 1,
-        marginRight: 12,
+        marginRight: 14,
     },
-    headerActions: {
-        alignItems: 'flex-end',
-        gap: 6,
-        paddingLeft: 4, // Prevent overlap with text on small screens
-    },
-    roomName: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        color: '#1f2937',
-        marginBottom: 4,
+    name: {
+        fontSize: 17,
+        fontWeight: '700',
+        color: '#1e293b',
+        lineHeight: 22,
+        letterSpacing: -0.2,
     },
     locationRow: {
         flexDirection: 'row',
         alignItems: 'center',
         gap: 4,
+        marginTop: 4,
     },
     locationText: {
         fontSize: 13,
-        color: '#6b7280',
+        color: '#64748b',
         flex: 1,
     },
-    statusContainer: {
+    addressText: {
+        fontSize: 12,
+        color: '#94a3b8',
+        marginTop: 2,
+        marginLeft: 17,
+    },
+    topActions: {
+        alignItems: 'flex-end',
+        gap: 8,
+    },
+    statusBadge: {
         flexDirection: 'row',
         alignItems: 'center',
-        gap: 4,
+        paddingHorizontal: 10,
+        paddingVertical: 5,
+        borderRadius: 20,
+        gap: 5,
     },
     statusDot: {
-        width: 8,
-        height: 8,
-        borderRadius: 4,
+        width: 7,
+        height: 7,
+        borderRadius: 3.5,
     },
-    statusText: {
+    statusLabel: {
         fontSize: 12,
-        fontWeight: '600',
-    },
-    badgeContainer: {
-        paddingHorizontal: 8,
-        paddingVertical: 2,
-        borderRadius: 8,
-        marginTop: 4,
-    },
-    badgeText: {
-        fontSize: 10,
         fontWeight: '700',
-        textTransform: 'uppercase',
+        letterSpacing: 0.2,
     },
     favButton: {
-        padding: 4,
+        padding: 2,
     },
-    detailsRow: {
+    divider: {
+        height: 1,
+        backgroundColor: '#f1f5f9',
+        marginVertical: 14,
+    },
+    infoRow: {
         flexDirection: 'row',
-        justifyContent: 'flex-start',
-        gap: 16,
+        alignItems: 'center',
         marginBottom: 12,
-        flexWrap: 'wrap',
     },
-    capacityContainer: {
+    infoItem: {
         flexDirection: 'row',
         alignItems: 'center',
-        gap: 6,
+        gap: 5,
     },
-    capacityText: {
-        fontSize: 14,
-        color: '#374151',
+    infoSeparator: {
+        width: 1,
+        height: 14,
+        backgroundColor: '#e2e8f0',
+        marginHorizontal: 12,
     },
-    scheduleContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: 6,
-    },
-    scheduleText: {
-        fontSize: 14,
-        color: '#374151',
-    },
-    servicesContainer: {
-        marginTop: 4,
-        marginBottom: 16,
-    },
-    servicesTitle: {
+    infoText: {
         fontSize: 13,
-        fontWeight: '600',
-        color: '#6b7280',
-        marginBottom: 8,
+        color: '#64748b',
+        fontWeight: '500',
     },
-    servicesList: {
+    badgesRow: {
         flexDirection: 'row',
         flexWrap: 'wrap',
         gap: 6,
+        marginBottom: 12,
     },
-    tagsRow: {
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        gap: 6,
-        marginBottom: 6,
-    },
-    tagBadge: {
-        backgroundColor: '#eff6ff',
-        paddingHorizontal: 8,
-        paddingVertical: 2,
-        borderRadius: 6,
-        borderWidth: 1,
-        borderColor: '#bfdbfe',
-    },
-    tagText: {
-        fontSize: 11,
-        color: '#1e3a8a',
-        fontWeight: '600',
-    },
-    serviceTag: {
-        backgroundColor: '#f3f4f6',
+    badge: {
         paddingHorizontal: 10,
         paddingVertical: 4,
-        borderRadius: 6,
+        borderRadius: 20,
     },
-    serviceText: {
-        fontSize: 12,
-        color: '#4b5563',
+    badgeLabel: {
+        fontSize: 11,
+        fontWeight: '700',
     },
-    mapsButton: {
-        backgroundColor: '#10b981',
+    tagsContainer: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        gap: 6,
+        marginBottom: 10,
+    },
+    tagPill: {
+        backgroundColor: '#f0f4ff',
+        paddingHorizontal: 10,
+        paddingVertical: 4,
+        borderRadius: 20,
+        borderWidth: 1,
+        borderColor: '#dbeafe',
+    },
+    tagPillText: {
+        fontSize: 11,
+        color: '#3b5998',
+        fontWeight: '600',
+    },
+    servicesContainer: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        gap: 6,
+        marginBottom: 14,
+    },
+    servicePill: {
+        backgroundColor: '#f8fafc',
+        paddingHorizontal: 10,
+        paddingVertical: 4,
+        borderRadius: 8,
+        borderWidth: 1,
+        borderColor: '#e2e8f0',
+    },
+    servicePillText: {
+        fontSize: 11,
+        color: '#64748b',
+        fontWeight: '500',
+    },
+    actionButton: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        paddingVertical: 10,
-        borderRadius: 10,
+        paddingVertical: 12,
+        borderRadius: 12,
         gap: 8,
     },
-    mapsButtonText: {
+    actionButtonText: {
         color: '#ffffff',
-        fontWeight: '600',
+        fontWeight: '700',
         fontSize: 14,
-    }
+        letterSpacing: 0.3,
+    },
 });

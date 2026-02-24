@@ -73,6 +73,7 @@ import { getDirectionsAFAMPuglia } from '../data/Puglia/afamPuglia';
 
 
 
+
 const DirectionPoint: React.FC<{ title: string; content: string; icon: keyof typeof Ionicons.glyphMap }> = ({ title, content, icon }) => (
     <View style={styles.directionPoint}>
         <View style={styles.directionIconContainer}>
@@ -1716,11 +1717,17 @@ export const RoomDetailScreen = ({ route, navigation }: any) => {
     );
 };
 
+/* ────────────────────────────────────────────────────────
+ *  RoomDetailScreen — Premium Design System
+ *  Tokens: #f8fafc, #1e293b, #64748b, #94a3b8
+ * ──────────────────────────────────────────────────────── */
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#f8fafc',
     },
+
+    /* ── Header / App Bar ── */
     statusBarBg: {
         paddingTop: 0,
     },
@@ -1728,94 +1735,116 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        paddingHorizontal: 16,
-        paddingVertical: 12,
-        minHeight: 60,
+        paddingHorizontal: 20,
+        paddingVertical: 14,
+        minHeight: 56,
     },
     backButton: {
-        padding: 6,
+        width: 36,
+        height: 36,
+        borderRadius: 18,
+        backgroundColor: 'rgba(255,255,255,0.2)',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     appBarTitle: {
-        fontSize: 20,
-        fontWeight: '700',
+        fontSize: 18,
+        fontWeight: '800',
         color: '#ffffff',
-        letterSpacing: 0.3,
+        letterSpacing: 0.2,
         textAlign: 'center',
         marginHorizontal: 10,
         flexShrink: 1,
     },
+
+    /* ── Content ── */
     scrollContent: {
         padding: 20,
-        paddingBottom: 40,
+        paddingBottom: 44,
     },
+
+    /* ── Room Header ── */
     header: {
-        marginBottom: 16,
+        marginBottom: 20,
     },
     headerTitle: {
-        fontSize: 26,
-        fontWeight: 'bold',
-        color: '#1f2937',
+        fontSize: 24,
+        fontWeight: '800',
+        color: '#1e293b',
         marginBottom: 8,
+        letterSpacing: -0.3,
+        lineHeight: 30,
     },
     headerSubtitle: {
-        fontSize: 16,
-        color: '#6b7280',
+        fontSize: 15,
+        color: '#64748b',
+        fontWeight: '500',
     },
+
+    /* ── Directions Cards ── */
     directionsContainer: {
-        gap: 20,
+        gap: 16,
         marginTop: 8,
     },
     directionPoint: {
         flexDirection: 'row',
         alignItems: 'flex-start',
         backgroundColor: '#ffffff',
-        borderRadius: 12,
-        padding: 16,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
+        borderRadius: 16,
+        padding: 18,
+        shadowColor: '#64748b',
+        shadowOffset: { width: 0, height: 3 },
         shadowOpacity: 0.08,
-        shadowRadius: 4,
-        elevation: 2,
+        shadowRadius: 10,
+        elevation: 3,
     },
     directionIconContainer: {
-        width: 40,
-        height: 40,
-        borderRadius: 20,
+        width: 42,
+        height: 42,
+        borderRadius: 14,
         backgroundColor: '#ecfdf5',
         justifyContent: 'center',
         alignItems: 'center',
-        marginRight: 16,
+        marginRight: 14,
     },
     directionTextContainer: {
         flex: 1,
     },
     directionTitle: {
         fontSize: 16,
-        fontWeight: '600',
+        fontWeight: '700',
         color: '#1e293b',
         marginBottom: 6,
     },
     directionContent: {
         fontSize: 14,
-        color: '#475569',
-        lineHeight: 20,
+        color: '#64748b',
+        lineHeight: 21,
     },
+
+    /* ── Advisory / Info Boxes ── */
     infoBox: {
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: '#ecfdf5',
         padding: 16,
-        borderRadius: 12,
-        marginTop: 12,
+        borderRadius: 16,
+        marginTop: 14,
         marginBottom: 6,
         borderWidth: 1,
         borderColor: '#a7f3d0',
+        shadowColor: '#64748b',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.04,
+        shadowRadius: 6,
+        elevation: 1,
     },
     infoBoxText: {
         flex: 1,
         marginLeft: 12,
         fontSize: 13,
         color: '#047857',
-        lineHeight: 18,
+        lineHeight: 19,
+        fontWeight: '500',
     },
 });

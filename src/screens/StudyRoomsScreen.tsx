@@ -1516,46 +1516,307 @@ export const StudyRoomsScreen: React.FC<StudyRoomsScreenProps> = ({ navigation }
     );
 };
 
+/* ────────────────────────────────────────────────────────
+ *  Premium Design System — Airbnb / Apple Maps aesthetic
+ *  Design Tokens:
+ *  · Background: #f8fafc (cool gray canvas)
+ *  · Card Surface: #ffffff
+ *  · Text Primary: #1e293b
+ *  · Text Secondary: #64748b
+ *  · Text Muted: #94a3b8
+ *  · Border: #e2e8f0
+ *  · Border Light: #f1f5f9
+ *  · Radius Large: 16px  |  Medium: 12px  |  Full: 20px+
+ *  · Shadow: layered soft shadows (#64748b based)
+ * ──────────────────────────────────────────────────────── */
 const styles = StyleSheet.create({
-    container: { flex: 1, backgroundColor: '#f8fafc' },
-    center: { justifyContent: 'center', alignItems: 'center' },
-    statusBarBg: { paddingTop: 0 },
-    appBar: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 16, paddingVertical: 12, minHeight: 60 }, // Enlarged
-    backButton: { padding: 6 },
-    appBarTitle: { fontSize: 20, fontWeight: '700', color: '#ffffff', letterSpacing: 0.3 },
-    rightActions: { flexDirection: 'row', alignItems: 'center', gap: 8 },
-    iconButton: { padding: 6, marginLeft: 6 },
-    statsContainer: { flexDirection: 'row', justifyContent: 'space-between', gap: 12, paddingHorizontal: 16, marginTop: 20 },
-    statCard: { backgroundColor: '#ffffff', paddingVertical: 16, paddingHorizontal: 8, borderRadius: 12, alignItems: 'center', flex: 1, shadowColor: '#000', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.08, shadowRadius: 3, elevation: 2, gap: 4 },
-    statValue: { fontSize: 20, fontWeight: 'bold', color: '#10b981', marginTop: 4 },
-    statLabel: { fontSize: 12, color: '#6b7280', marginTop: 4, textAlign: 'center' },
-    section: { marginTop: 20 },
-    sectionTitle: { fontSize: 18, fontWeight: 'bold', color: '#1f2937', marginBottom: 16 },
-    buildingSelector: { marginHorizontal: -16, paddingHorizontal: 16 },
-    buildingButton: { flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingVertical: 8, marginRight: 8, borderRadius: 16, backgroundColor: '#ffffff', borderWidth: 1, borderColor: '#d1d5db' },
-    selectedBuildingButton: { backgroundColor: '#10b981', borderColor: '#10b981' },
-    buildingButtonText: { fontSize: 14, fontWeight: '600', color: '#374151' },
-    selectedBuildingButtonText: { color: '#ffffff' },
-    contentContainer: { paddingBottom: 20 },
-    countText: { fontSize: 13, color: '#6b7280', marginTop: -12, marginBottom: 16, fontStyle: 'italic' },
-    footerLoader: { flexDirection: 'row', justifyContent: 'center', alignItems: 'center', paddingVertical: 20, gap: 8 },
-    footerText: { fontSize: 14, color: '#6b7280', marginLeft: 8 },
-    searchContainer: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#f1f5f9', borderRadius: 12, paddingHorizontal: 12, marginHorizontal: 16, marginTop: 8, marginBottom: 12 },
-    searchIcon: { marginRight: 8 },
-    searchInput: { flex: 1, height: 52, fontSize: 16, color: '#1f2937' },
-    clearButton: { padding: 4, marginLeft: 8 },
-    mapContainer: { height: 300, borderRadius: 16, overflow: 'hidden', marginTop: 24, marginHorizontal: 16, shadowColor: '#000', shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.15, shadowRadius: 8, elevation: 5, backgroundColor: '#e5e7eb' },
-    mapView: { ...StyleSheet.absoluteFillObject },
-    markerContainer: { padding: 6, borderRadius: 20, borderWidth: 2, borderColor: '#ffffff' },
-    calloutContainer: { backgroundColor: '#ffffff', borderRadius: 10, padding: 12, width: 200 },
-    calloutTitle: { fontSize: 14, fontWeight: 'bold', color: '#1f2937', marginBottom: 4 },
-    calloutDescription: { fontSize: 12, color: '#6b7280', marginBottom: 8 },
-    calloutButton: { backgroundColor: '#10b981', borderRadius: 8, paddingVertical: 6, alignItems: 'center' },
-    calloutButtonText: { color: '#ffffff', fontWeight: '600', fontSize: 12 },
-    sortContainer: { flexDirection: 'row', gap: 12, backgroundColor: '#f3f4f6', borderRadius: 12, padding: 4 },
-    sortButton: { flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', paddingVertical: 12, borderRadius: 12, gap: 8 },
-    selectedSortButton: { backgroundColor: '#10b981' },
-    disabledSortButton: { opacity: 0.5 },
-    sortButtonText: { fontSize: 15, fontWeight: '600', color: '#374151' },
-    selectedSortButtonText: { color: '#ffffff' },
+    /* ── Layout ── */
+    container: {
+        flex: 1,
+        backgroundColor: '#f8fafc',
+    },
+    center: {
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    contentContainer: {
+        paddingBottom: 20,
+    },
+
+    /* ── Header / App Bar ── */
+    statusBarBg: {
+        paddingTop: 0,
+    },
+    appBar: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingHorizontal: 20,
+        paddingVertical: 14,
+        minHeight: 56,
+    },
+    backButton: {
+        width: 36,
+        height: 36,
+        borderRadius: 18,
+        backgroundColor: 'rgba(255,255,255,0.2)',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    appBarTitle: {
+        fontSize: 20,
+        fontWeight: '800',
+        color: '#ffffff',
+        letterSpacing: 0.3,
+    },
+    rightActions: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 4,
+    },
+    iconButton: {
+        width: 36,
+        height: 36,
+        borderRadius: 18,
+        backgroundColor: 'rgba(255,255,255,0.2)',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+
+    /* ── Search Bar (floating, white, full-rounded) ── */
+    searchContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: '#ffffff',
+        borderRadius: 28,
+        paddingHorizontal: 18,
+        marginHorizontal: 16,
+        marginTop: -6,
+        marginBottom: 6,
+        // Premium floating shadow
+        shadowColor: '#64748b',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.12,
+        shadowRadius: 16,
+        elevation: 6,
+        borderWidth: 1,
+        borderColor: '#f1f5f9',
+    },
+    searchIcon: {
+        marginRight: 10,
+    },
+    searchInput: {
+        flex: 1,
+        height: 50,
+        fontSize: 15,
+        color: '#1e293b',
+        fontWeight: '500',
+    },
+    clearButton: {
+        padding: 6,
+        marginLeft: 4,
+    },
+
+    /* ── Stats Cards ── */
+    statsContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        gap: 12,
+        paddingHorizontal: 16,
+        marginTop: 20,
+    },
+    statCard: {
+        backgroundColor: '#ffffff',
+        paddingVertical: 20,
+        paddingHorizontal: 12,
+        borderRadius: 16,
+        alignItems: 'center',
+        flex: 1,
+        // Elevated card shadow
+        shadowColor: '#64748b',
+        shadowOffset: { width: 0, height: 3 },
+        shadowOpacity: 0.08,
+        shadowRadius: 10,
+        elevation: 3,
+        gap: 4,
+    },
+    statValue: {
+        fontSize: 26,
+        fontWeight: '800',
+        color: '#1e293b',
+        marginTop: 6,
+        letterSpacing: -0.5,
+    },
+    statLabel: {
+        fontSize: 12,
+        color: '#94a3b8',
+        marginTop: 2,
+        textAlign: 'center',
+        fontWeight: '600',
+        textTransform: 'uppercase',
+        letterSpacing: 0.5,
+    },
+
+    /* ── Section Layout ── */
+    section: {
+        marginTop: 24,
+    },
+    sectionTitle: {
+        fontSize: 18,
+        fontWeight: '800',
+        color: '#1e293b',
+        marginBottom: 14,
+        letterSpacing: -0.2,
+    },
+
+    /* ── Filter Chips ── */
+    buildingSelector: {
+        marginHorizontal: -16,
+        paddingHorizontal: 16,
+    },
+    buildingButton: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingHorizontal: 18,
+        paddingVertical: 10,
+        marginRight: 8,
+        borderRadius: 24,
+        backgroundColor: '#ffffff',
+        borderWidth: 1.5,
+        borderColor: '#e2e8f0',
+        // Subtle chip shadow
+        shadowColor: '#94a3b8',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.06,
+        shadowRadius: 4,
+        elevation: 1,
+    },
+    selectedBuildingButton: {},
+    buildingButtonText: {
+        fontSize: 14,
+        fontWeight: '600',
+        color: '#475569',
+    },
+    selectedBuildingButtonText: {
+        color: '#ffffff',
+        fontWeight: '700',
+    },
+
+    /* ── Map ── */
+    mapContainer: {
+        height: 260,
+        borderRadius: 20,
+        overflow: 'hidden',
+        marginTop: 24,
+        marginHorizontal: 16,
+        // Deep shadow for map depth
+        shadowColor: '#475569',
+        shadowOffset: { width: 0, height: 6 },
+        shadowOpacity: 0.15,
+        shadowRadius: 16,
+        elevation: 8,
+        backgroundColor: '#e2e8f0',
+    },
+    mapView: {
+        ...StyleSheet.absoluteFillObject,
+    },
+    markerContainer: {
+        padding: 7,
+        borderRadius: 20,
+        borderWidth: 2.5,
+        borderColor: '#ffffff',
+        // Marker shadow
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 4,
+    },
+    calloutContainer: {
+        backgroundColor: '#ffffff',
+        borderRadius: 14,
+        padding: 14,
+        width: 220,
+        // Callout shadow
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 8,
+    },
+    calloutTitle: {
+        fontSize: 15,
+        fontWeight: '700',
+        color: '#1e293b',
+        marginBottom: 3,
+    },
+    calloutDescription: {
+        fontSize: 12,
+        color: '#64748b',
+        marginBottom: 10,
+    },
+    calloutButton: {
+        borderRadius: 10,
+        paddingVertical: 8,
+        alignItems: 'center',
+    },
+    calloutButtonText: {
+        color: '#ffffff',
+        fontWeight: '700',
+        fontSize: 13,
+    },
+
+    /* ── Sort Toggles (segmented control) ── */
+    sortContainer: {
+        flexDirection: 'row',
+        gap: 0,
+        backgroundColor: '#f1f5f9',
+        borderRadius: 14,
+        padding: 4,
+    },
+    sortButton: {
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingVertical: 12,
+        borderRadius: 11,
+        gap: 6,
+    },
+    selectedSortButton: {},
+    disabledSortButton: {
+        opacity: 0.4,
+    },
+    sortButtonText: {
+        fontSize: 14,
+        fontWeight: '600',
+        color: '#64748b',
+    },
+    selectedSortButtonText: {
+        color: '#ffffff',
+        fontWeight: '700',
+    },
+
+    /* ── Room List Label ── */
+    countText: {
+        fontSize: 13,
+        color: '#94a3b8',
+        marginTop: -8,
+        marginBottom: 8,
+        fontWeight: '500',
+    },
+
+    /* ── Footer ── */
+    footerLoader: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingVertical: 24,
+        gap: 10,
+    },
+    footerText: {
+        fontSize: 14,
+        color: '#94a3b8',
+        fontWeight: '500',
+    },
 });
+
