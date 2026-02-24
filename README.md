@@ -4,34 +4,41 @@
 
 ## 🌟 Funzionalità Principali
 
-*   **Multi-Ateneo**: Supporto per le principali università italiane:
+*   **Multi-Ateneo**: Supporto per oltre 100 atenei e istituti su tutto il territorio nazionale:
     *   **Campania**: Federico II, Vanvitelli, Parthenope, L'Orientale, UNISA (Salerno), UNISANNIO (Benevento).
     *   **Lazio**: La Sapienza, Tor Vergata.
-    *   *...e molte altre in arrivo!*
+    *   **Piemonte**: UniTO, PoliTO, UPO.
+    *   **Puglia**: UniBa, PoliBa, UniSalento, UniFg.
+    *   **Molise**: UniMol (Campobasso, Pesche, Termoli).
+    *   **Marche**: UniCam, UNIVPM, UniUrb.
+    *   **Alta Formazione Artistica e Musicale (AFAM)**: Accademie di Belle Arti e Conservatori in tutta Italia.
+    *   *...e in continuo aggiornamento!*
 *   **Filtri Intelligenti**:
-    *   Filtra per **Regione** (Campania, Lazio, ecc.).
-    *   Filtra per **Città** o **Zona** specifica.
+    *   Filtra per **Regione**.
+    *   Filtra per **Polo Universitario**, **Città** o **Edificio** specifico (es. Campus vs Centro Storico).
     *   Ricerca testuale rapida.
-*   **Dettagli Completi**:
+*   **Dettagli Completi sulle Aule**:
     *   Orari di apertura/chiusura in tempo reale (stato "Aperto/Chiuso").
     *   Affollamento stimato.
-    *   Servizi disponibili (WiFi, Prese, Aria Condizionata, Accesso Disabili).
-*   **Navigazione Integrata**:
-    *   Ottieni indicazioni precise per raggiungere ogni aula (Bus, Metro, Piedi).
-    *   Integrazione con Mappe native.
-*   **Personalizzazione**:
-    *   Salva le tue aule **Preferite**.
-    *   Tema dinamico che si adatta ai colori della tua università (Verde Federico II, Rosso Orientale/Sapienza, Blu Vanvitelli, ecc.).
+    *   Servizi disponibili (WiFi, Prese, Aria Condizionata, Accesso Disabili, ecc.).
+*   **Navigazione Avanzata**:
+    *   Calcolo della distanza in base alla tua posizione attuale.
+    *   Ottieni indicazioni precise per raggiungere ogni aula (Bus, Metro, Treno, Piedi).
+    *   Integrazione con le Mappe native del tuo smartphone.
+*   **SmartWeather e Personalizzazione**:
+    *   **SmartWeatherCard**: per sapere sempre se è il caso di portare l'ombrello o se godersi un'aula studio all'aperto.
+    *   Salva le tue aule **Preferite** per un accesso rapido.
+    *   Il tema dell'interfaccia si adatta dinamicamente ai colori ufficiali della tua università!
 
 ## 🛠 Tecnologia
 
 Costruita con tecnologie moderne per garantire prestazioni e fluidità:
 
-*   **React Native** (Expo)
+*   **React Native** (Expo) per cross-platform iOS/Android.
 *   **TypeScript** per la robustezza del codice.
 *   **React Navigation** per la gestione delle schermate.
-*   **React Native Maps** per la geolocalizzazione.
-*   **AsyncStorage** per la persistenza dei dati locali.
+*   **React Native Maps** ed **Expo Location** per la geolocalizzazione precisa.
+*   **AsyncStorage** per la persistenza sicura dei dati locali.
 
 ## 📸 Screenshots
 
@@ -44,18 +51,19 @@ Costruita con tecnologie moderne per garantire prestazioni e fluidità:
     git clone https://github.com/tuo-username/UniStudy-Italia.git
     cd UniStudy-Italia
     ```
-2.  Installa le dipendenze:
+2.  Assicurati di usare Node.js 20+ (raccomandato `nvm use 20`).
+3.  Installa le dipendenze:
     ```bash
     npm install
     ```
-3.  Avvia l'app:
+4.  Avvia l'app in locale tramite Expo:
     ```bash
     npx expo start
     ```
 
 ## 🤝 Contribuire
 
-Sei uno studente e vuoi aggiungere la tua università? Apri una **Pull Request** o segnalaci i dati mancanti!
+Sei uno studente e vuoi aggiungere la tua università? Apri una **Pull Request** o segnalaci i dati mancanti! Siamo aperti al contributo di tutti per mappare ogni singola aula studio d'Italia.
 
 ---
 Sviluppato con ❤️ per gli studenti italiani.
