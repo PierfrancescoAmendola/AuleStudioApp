@@ -73,6 +73,7 @@ import { getDirectionsAFAMPuglia } from '../data/Puglia/afamPuglia';
 
 
 
+
 const DirectionPoint: React.FC<{ title: string; content: string; icon: keyof typeof Ionicons.glyphMap }> = ({ title, content, icon }) => (
     <View style={styles.directionPoint}>
         <View style={styles.directionIconContainer}>
