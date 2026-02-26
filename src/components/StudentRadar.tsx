@@ -14,6 +14,7 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { EXAM_CATEGORIES } from '../data/exams';
+import { BluetoothChatScreen } from './BluetoothChatScreen';
 
 // FLAG PER DISABILITARE IL BLE E FAR FUNZIONARE EXPO GO
 // Quando farai la build nativa, potrai impostare questo a true e 
@@ -29,6 +30,7 @@ export const StudentRadar: React.FC<StudentRadarProps> = ({ accentColor = '#6366
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScanning, setIsScanning] = useState(false);
     const [matchFound, setMatchFound] = useState<{ exam: string, matchCode: { emoji: string, name: string, color: string } } | null>(null);
+    const [isChatOpen, setIsChatOpen] = useState(false);
 
     // Animations
     const pulseAnim = useRef(new Animated.Value(0)).current;
@@ -254,7 +256,7 @@ export const StudentRadar: React.FC<StudentRadarProps> = ({ accentColor = '#6366
             </Modal>
 
             {/* Modal Match Success */}
-            <Modal visible={!!matchFound} transparent animationType="fade">
+            <Modal visible={!!matchFound && !isChatOpen} transparent animationType="fade">
                 <View style={styles.modalBg}>
                     <View style={styles.matchCard}>
                         {matchFound && (
@@ -264,7 +266,7 @@ export const StudentRadar: React.FC<StudentRadarProps> = ({ accentColor = '#6366
                                 </View>
                                 <Text style={styles.matchTitle}>🎉 Match Trovato!</Text>
                                 <Text style={styles.matchDesc}>
-                                    Uno studente a pochi metri da te sta preparando <Text style={[styles.matchExamHighlight, { color: mainColor }]}>{matchFound.exam}</Text>.
+                                    Uno studente vicino a te sta preparando <Text style={[styles.matchExamHighlight, { color: mainColor }]}>{matchFound.exam}</Text>.
                                 </Text>
 
                                 <View style={styles.identificationBox}>
@@ -280,14 +282,33 @@ export const StudentRadar: React.FC<StudentRadarProps> = ({ accentColor = '#6366
 
                                 <TouchableOpacity
                                     style={[styles.actionBtn, { backgroundColor: mainColor, width: '100%', marginTop: 20 }]}
+                                    onPress={() => setIsChatOpen(true)}
+                                >
+                                    <Text style={styles.actionBtnText}>Avvia Chat Offline</Text>
+                                    <Ionicons name="chatbubbles" size={18} color="#ffffff" style={{ marginLeft: 8 }} />
+                                </TouchableOpacity>
+
+                                <TouchableOpacity
+                                    style={[styles.cancelBtn, { marginTop: 12 }]}
                                     onPress={() => setMatchFound(null)}
                                 >
-                                    <Text style={styles.actionBtnText}>Ottimo!</Text>
+                                    <Text style={styles.cancelBtnText}>Chiudi</Text>
                                 </TouchableOpacity>
                             </>
                         )}
                     </View>
                 </View>
+            </Modal>
+
+            {/* Modal Chat Bluetooth */}
+            <Modal visible={isChatOpen} animationType="slide" onRequestClose={() => setIsChatOpen(false)}>
+                {matchFound ? (
+                    <BluetoothChatScreen
+                        connectedDevice={{ id: 'mock-device-id', name: matchFound.matchCode.name }}
+                        onDisconnect={() => { setIsChatOpen(false); setMatchFound(null); }}
+                        primaryColor={mainColor}
+                    />
+                ) : null}
             </Modal>
         </View>
     );
