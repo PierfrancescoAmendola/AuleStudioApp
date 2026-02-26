@@ -59,6 +59,13 @@ const slides: OnboardingSlide[] = [
         description: 'Salva le tue aule del cuore. L\'interfaccia cambierà colore per abbinarsi alla tua università!',
         gradient: ['#ec4899', '#db2777'],
     },
+    {
+        id: '6',
+        icon: 'hardware-chip-outline',
+        title: 'Strumenti Smart',
+        description: 'Meteo in tempo reale per studiare al meglio. Usa il Radar Bluetooth per trovare compagni che preparano il tuo stesso esame!',
+        gradient: ['#6366f1', '#4f46e5'],
+    },
 ];
 
 interface OnboardingCarouselProps {

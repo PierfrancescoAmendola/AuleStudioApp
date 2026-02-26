@@ -30,6 +30,7 @@ import { StudyRoomCard } from '../components/StudyRoomCard';
 import { StorageService } from '../services/storageService';
 import { getUniversityById } from '../data/universities';
 import { SmartWeatherCard } from '../components/SmartWeatherCard';
+import { StudentRadar } from '../components/StudentRadar';
 
 interface StudyRoomsScreenProps {
     navigation: any;
@@ -1294,16 +1295,19 @@ export const StudyRoomsScreen: React.FC<StudyRoomsScreenProps> = ({ navigation }
             </View>
 
             {university && (
-                <SmartWeatherCard
-                    city={university.city.split('/')[0].trim()}
-                    latitude={university.region.latitude}
-                    longitude={university.region.longitude}
-                    accentColor={university.color}
-                    onFilterSelect={(filter) => {
-                        setShowFavorites(false);
-                        setSelectedBuilding(filter === 'Outdoor' ? '☀️ All\'Aperto' : '🏠 Al Coperto');
-                    }}
-                />
+                <>
+                    <SmartWeatherCard
+                        city={university.city.split('/')[0].trim()}
+                        latitude={university.region.latitude}
+                        longitude={university.region.longitude}
+                        accentColor={university.color}
+                        onFilterSelect={(filter) => {
+                            setShowFavorites(false);
+                            setSelectedBuilding(filter === 'Outdoor' ? '☀️ All\'Aperto' : '🏠 Al Coperto');
+                        }}
+                    />
+                    <StudentRadar accentColor={university.color} />
+                </>
             )}
 
             <Animated.View style={[styles.section, { paddingHorizontal: 16, opacity: filtersAnim, transform: [{ translateY: filtersAnim.interpolate({ inputRange: [0, 1], outputRange: [20, 0] }) }] }]}>

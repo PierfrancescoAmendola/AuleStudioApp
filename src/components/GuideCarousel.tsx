@@ -18,6 +18,9 @@ export const GuideCarousel: React.FC<GuideCarouselProps> = ({ isVisible, onClose
                         Usa la mappa per esplorare le aule studio o la lista per vederle in dettaglio.
                         Puoi filtrare per edificio e cercare per nome.
                     </Text>
+                    <Text style={styles.text}>
+                        Sfrutta gli strumenti smart: il banner meteo ti suggerisce se studiare all'aperto o al chiuso, mentre il Radar Studenti ti permette di trovare compagni che preparano il tuo stesso esame!
+                    </Text>
                     <TouchableOpacity onPress={onClose} style={styles.button}>
                         <Text style={styles.buttonText}>Ho capito</Text>
                     </TouchableOpacity>
