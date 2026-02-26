@@ -28,10 +28,21 @@ export const StudentRadar: React.FC<StudentRadarProps> = ({ accentColor = '#6366
     const [selectedExam, setSelectedExam] = useState<string | null>(null);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScanning, setIsScanning] = useState(false);
-    const [matchFound, setMatchFound] = useState<{ exam: string } | null>(null);
+    const [matchFound, setMatchFound] = useState<{ exam: string, matchCode: { emoji: string, name: string, color: string } } | null>(null);
 
     // Animations
     const pulseAnim = useRef(new Animated.Value(0)).current;
+
+    const MATCH_CODES = [
+        { emoji: '🍎', name: 'Mela Rossa', color: '#ef4444' },
+        { emoji: '🍋', name: 'Limone Giallo', color: '#eab308' },
+        { emoji: '🍀', name: 'Trifoglio Verde', color: '#22c55e' },
+        { emoji: '💎', name: 'Diamante Blu', color: '#3b82f6' },
+        { emoji: '🦊', name: 'Volpe Arancione', color: '#f97316' },
+        { emoji: '🍇', name: 'Uva Viola', color: '#a855f7' },
+        { emoji: '🍩', name: 'Ciambella Rosa', color: '#ec4899' },
+        { emoji: '☕️', name: 'Caffè Marrone', color: '#84cc16' }
+    ];
 
     useEffect(() => {
         if (isScanning) {
@@ -61,7 +72,9 @@ export const StudentRadar: React.FC<StudentRadarProps> = ({ accentColor = '#6366
 
     const handleMatchFound = (exam: string) => {
         setIsScanning(false);
-        setMatchFound({ exam });
+        // Genera un codice casuale per il match
+        const randomCode = MATCH_CODES[Math.floor(Math.random() * MATCH_CODES.length)];
+        setMatchFound({ exam, matchCode: randomCode });
         Vibration.vibrate([0, 500, 200, 500]); // Pattern vibrazione: pausa, vibra, pausa, vibra
     };
 
@@ -244,20 +257,35 @@ export const StudentRadar: React.FC<StudentRadarProps> = ({ accentColor = '#6366
             <Modal visible={!!matchFound} transparent animationType="fade">
                 <View style={styles.modalBg}>
                     <View style={styles.matchCard}>
-                        <View style={styles.successIconBg}>
-                            <Ionicons name="people" size={40} color="#ffffff" />
-                        </View>
-                        <Text style={styles.matchTitle}>🎉 Match Trovato!</Text>
-                        <Text style={styles.matchDesc}>
-                            Uno studente a pochi metri da te sta preparando <Text style={[styles.matchExamHighlight, { color: mainColor }]}>{matchFound?.exam}</Text>.
-                            Guardati intorno o alza lo sguardo!
-                        </Text>
-                        <TouchableOpacity
-                            style={[styles.actionBtn, { backgroundColor: mainColor, width: '100%', marginTop: 16 }]}
-                            onPress={() => setMatchFound(null)}
-                        >
-                            <Text style={styles.actionBtnText}>Ottimo, chiudi</Text>
-                        </TouchableOpacity>
+                        {matchFound && (
+                            <>
+                                <View style={[styles.successIconBg, { backgroundColor: matchFound.matchCode.color }]}>
+                                    <Text style={{ fontSize: 32 }}>{matchFound.matchCode.emoji}</Text>
+                                </View>
+                                <Text style={styles.matchTitle}>🎉 Match Trovato!</Text>
+                                <Text style={styles.matchDesc}>
+                                    Uno studente a pochi metri da te sta preparando <Text style={[styles.matchExamHighlight, { color: mainColor }]}>{matchFound.exam}</Text>.
+                                </Text>
+
+                                <View style={styles.identificationBox}>
+                                    <Text style={styles.identificationLabel}>CERCA QUESTO SIMBOLO</Text>
+                                    <View style={styles.identificationRow}>
+                                        <Text style={styles.identificationEmoji}>{matchFound.matchCode.emoji}</Text>
+                                        <Text style={[styles.identificationName, { color: matchFound.matchCode.color }]}>
+                                            {matchFound.matchCode.name}
+                                        </Text>
+                                    </View>
+                                    <Text style={styles.identificationHint}>Alza lo sguardo e tieni il telefono visibile, oppure cerca chi ha questo simbolo sullo schermo!</Text>
+                                </View>
+
+                                <TouchableOpacity
+                                    style={[styles.actionBtn, { backgroundColor: mainColor, width: '100%', marginTop: 20 }]}
+                                    onPress={() => setMatchFound(null)}
+                                >
+                                    <Text style={styles.actionBtnText}>Ottimo!</Text>
+                                </TouchableOpacity>
+                            </>
+                        )}
                     </View>
                 </View>
             </Modal>
@@ -484,5 +512,51 @@ const styles = StyleSheet.create({
     matchExamHighlight: {
         fontWeight: '800',
         color: '#9333ea',
+    },
+    identificationBox: {
+        width: '100%',
+        backgroundColor: '#f8fafc',
+        borderRadius: 16,
+        padding: 16,
+        marginTop: 16,
+        alignItems: 'center',
+        borderWidth: 1,
+        borderColor: '#e2e8f0',
+    },
+    identificationLabel: {
+        fontSize: 10,
+        fontWeight: '700',
+        color: '#64748b',
+        letterSpacing: 1,
+        marginBottom: 8,
+    },
+    identificationRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#ffffff',
+        paddingHorizontal: 16,
+        paddingVertical: 10,
+        borderRadius: 12,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.05,
+        shadowRadius: 4,
+        elevation: 2,
+        marginBottom: 12,
+    },
+    identificationEmoji: {
+        fontSize: 24,
+        marginRight: 10,
+    },
+    identificationName: {
+        fontSize: 18,
+        fontWeight: '800',
+    },
+    identificationHint: {
+        fontSize: 12,
+        color: '#64748b',
+        textAlign: 'center',
+        lineHeight: 18,
     },
 });
