@@ -27,7 +27,7 @@ interface WeatherData {
  * Decode WMO weathercode → human-readable + icon.
  * WMO Codes: https://open-meteo.com/en/docs
  */
-const decodeWeather = (code: number): { label: string; icon: keyof typeof Ionicons.glyphMap; isRainy: boolean } => {
+const decodeWeather = (code: number): { label: string; icon: any; isRainy: boolean } => {
     if (code <= 1) return { label: 'Sereno', icon: 'sunny-outline', isRainy: false };
     if (code <= 3) return { label: 'Parzialmente nuvoloso', icon: 'partly-sunny-outline', isRainy: false };
     if (code <= 48) return { label: 'Nuvoloso', icon: 'cloud-outline', isRainy: false };

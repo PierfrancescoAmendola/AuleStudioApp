@@ -70,6 +70,9 @@ import { unimeRooms } from './Sicilia/unime';
 import { afamSiciliaRooms } from './Sicilia/afamSicilia';
 import { unifiRooms } from './Toscana/unifi';
 import { unipiRooms } from './Toscana/unipi';
+import { unisiRooms } from './Toscana/unisi';
+import { unistrasiRooms } from './Toscana/unistrasi';
+import { afamToscanaRooms } from './Toscana/afamToscana';
 
 
 
@@ -1808,6 +1811,74 @@ export const universities: University[] = [
         ],
         color: '#a11b22', // Red/Crimson
         darkColor: '#5e0b11',
+    },
+    {
+        id: 'unisi',
+        name: 'UniSi',
+        fullName: 'Università di Siena',
+        city: 'Siena / Arezzo / Grosseto / Valdarno',
+        regionName: 'Toscana',
+        region: {
+            latitude: 43.32,
+            longitude: 11.33,
+            latitudeDelta: 0.8,
+            longitudeDelta: 0.8,
+        },
+        studyRooms: unisiRooms,
+        availableFilters: [
+            'Tutti',
+            'Siena Centro',
+            'San Miniato e Le Scotte',
+            'Campus Arezzo',
+            'Poli Decentrati'
+        ],
+        color: '#0f766e', // Teal
+        darkColor: '#042f2e',
+    },
+    {
+        id: 'unistrasi',
+        name: 'UniStrasi',
+        fullName: 'Università per Stranieri di Siena',
+        city: 'Siena',
+        regionName: 'Toscana',
+        region: {
+            latitude: 43.328,
+            longitude: 11.321,
+            latitudeDelta: 0.1,
+            longitudeDelta: 0.1,
+        },
+        studyRooms: unistrasiRooms,
+        availableFilters: [
+            'Tutti',
+            'Sede Centrale',
+            'Centro Storico',
+            'Strutture ERSU'
+        ],
+        color: '#be123c', // Rose
+        darkColor: '#881337',
+    },
+    {
+        id: 'afam_toscana',
+        name: 'AFAM Toscana',
+        fullName: 'Accademie, Conservatori e Istituti AFAM',
+        city: 'Firenze / Siena / Lucca / Livorno',
+        regionName: 'Toscana',
+        region: {
+            latitude: 43.77,
+            longitude: 11.25,
+            latitudeDelta: 1.5,
+            longitudeDelta: 1.5,
+        },
+        studyRooms: afamToscanaRooms,
+        availableFilters: [
+            'Tutti',
+            'Siena',
+            'Firenze Centro',
+            'Polo Design & Moda (FI/PI)',
+            'Conservatori'
+        ],
+        color: '#8b5cf6', // Violet AFAM
+        darkColor: '#4c1d95',
     }
 ];
 

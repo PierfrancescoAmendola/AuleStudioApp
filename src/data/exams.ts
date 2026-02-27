@@ -23,7 +23,12 @@ export const EXAM_CATEGORIES: ExamCategory[] = [
             "Meccanica Razionale",
             "Scienza delle Costruzioni",
             "Controlli Automatici",
-            "Ricerca Operativa"
+            "Ricerca Operativa",
+            "Ingegneria del Software",
+            "Intelligenza Artificiale",
+            "Cybersecurity",
+            "Calcolo Numerico",
+            "Termodinamica Applicata"
         ]
     },
     {
@@ -43,7 +48,12 @@ export const EXAM_CATEGORIES: ExamCategory[] = [
             "Neurologia",
             "Pediatria",
             "Ginecologia e Ostetricia",
-            "Psichiatria"
+            "Psichiatria",
+            "Immunologia",
+            "Radiologia e Radioprotezione",
+            "Anatomia Patologica",
+            "Medicina Legale",
+            "Emergenze Medico-Chirurgiche"
         ]
     },
     {
@@ -62,7 +72,11 @@ export const EXAM_CATEGORIES: ExamCategory[] = [
             "Organizzazione Aziendale",
             "Contabilità e Bilancio",
             "Economia degli Intermediari Finanziari",
-            "Politica Economica"
+            "Politica Economica",
+            "Diritto Tributario",
+            "Revisione Aziendale",
+            "Economia Internazionale",
+            "Economia Industriale"
         ]
     },
     {
@@ -83,7 +97,11 @@ export const EXAM_CATEGORIES: ExamCategory[] = [
             "Scienza Politica",
             "Sociologia Generale",
             "Relazioni Internazionali",
-            "Storia Contemporanea"
+            "Storia Contemporanea",
+            "Diritto dell'Unione Europea",
+            "Diritto Ecclesiastico",
+            "Diritto Comparato",
+            "Economia Politica"
         ]
     },
     {
@@ -103,7 +121,11 @@ export const EXAM_CATEGORIES: ExamCategory[] = [
             "Botanica",
             "Zoologia",
             "Scienze della Terra",
-            "Ecologia"
+            "Ecologia",
+            "Analisi Complessa",
+            "Fisica Moderna",
+            "Geologia",
+            "Bioinformatica"
         ]
     },
     {
@@ -127,7 +149,10 @@ export const EXAM_CATEGORIES: ExamCategory[] = [
             "Letteratura Inglese",
             "Lingua Inglese",
             "Lingua Spagnola",
-            "Lingua Francese"
+            "Lingua Francese",
+            "Lingua Tedesca",
+            "Archeologia Classica",
+            "Estetica"
         ]
     },
     {
@@ -143,7 +168,11 @@ export const EXAM_CATEGORIES: ExamCategory[] = [
             "Fisica Tecnica Ambientale",
             "Fondamenti di Design",
             "Design del Prodotto",
-            "Design della Comunicazione"
+            "Design della Comunicazione",
+            "Architettura Tecnica",
+            "Estimo",
+            "Rilievo dell'Architettura",
+            "Composizione Architettonica"
         ]
     },
     {
@@ -159,12 +188,14 @@ export const EXAM_CATEGORIES: ExamCategory[] = [
             "Didattica Generale",
             "Storia della Pedagogia",
             "Sociologia dell'Educazione",
-            "Antropologia Culturale"
+            "Antropologia Culturale",
+            "Pedagogia Speciale",
+            "Psicologia del Lavoro",
+            "Metodologia della Ricerca Psicologica"
         ]
     }
 ];
 
-// Helper to sort alphabetically globally if needed in the future
 export const GET_ALL_EXAMS_ALPHABETICAL = (): string[] => {
     const allExams = EXAM_CATEGORIES.flatMap(category => category.data);
     return Array.from(new Set(allExams)).sort((a, b) => a.localeCompare(b));

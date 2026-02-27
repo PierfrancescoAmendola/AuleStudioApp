@@ -1138,6 +1138,40 @@ export const StudyRoomsScreen: React.FC<StudyRoomsScreenProps> = ({ navigation }
                 } else {
                     filtered = filtered.filter(room => room.edificio.includes(selectedBuilding) || room.indirizzo.includes(selectedBuilding));
                 }
+            } else if (university?.id === 'unisi') {
+                if (selectedBuilding === 'Siena Centro') {
+                    filtered = filtered.filter(r => (r.tags || []).includes('Siena Centro') || (r.tags || []).includes('Centro Storico'));
+                } else if (selectedBuilding === 'San Miniato e Le Scotte') {
+                    filtered = filtered.filter(r => (r.tags || []).includes('San Miniato') || (r.tags || []).includes('Le Scotte'));
+                } else if (selectedBuilding === 'Campus Arezzo') {
+                    filtered = filtered.filter(r => (r.tags || []).includes('Arezzo'));
+                } else if (selectedBuilding === 'Poli Decentrati') {
+                    filtered = filtered.filter(r => (r.tags || []).includes('Grosseto') || (r.tags || []).includes('Valdarno'));
+                } else {
+                    filtered = filtered.filter(room => room.edificio.includes(selectedBuilding) || room.indirizzo.includes(selectedBuilding));
+                }
+            } else if (university?.id === 'unistrasi') {
+                if (selectedBuilding === 'Sede Centrale') {
+                    filtered = filtered.filter(r => (r.tags || []).includes('Sede Centrale'));
+                } else if (selectedBuilding === 'Centro Storico') {
+                    filtered = filtered.filter(r => (r.tags || []).includes('Centro Storico'));
+                } else if (selectedBuilding === 'Strutture ERSU') {
+                    filtered = filtered.filter(r => (r.tags || []).includes('ERSU'));
+                } else {
+                    filtered = filtered.filter(room => room.edificio.includes(selectedBuilding) || room.indirizzo.includes(selectedBuilding));
+                }
+            } else if (university?.id === 'afam_toscana') {
+                if (selectedBuilding === 'Siena') {
+                    filtered = filtered.filter(r => (r.tags || []).includes('Siena'));
+                } else if (selectedBuilding === 'Firenze Centro') {
+                    filtered = filtered.filter(r => (r.tags || []).includes('Firenze'));
+                } else if (selectedBuilding === 'Polo Design & Moda (FI/PI)') {
+                    filtered = filtered.filter(r => (r.tags || []).includes('Design') || (r.tags || []).includes('Fashion') || (r.tags || []).includes('Comunicazione'));
+                } else if (selectedBuilding === 'Conservatori') {
+                    filtered = filtered.filter(r => (r.tags || []).includes('Conservatorio') || (r.tags || []).includes('Musica') || (r.tags || []).includes('Jazz'));
+                } else {
+                    filtered = filtered.filter(room => room.edificio.includes(selectedBuilding) || room.indirizzo.includes(selectedBuilding));
+                }
             } else if (university?.id === 'uniba') {
                 if (selectedBuilding === 'Centro Storico') {
                     filtered = filtered.filter(r =>
@@ -1396,6 +1430,13 @@ export const StudyRoomsScreen: React.FC<StudyRoomsScreenProps> = ({ navigation }
         />
     ), [isOpen, navigation, favoriteRooms, toggleFavorite, university]);
 
+    // Optimize FlatList performance by providing approximate item layout size
+    const getItemLayout = useCallback((data: any, index: number) => ({
+        length: 160, // Approximate height of StudyRoomCard including margins
+        offset: 160 * index,
+        index,
+    }), []);
+
     const statistics = useMemo(() => {
         const totalCapacity = filteredRooms.reduce((sum, room) => sum + room.postiTotali, 0);
         return { totalAvailable: 0, totalCapacity };
@@ -1629,13 +1670,17 @@ export const StudyRoomsScreen: React.FC<StudyRoomsScreenProps> = ({ navigation }
                 ListFooterComponent={() => isLoadingMore ? <View style={styles.footerLoader}><ActivityIndicator size="small" color="#10b981" /><Text style={styles.footerText}>Caricamento...</Text></View> : null}
                 onEndReached={handleLoadMore}
                 onEndReachedThreshold={0.5}
-                initialNumToRender={10}
+                initialNumToRender={5}
+                maxToRenderPerBatch={5}
+                windowSize={11}
+                updateCellsBatchingPeriod={50}
+                removeClippedSubviews={Platform.OS === 'android'}
+                getItemLayout={getItemLayout}
                 refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} colors={['#10b981']} />}
                 contentContainerStyle={[styles.contentContainer, { paddingBottom: Math.max(94, insets.bottom + 16) }]}
                 showsVerticalScrollIndicator={false}
                 keyboardShouldPersistTaps="always"
                 keyboardDismissMode="none"
-                removeClippedSubviews={false}
                 extraData={searchQuery}
             />
         </View>

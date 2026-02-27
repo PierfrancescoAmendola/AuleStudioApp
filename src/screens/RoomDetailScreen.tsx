@@ -76,6 +76,9 @@ import { getDirectionsUniMe } from '../data/Sicilia/unime';
 import { getDirectionsAFAMSicilia } from '../data/Sicilia/afamSicilia';
 import { getDirectionsUniFi } from '../data/Toscana/unifi';
 import { getDirectionsUniPi } from '../data/Toscana/unipi';
+import { getDirectionsUniSi } from '../data/Toscana/unisi';
+import { getDirectionsUniStrasi } from '../data/Toscana/unistrasi';
+import { getDirectionsAFAMToscana } from '../data/Toscana/afamToscana';
 
 const DirectionPoint: React.FC<{ title: string; content: string; icon: any }> = ({ title, content, icon }) => (
     <View style={styles.directionPoint}>
@@ -347,6 +350,15 @@ export const RoomDetailScreen = ({ route, navigation }: any) => {
         }
         if (room.id.startsWith('unipi_') || (room.university || '').toLowerCase() === 'unipi' || (room.university || '').toLowerCase().includes('pisa') || (room.university || '').toLowerCase().includes('livorno') || (room.university || '').toLowerCase().includes('spezia') || (room.university || '').toLowerCase().includes('lucca')) {
             return getDirectionsUniPi(room, isRainy);
+        }
+        if (room.id.startsWith('unisi_') || (room.university || '').toLowerCase() === 'unisi' || (room.university || '').toLowerCase().includes('siena') || (room.university || '').toLowerCase().includes('arezzo') || (room.university || '').toLowerCase().includes('grosseto')) {
+            return getDirectionsUniSi(room);
+        }
+        if (room.id.startsWith('unistrasi_') || (room.university || '').toLowerCase() === 'unistrasi' || (room.university || '').toLowerCase().includes('stranieri di siena')) {
+            return getDirectionsUniStrasi(room);
+        }
+        if (room.id.startsWith('aba_firenze') || room.id.startsWith('aba_carrara') || room.id.startsWith('laba_') || room.id.startsWith('accademia_italiana_') || room.id.startsWith('cons_cherubini') || room.id.startsWith('cons_mascagni') || room.id.startsWith('cons_boccherini') || room.id.startsWith('cons_franci') || room.id.startsWith('fiesole_') || room.id.startsWith('sienajazz_') || room.id.startsWith('isia_firenze') || room.id.startsWith('modartech_') || room.id.startsWith('ied_firenze')) {
+            return getDirectionsAFAMToscana(room);
         }
         if ((room.university || '').toUpperCase() === 'AFAM' || room.id.startsWith('abaq_') || room.id.startsWith('cons_') || room.id.startsWith('isia_')) {
             return getDirectionsAFAM(room);
@@ -1569,7 +1581,16 @@ export const RoomDetailScreen = ({ route, navigation }: any) => {
                     const isMorgagni = id.includes('careggi') || id.includes('morgagni');
                     const isCentroFi = id.includes('brunelleschi') || id.includes('capponi') || id.includes('architettura') || id.includes('mensa_apollonia');
 
-                    if (!isUniFi && !isUniPi) return null;
+                    const isUniSi = uni.includes('unisi') || id.startsWith('unisi_') || uni.includes('siena');
+                    const isUniStrasi = uni.includes('unistrasi') || id.startsWith('unistrasi_') || uni.includes('stranieri');
+
+                    const isSienaCentro = isUniSi && (id.includes('san_francesco') || id.includes('mattioli') || id.includes('umanistica') || id.includes('san_niccolo') || id.includes('orto_botanico'));
+
+                    const isStrasiCentrale = isUniStrasi && id.includes('rosselli');
+                    const isStrasiPispini = isUniStrasi && id.includes('pispini');
+                    const isStrasiErsu = isUniStrasi && (id.includes('bandini') || id.includes('sperandie'));
+
+                    if (!isUniFi && !isUniPi && !isUniSi && !isUniStrasi) return null;
 
                     return (
                         <>
@@ -1614,6 +1635,32 @@ export const RoomDetailScreen = ({ route, navigation }: any) => {
                                 <View style={[styles.infoBox, { backgroundColor: '#f0fdf4', borderColor: '#bbf7d0' }]}>
                                     <Ionicons name="bicycle-outline" size={24} color="#15803d" />
                                     <Text style={[styles.infoBoxText, { color: '#15803d' }]}>METEO-BICI Attivo: Bel tempo a Pisa. Goditi il viaggio in bici (la città è minuscola e pianeggiante)! Le indicazioni premiano la Ciclopi.</Text>
+                                </View>
+                            )}
+
+                            {isSienaCentro && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fef2f2', borderColor: '#fecaca' }]}>
+                                    <Ionicons name="footsteps-outline" size={24} color="#dc2626" />
+                                    <Text style={[styles.infoBoxText, { color: '#dc2626' }]}>Siena-Trek: Preparati a camminare in salita! Sfrutta il più possibile gli impianti di Risalita Meccanizzata (Scale Mobili) della città per evitarti faticate.</Text>
+                                </View>
+                            )}
+
+                            {isStrasiCentrale && (
+                                <View style={[styles.infoBox, { backgroundColor: '#eff6ff', borderColor: '#bfdbfe' }]}>
+                                    <Ionicons name="globe-outline" size={24} color="#2563eb" />
+                                    <Text style={[styles.infoBoxText, { color: '#2563eb' }]}>Hub Internazionale: Sede Centrale di UniStrasi. È facilissimo cogliere l'occasione per fare tandem linguistico nella Hall o al bar!</Text>
+                                </View>
+                            )}
+                            {isStrasiPispini && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fefce8', borderColor: '#fef08a' }]}>
+                                    <Ionicons name="library-outline" size={24} color="#ca8a04" />
+                                    <Text style={[styles.infoBoxText, { color: '#ca8a04' }]}>Polo Storico: Studierai all'interno dell'ex Monastero di San Girolamo. Goditi il silenzio assoluto e la frescura del chiostro d'estate.</Text>
+                                </View>
+                            )}
+                            {isStrasiErsu && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f3f4f6', borderColor: '#d1d5db' }]}>
+                                    <Ionicons name="restaurant-outline" size={24} color="#4b5563" />
+                                    <Text style={[styles.infoBoxText, { color: '#4b5563' }]}>Strutture ERSU: Spazi utilissimi per studiare fino a tardi o fare gruppo. Altissima concentrazione di studenti fuorisede e stranieri.</Text>
                                 </View>
                             )}
                         </>

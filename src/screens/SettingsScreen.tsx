@@ -24,13 +24,15 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { FocusAwareStatusBar } from '../components/FocusAwareStatusBar';
 import { OnboardingCarousel } from '../components/OnboardingCarousel';
 import Constants from 'expo-constants';
+import { universities } from '../data/universities';
+import { StudyRoom } from '../types';
 
 interface SettingsScreenProps {
     navigation: any;
 }
 
 interface SettingItemProps {
-    icon: keyof typeof Ionicons.glyphMap;
+    icon: any;
     iconColor: string;
     iconBg: string;
     title: string;
@@ -41,7 +43,7 @@ interface SettingItemProps {
 
 type FeedbackCategory = 'Feedback' | 'Suggerimento' | 'Manca Aula' | 'Localizzazione Sbagliata' | 'Bug' | 'Altro';
 
-const FEEDBACK_CATEGORIES: { type: FeedbackCategory; icon: keyof typeof Ionicons.glyphMap; color: string; bg: string }[] = [
+const FEEDBACK_CATEGORIES: { type: FeedbackCategory; icon: any; color: string; bg: string }[] = [
     { type: 'Feedback', icon: 'chatbubble-outline', color: '#3b82f6', bg: '#eff6ff' },
     { type: 'Suggerimento', icon: 'bulb-outline', color: '#f59e0b', bg: '#fffbeb' },
     { type: 'Manca Aula', icon: 'add-circle-outline', color: '#10b981', bg: '#ecfdf5' },
@@ -74,6 +76,12 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ navigation }) =>
     const [feedbackStep, setFeedbackStep] = useState<'category' | 'message'>('category');
     const [selectedCategory, setSelectedCategory] = useState<FeedbackCategory | null>(null);
     const [feedbackMessage, setFeedbackMessage] = useState('');
+
+    // Loc selector state
+    const [selectedFeedbackRegion, setSelectedFeedbackRegion] = useState<string | null>(null);
+    const [selectedFeedbackUni, setSelectedFeedbackUni] = useState<string | null>(null);
+    const [selectedFeedbackRoom, setSelectedFeedbackRoom] = useState<StudyRoom | null>(null);
+    const [showSelector, setShowSelector] = useState<'none' | 'region' | 'uni' | 'room'>('none');
 
     const appVersion = Constants.expoConfig?.version || '1.0.0';
 
@@ -128,6 +136,10 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ navigation }) =>
         setFeedbackStep('category');
         setSelectedCategory(null);
         setFeedbackMessage('');
+        setSelectedFeedbackRegion(null);
+        setSelectedFeedbackUni(null);
+        setSelectedFeedbackRoom(null);
+        setShowSelector('none');
     };
 
     const closeFeedbackModal = () => {
@@ -135,6 +147,10 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ navigation }) =>
         setFeedbackStep('category');
         setSelectedCategory(null);
         setFeedbackMessage('');
+        setSelectedFeedbackRegion(null);
+        setSelectedFeedbackUni(null);
+        setSelectedFeedbackRoom(null);
+        setShowSelector('none');
     };
 
     const handleCategorySelect = (category: FeedbackCategory) => {
@@ -145,6 +161,11 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ navigation }) =>
     const handleSendFeedback = () => {
         if (!selectedCategory || !feedbackMessage.trim()) {
             Alert.alert('Attenzione', 'Scrivi un messaggio prima di inviare.');
+            return;
+        }
+
+        if (selectedCategory === 'Localizzazione Sbagliata' && (!selectedFeedbackRegion || !selectedFeedbackUni || !selectedFeedbackRoom)) {
+            Alert.alert('Dati Mancanti', 'Per favore, seleziona la regione, l\'università e l\'aula studio con la localizzazione sbagliata.');
             return;
         }
 
@@ -163,10 +184,21 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ navigation }) =>
 
         const email = 'support@unistudyitalia.app';
         const subject = encodeURIComponent(`[${selectedCategory}] UniStudy Italia`);
+
+        let locDetails = '';
+        if (selectedCategory === 'Localizzazione Sbagliata' && selectedFeedbackRoom) {
+            locDetails = `📍 AULA SEGNALATA:
+Regione: ${selectedFeedbackRegion}
+Università: ${universities.find(u => u.id === selectedFeedbackUni)?.name || selectedFeedbackUni}
+Aula: ${selectedFeedbackRoom.nome} (${selectedFeedbackRoom.edificio})
+ID Aula: ${selectedFeedbackRoom.id}
+`;
+        }
+
         const body = encodeURIComponent(`📋 TIPO DI SEGNALAZIONE
 ${selectedCategory}
 
-📝 MESSAGGIO
+${locDetails}📝 MESSAGGIO
 ${feedbackMessage}
 
 ━━━━━━━━━━━━━━━━━━━━
@@ -206,6 +238,59 @@ ${feedbackMessage}
             </SafeAreaView>
         </Modal>
     );
+
+    const availableRegions = Array.from(new Set(universities.map(u => u.regionName))).sort();
+    const availableUnis = universities.filter(u => u.regionName === selectedFeedbackRegion).sort((a, b) => a.name.localeCompare(b.name));
+    const availableRooms = selectedFeedbackUni ? (universities.find(u => u.id === selectedFeedbackUni)?.studyRooms || []).sort((a, b) => a.nome.localeCompare(b.nome)) : [];
+
+    const renderSelectorModal = () => {
+        let title = '';
+        let data: any[] = [];
+        let onSelect = (item: any) => { };
+
+        if (showSelector === 'region') {
+            title = 'Seleziona Regione';
+            data = availableRegions;
+            onSelect = (item) => { setSelectedFeedbackRegion(item); setSelectedFeedbackUni(null); setSelectedFeedbackRoom(null); setShowSelector('none'); };
+        } else if (showSelector === 'uni') {
+            title = 'Seleziona Università';
+            data = availableUnis;
+            onSelect = (item) => { setSelectedFeedbackUni(item.id); setSelectedFeedbackRoom(null); setShowSelector('none'); };
+        } else if (showSelector === 'room') {
+            title = 'Seleziona Aula Studio';
+            data = availableRooms;
+            onSelect = (item) => { setSelectedFeedbackRoom(item); setShowSelector('none'); };
+        }
+
+        return (
+            <Modal visible={showSelector !== 'none'} animationType="slide" presentationStyle="pageSheet" transparent={Platform.OS === 'android'}>
+                <SafeAreaView style={styles.selectorModalContainer}>
+                    <View style={styles.modalHeader}>
+                        <TouchableOpacity onPress={() => setShowSelector('none')} style={styles.modalCloseButton}>
+                            <Ionicons name="close" size={28} color="#1f2937" />
+                        </TouchableOpacity>
+                        <Text style={styles.modalTitle}>{title}</Text>
+                        <View style={{ width: 36 }} />
+                    </View>
+                    <ScrollView style={styles.selectorList} showsVerticalScrollIndicator={true}>
+                        {data.map((item, index) => {
+                            const label = showSelector === 'region' ? item : (showSelector === 'uni' ? item.name : item.nome);
+                            return (
+                                <TouchableOpacity key={index} style={styles.selectorItem} onPress={() => onSelect(item)}>
+                                    <View style={styles.selectorItemContent}>
+                                        <Text style={styles.selectorItemText}>{label}</Text>
+                                        {showSelector === 'room' && <Text style={styles.selectorItemSubtext}>{item.edificio}</Text>}
+                                    </View>
+                                    <Ionicons name="chevron-forward" size={20} color="#9ca3af" />
+                                </TouchableOpacity>
+                            );
+                        })}
+                        <View style={{ height: 40 }} />
+                    </ScrollView>
+                </SafeAreaView>
+            </Modal>
+        );
+    };
 
     // Feedback Modal
     const renderFeedbackModal = () => (
@@ -247,38 +332,83 @@ ${feedbackMessage}
                     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                         <KeyboardAvoidingView
                             style={styles.messageContainer}
-                            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+                            behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+                            keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}
                         >
-                            <Text style={styles.feedbackSubtitle}>Descrivi nel dettaglio il tuo feedback:</Text>
-                            <TextInput
-                                style={styles.messageInput}
-                                placeholder="Scrivi qui il tuo messaggio..."
-                                placeholderTextColor="#9ca3af"
-                                multiline
-                                textAlignVertical="top"
-                                value={feedbackMessage}
-                                onChangeText={setFeedbackMessage}
-                            />
-                            <TouchableOpacity
-                                style={[
-                                    styles.sendButton,
-                                    !feedbackMessage.trim() && styles.sendButtonDisabled
-                                ]}
-                                onPress={handleSendFeedback}
-                                disabled={!feedbackMessage.trim()}
-                            >
-                                <LinearGradient
-                                    colors={feedbackMessage.trim() ? ['#10b981', '#059669'] : ['#d1d5db', '#9ca3af']}
-                                    style={styles.sendButtonGradient}
+                            <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ flexGrow: 1 }}>
+                                {selectedCategory === 'Localizzazione Sbagliata' && (
+                                    <View style={styles.locationSelectorContainer}>
+                                        <Text style={styles.feedbackSubtitle}>Scegli l'aula con la posizione errata:</Text>
+
+                                        <TouchableOpacity style={styles.inlineSelector} onPress={() => setShowSelector('region')}>
+                                            <View>
+                                                <Text style={styles.inlineSelectorLabel}>1. Regione</Text>
+                                                <Text style={[styles.inlineSelectorValue, !selectedFeedbackRegion && { color: '#9ca3af' }]}>
+                                                    {selectedFeedbackRegion || 'Tocca per selezionare'}
+                                                </Text>
+                                            </View>
+                                            <Ionicons name="chevron-down" size={20} color="#6b7280" />
+                                        </TouchableOpacity>
+
+                                        {selectedFeedbackRegion && (
+                                            <TouchableOpacity style={styles.inlineSelector} onPress={() => setShowSelector('uni')}>
+                                                <View>
+                                                    <Text style={styles.inlineSelectorLabel}>2. Università</Text>
+                                                    <Text style={[styles.inlineSelectorValue, !selectedFeedbackUni && { color: '#9ca3af' }]}>
+                                                        {selectedFeedbackUni ? universities.find(u => u.id === selectedFeedbackUni)?.name : 'Tocca per selezionare'}
+                                                    </Text>
+                                                </View>
+                                                <Ionicons name="chevron-down" size={20} color="#6b7280" />
+                                            </TouchableOpacity>
+                                        )}
+
+                                        {selectedFeedbackUni && (
+                                            <TouchableOpacity style={styles.inlineSelector} onPress={() => setShowSelector('room')}>
+                                                <View>
+                                                    <Text style={styles.inlineSelectorLabel}>3. Aula Studio</Text>
+                                                    <Text style={[styles.inlineSelectorValue, !selectedFeedbackRoom && { color: '#9ca3af' }]}>
+                                                        {selectedFeedbackRoom ? selectedFeedbackRoom.nome : 'Tocca per selezionare'}
+                                                    </Text>
+                                                </View>
+                                                <Ionicons name="chevron-down" size={20} color="#6b7280" />
+                                            </TouchableOpacity>
+                                        )}
+                                        <View style={{ height: 20 }} />
+                                    </View>
+                                )}
+
+                                <Text style={styles.feedbackSubtitle}>Descrivi nel dettaglio il tuo feedback:</Text>
+                                <TextInput
+                                    style={styles.messageInput}
+                                    placeholder="Scrivi qui il tuo messaggio..."
+                                    placeholderTextColor="#9ca3af"
+                                    multiline
+                                    textAlignVertical="top"
+                                    value={feedbackMessage}
+                                    onChangeText={setFeedbackMessage}
+                                />
+                                <TouchableOpacity
+                                    style={[
+                                        styles.sendButton,
+                                        !feedbackMessage.trim() && styles.sendButtonDisabled
+                                    ]}
+                                    onPress={handleSendFeedback}
+                                    disabled={!feedbackMessage.trim()}
                                 >
-                                    <Ionicons name="send" size={20} color="#ffffff" />
-                                    <Text style={styles.sendButtonText}>Invia Feedback</Text>
-                                </LinearGradient>
-                            </TouchableOpacity>
+                                    <LinearGradient
+                                        colors={feedbackMessage.trim() ? ['#10b981', '#059669'] : ['#d1d5db', '#9ca3af']}
+                                        style={styles.sendButtonGradient}
+                                    >
+                                        <Ionicons name="send" size={20} color="#ffffff" />
+                                        <Text style={styles.sendButtonText}>Invia Feedback</Text>
+                                    </LinearGradient>
+                                </TouchableOpacity>
+                            </ScrollView>
                         </KeyboardAvoidingView>
                     </TouchableWithoutFeedback>
                 )}
             </SafeAreaView>
+            {renderSelectorModal()}
         </Modal>
     );
 
@@ -725,5 +855,65 @@ const styles = StyleSheet.create({
         fontWeight: '700',
         color: '#ffffff',
         letterSpacing: 0.3,
+    },
+    selectorModalContainer: {
+        flex: 1,
+        backgroundColor: '#f3f4f6',
+    },
+    selectorList: {
+        padding: 16,
+    },
+    selectorItem: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        backgroundColor: '#ffffff',
+        padding: 16,
+        borderRadius: 12,
+        marginBottom: 8,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.05,
+        shadowRadius: 2,
+        elevation: 1,
+    },
+    selectorItemContent: {
+        flex: 1,
+        marginRight: 10,
+    },
+    selectorItemText: {
+        fontSize: 16,
+        fontWeight: '600',
+        color: '#1f2937',
+    },
+    selectorItemSubtext: {
+        fontSize: 13,
+        color: '#6b7280',
+        marginTop: 2,
+    },
+    locationSelectorContainer: {
+        marginBottom: 10,
+    },
+    inlineSelector: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        backgroundColor: '#ffffff',
+        padding: 16,
+        borderRadius: 12,
+        marginBottom: 10,
+        borderWidth: 1,
+        borderColor: '#e5e7eb',
+    },
+    inlineSelectorLabel: {
+        fontSize: 12,
+        fontWeight: '500',
+        color: '#6b7280',
+        marginBottom: 4,
+    },
+    inlineSelectorValue: {
+        fontSize: 15,
+        fontWeight: '600',
+        color: '#1f2937',
     },
 });
