@@ -96,23 +96,59 @@ export const SmartWeatherCard: React.FC<SmartWeatherCardProps> = ({
     const isCold = weather.temperature < 18 || decoded.isRainy;
 
     // Dynamic theming
-    const warmGradient: [string, string] = ['#fef3c7', '#ffedd5'];
-    const coldGradient: [string, string] = ['#e0f2fe', '#ede9fe'];
-    const gradient = isWarm ? warmGradient : coldGradient;
-    const textColor = isWarm ? '#92400e' : '#1e3a5f';
-    const iconColor = isWarm ? '#f59e0b' : '#3b82f6';
-    const borderColor = isWarm ? '#fcd34d' : '#93c5fd';
+    let warmGradient: [string, string] = ['#fef3c7', '#ffedd5'];
+    let coldGradient: [string, string] = ['#e0f2fe', '#ede9fe'];
+    let gradient = isWarm ? warmGradient : coldGradient;
+    let textColor = isWarm ? '#92400e' : '#1e3a5f';
+    let iconColor = isWarm ? '#f59e0b' : '#3b82f6';
+    let borderColor = isWarm ? '#fcd34d' : '#93c5fd';
 
-    const emoji = isWarm ? '☀️' : (decoded.isRainy ? '🌧️' : '❄️');
-    const message = isWarm
+    let emoji = isWarm ? '☀️' : (decoded.isRainy ? '🌧️' : '❄️');
+    let message = isWarm
         ? `${weather.temperature}°C a ${city}. Giornata perfetta per studiare all'aperto!`
         : decoded.isRainy
             ? `${weather.temperature}°C e ${decoded.label.toLowerCase()}. Trova un posto caldo e al coperto!`
             : `${weather.temperature}°C a ${city}. Meglio restare al caldo dentro!`;
 
-    const filterTarget = isWarm ? 'Outdoor' : 'Indoor';
-    const actionLabel = isWarm ? 'Vedi spazi outdoor →' : 'Vedi spazi indoor →';
+    let filterTarget = isWarm ? 'Outdoor' : 'Indoor';
+    let actionLabel = isWarm ? 'Vedi spazi outdoor →' : 'Vedi spazi indoor →';
 
+    // Hack: Cagliari specific weather alerts
+    if (city.includes('Cagliari')) {
+        if (weather.temperature >= 35) {
+            // Heatwave alert
+            gradient = ['#fef2f2', '#fee2e2'];
+            textColor = '#7f1d1d';
+            iconColor = '#dc2626';
+            borderColor = '#fca5a5';
+            emoji = '🥵';
+            message = `${weather.temperature}°C a Cagliari! Evita le salite (Castello, Sa Duchessa), usa la metro o cerca aule in piano (es. MEM).`;
+            filterTarget = 'Indoor';
+            actionLabel = 'Vedi aule al fresco/in piano →';
+        } else if (weather.windspeed >= 30) {
+            // Maestrale alert
+            gradient = ['#f0fdf4', '#dcfce7'];
+            textColor = '#14532d';
+            iconColor = '#16a34a';
+            borderColor = '#86efac';
+            emoji = '🌬️';
+            message = `Maestrale forte (${weather.windspeed} km/h)! Evita gli spazi outdoor (es. Orto Botanico), rifugiati in Cittadella o MEM.`;
+            filterTarget = 'Indoor';
+            actionLabel = 'Vedi spazi indoor protetti →';
+        }
+    } else if (city.includes('Alghero')) {
+        if (weather.windspeed >= 30) {
+            // Maestrale alert Alghero - Scudo del Maestrale (Weather-Lock)
+            gradient = ['#f0fdf4', '#dcfce7'];
+            textColor = '#14532d';
+            iconColor = '#16a34a';
+            borderColor = '#86efac';
+            emoji = '🌬️';
+            message = `Vento di burrasca sui Bastioni (${weather.windspeed} km/h). Mettiti al riparo nell'Asilo Sella.`;
+            filterTarget = 'Indoor';
+            actionLabel = 'Vedi spazi indoor protetti →';
+        }
+    }
     return (
         <TouchableOpacity
             activeOpacity={0.85}

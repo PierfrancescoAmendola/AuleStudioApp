@@ -1,18 +1,16 @@
 module.exports = {
-    testEnvironment: 'node',
+    preset: 'jest-expo',
     roots: ['<rootDir>/src/__tests__'],
-    testMatch: ['**/*.test.ts'],
-    transform: {
-        '^.+\\.tsx?$': ['ts-jest', { useESM: false }],
-    },
+    testMatch: ['**/*.test.ts', '**/*.test.tsx'],
     moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
     setupFilesAfterEnv: [],
     moduleNameMapper: {
         '^../types$': '<rootDir>/src/types/index.ts',
     },
     collectCoverageFrom: [
-        'src/utils/**/*.ts',
-        'src/services/**/*.ts',
+        'src/utils/**/*.{ts,tsx}',
+        'src/components/**/*.{ts,tsx}',
+        'src/services/**/*.{ts,tsx}',
         '!src/**/*.d.ts',
     ],
 };

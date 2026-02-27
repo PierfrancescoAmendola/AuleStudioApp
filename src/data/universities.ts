@@ -60,6 +60,9 @@ import { polibaRooms } from './Puglia/poliba';
 import { unisalentoRooms } from './Puglia/unisalento';
 import { unifgRooms } from './Puglia/unifg';
 import { afamPugliaRooms } from './Puglia/afamPuglia';
+import { unicaRooms } from './Sardegna/unicaRooms';
+import { unissRooms } from './Sardegna/unissRooms';
+import { poliDecentratiSardegnaRooms } from './Sardegna/poliDecentratiSardegnaRooms';
 
 
 
@@ -1584,6 +1587,78 @@ export const universities: University[] = [
         ],
         color: '#7c3aed', // Violet-600 (AFAM standard)
         darkColor: '#4c1d95', // Violet-900
+    },
+    {
+        id: 'unica',
+        name: 'UniCa',
+        fullName: 'Università degli Studi di Cagliari',
+        city: 'Cagliari / Monserrato',
+        regionName: 'Sardegna',
+        region: {
+            latitude: 39.2238,
+            longitude: 9.1116,
+            latitudeDelta: 0.1,
+            longitudeDelta: 0.1,
+        },
+        studyRooms: unicaRooms,
+        availableFilters: [
+            'Tutti',
+            'Centro',
+            'Sulla linea Metro',
+            'Outdoor',
+            'Indoor',
+            'Monserrato'
+        ],
+        color: '#b91c1c', // UniCa Red
+        darkColor: '#7f1d1d',
+    },
+    {
+        id: 'uniss',
+        name: 'UniSS',
+        fullName: 'Università degli Studi di Sassari',
+        city: 'Sassari / Alghero / Olbia',
+        regionName: 'Sardegna',
+        region: {
+            latitude: 40.72,
+            longitude: 8.56,
+            latitudeDelta: 0.5,
+            longitudeDelta: 0.5,
+        },
+        studyRooms: unissRooms,
+        availableFilters: [
+            'Tutti',
+            'Centro',
+            'Sassari',
+            'Alghero',
+            'Olbia',
+            'Nuoro / Oristano'
+        ],
+        color: '#0369a1', // UniSS Blue
+        darkColor: '#0c4a6e',
+    },
+    {
+        id: 'poli_sardegna',
+        name: 'Poli Sardegna',
+        fullName: 'AFAM, Consorzi e Poli Decentrati (Alghero, Olbia, Nuoro, Oristano)',
+        city: 'Alghero / Olbia / Nuoro / Oristano / SS / CA',
+        regionName: 'Sardegna',
+        region: {
+            latitude: 40.0,
+            longitude: 9.0,
+            latitudeDelta: 2.0,
+            longitudeDelta: 2.0,
+        },
+        studyRooms: poliDecentratiSardegnaRooms,
+        availableFilters: [
+            'Tutti',
+            'AFAM',
+            'Alghero',
+            'Olbia',
+            'Nuoro',
+            'Oristano'
+        ],
+        color: '#f59e0b', // Amber-500
+        darkColor: '#b45309', // Amber-700
     },
 ];
 

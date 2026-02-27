@@ -86,7 +86,7 @@ export const RoomCard = memo<RoomCardProps>(
                                     else if (servizio.toLowerCase().includes('climatizz')) iconName = 'snow';
 
                                     return (
-                                        <View key={index} style={[styles.serviceTag, { backgroundColor: colors.background }]}>
+                                        <View key={`serv-${index}`} style={[styles.serviceTag, { backgroundColor: colors.background }]}>
                                             <Ionicons name={iconName as any} size={12} color={colors.textSecondary} />
                                             <Text style={[styles.serviceText, { color: colors.textSecondary }]} numberOfLines={1}>
                                                 {servizio}
@@ -94,6 +94,21 @@ export const RoomCard = memo<RoomCardProps>(
                                         </View>
                                     );
                                 })}
+                            </View>
+                        </View>
+                    )}
+
+                    {/* Tags / Badges */}
+                    {room.tags && room.tags.length > 0 && (
+                        <View style={[styles.servicesContainer, { paddingTop: room.servizi.length > 0 ? Spacing.sm : Spacing.md, borderTopWidth: room.servizi.length > 0 ? 0 : 1 }]}>
+                            <View style={styles.servicesList}>
+                                {room.tags.map((tag, index) => (
+                                    <View key={`tag-${index}`} style={[styles.serviceTag, { backgroundColor: colors.primary + '15' }]}>
+                                        <Text style={[styles.serviceText, { color: colors.primary, fontWeight: '700' }]} numberOfLines={1}>
+                                            {tag}
+                                        </Text>
+                                    </View>
+                                ))}
                             </View>
                         </View>
                     )}

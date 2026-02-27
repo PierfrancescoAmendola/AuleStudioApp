@@ -67,12 +67,9 @@ import { getDirectionsPoliBa } from '../data/Puglia/poliba';
 import { getDirectionsUniSalento } from '../data/Puglia/unisalento';
 import { getDirectionsUniFg } from '../data/Puglia/unifg';
 import { getDirectionsAFAMPuglia } from '../data/Puglia/afamPuglia';
-
-
-
-
-
-
+import { getDirectionsUniCa } from '../data/Sardegna/unicaRooms';
+import { getDirectionsUniSS } from '../data/Sardegna/unissRooms';
+import { getDirectionsSardegnaDecentrati } from '../data/Sardegna/poliDecentratiSardegnaRooms';
 
 const DirectionPoint: React.FC<{ title: string; content: string; icon: keyof typeof Ionicons.glyphMap }> = ({ title, content, icon }) => (
     <View style={styles.directionPoint}>
@@ -238,7 +235,7 @@ export const RoomDetailScreen = ({ route, navigation }: any) => {
         if (room.id.startsWith('unige_health') || room.id.includes('chiavari') || room.id.includes('pietra')) {
             return getDirectionsHealthDecentralized(room);
         }
-        if (room.id.startsWith('aba_') || room.id.startsWith('cons_') || room.university === 'AFAM') {
+        if (room.id.startsWith('aba_ligustica') || room.id.startsWith('cons_paganini') || room.id.startsWith('cons_sp') || room.id.startsWith('aba_sanremo') || room.id.startsWith('sanremo_')) {
             return getDirectionsAFAM_Liguria(room);
         }
         if (room.id.startsWith('unige_') || room.id.startsWith('ge_') || room.university === 'UniGe') {
@@ -256,7 +253,7 @@ export const RoomDetailScreen = ({ route, navigation }: any) => {
         if (room.id.startsWith('unicam_') || room.id.startsWith('matelica_') || room.id.includes('ascoli_annunziata') || room.university === 'UniCam') {
             return getDirectionsUniCam(room);
         }
-        if (room.id.startsWith('isia_') || room.id.startsWith('aba_') || room.id.startsWith('cons_') || room.id.startsWith('poliarte_') || room.university === 'AFAM') {
+        if (room.id.startsWith('isia_urbino') || room.id.startsWith('aba_urbino') || room.id.startsWith('aba_macerata') || room.id.startsWith('macerata_') || room.id.startsWith('cons_rossini') || room.id.startsWith('pesaro_') || room.id.startsWith('cons_fermo') || room.id.startsWith('fermo_') || room.id.startsWith('poliarte_')) {
             return getDirectionsAFAM_Marche(room);
         }
         if (room.id.startsWith('uniba_') || (room.university || '').includes('UniBa')) {
@@ -277,12 +274,15 @@ export const RoomDetailScreen = ({ route, navigation }: any) => {
         if (room.id.startsWith('cons_') && ((room.university || '').includes('Bari') || (room.university || '').includes('Monopoli') || (room.university || '').includes('Taranto') || (room.university || '').includes('Foggia'))) {
             return getDirectionsAFAMPuglia(room);
         }
-
-
-
-
-
-        if ((room.university || '').toUpperCase() === 'AFAM' || room.id.startsWith('abaq_') || room.id.startsWith('cons_') || room.id.startsWith('isia_')) {
+        if (room.id.startsWith('unica_') || (room.university || '').toLowerCase() === 'unica') {
+            return getDirectionsUniCa(room);
+        }
+        if (room.id.startsWith('uniss_') || (room.university || '').toLowerCase() === 'uniss' || (room.university || '').toLowerCase().includes('sassari')) {
+            return getDirectionsUniSS(room);
+        }
+        if (room.id.startsWith('alghero_') || room.id.startsWith('olbia_') || room.id.startsWith('oristano_') || room.id.startsWith('nuoro_') || room.id.startsWith('aba_sironi') || room.id.startsWith('cons_canepa') || room.id.startsWith('cons_palestrina') || (room.university || '').includes('UniOlbia') || (room.university || '').includes('UniNuoro') || (room.university || '').includes('Consorzio UNO') || (room.university || '').includes('Alghero')) {
+            return getDirectionsSardegnaDecentrati(room);
+        } if ((room.university || '').toUpperCase() === 'AFAM' || room.id.startsWith('abaq_') || room.id.startsWith('cons_') || room.id.startsWith('isia_')) {
             return getDirectionsAFAM(room);
         }
         if (room.id.startsWith('v')) {
@@ -1280,6 +1280,118 @@ export const RoomDetailScreen = ({ route, navigation }: any) => {
                                 <View style={[styles.infoBox, { backgroundColor: '#f0f9ff', borderColor: '#bae6fd' }]}>
                                     <Ionicons name="water-outline" size={24} color="#0284c7" />
                                     <Text style={[styles.infoBoxText, { color: '#0284c7' }]}>🌊 Vista Mare: Il Conservatorio Rota è un gioiello affacciato sull'Adriatico. Fondi del Maestro Nino Rota — vale il viaggio da solo!</Text>
+                                </View>
+                            )}
+                        </>
+                    );
+                })()}
+
+                {(() => {
+                    const uni = (room.university || '').toLowerCase();
+                    const isUniCa = uni.includes('unica') || room.id.startsWith('unica_');
+                    if (!isUniCa) return null;
+                    const isMonserrato = room.id.includes('monserrato') || room.indirizzo.includes('Monserrato');
+                    const isSaDuchessa = room.id.includes('saduchessa');
+                    const isEconomicaGiuridica = room.indirizzo.includes('Ignazio');
+                    const isArchitettura = room.id.includes('architettura') || room.indirizzo.includes('Croce');
+                    const isNuoroOristano = room.indirizzo.includes('Nuoro') || room.indirizzo.includes('Oristano');
+                    return (
+                        <>
+                            {isMonserrato && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f0f9ff', borderColor: '#bae6fd' }]}>
+                                    <Ionicons name="train-outline" size={24} color="#0284c7" />
+                                    <Text style={[styles.infoBoxText, { color: '#0284c7' }]}>MetroCagliari: La Linea 1 della metro leggera ti lascia letteralmente dentro la Cittadella. Ideale per evitare il traffico della SS554.</Text>
+                                </View>
+                            )}
+                            {isSaDuchessa && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fff7ed', borderColor: '#fed7aa', marginTop: isMonserrato ? 12 : 0 }]}>
+                                    <Ionicons name="walk-outline" size={24} color="#c2410c" />
+                                    <Text style={[styles.infoBoxText, { color: '#c2410c' }]}>Salita Sa Duchessa: Piazza d'Armi è in cima a una collina. Prendi il bus CTM 8 dal centro per salvarti la scalata!</Text>
+                                </View>
+                            )}
+                            {isEconomicaGiuridica && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fef3c7', borderColor: '#fcd34d', marginTop: (isMonserrato || isSaDuchessa) ? 12 : 0 }]}>
+                                    <Ionicons name="car-outline" size={24} color="#d97706" />
+                                    <Text style={[styles.infoBoxText, { color: '#d97706' }]}>Parcheggio Impossibile: Trovare posto in Viale Sant'Ignazio dopo le 8:15 è una missione fallimentare. Vieni in bus (linea 8 o 5).</Text>
+                                </View>
+                            )}
+                            {isArchitettura && (
+                                <View style={[styles.infoBox, { backgroundColor: '#eff6ff', borderColor: '#bfdbfe' }]}>
+                                    <Ionicons name="camera-outline" size={24} color="#2563eb" />
+                                    <Text style={[styles.infoBoxText, { color: '#2563eb' }]}>Vista Mozzafiato: Sei nel cuore di Castello. Nelle pause studio goditi il panorama dal Bastione di Santa Croce.</Text>
+                                </View>
+                            )}
+                            {isNuoroOristano && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f8fafc', borderColor: '#cbd5e1' }]}>
+                                    <Ionicons name="map-outline" size={24} color="#475569" />
+                                    <Text style={[styles.infoBoxText, { color: '#475569' }]}>Polo Territoriale: Hub decentrato fondamentale per il centro Sardegna. Atmosfera molto più intima rispetto ai grandi poli cagliaritani.</Text>
+                                </View>
+                            )}
+                        </>
+                    );
+                })()}
+
+                {(() => {
+                    const uni = (room.university || '').toLowerCase();
+                    const isUniSS = uni.includes('uniss') || room.id.startsWith('uniss_') || uni.includes('sironi') || uni.includes('canepa') || uni.includes('olbia') || uni.includes('nuoro') || uni.includes('uno');
+                    if (!isUniSS) return null;
+                    const isSassariCentro = room.indirizzo.includes('Sassari') && !room.indirizzo.includes('Piandanna') && !uni.includes('sironi') && !uni.includes('canepa');
+                    const isPiandanna = room.indirizzo.includes('Piandanna');
+                    const isVeterinaria = room.id.includes('veterinaria');
+                    const isAlghero = room.id.includes('alghero') && !room.id.includes('asilo_sella_open');
+                    const isOlbia = room.id.includes('olbia');
+                    const isSironi = uni.includes('sironi') || room.id.startsWith('aba_sironi');
+                    const hasSporco = room.servizi?.some((s: string) => s.toLowerCase().includes('sporco tollerato'));
+                    const isAsiloSellaOpen = room.id.includes('asilo_sella_open');
+
+                    return (
+                        <>
+                            {isSironi && hasSporco && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fef3c7', borderColor: '#fcd34d' }]}>
+                                    <Ionicons name="brush-outline" size={24} color="#d97706" />
+                                    <Text style={[styles.infoBoxText, { color: '#d97706' }]}>🧱 Sporco Tollerato: Laboratorio operativo dell'Accademia Sironi. Odore di trementina e creta. Niente salotti foderati — puoi macchiare liberamente!</Text>
+                                </View>
+                            )}
+                            {isSironi && !hasSporco && (
+                                <View style={[styles.infoBox, { backgroundColor: '#eff6ff', borderColor: '#bfdbfe' }]}>
+                                    <Ionicons name="book-outline" size={24} color="#2563eb" />
+                                    <Text style={[styles.infoBoxText, { color: '#2563eb' }]}>🎨 Studio Teorico: Attenzione, in Biblioteca Sironi si consulta solo la teoria. Per lavorare con gesso o colori, spostati nei laboratori "Sporco Tollerato".</Text>
+                                </View>
+                            )}
+                            {isAsiloSellaOpen && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fff1f2', borderColor: '#fecdd3' }]}>
+                                    <Ionicons name="time-outline" size={24} color="#be123c" />
+                                    <Text style={[styles.infoBoxText, { color: '#be123c' }]}>🌙 Orario "Fuori Controllo": L'Open Space dell'Asilo Sella è noto per ignorare gli orari di chiusura sotto consegna. Spesso gli studenti autogestiscono lo spazio fino a tarda notte.</Text>
+                                </View>
+                            )}
+                            {isSassariCentro && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f5f3ff', borderColor: '#ddd6fe', marginTop: (isSironi || isAsiloSellaOpen) ? 12 : 0 }]}>
+                                    <Ionicons name="train-outline" size={24} color="#7c3aed" />
+                                    <Text style={[styles.infoBoxText, { color: '#7c3aed' }]}>Metro Sirio: I poli umanistici/giuridici e le cliniche sono serviti benissimo dalla metropolitana di superficie di Sassari.</Text>
+                                </View>
+                            )}
+                            {isPiandanna && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f0fdf4', borderColor: '#bbf7d0', marginTop: (isSassariCentro || isSironi || isAsiloSellaOpen) ? 12 : 0 }]}>
+                                    <Ionicons name="leaf-outline" size={24} color="#15803d" />
+                                    <Text style={[styles.infoBoxText, { color: '#15803d' }]}>Campus nel Verde: Piandanna è isolata dal traffico cittadino. Ci sono grandi parcheggi, ottima se vieni in auto.</Text>
+                                </View>
+                            )}
+                            {isVeterinaria && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fff1f2', borderColor: '#fecdd3', marginTop: (isSassariCentro || isPiandanna || isSironi || isAsiloSellaOpen) ? 12 : 0 }]}>
+                                    <Ionicons name="paw-outline" size={24} color="#be123c" />
+                                    <Text style={[styles.infoBoxText, { color: '#be123c' }]}>Eccellenza Med-Vet: Sei in uno dei poli storici e più rinomati in Italia per Medicina Veterinaria.</Text>
+                                </View>
+                            )}
+                            {isAlghero && (
+                                <View style={[styles.infoBox, { backgroundColor: '#ecfeff', borderColor: '#bae6fd', marginTop: (isSassariCentro || isPiandanna || isVeterinaria || isSironi || isAsiloSellaOpen) ? 12 : 0 }]}>
+                                    <Ionicons name="color-palette-outline" size={24} color="#0ea5e9" />
+                                    <Text style={[styles.infoBoxText, { color: '#0ea5e9' }]}>Dipartimento di Architettura: Vivi gli spazi storici di Alghero (Asilo Sella, Santa Chiara). Maestrale permettendo!</Text>
+                                </View>
+                            )}
+                            {isOlbia && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fefce8', borderColor: '#fef08a', marginTop: (isSassariCentro || isPiandanna || isVeterinaria || isAlghero || isSironi || isAsiloSellaOpen) ? 12 : 0 }]}>
+                                    <Ionicons name="airplane-outline" size={24} color="#a16207" />
+                                    <Text style={[styles.infoBoxText, { color: '#a16207' }]}>Polo Aeroportuale UniOlbia: Unico in Italia! Studia direttamente guardando i jet sulla pista dell'Aeroporto Costa Smeralda.</Text>
                                 </View>
                             )}
                         </>

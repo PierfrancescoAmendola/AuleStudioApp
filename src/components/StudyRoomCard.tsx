@@ -117,6 +117,8 @@ export const StudyRoomCard = memo<StudyRoomCardProps>(
                     studyRoom.servizi.includes('Aperto Domenica') ||
                     studyRoom.servizi.some(s => s.toLowerCase().includes('h24') || s.includes('24 ore')) ||
                     studyRoom.servizi.some(s => s.toLowerCase().includes('affluences')) ||
+                    studyRoom.tags?.some(tag => tag.includes('Fermata Sirio:')) ||
+                    studyRoom.tags?.includes('✈️ Airport Mode') ||
                     studyRoom.occupancy_rate) && (
                         <View style={styles.badgesRow}>
                             {studyRoom.servizi.some(s => s.toLowerCase().includes('h24') || s.includes('24 ore')) && (
@@ -144,13 +146,31 @@ export const StudyRoomCard = memo<StudyRoomCardProps>(
                                     <Text style={[styles.badgeLabel, { color: '#c2410c' }]}>📋 Prenota</Text>
                                 </View>
                             )}
+                            {studyRoom.tags?.find(tag => tag.includes('Fermata Sirio:')) && (
+                                <TouchableOpacity
+                                    activeOpacity={0.8}
+                                    style={[styles.badge, { backgroundColor: '#f3e8ff', flexDirection: 'row', alignItems: 'center' }]}
+                                    onPress={() => alert(`🚊 ${studyRoom.tags?.find(tag => tag.includes('Fermata Sirio:'))}\nLa metropolitana di superficie Sirio ti porta direttamente qui!`)}
+                                >
+                                    <Text style={[styles.badgeLabel, { color: '#7e22ce' }]}>🚊 {studyRoom.tags?.find(tag => tag.includes('Fermata Sirio:'))?.replace('Fermata Sirio: ', '')}</Text>
+                                </TouchableOpacity>
+                            )}
+                            {studyRoom.tags?.includes('✈️ Airport Mode') && (
+                                <TouchableOpacity
+                                    activeOpacity={0.8}
+                                    style={[styles.badge, { backgroundColor: '#e0f2fe', flexDirection: 'row', alignItems: 'center' }]}
+                                    onPress={() => alert(`✈️ Airport Mode Olbia\n\nMostra la tessera studenti Uniss ai bar dell'aeroporto per gli sconti universitari! ☕🥐\nPuoi controllare i maxischermi per lo stato del tuo volo.`)}
+                                >
+                                    <Text style={[styles.badgeLabel, { color: '#0369a1' }]}>✈️ Airport Lounge</Text>
+                                </TouchableOpacity>
+                            )}
                             {studyRoom.occupancy_rate && (
                                 <View style={[styles.badge, {
-                                    backgroundColor: studyRoom.occupancy_rate === 'Molto Alto' ? '#fef2f2' :
+                                    backgroundColor: studyRoom.occupancy_rate === 'Molto Alto' || studyRoom.occupancy_rate === 'Altissimo' ? '#fef2f2' :
                                         studyRoom.occupancy_rate === 'Alto' ? '#fff7ed' : '#f0fdf4'
                                 }]}>
                                     <Text style={[styles.badgeLabel, {
-                                        color: studyRoom.occupancy_rate === 'Molto Alto' ? '#b91c1c' :
+                                        color: studyRoom.occupancy_rate === 'Molto Alto' || studyRoom.occupancy_rate === 'Altissimo' ? '#b91c1c' :
                                             studyRoom.occupancy_rate === 'Alto' ? '#c2410c' : '#15803d'
                                     }]}>📊 {studyRoom.occupancy_rate}</Text>
                                 </View>
@@ -159,9 +179,9 @@ export const StudyRoomCard = memo<StudyRoomCardProps>(
                     )}
 
                 {/* ─── Tags as Soft Pills ─── */}
-                {studyRoom.tags && studyRoom.tags.length > 0 && (
+                {studyRoom.tags && studyRoom.tags.filter(t => !t.includes('Fermata Sirio:') && !t.includes('Airport Mode')).length > 0 && (
                     <View style={styles.tagsContainer}>
-                        {studyRoom.tags.map((tag, idx) => (
+                        {studyRoom.tags.filter(t => !t.includes('Fermata Sirio:') && !t.includes('Airport Mode')).map((tag, idx) => (
                             <View key={idx} style={styles.tagPill}>
                                 <Text style={styles.tagPillText}>{tag}</Text>
                             </View>

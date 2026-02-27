@@ -1016,6 +1016,44 @@ export const StudyRoomsScreen: React.FC<StudyRoomsScreenProps> = ({ navigation }
                         room.indirizzo.includes(selectedBuilding)
                     );
                 }
+            } else if (university?.id === 'unica') {
+                if (selectedBuilding === 'Centro') {
+                    filtered = filtered.filter(r => r.indirizzo.includes('Cagliari') && !r.id.includes('monserrato'));
+                } else if (selectedBuilding === 'Monserrato') {
+                    filtered = filtered.filter(r => r.id.includes('monserrato') || r.indirizzo.includes('Monserrato') || r.indirizzo.includes('Cittadella'));
+                } else if (selectedBuilding === 'Sulla linea Metro') {
+                    filtered = filtered.filter(r => r.tags?.includes('Sulla linea Metro'));
+                } else {
+                    filtered = filtered.filter(r => r.edificio.includes(selectedBuilding) || r.indirizzo.includes(selectedBuilding));
+                }
+            } else if (university?.id === 'uniss') {
+                if (selectedBuilding === 'Centro') {
+                    filtered = filtered.filter(r => r.indirizzo.includes('Sassari') && !r.id.includes('piandanna') && !r.id.includes('sanpietro'));
+                } else if (selectedBuilding === 'Sassari') {
+                    filtered = filtered.filter(r => r.indirizzo.includes('Sassari'));
+                } else if (selectedBuilding === 'Alghero') {
+                    filtered = filtered.filter(r => r.indirizzo.includes('Alghero'));
+                } else if (selectedBuilding === 'Olbia') {
+                    filtered = filtered.filter(r => r.indirizzo.includes('Olbia'));
+                } else if (selectedBuilding === 'Nuoro / Oristano') {
+                    filtered = filtered.filter(r => r.indirizzo.includes('Nuoro') || r.indirizzo.includes('Oristano'));
+                } else {
+                    filtered = filtered.filter(r => r.edificio.includes(selectedBuilding) || r.indirizzo.includes(selectedBuilding));
+                }
+            } else if (university?.id === 'poli_sardegna') {
+                if (selectedBuilding === 'AFAM') {
+                    filtered = filtered.filter(r => (r.university || '').includes('AFAM') || r.id.startsWith('aba_') || r.id.startsWith('cons_'));
+                } else if (selectedBuilding === 'Alghero') {
+                    filtered = filtered.filter(r => r.indirizzo.includes('Alghero'));
+                } else if (selectedBuilding === 'Olbia') {
+                    filtered = filtered.filter(r => r.indirizzo.includes('Olbia'));
+                } else if (selectedBuilding === 'Nuoro') {
+                    filtered = filtered.filter(r => r.indirizzo.includes('Nuoro'));
+                } else if (selectedBuilding === 'Oristano') {
+                    filtered = filtered.filter(r => r.indirizzo.includes('Oristano'));
+                } else {
+                    filtered = filtered.filter(r => r.edificio.includes(selectedBuilding) || r.indirizzo.includes(selectedBuilding));
+                }
             } else if (university?.id === 'uniba') {
                 if (selectedBuilding === 'Centro Storico') {
                     filtered = filtered.filter(r =>
