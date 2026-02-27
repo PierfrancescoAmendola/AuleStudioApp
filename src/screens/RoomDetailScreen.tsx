@@ -79,6 +79,12 @@ import { getDirectionsUniPi } from '../data/Toscana/unipi';
 import { getDirectionsUniSi } from '../data/Toscana/unisi';
 import { getDirectionsUniStrasi } from '../data/Toscana/unistrasi';
 import { getDirectionsAFAMToscana } from '../data/Toscana/afamToscana';
+import { getDirectionsUnitn } from '../data/Trentino/unitn';
+import { getDirectionsUnibz } from '../data/Trentino/unibz';
+import { getDirectionsAfamTrentino } from '../data/Trentino/afamTrentino';
+import { getDirectionsUnipg } from '../data/Umbria/unipg';
+import { getDirectionsUnistrapg } from '../data/Umbria/unistrapg';
+import { getDirectionsAfamUmbria } from '../data/Umbria/afamUmbria';
 
 const DirectionPoint: React.FC<{ title: string; content: string; icon: any }> = ({ title, content, icon }) => (
     <View style={styles.directionPoint}>
@@ -103,8 +109,9 @@ export const RoomDetailScreen = ({ route, navigation }: any) => {
     const lightBackgroundColor = primaryColor === '#ffffff' ? '#f0fdf4' : `${primaryColor}15`; // 15 = ~8% opacity
     const borderColor = primaryColor === '#ffffff' ? '#bbf7d0' : `${primaryColor}40`; // 40 = ~25% opacity
 
-    // Meteo-Bici / Tram-Sync State (UniPi / UniFi / etc)
+    // Meteo-Bici / Tram-Sync State (UniPi / UniFi / UniBz etc)
     const [isRainy, setIsRainy] = useState<boolean>(false);
+    const [isSnowy, setIsSnowy] = useState<boolean>(false);
     const [weatherLoading, setWeatherLoading] = useState<boolean>(true);
 
     useEffect(() => {
@@ -122,7 +129,10 @@ export const RoomDetailScreen = ({ route, navigation }: any) => {
                     const code = data.current_weather.weathercode;
                     // Rain codes: 51-67, 80-82, 95-99
                     const rain = (code >= 51 && code <= 67) || (code >= 80 && code <= 82) || (code >= 95 && code <= 99);
+                    // Snow codes: 71-77, 85-86
+                    const snow = (code >= 71 && code <= 77) || (code >= 85 && code <= 86);
                     setIsRainy(rain);
+                    setIsSnowy(snow);
                 }
             } catch (e) {
                 console.log("Weather fetch failed", e);
@@ -132,8 +142,8 @@ export const RoomDetailScreen = ({ route, navigation }: any) => {
         };
 
         const uni = (room.university || '').toLowerCase();
-        // Only fetch weather if needed (e.g. UniPi and maybe UniFi in the future)
-        if (room.id.startsWith('unipi_') || uni === 'unipi' || uni.includes('pisa') || uni.includes('livorno')) {
+        // Only fetch weather if needed (e.g. UniPi, UniBz, afam trentino for Bolzano)
+        if (room.id.startsWith('unipi_') || uni === 'unipi' || uni.includes('pisa') || uni.includes('livorno') || uni === 'unibz' || room.id.startsWith('unibz_') || room.id.startsWith('afam_tn_') || room.id.startsWith('afam_bz_') || (room.id.startsWith('afam_') && uni.includes('trentino'))) {
             fetchLocalWeather();
         } else {
             setWeatherLoading(false);
@@ -360,6 +370,27 @@ export const RoomDetailScreen = ({ route, navigation }: any) => {
         if (room.id.startsWith('aba_firenze') || room.id.startsWith('aba_carrara') || room.id.startsWith('laba_') || room.id.startsWith('accademia_italiana_') || room.id.startsWith('cons_cherubini') || room.id.startsWith('cons_mascagni') || room.id.startsWith('cons_boccherini') || room.id.startsWith('cons_franci') || room.id.startsWith('fiesole_') || room.id.startsWith('sienajazz_') || room.id.startsWith('isia_firenze') || room.id.startsWith('modartech_') || room.id.startsWith('ied_firenze')) {
             return getDirectionsAFAMToscana(room);
         }
+        if (room.id.startsWith('unitn_') || (room.university || '').toLowerCase() === 'unitrento') {
+            return getDirectionsUnitn(room);
+        }
+        if (room.id.startsWith('unibz_') || (room.university || '').toLowerCase() === 'unibz') {
+            return getDirectionsUnibz(room);
+        }
+        if (room.id.startsWith('afam_tn_') || room.id.startsWith('afam_bz_') || (room.id.startsWith('afam_') && (room.university || '').toLowerCase().includes('trentino'))) {
+            return getDirectionsAfamTrentino(room);
+        }
+        if (room.id.startsWith('afam_tn_') || room.id.startsWith('afam_bz_') || (room.id.startsWith('afam_') && (room.university || '').toLowerCase().includes('trentino'))) {
+            return getDirectionsAfamTrentino(room);
+        }
+        if (room.id.startsWith('unipg_') || (room.university || '').toLowerCase() === 'unipg') {
+            return getDirectionsUnipg(room);
+        }
+        if (room.id.startsWith('unistrapg_') || (room.university || '').toLowerCase() === 'unistrapg') {
+            return getDirectionsUnistrapg(room);
+        }
+        if (room.id.startsWith('afam_pg_') || room.id.startsWith('afam_tr_') || (room.id.startsWith('afam_') && (room.university || '').toLowerCase().includes('umbria'))) {
+            return getDirectionsAfamUmbria(room);
+        }
         if ((room.university || '').toUpperCase() === 'AFAM' || room.id.startsWith('abaq_') || room.id.startsWith('cons_') || room.id.startsWith('isia_')) {
             return getDirectionsAFAM(room);
         }
@@ -459,6 +490,164 @@ export const RoomDetailScreen = ({ route, navigation }: any) => {
                                 <View style={[styles.infoBox, { backgroundColor: '#eef2ff', borderColor: '#c7d2fe', marginTop: 12 }]}>
                                     <Ionicons name="snow-outline" size={24} color="#4f46e5" />
                                     <Text style={[styles.infoBoxText, { color: '#4f46e5' }]}>Inverno a Roio: controlla corse bus per neve/ghiaccio prima di partire.</Text>
+                                </View>
+                            )}
+                        </>
+                    );
+                })()}
+
+                {/* UniBz & AFAM Trentino-Alto Adige specific advisories (Weather/Snow) */}
+                {(() => {
+                    const uni = (room.university || '').toLowerCase();
+                    const isUnibz = uni === 'unibz' || room.id.startsWith('unibz_');
+                    const isAfamTa = room.id.startsWith('afam_tn_') || room.id.startsWith('afam_bz_') || (room.id.startsWith('afam_') && uni.includes('trentino'));
+
+                    if (!isUnibz && !isAfamTa) return null;
+                    const isBressanone = room.id.includes('bx_');
+                    const isBrunico = room.id.includes('bk_');
+                    const isRiva = room.id.includes('riva');
+
+                    const isAFAM = room.university === 'AFAM';
+                    const isConservatorio = isAFAM && (room.nome.includes('Bonporti') || room.nome.includes('Monteverdi'));
+                    const isArtAcademy = isAFAM && room.nome.includes('Art Academy');
+
+                    return (
+                        <>
+                            {isSnowy && (
+                                <View style={[styles.infoBox, { backgroundColor: '#eff6ff', borderColor: '#bfdbfe' }]}>
+                                    <Ionicons name="snow-outline" size={24} color="#2563eb" />
+                                    <Text style={[styles.infoBoxText, { color: '#2563eb' }]}>❄️ Neve in Corso: Le nevicate potrebbero causare ritardi ai mezzi pesanti o ai treni regionali SAD. Controlla AltoAdigeMobilità/TrentinoTrasporti prima di muoverti.</Text>
+                                </View>
+                            )}
+                            {isBrunico && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f0fdf4', borderColor: '#bbf7d0', marginTop: isSnowy ? 12 : 0 }]}>
+                                    <Ionicons name="train-outline" size={24} color="#15803d" />
+                                    <Text style={[styles.infoBoxText, { color: '#15803d' }]}>Treno Val Pusteria: Collegamento frequente ma occhio ai turisti nella stagione sciistica (Plan de Corones), i treni possono essere affollati.</Text>
+                                </View>
+                            )}
+                            {isBressanone && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fefce8', borderColor: '#fef08a', marginTop: isSnowy ? 12 : 0 }]}>
+                                    <Ionicons name="bicycle-outline" size={24} color="#a16207" />
+                                    <Text style={[styles.infoBoxText, { color: '#a16207' }]}>Comunità Ciclabile: Bressanone è molto bike-friendly, le rastrelliere in facoltà sono sempre pienissime.</Text>
+                                </View>
+                            )}
+                            {isRiva && (
+                                <View style={[styles.infoBox, { backgroundColor: '#eff6ff', borderColor: '#bfdbfe', marginTop: isSnowy ? 12 : 0 }]}>
+                                    <Ionicons name="water-outline" size={24} color="#2563eb" />
+                                    <Text style={[styles.infoBoxText, { color: '#2563eb' }]}>Garda Trentino: Fuori dalla direttrice del Brennero. Autobus da Rovereto/Trento soggetti a traffico turistico. Parti in anticipo.</Text>
+                                </View>
+                            )}
+
+                            {/* INFOBOX: CONSERVATORI (Musica) */}
+                            {isConservatorio && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fef2f2', borderColor: '#fecaca', marginTop: (isSnowy || isBrunico || isBressanone || isRiva) ? 12 : 0 }]}>
+                                    <Ionicons name="musical-notes-outline" size={24} color="#b91c1c" />
+                                    <Text style={[styles.infoBoxText, { color: '#b91c1c' }]}>
+                                        🎹 Prenotazione Obbligatoria: Le aule per lo studio degli strumenti necessitano quasi sempre di prenotazione preventiva presso i coadiutori. La biblioteca è invece ad accesso libero per la consultazione.
+                                    </Text>
+                                </View>
+                            )}
+
+                            {/* INFOBOX: TRENTINO ART ACADEMY (Design/Arte) */}
+                            {isArtAcademy && (
+                                <View style={[styles.infoBox, { backgroundColor: '#eef2ff', borderColor: '#c7d2fe', marginTop: (isSnowy || isBrunico || isBressanone || isRiva) ? 12 : 0 }]}>
+                                    <Ionicons name="color-palette-outline" size={24} color="#4338ca" />
+                                    <Text style={[styles.infoBoxText, { color: '#4338ca' }]}>
+                                        🎨 Laboratori Tecnici: Le aule studio della TAA sono cablate per l'uso intensivo di laptop, tavolette grafiche e presentano tavoli ampi perfetti per il disegno o il fashion design.
+                                    </Text>
+                                </View>
+                            )}
+                        </>
+                    );
+                })()}
+
+                {/* Umbria specific advisories: UniPg, UniStraPg, AFAM Umbria */}
+                {(() => {
+                    const isAutogestita = room.nome.includes('Urban Center') || room.tags?.includes('Autogestita');
+                    const isSanPietro = room.id.includes('agraria');
+                    const uni = (room.university || '').toLowerCase();
+                    const isUniPg = uni === 'unipg' || room.id.startsWith('unipg_');
+                    const isUniStraPg = uni === 'unistrapg' || room.id.startsWith('unistrapg_');
+
+                    const isPoloOspedale = room.id.includes('biomedica');
+                    const isPoloIngegneria = room.id.includes('ingegneria');
+
+                    const isAFAM = room.university === 'AFAM';
+                    const isConservatorioUmbria = isAFAM && (room.id.includes('morlacchi') || room.id.includes('briccialdi'));
+                    const isBelleArti = isAFAM && room.id.includes('aba');
+                    const isAfamIbrido = isAFAM && (room.tags?.includes('Musica') || room.tags?.includes('Arte'));
+
+                    if (!isUniPg && !isUniStraPg && !isAutogestita && !isSanPietro && !isConservatorioUmbria && !isBelleArti && !isAfamIbrido) return null;
+
+                    let accumulatedBoxes = 0;
+                    const getMarginTop = () => {
+                        const margin = accumulatedBoxes > 0 ? 12 : 0;
+                        accumulatedBoxes++;
+                        return margin;
+                    };
+
+                    return (
+                        <>
+                            {isAutogestita && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fdf4ff', borderColor: '#f5d0fe', marginTop: getMarginTop() }]}>
+                                    <Ionicons name="cafe-outline" size={24} color="#a21caf" />
+                                    <Text style={[styles.infoBoxText, { color: '#a21caf' }]}>
+                                        ☕ Spazio Informale: Questa è un'aula studio gestita direttamente dagli studenti. L'ambiente è molto più rilassato, puoi portarti la schiscetta (c'è il microonde!) e gli orari sono generalmente i più prolungati della città.
+                                    </Text>
+                                </View>
+                            )}
+
+                            {isSanPietro && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f7fee7', borderColor: '#d9f99d', marginTop: getMarginTop() }]}>
+                                    <Ionicons name="leaf-outline" size={24} color="#4d7c0f" />
+                                    <Text style={[styles.infoBoxText, { color: '#4d7c0f' }]}>
+                                        🌿 Polo Monumentale: Il complesso di San Pietro è uno dei luoghi più belli di Perugia. Ottimo per studiare in tranquillità assoluta lontani dal caos del centro cittadino.
+                                    </Text>
+                                </View>
+                            )}
+
+                            {(isUniPg && (isPoloOspedale || isPoloIngegneria)) && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f0fdfa', borderColor: '#ccfbf1', marginTop: getMarginTop() }]}>
+                                    <Ionicons name="train-outline" size={24} color="#0f766e" />
+                                    <Text style={[styles.infoBoxText, { color: '#0f766e' }]}>
+                                        🚝 Minimetrò & Logistica: Perugia è in forte pendenza. Evita lunghe camminate: usa la fermata "Pian di Massiano" per Ingegneria e "Ospedale" per il polo Biomedico. Entrambi i poli offrono parcheggi e mense ADISU interne.
+                                    </Text>
+                                </View>
+                            )}
+
+                            {isUniStraPg && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fff7ed', borderColor: '#ffedd5', marginTop: getMarginTop() }]}>
+                                    <Ionicons name="earth-outline" size={24} color="#c2410c" />
+                                    <Text style={[styles.infoBoxText, { color: '#c2410c' }]}>
+                                        🌍 Hub Internazionale: Le aule studio della Stranieri sono un crocevia multiculturale fantastico. Ricorda che la Biblioteca in Palazzina Valitutti richiede l'uso dell'app Affluences per la prenotazione del posto.
+                                    </Text>
+                                </View>
+                            )}
+
+                            {isAfamIbrido && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fef2f2', borderColor: '#fecaca', marginTop: getMarginTop() }]}>
+                                    <Ionicons name="time-outline" size={24} color="#b91c1c" />
+                                    <Text style={[styles.infoBoxText, { color: '#b91c1c' }]}>
+                                        ⏳ Spazio Condiviso: Molte aule studio AFAM sono usate per la didattica in assenza del docente. È consigliata la frequentazione la mattina presto per trovare posto facilmente.
+                                    </Text>
+                                </View>
+                            )}
+
+                            {isConservatorioUmbria && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fdf4ff', borderColor: '#f5d0fe', marginTop: getMarginTop() }]}>
+                                    <Ionicons name="musical-notes-outline" size={24} color="#c026d3" />
+                                    <Text style={[styles.infoBoxText, { color: '#c026d3' }]}>
+                                        🎹 Prenotazione Obbligatoria: La biblioteca è ad accesso libero, ma le aule per lo studio degli strumenti necessitano di prenotazione preventiva presso la segreteria o i coadiutori.
+                                    </Text>
+                                </View>
+                            )}
+
+                            {isBelleArti && (
+                                <View style={[styles.infoBox, { backgroundColor: '#eef2ff', borderColor: '#c7d2fe', marginTop: getMarginTop() }]}>
+                                    <Ionicons name="color-palette-outline" size={24} color="#4338ca" />
+                                    <Text style={[styles.infoBoxText, { color: '#4338ca' }]}>
+                                        🎨 Tavoli Ampi: L'Accademia è ospitata nello storico complesso di San Francesco al Prato. L'aula studio offre postazioni cablate con tavoli decisamente più ampi rispetto ai banchi standard, perfetti per tavolette grafiche o tavole da disegno.
+                                    </Text>
                                 </View>
                             )}
                         </>

@@ -73,6 +73,12 @@ import { unipiRooms } from './Toscana/unipi';
 import { unisiRooms } from './Toscana/unisi';
 import { unistrasiRooms } from './Toscana/unistrasi';
 import { afamToscanaRooms } from './Toscana/afamToscana';
+import { unitnRooms } from './Trentino/unitn';
+import { unibzRooms } from './Trentino/unibz';
+import { afamTrentinoRooms } from './Trentino/afamTrentino';
+import { unipgRooms } from './Umbria/unipg';
+import { unistrapgRooms } from './Umbria/unistrapg';
+import { afamUmbriaRooms } from './Umbria/afamUmbria';
 
 
 
@@ -1878,6 +1884,141 @@ export const universities: University[] = [
             'Conservatori'
         ],
         color: '#8b5cf6', // Violet AFAM
+        darkColor: '#4c1d95',
+    },
+    {
+        id: 'unitn',
+        name: 'UniTrento',
+        fullName: 'Università degli Studi di Trento',
+        city: 'Trento / Rovereto',
+        regionName: 'Trentino-Alto Adige',
+        region: {
+            latitude: 46.0664,
+            longitude: 11.1258,
+            latitudeDelta: 0.08,
+            longitudeDelta: 0.08,
+        },
+        studyRooms: unitnRooms,
+        availableFilters: [
+            'Tutti',
+            'Centro Storico',
+            'Collina (Mesiano/Povo)',
+            'Rovereto',
+            'Aree H24'
+        ],
+        color: '#b91c1c', // UNITN Red
+        darkColor: '#7f1d1d',
+    },
+    {
+        id: 'unibz',
+        name: 'UniBz',
+        fullName: 'Libera Università di Bolzano',
+        city: 'Bolzano / Bressanone / Brunico',
+        regionName: 'Trentino-Alto Adige',
+        region: {
+            latitude: 46.4984,
+            longitude: 11.3508,
+            latitudeDelta: 0.15,
+            longitudeDelta: 0.15,
+        },
+        studyRooms: unibzRooms,
+        availableFilters: [
+            'Tutti',
+            'Campus Bolzano',
+            'NOI Techpark (Ingegneria)',
+            'Bressanone',
+            'Brunico'
+        ],
+        color: '#0ea5e9', // UniBz Sky Blue
+        darkColor: '#0369a1',
+    },
+    {
+        id: 'afam_trentino',
+        name: 'AFAM Trentino',
+        fullName: 'Conservatori e Accademie del Trentino',
+        city: 'Trento / Bolzano / Riva del Garda',
+        regionName: 'Trentino-Alto Adige',
+        region: {
+            latitude: 46.2829,
+            longitude: 11.2359,
+            latitudeDelta: 0.8,
+            longitudeDelta: 0.8,
+        },
+        studyRooms: afamTrentinoRooms,
+        availableFilters: [
+            'Tutti',
+            'Trento',
+            'Bolzano',
+            'Riva del Garda'
+        ],
+        color: '#7c3aed', // AFAM Violet
+        darkColor: '#4c1d95',
+    },
+    {
+        id: 'unipg',
+        name: 'UniPg',
+        fullName: 'Università degli Studi di Perugia',
+        city: 'Perugia / Terni / Narni',
+        regionName: 'Umbria',
+        region: {
+            latitude: 43.1160,
+            longitude: 12.3840,
+            latitudeDelta: 0.6,
+            longitudeDelta: 0.6,
+        },
+        studyRooms: unipgRooms,
+        availableFilters: [
+            'Tutti',
+            'Centro Storico',
+            'Elce',
+            'Ingegneria',
+            'Ospedale',
+            'Terni',
+            'Narni'
+        ],
+        color: '#0369a1', // UniPg Deep Blue
+        darkColor: '#0c4a6e',
+    },
+    {
+        id: 'unistrapg',
+        name: 'UniStraPg',
+        fullName: 'Università per Stranieri di Perugia',
+        city: 'Perugia',
+        regionName: 'Umbria',
+        region: {
+            latitude: 43.1167,
+            longitude: 12.3890,
+            latitudeDelta: 0.05,
+            longitudeDelta: 0.05,
+        },
+        studyRooms: unistrapgRooms,
+        availableFilters: [
+            'Tutti',
+            'Palazzina Valitutti',
+            'Palazzo Gallenga'
+        ],
+        color: '#b91c1c', // UnistraPg Red
+        darkColor: '#7f1d1d',
+    },
+    {
+        id: 'afam_umbria',
+        name: 'AFAM Umbria',
+        fullName: 'Conservatori e Accademie dell\'Umbria',
+        city: 'Perugia / Terni',
+        regionName: 'Umbria',
+        region: {
+            latitude: 42.85,
+            longitude: 12.5,
+            latitudeDelta: 0.8,
+            longitudeDelta: 0.8,
+        },
+        studyRooms: afamUmbriaRooms,
+        availableFilters: [
+            'Tutti',
+            'Perugia',
+            'Terni'
+        ],
+        color: '#7c3aed', // AFAM Violet
         darkColor: '#4c1d95',
     }
 ];

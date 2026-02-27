@@ -136,6 +136,30 @@ export const StudyRoomCard = memo<StudyRoomCardProps>(
                                     <Text style={[styles.badgeLabel, { color: '#1d4ed8' }]}>⏰ Esteso</Text>
                                 </View>
                             )}
+                            {studyRoom.vibe && (() => {
+                                const vLower = studyRoom.vibe.toLowerCase();
+                                let bg = '#fdf4ff'; // default pink
+                                let text = '#a21caf';
+                                if (vLower.includes('social') || vLower.includes('dinamica')) {
+                                    bg = '#fff7ed'; // orange pastello
+                                    text = '#c2410c';
+                                } else if (vLower.includes('focus') || vLower.includes('silenz')) {
+                                    bg = '#eef2ff'; // indigo (blu notte chiaro)
+                                    text = '#4338ca';
+                                } else if (vLower.includes('tech') || vLower.includes('scienz') || vLower.includes('ingegneria')) {
+                                    bg = '#f0fdf4'; // green/emerald
+                                    text = '#15803d';
+                                } else if (vLower.includes('stor') || vLower.includes('elegante')) {
+                                    bg = '#fefce8'; // yellow/amber
+                                    text = '#a16207';
+                                }
+
+                                return (
+                                    <View style={[styles.badge, { backgroundColor: bg }]}>
+                                        <Text style={[styles.badgeLabel, { color: text }]}>✨ {studyRoom.vibe}</Text>
+                                    </View>
+                                );
+                            })()}
                             {studyRoom.servizi.includes('Aperto Domenica') && (
                                 <View style={[styles.badge, { backgroundColor: '#fdf4ff' }]}>
                                     <Text style={[styles.badgeLabel, { color: '#a21caf' }]}>📅 Dom</Text>

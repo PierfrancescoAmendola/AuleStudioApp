@@ -21,7 +21,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 import * as Location from 'expo-location';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import MapView, { Marker, Callout } from 'react-native-maps';
+import MapView from 'react-native-map-clustering';
+import { Marker, Callout } from 'react-native-maps';
 import { StudyRoom, University } from '../types';
 import { haversineDistance } from '../utils/locationHelpers';
 import { FocusAwareStatusBar } from '../components/FocusAwareStatusBar';
@@ -1172,6 +1173,62 @@ export const StudyRoomsScreen: React.FC<StudyRoomsScreenProps> = ({ navigation }
                 } else {
                     filtered = filtered.filter(room => room.edificio.includes(selectedBuilding) || room.indirizzo.includes(selectedBuilding));
                 }
+            } else if (university?.id === 'unitn') {
+                if (selectedBuilding === 'Centro Storico') {
+                    filtered = filtered.filter(r => (r.tags || []).includes('Centro') || (r.indirizzo || '').toLowerCase().includes('verdi'));
+                } else if (selectedBuilding === 'Collina (Mesiano/Povo)') {
+                    filtered = filtered.filter(r => (r.tags || []).includes('Panoramica') || (r.tags || []).includes('Scienze') || (r.indirizzo || '').toLowerCase().includes('mesiano') || (r.indirizzo || '').toLowerCase().includes('povo'));
+                } else if (selectedBuilding === 'Rovereto') {
+                    filtered = filtered.filter(r => (r.tags || []).includes('Rovereto') || (r.indirizzo || '').toLowerCase().includes('rovereto'));
+                } else if (selectedBuilding === 'Aree H24') {
+                    filtered = filtered.filter(r => (r.tags || []).includes('H24') || r.extendedHours === true);
+                } else {
+                    filtered = filtered.filter(room => room.edificio.includes(selectedBuilding) || room.indirizzo.includes(selectedBuilding));
+                }
+            } else if (university?.id === 'unibz') {
+                if (selectedBuilding === 'Campus Bolzano') {
+                    filtered = filtered.filter(r => (r.indirizzo || '').toLowerCase().includes('piazza università') || (r.tags || []).includes('Centro'));
+                } else if (selectedBuilding === 'NOI Techpark (Ingegneria)') {
+                    filtered = filtered.filter(r => (r.indirizzo || '').toLowerCase().includes('volta') || (r.tags || []).includes('Ingegneria'));
+                } else if (selectedBuilding === 'Bressanone') {
+                    filtered = filtered.filter(r => (r.indirizzo || '').toLowerCase().includes('bressanone') || (r.tags || []).includes('Bressanone'));
+                } else if (selectedBuilding === 'Brunico') {
+                    filtered = filtered.filter(r => (r.indirizzo || '').toLowerCase().includes('brunico') || (r.tags || []).includes('Brunico'));
+                } else {
+                    filtered = filtered.filter(room => room.edificio.includes(selectedBuilding) || room.indirizzo.includes(selectedBuilding));
+                }
+            } else if (university?.id === 'unipg') {
+                if (selectedBuilding === 'Centro Storico') {
+                    filtered = filtered.filter(r => r.indirizzo.includes('Morlacchi') || r.indirizzo.includes('Pascoli') || r.indirizzo.includes('Sant\'Ercolano') || r.id.includes('urban_center') || r.id.includes('umanistica') || r.id.includes('economia') || r.id.includes('giurisprudenza') || r.id.includes('agraria') || r.indirizzo.includes('Giugno'));
+                } else if (selectedBuilding === 'Elce') {
+                    filtered = filtered.filter(r => r.indirizzo.includes('Elce') || r.indirizzo.includes('Innamorati') || r.id.includes('scienze_base') || r.id.includes('ceccherelli'));
+                } else if (selectedBuilding === 'Ingegneria') {
+                    filtered = filtered.filter(r => r.indirizzo.includes('Duranti') || r.id.includes('ingegneria'));
+                } else if (selectedBuilding === 'Ospedale') {
+                    filtered = filtered.filter(r => r.indirizzo.includes('Severi') || r.indirizzo.includes('San Costanzo') || r.id.includes('biomedica') || r.id.includes('veterinaria'));
+                } else if (selectedBuilding === 'Terni') {
+                    filtered = filtered.filter(r => r.indirizzo.includes('Terni'));
+                } else if (selectedBuilding === 'Narni') {
+                    filtered = filtered.filter(r => r.indirizzo.includes('Narni'));
+                } else {
+                    filtered = filtered.filter(room => room.edificio.includes(selectedBuilding) || room.indirizzo.includes(selectedBuilding));
+                }
+            } else if (university?.id === 'unistrapg') {
+                if (selectedBuilding === 'Palazzina Valitutti') {
+                    filtered = filtered.filter(r => r.id.includes('valitutti'));
+                } else if (selectedBuilding === 'Palazzo Gallenga') {
+                    filtered = filtered.filter(r => r.id.includes('gallenga'));
+                } else {
+                    filtered = filtered.filter(room => room.edificio.includes(selectedBuilding) || room.indirizzo.includes(selectedBuilding));
+                }
+            } else if (university?.id === 'afam_umbria') {
+                if (selectedBuilding === 'Perugia') {
+                    filtered = filtered.filter(r => r.indirizzo.includes('Perugia'));
+                } else if (selectedBuilding === 'Terni') {
+                    filtered = filtered.filter(r => r.indirizzo.includes('Terni'));
+                } else {
+                    filtered = filtered.filter(room => room.edificio.includes(selectedBuilding) || room.indirizzo.includes(selectedBuilding));
+                }
             } else if (university?.id === 'uniba') {
                 if (selectedBuilding === 'Centro Storico') {
                     filtered = filtered.filter(r =>
@@ -1406,7 +1463,7 @@ export const StudyRoomsScreen: React.FC<StudyRoomsScreenProps> = ({ navigation }
     }, []);
 
     const handleMarkerPress = (room: StudyRoom) => {
-        mapRef.current?.animateToRegion({
+        (mapRef.current as any)?.animateToRegion({
             latitude: room.latitude,
             longitude: room.longitude,
             latitudeDelta: 0.01,
@@ -1515,6 +1572,10 @@ export const StudyRoomsScreen: React.FC<StudyRoomsScreenProps> = ({ navigation }
                     zoomEnabled={true}
                     pitchEnabled={false}
                     rotateEnabled={false}
+                    clusterColor={university?.color || '#10b981'}
+                    clusterTextColor="#ffffff"
+                    maxZoom={14}
+                    animationEnabled={true}
                 >
                     {filteredRooms.map((room) => (
                         <Marker
