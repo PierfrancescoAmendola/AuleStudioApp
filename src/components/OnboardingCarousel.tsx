@@ -17,7 +17,7 @@ const { width, height } = Dimensions.get('window');
 
 interface OnboardingSlide {
     id: string;
-    icon: keyof typeof Ionicons.glyphMap;
+    icon: any;
     title: string;
     description: string;
     gradient: [string, string];

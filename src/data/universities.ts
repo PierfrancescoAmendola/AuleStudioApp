@@ -64,7 +64,12 @@ import { unicaRooms } from './Sardegna/unicaRooms';
 import { unissRooms } from './Sardegna/unissRooms';
 import { poliDecentratiSardegnaRooms } from './Sardegna/poliDecentratiSardegnaRooms';
 
-
+import { unipaRooms } from './Sicilia/unipa';
+import { unictRooms } from './Sicilia/unict';
+import { unimeRooms } from './Sicilia/unime';
+import { afamSiciliaRooms } from './Sicilia/afamSicilia';
+import { unifiRooms } from './Toscana/unifi';
+import { unipiRooms } from './Toscana/unipi';
 
 
 
@@ -1660,6 +1665,150 @@ export const universities: University[] = [
         color: '#f59e0b', // Amber-500
         darkColor: '#b45309', // Amber-700
     },
+    {
+        id: 'unipa',
+        name: 'UniPa',
+        fullName: 'Università degli Studi di Palermo',
+        city: 'Palermo / Agrigento / Caltanissetta / Trapani',
+        regionName: 'Sicilia',
+        region: {
+            latitude: 38.1045,
+            longitude: 13.3482,
+            latitudeDelta: 0.8,
+            longitudeDelta: 0.8,
+        },
+        studyRooms: unipaRooms,
+        availableFilters: [
+            'Tutti',
+            'Viale delle Scienze',
+            'Centro Storico',
+            'Policlinico',
+            'Trapani',
+            'Agrigento',
+            'Caltanissetta'
+        ],
+        color: '#dc2626', // Red-600
+        darkColor: '#991b1b', // Red-800
+    },
+    {
+        id: 'unict',
+        name: 'UniCt',
+        fullName: 'Università degli Studi di Catania',
+        city: 'Catania / Siracusa / Ragusa',
+        regionName: 'Sicilia',
+        region: {
+            latitude: 37.50,
+            longitude: 15.08,
+            latitudeDelta: 0.8,
+            longitudeDelta: 0.8,
+        },
+        studyRooms: unictRooms,
+        availableFilters: [
+            'Tutti',
+            'Cittadella',
+            'Centro',
+            'Policlinico',
+            'Siracusa',
+            'Ragusa'
+        ],
+        color: '#ea580c', // Orange-600
+        darkColor: '#9a3412', // Orange-800
+    },
+    {
+        id: 'unime',
+        name: 'UniMe',
+        fullName: 'Università degli Studi di Messina',
+        city: 'Messina / Noto / Siracusa / Priolo',
+        regionName: 'Sicilia',
+        region: {
+            latitude: 38.19,
+            longitude: 15.55,
+            latitudeDelta: 0.8,
+            longitudeDelta: 0.8,
+        },
+        studyRooms: unimeRooms,
+        availableFilters: [
+            'Tutti',
+            'Polo Centrale',
+            'Annunziata',
+            'Papardo',
+            'Policlinico',
+            'Noto'
+        ],
+        color: '#facc15', // Yellow-400
+        darkColor: '#a16207', // Yellow-700
+    },
+    {
+        id: 'afam_sicilia',
+        name: 'AFAM',
+        fullName: 'Accademie e Conservatori (PA, CT, ME, TP, AG, RG, CL)',
+        city: 'Palermo / Catania / Messina / ...',
+        regionName: 'Sicilia',
+        region: {
+            latitude: 37.59,
+            longitude: 14.15,
+            latitudeDelta: 1.5,
+            longitudeDelta: 2.5,
+        },
+        studyRooms: afamSiciliaRooms,
+        availableFilters: [
+            'Tutti',
+            'Palermo',
+            'Catania',
+            'Messina',
+            'Altre Province'
+        ],
+        color: '#db2777', // Pink-600
+        darkColor: '#9d174d', // Pink-900
+    },
+    {
+        id: 'unifi',
+        name: 'UniFi',
+        fullName: 'Università degli Studi di Firenze',
+        city: 'Firenze / Prato / Pistoia / Empoli / Sesto F.',
+        regionName: 'Toscana',
+        region: {
+            latitude: 43.77,
+            longitude: 11.25,
+            latitudeDelta: 0.8,
+            longitudeDelta: 0.8,
+        },
+        studyRooms: unifiRooms,
+        availableFilters: [
+            'Tutti',
+            'Novoli',
+            'Centro Storico',
+            'Morgagni e Careggi',
+            'Sesto Fiorentino',
+            'Poli Decentrati'
+        ],
+        color: '#0369a1', // LightBlue/Sky
+        darkColor: '#075985',
+    },
+    {
+        id: 'unipi',
+        name: 'UniPi',
+        fullName: 'Università di Pisa',
+        city: 'Pisa / Livorno / La Spezia / Lucca',
+        regionName: 'Toscana',
+        region: {
+            latitude: 43.71,
+            longitude: 10.40,
+            latitudeDelta: 0.8,
+            longitudeDelta: 0.8,
+        },
+        studyRooms: unipiRooms,
+        availableFilters: [
+            'Tutti',
+            'Centro Storico',
+            'Polo Fibonacci',
+            'Ingegneria',
+            'Polo Piagge',
+            'Poli Decentrati'
+        ],
+        color: '#a11b22', // Red/Crimson
+        darkColor: '#5e0b11',
+    }
 ];
 
 // Helper function to get university by ID

@@ -1054,6 +1054,90 @@ export const StudyRoomsScreen: React.FC<StudyRoomsScreenProps> = ({ navigation }
                 } else {
                     filtered = filtered.filter(r => r.edificio.includes(selectedBuilding) || r.indirizzo.includes(selectedBuilding));
                 }
+            } else if (university?.id === 'unipa') {
+                if (selectedBuilding === 'Viale delle Scienze') {
+                    filtered = filtered.filter(r => r.id.includes('viale') || r.indirizzo.includes('Viale delle Scienze'));
+                } else if (selectedBuilding === 'Centro Storico') {
+                    filtered = filtered.filter(r => r.id.includes('maqueda') || r.id.includes('archirafi'));
+                } else if (selectedBuilding === 'Policlinico') {
+                    filtered = filtered.filter(r => r.id.includes('policlinico'));
+                } else if (selectedBuilding === 'Trapani') {
+                    filtered = filtered.filter(r => (r.tags || []).includes('Trapani') || (r.university || '').includes('Trapani'));
+                } else if (selectedBuilding === 'Agrigento') {
+                    filtered = filtered.filter(r => (r.tags || []).includes('Agrigento') || (r.university || '').includes('Agrigento'));
+                } else if (selectedBuilding === 'Caltanissetta') {
+                    filtered = filtered.filter(r => (r.tags || []).includes('Caltanissetta') || (r.university || '').includes('Caltanissetta'));
+                } else {
+                    filtered = filtered.filter(r => r.edificio.includes(selectedBuilding) || r.indirizzo.includes(selectedBuilding));
+                }
+            } else if (university?.id === 'unict') {
+                if (selectedBuilding === 'Cittadella') {
+                    filtered = filtered.filter(r => r.id.includes('cittadella') || (r.tags || []).includes('Cittadella') || r.id.includes('torre') || r.id.includes('agraria'));
+                } else if (selectedBuilding === 'Centro') {
+                    filtered = filtered.filter(r => r.id.includes('benedettini') || r.id.includes('cerami') || r.id.includes('scienze_politiche') || r.id.includes('economia') || r.id.includes('mensa_centro'));
+                } else if (selectedBuilding === 'Policlinico') {
+                    filtered = filtered.filter(r => r.id.includes('policlinico'));
+                } else if (selectedBuilding === 'Siracusa') {
+                    filtered = filtered.filter(r => (r.tags || []).includes('Siracusa') || (r.university || '').includes('Siracusa'));
+                } else if (selectedBuilding === 'Ragusa') {
+                    filtered = filtered.filter(r => (r.tags || []).includes('Ragusa') || (r.university || '').includes('Ragusa'));
+                } else {
+                    filtered = filtered.filter(r => r.edificio.includes(selectedBuilding) || r.indirizzo.includes(selectedBuilding));
+                }
+            } else if (university?.id === 'unime') {
+                if (selectedBuilding === 'Polo Centrale') {
+                    filtered = filtered.filter(r => r.id.includes('centro') || (r.tags || []).includes('Polo Centrale'));
+                } else if (selectedBuilding === 'Annunziata') {
+                    filtered = filtered.filter(r => r.id.includes('annunziata'));
+                } else if (selectedBuilding === 'Papardo') {
+                    filtered = filtered.filter(r => r.id.includes('papardo'));
+                } else if (selectedBuilding === 'Policlinico') {
+                    filtered = filtered.filter(r => r.id.includes('policlinico'));
+                } else if (selectedBuilding === 'Noto') {
+                    filtered = filtered.filter(r => (r.tags || []).includes('Noto') || (r.university || '').includes('Noto'));
+                } else {
+                    filtered = filtered.filter(r => r.edificio.includes(selectedBuilding) || r.indirizzo.includes(selectedBuilding));
+                }
+            } else if (university?.id === 'afam_sicilia') {
+                if (selectedBuilding === 'Palermo') {
+                    filtered = filtered.filter(r => (r.tags || []).includes('Palermo'));
+                } else if (selectedBuilding === 'Catania') {
+                    filtered = filtered.filter(r => (r.tags || []).includes('Catania') || (r.tags || []).includes('Catania Estrema'));
+                } else if (selectedBuilding === 'Messina') {
+                    filtered = filtered.filter(r => (r.tags || []).includes('Messina'));
+                } else if (selectedBuilding === 'Altre Province') {
+                    filtered = filtered.filter(r => (r.tags || []).includes('Trapani') || (r.tags || []).includes('Ragusa') || (r.tags || []).includes('Agrigento') || (r.tags || []).includes('Caltanissetta') || (r.tags || []).includes('Ribera'));
+                } else {
+                    filtered = filtered.filter(r => r.edificio.includes(selectedBuilding) || r.indirizzo.includes(selectedBuilding));
+                }
+            } else if (university?.id === 'unifi') {
+                if (selectedBuilding === 'Novoli') {
+                    filtered = filtered.filter(r => (r.tags || []).includes('Novoli'));
+                } else if (selectedBuilding === 'Centro Storico') {
+                    filtered = filtered.filter(r => (r.tags || []).includes('Centro Storico'));
+                } else if (selectedBuilding === 'Morgagni e Careggi') {
+                    filtered = filtered.filter(r => (r.tags || []).includes('Careggi') || (r.tags || []).includes('Morgagni') || (r.tags || []).includes('Biotecnologie'));
+                } else if (selectedBuilding === 'Sesto Fiorentino') {
+                    filtered = filtered.filter(r => (r.tags || []).includes('Sesto Fiorentino') || r.indirizzo.includes('Sesto'));
+                } else if (selectedBuilding === 'Poli Decentrati') {
+                    filtered = filtered.filter(r => (r.tags || []).includes('Polo Decentrato') || (r.tags || []).includes('Prato') || (r.tags || []).includes('Empoli') || (r.tags || []).includes('Pistoia') || (r.tags || []).includes('Scandicci'));
+                } else {
+                    filtered = filtered.filter(room => room.edificio.includes(selectedBuilding) || room.indirizzo.includes(selectedBuilding));
+                }
+            } else if (university?.id === 'unipi') {
+                if (selectedBuilding === 'Centro Storico') {
+                    filtered = filtered.filter(r => (r.tags || []).includes('Centro Storico'));
+                } else if (selectedBuilding === 'Polo Fibonacci') {
+                    filtered = filtered.filter(r => (r.tags || []).includes('Polo Fibonacci'));
+                } else if (selectedBuilding === 'Ingegneria') {
+                    filtered = filtered.filter(r => (r.tags || []).includes('Ingegneria') || (r.tags || []).includes('Polo PN'));
+                } else if (selectedBuilding === 'Polo Piagge') {
+                    filtered = filtered.filter(r => (r.tags || []).includes('Polo Piagge') || (r.tags || []).includes('Agraria'));
+                } else if (selectedBuilding === 'Poli Decentrati') {
+                    filtered = filtered.filter(r => (r.tags || []).includes('Livorno') || (r.tags || []).includes('La Spezia') || (r.tags || []).includes('Lucca'));
+                } else {
+                    filtered = filtered.filter(room => room.edificio.includes(selectedBuilding) || room.indirizzo.includes(selectedBuilding));
+                }
             } else if (university?.id === 'uniba') {
                 if (selectedBuilding === 'Centro Storico') {
                     filtered = filtered.filter(r =>

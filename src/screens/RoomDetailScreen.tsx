@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -70,8 +70,14 @@ import { getDirectionsAFAMPuglia } from '../data/Puglia/afamPuglia';
 import { getDirectionsUniCa } from '../data/Sardegna/unicaRooms';
 import { getDirectionsUniSS } from '../data/Sardegna/unissRooms';
 import { getDirectionsSardegnaDecentrati } from '../data/Sardegna/poliDecentratiSardegnaRooms';
+import { getDirectionsUniPa } from '../data/Sicilia/unipa';
+import { getDirectionsUniCt } from '../data/Sicilia/unict';
+import { getDirectionsUniMe } from '../data/Sicilia/unime';
+import { getDirectionsAFAMSicilia } from '../data/Sicilia/afamSicilia';
+import { getDirectionsUniFi } from '../data/Toscana/unifi';
+import { getDirectionsUniPi } from '../data/Toscana/unipi';
 
-const DirectionPoint: React.FC<{ title: string; content: string; icon: keyof typeof Ionicons.glyphMap }> = ({ title, content, icon }) => (
+const DirectionPoint: React.FC<{ title: string; content: string; icon: any }> = ({ title, content, icon }) => (
     <View style={styles.directionPoint}>
         <View style={styles.directionIconContainer}>
             <Ionicons name={icon} size={24} color="#10b981" />
@@ -93,6 +99,45 @@ export const RoomDetailScreen = ({ route, navigation }: any) => {
     // Helper to lighten color for backgrounds (simple approach or fallback)
     const lightBackgroundColor = primaryColor === '#ffffff' ? '#f0fdf4' : `${primaryColor}15`; // 15 = ~8% opacity
     const borderColor = primaryColor === '#ffffff' ? '#bbf7d0' : `${primaryColor}40`; // 40 = ~25% opacity
+
+    // Meteo-Bici / Tram-Sync State (UniPi / UniFi / etc)
+    const [isRainy, setIsRainy] = useState<boolean>(false);
+    const [weatherLoading, setWeatherLoading] = useState<boolean>(true);
+
+    useEffect(() => {
+        let isMounted = true;
+        const fetchLocalWeather = async () => {
+            if (!room.latitude || !room.longitude) {
+                setWeatherLoading(false);
+                return;
+            }
+            try {
+                const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${room.latitude}&longitude=${room.longitude}&current_weather=true`);
+                if (!res.ok) throw new Error('API Error');
+                const data = await res.json();
+                if (data.current_weather && isMounted) {
+                    const code = data.current_weather.weathercode;
+                    // Rain codes: 51-67, 80-82, 95-99
+                    const rain = (code >= 51 && code <= 67) || (code >= 80 && code <= 82) || (code >= 95 && code <= 99);
+                    setIsRainy(rain);
+                }
+            } catch (e) {
+                console.log("Weather fetch failed", e);
+            } finally {
+                if (isMounted) setWeatherLoading(false);
+            }
+        };
+
+        const uni = (room.university || '').toLowerCase();
+        // Only fetch weather if needed (e.g. UniPi and maybe UniFi in the future)
+        if (room.id.startsWith('unipi_') || uni === 'unipi' || uni.includes('pisa') || uni.includes('livorno')) {
+            fetchLocalWeather();
+        } else {
+            setWeatherLoading(false);
+        }
+
+        return () => { isMounted = false; };
+    }, [room.latitude, room.longitude, room.university, room.id]);
 
     const directions = useMemo(() => {
         // Check ID to determine which helper to use
@@ -282,7 +327,28 @@ export const RoomDetailScreen = ({ route, navigation }: any) => {
         }
         if (room.id.startsWith('alghero_') || room.id.startsWith('olbia_') || room.id.startsWith('oristano_') || room.id.startsWith('nuoro_') || room.id.startsWith('aba_sironi') || room.id.startsWith('cons_canepa') || room.id.startsWith('cons_palestrina') || (room.university || '').includes('UniOlbia') || (room.university || '').includes('UniNuoro') || (room.university || '').includes('Consorzio UNO') || (room.university || '').includes('Alghero')) {
             return getDirectionsSardegnaDecentrati(room);
-        } if ((room.university || '').toUpperCase() === 'AFAM' || room.id.startsWith('abaq_') || room.id.startsWith('cons_') || room.id.startsWith('isia_')) {
+        }
+        if (room.id.startsWith('unipa_') || (room.university || '').toLowerCase() === 'unipa' || (room.university || '').toLowerCase().includes('palermo') || (room.university || '').toLowerCase().includes('trapani') || (room.university || '').toLowerCase().includes('agrigento') || (room.university || '').toLowerCase().includes('caltanissetta')) {
+            return getDirectionsUniPa(room);
+        }
+        if (room.id.startsWith('unict_') || (room.university || '').toLowerCase() === 'unict' || (room.university || '').toLowerCase().includes('catania') || (room.university || '').toLowerCase().includes('siracusa') || (room.university || '').toLowerCase().includes('ragusa')) {
+            return getDirectionsUniCt(room);
+        }
+        if (room.id.startsWith('unime_') || (room.university || '').toLowerCase() === 'unime' || (room.university || '').toLowerCase().includes('messina') || (room.university || '').toLowerCase().includes('noto')) {
+            return getDirectionsUniMe(room);
+        }
+        if (room.id.startsWith('aba_') || room.id.startsWith('cons_') || room.id.startsWith('idm_') || (room.university || '').toLowerCase().includes('afam')) {
+            if ((room.university || '').toLowerCase().includes('palermo') || (room.university || '').toLowerCase().includes('catania') || (room.university || '').toLowerCase().includes('messina') || (room.university || '').toLowerCase().includes('trapani') || (room.university || '').toLowerCase().includes('agrigento') || (room.university || '').toLowerCase().includes('ragusa') || (room.university || '').toLowerCase().includes('caltanissetta') || (room.university || '').toLowerCase().includes('ribera') || (room.university || '').toLowerCase().includes('abadir') || room.id.includes('palermo') || room.id.includes('catania') || room.id.includes('messina') || room.id.includes('trapani') || room.id.includes('agrigento') || room.id.includes('ragusa') || room.id.includes('caltanissetta') || room.id.includes('ribera') || room.id.includes('abadir') || room.id.includes('scarlatti') || room.id.includes('bellini') || room.id.includes('scontrino') || room.id.includes('toscanini') || room.id.includes('corelli')) {
+                return getDirectionsAFAMSicilia(room);
+            }
+        }
+        if (room.id.startsWith('unifi_') || (room.university || '').toLowerCase() === 'unifi' || (room.university || '').toLowerCase().includes('firenze') || (room.university || '').toLowerCase().includes('prato') || (room.university || '').toLowerCase().includes('empoli') || (room.university || '').toLowerCase().includes('sesto') || (room.university || '').toLowerCase().includes('scandicci') || (room.university || '').toLowerCase().includes('pistoia')) {
+            return getDirectionsUniFi(room);
+        }
+        if (room.id.startsWith('unipi_') || (room.university || '').toLowerCase() === 'unipi' || (room.university || '').toLowerCase().includes('pisa') || (room.university || '').toLowerCase().includes('livorno') || (room.university || '').toLowerCase().includes('spezia') || (room.university || '').toLowerCase().includes('lucca')) {
+            return getDirectionsUniPi(room, isRainy);
+        }
+        if ((room.university || '').toUpperCase() === 'AFAM' || room.id.startsWith('abaq_') || room.id.startsWith('cons_') || room.id.startsWith('isia_')) {
             return getDirectionsAFAM(room);
         }
         if (room.id.startsWith('v')) {
@@ -591,6 +657,99 @@ export const RoomDetailScreen = ({ route, navigation }: any) => {
                                 <View style={[styles.infoBox, { backgroundColor: '#eef2ff', borderColor: '#c7d2fe', marginTop: 12 }]}>
                                     <Ionicons name="snow-outline" size={24} color="#4f46e5" />
                                     <Text style={[styles.infoBoxText, { color: '#4f46e5' }]}>Inverno a Macchia: controlla ritardi bus per neve/ghiaccio prima di salire.</Text>
+                                </View>
+                            )}
+                        </>
+                    );
+                })()}
+
+                {(() => {
+                    const uni = (room.university || '').toLowerCase();
+                    const isUniPa = room.id.startsWith('unipa_') || uni === 'unipa';
+                    if (!isUniPa) return null;
+                    const isVialeScienze = room.id.includes('viale');
+                    const isTrapani = room.id.includes('trapani');
+                    const isAgrigento = room.id.includes('agrigento');
+                    return (
+                        <>
+                            {isVialeScienze && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fefce8', borderColor: '#fef08a' }]}>
+                                    <Ionicons name="car-outline" size={24} color="#a16207" />
+                                    <Text style={[styles.infoBoxText, { color: '#a16207' }]}>Viale delle Scienze: Il parcheggio interno è difficile dopo le 8:30. Usa la Metro Orleans o il Bus 109.</Text>
+                                </View>
+                            )}
+                            {isTrapani && (
+                                <View style={[styles.infoBox, { backgroundColor: '#eff6ff', borderColor: '#bfdbfe', marginTop: isVialeScienze ? 12 : 0 }]}>
+                                    <Ionicons name="boat-outline" size={24} color="#2563eb" />
+                                    <Text style={[styles.infoBoxText, { color: '#2563eb' }]}>Polo di Trapani: Vicino al mare, molto ventoso. Se arrivi da Palermo, calcola bene gli orari Segesta (bus).</Text>
+                                </View>
+                            )}
+                            {isAgrigento && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fdf4ff', borderColor: '#e879f9', marginTop: (isVialeScienze || isTrapani) ? 12 : 0 }]}>
+                                    <Ionicons name="partly-sunny-outline" size={24} color="#c026d3" />
+                                    <Text style={[styles.infoBoxText, { color: '#c026d3' }]}>Polo di Agrigento: Fuori centro città. Essenziale l'auto per non dipendere dai bus urbani TUA.</Text>
+                                </View>
+                            )}
+                        </>
+                    );
+                })()}
+
+                {(() => {
+                    const uni = (room.university || '').toLowerCase();
+                    const isUniCt = room.id.startsWith('unict_') || uni === 'unict';
+                    if (!isUniCt) return null;
+                    const isCittadella = room.id.includes('cittadella');
+                    const isBenedettini = room.id.includes('benedettini');
+                    const isSiracusa = room.id.includes('siracusa');
+                    return (
+                        <>
+                            {isCittadella && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f0fdf4', borderColor: '#bbf7d0' }]}>
+                                    <Ionicons name="subway-outline" size={24} color="#15803d" />
+                                    <Text style={[styles.infoBoxText, { color: '#15803d' }]}>Cittadella Universitaria: Evita il traffico della circonvallazione usando la navetta Metro Shuttle dalla stazione Milo.</Text>
+                                </View>
+                            )}
+                            {isBenedettini && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fef08a', borderColor: '#facc15', marginTop: isCittadella ? 12 : 0 }]}>
+                                    <Ionicons name="walk-outline" size={24} color="#854d0e" />
+                                    <Text style={[styles.infoBoxText, { color: '#854d0e' }]}>Benedettini/Centro: Zona ZTL e sosta a pagamento fitta. Parcheggia in piazza Dante se sei fortunato, oppure usa il bus.</Text>
+                                </View>
+                            )}
+                            {isSiracusa && (
+                                <View style={[styles.infoBox, { backgroundColor: '#e0f2fe', borderColor: '#7dd3fc', marginTop: (isCittadella || isBenedettini) ? 12 : 0 }]}>
+                                    <Ionicons name="warning-outline" size={24} color="#0369a1" />
+                                    <Text style={[styles.infoBoxText, { color: '#0369a1' }]}>Siracusa (Architettura Ortigia): Ortigia è ZTL assoluta. Parcheggia al Talete o al Molo Sant'Antonio.</Text>
+                                </View>
+                            )}
+                        </>
+                    );
+                })()}
+
+                {(() => {
+                    const uni = (room.university || '').toLowerCase();
+                    const isUniMe = room.id.startsWith('unime_') || uni === 'unime';
+                    if (!isUniMe) return null;
+                    const isPapardo = room.id.includes('papardo');
+                    const isPoliclinico = room.id.includes('policlinico');
+                    const isNoto = room.id.includes('noto');
+                    return (
+                        <>
+                            {isPapardo && (
+                                <View style={[styles.infoBox, { backgroundColor: '#eff6ff', borderColor: '#bfdbfe' }]}>
+                                    <Ionicons name="bus-outline" size={24} color="#1d4ed8" />
+                                    <Text style={[styles.infoBoxText, { color: '#1d4ed8' }]}>Papardo: Estremo Nord di Messina. Il bus ATM è obbligatorio se non hai l'auto. Calcola traffico sulla litoranea.</Text>
+                                </View>
+                            )}
+                            {isPoliclinico && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fef2f2', borderColor: '#fecaca', marginTop: isPapardo ? 12 : 0 }]}>
+                                    <Ionicons name="train-outline" size={24} color="#b91c1c" />
+                                    <Text style={[styles.infoBoxText, { color: '#b91c1c' }]}>Policlinico Gazzi: Ignora l'auto. Prendi la linea 28 del Tram (direzione Sud) fino al capolinea esatto.</Text>
+                                </View>
+                            )}
+                            {isNoto && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fdf4ff', borderColor: '#e879f9', marginTop: (isPapardo || isPoliclinico) ? 12 : 0 }]}>
+                                    <Ionicons name="sunny-outline" size={24} color="#a21caf" />
+                                    <Text style={[styles.infoBoxText, { color: '#a21caf' }]}>CUMO Noto: Centro storico pedonale. L'estate può far caldissimo, ma il palazzo delle aule garantisce ombra costante.</Text>
                                 </View>
                             )}
                         </>
@@ -1397,6 +1556,70 @@ export const RoomDetailScreen = ({ route, navigation }: any) => {
                         </>
                     );
                 })()}
+
+                {/* TOSCANA (UniFi & UniPi) InfoBoxes */}
+                {(() => {
+                    const uni = (room.university || '').toLowerCase();
+                    const id = room.id.toLowerCase();
+                    const isUniFi = uni.includes('unifi') || id.startsWith('unifi_') || uni.includes('firenze');
+                    const isUniPi = uni.includes('unipi') || id.startsWith('unipi_') || uni.includes('pisa');
+
+                    const isNovoli = id.includes('novoli');
+                    const isSesto = id.includes('sesto');
+                    const isMorgagni = id.includes('careggi') || id.includes('morgagni');
+                    const isCentroFi = id.includes('brunelleschi') || id.includes('capponi') || id.includes('architettura') || id.includes('mensa_apollonia');
+
+                    if (!isUniFi && !isUniPi) return null;
+
+                    return (
+                        <>
+                            {isUniFi && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f0f9ff', borderColor: '#bae6fd' }]}>
+                                    <Ionicons name="train-outline" size={24} color="#0284c7" />
+                                    <Text style={[styles.infoBoxText, { color: '#0284c7' }]}>TRAM-SYNC Firenze: Le aule fiorentine sono perfettamente collegate dalle linee T1 e T2 della Tranvia (Gest). Evita l'auto, il centro è Off-Limits!</Text>
+                                </View>
+                            )}
+                            {isUniFi && isNovoli && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fef2f2', borderColor: '#fecaca', marginTop: 12 }]}>
+                                    <Ionicons name="business-outline" size={24} color="#dc2626" />
+                                    <Text style={[styles.infoBoxText, { color: '#dc2626' }]}>Campus Novoli: Il polo di Scienze Sociali più grande di UniFi. La biblioteca D10 è presa d'assalto in sessione, arriva presto!</Text>
+                                </View>
+                            )}
+                            {isUniFi && isSesto && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f0fdf4', borderColor: '#bbf7d0', marginTop: 12 }]}>
+                                    <Ionicons name="flask-outline" size={24} color="#16a34a" />
+                                    <Text style={[styles.infoBoxText, { color: '#16a34a' }]}>Polo Scientifico (Sesto F.): Fuori Firenze, ampi spazi verdi e dipartimenti moderni. Ideale se ami la tranquillità fuggendo dal caos cittadino.</Text>
+                                </View>
+                            )}
+                            {isUniFi && isCentroFi && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fefce8', borderColor: '#fef08a', marginTop: 12 }]}>
+                                    <Ionicons name="color-palette-outline" size={24} color="#ca8a04" />
+                                    <Text style={[styles.infoBoxText, { color: '#ca8a04' }]}>Centro Storico: Studia tra i palazzi rinascimentali del Brunelleschi. Attenzione, le biblioteche umanistiche chiudono spesso alle 19:00.</Text>
+                                </View>
+                            )}
+                            {isUniFi && isMorgagni && (
+                                <View style={[styles.infoBox, { backgroundColor: '#eff6ff', borderColor: '#bfdbfe', marginTop: 12 }]}>
+                                    <Ionicons name="medkit-outline" size={24} color="#2563eb" />
+                                    <Text style={[styles.infoBoxText, { color: '#2563eb' }]}>Area Biomedica e STEM: Tra Careggi e Morgagni si concentrano i futuri medici, biologi e ingegneri. Fermata T1 Morgagni a due passi!</Text>
+                                </View>
+                            )}
+
+                            {isUniPi && isRainy && !weatherLoading && (
+                                <View style={[styles.infoBox, { backgroundColor: '#eff6ff', borderColor: '#bfdbfe' }]}>
+                                    <Ionicons name="rainy-outline" size={24} color="#2563eb" />
+                                    <Text style={[styles.infoBoxText, { color: '#2563eb' }]}>METEO-BICI Attivo: A Pisa sta piovendo! Lascia la bici (il lastricato è scivoloso e la ZTL pericolosa con la pioggia). Le indicazioni sono state aggiornate per consigliarti i bus LAM.</Text>
+                                </View>
+                            )}
+                            {isUniPi && !isRainy && !weatherLoading && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f0fdf4', borderColor: '#bbf7d0' }]}>
+                                    <Ionicons name="bicycle-outline" size={24} color="#15803d" />
+                                    <Text style={[styles.infoBoxText, { color: '#15803d' }]}>METEO-BICI Attivo: Bel tempo a Pisa. Goditi il viaggio in bici (la città è minuscola e pianeggiante)! Le indicazioni premiano la Ciclopi.</Text>
+                                </View>
+                            )}
+                        </>
+                    );
+                })()}
+
                 {(() => {
                     const uni = (room.university || '');
                     const uniLC = uni.toLowerCase();
@@ -1790,7 +2013,7 @@ export const RoomDetailScreen = ({ route, navigation }: any) => {
                             if (text.includes('metro')) return 'subway-outline';
                             if (text.includes('auto') || text.includes('parcheggio')) return 'car-outline';
                             if (text.includes('piedi') || text.includes('cammina')) return 'walk-outline';
-                            if (text.includes('tram')) return 'tram-outline';
+                            if (text.includes('tram')) return 'train-outline';
                             return 'map-outline';
                         };
 
