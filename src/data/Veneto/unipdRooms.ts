@@ -1,0 +1,308 @@
+import { StudyRoom, DirectionsFromLocation } from '../../types';
+
+export const unipdRooms: StudyRoom[] = [
+    // ============================================================
+    // PADOVA - POLO UMANISTICO (CENTRO)
+    // ============================================================
+    {
+        id: 'unipd_beato_pellegrino',
+        nome: 'Complesso Beato Pellegrino',
+        edificio: 'Polo Umanistico Centrale',
+        piano: 0,
+        postiDisponibili: 250,
+        postiTotali: 450,
+        orarioApertura: '08:00',
+        orarioChiusura: '22:00',
+        servizi: ['WiFi Eduroam', 'Prese', 'Clima', 'Area Break', 'Accessibile'],
+        latitude: 45.4155,
+        longitude: 11.8715,
+        indirizzo: 'Via Beato Pellegrino 28, 35137 Padova',
+        university: 'UniPd',
+        occupancy_rate: 'Molto Alto',
+        extendedHours: true,
+        vibe: 'Moderna / Internazionale',
+        notes: 'La struttura più moderna. Molto affollata, ma con servizi top.',
+        tags: ['Umanistica', 'Top', 'Prese', 'Orario Esteso'],
+    },
+    {
+        id: 'unipd_maldura',
+        nome: 'Biblioteca Maldura',
+        edificio: 'Palazzo Maldura',
+        piano: 1,
+        postiDisponibili: 90,
+        postiTotali: 140,
+        orarioApertura: '08:30',
+        orarioChiusura: '19:30',
+        servizi: ['WiFi Eduroam', 'Giardino Interno', 'Silenzio'],
+        latitude: 45.4125,
+        longitude: 11.8732,
+        indirizzo: 'Piazzetta Gianfranco Folena 1, 35137 Padova',
+        university: 'UniPd',
+        occupancy_rate: 'Alto',
+        vibe: 'Storica / Letteraria',
+        notes: 'Punto di riferimento per Lettere e Lingue. Il giardino è perfetto per le pause.',
+        tags: ['Lingue', 'Giardino', 'Centro'],
+    },
+    {
+        id: 'unipd_liviano',
+        nome: 'Biblioteca del Liviano',
+        edificio: 'Piazza Capitaniato',
+        piano: 2,
+        postiDisponibili: 60,
+        postiTotali: 110,
+        orarioApertura: '08:30',
+        orarioChiusura: '18:00',
+        servizi: ['WiFi Eduroam', 'Patrimonio Artistico'],
+        latitude: 45.4072,
+        longitude: 11.8728,
+        indirizzo: 'Piazza Capitaniato 7, 35139 Padova',
+        university: 'UniPd',
+        occupancy_rate: 'Alto',
+        vibe: 'Artistica / Focus',
+        notes: 'Affreschi di Gio Ponti. Silenzio rigoroso.',
+        tags: ['Arte', 'Storia', 'Silenzio'],
+    },
+
+    // ============================================================
+    // PADOVA - POLO PORTELLO (ECONOMIA / INGEGNERIA / SCIENZE)
+    // ============================================================
+    {
+        id: 'unipd_portello_economia',
+        nome: 'Biblioteca di Economia (ASU)',
+        edificio: 'Polo Portello',
+        piano: 0,
+        postiDisponibili: 180,
+        postiTotali: 280,
+        orarioApertura: '08:30',
+        orarioChiusura: '20:00',
+        servizi: ['WiFi Eduroam', 'Prese', 'Mensa vicina'],
+        latitude: 45.4070,
+        longitude: 11.8905,
+        indirizzo: 'Via del Portello 19, 35129 Padova',
+        university: 'UniPd',
+        occupancy_rate: 'Molto Alto',
+        vibe: 'Dinamica / Social Hub',
+        notes: 'Cuore pulsante della zona Portello. Difficile trovare posto dopo le 9:00.',
+        tags: ['Economia', 'Portello', 'Mensa'],
+    },
+    {
+        id: 'unipd_geoscienze',
+        nome: 'Biblioteca di Geoscienze',
+        edificio: 'Polo Scientifico',
+        piano: 1,
+        postiDisponibili: 50,
+        postiTotali: 80,
+        orarioApertura: '08:30',
+        orarioChiusura: '18:00',
+        servizi: ['WiFi Eduroam', 'Prese', 'Tranquillità'],
+        latitude: 45.4110,
+        longitude: 11.8950,
+        indirizzo: 'Via Giovanni Gradenigo 6, 35131 Padova',
+        university: 'UniPd',
+        occupancy_rate: 'Basso',
+        vibe: 'Scientifica / Calma',
+        notes: 'Una gemma nascosta. Spesso meno affollata delle altre.',
+        tags: ['Scienze', 'Nascosta', 'Silenzio'],
+    },
+    {
+        id: 'unipd_metelli',
+        nome: 'Biblioteca Fabio Metelli',
+        edificio: 'Polo Psicologia',
+        piano: 0,
+        postiDisponibili: 140,
+        postiTotali: 220,
+        orarioApertura: '08:30',
+        orarioChiusura: '19:00',
+        servizi: ['WiFi Eduroam', 'Aule Group Work', 'Prese'],
+        latitude: 45.4085,
+        longitude: 11.8935,
+        indirizzo: 'Via Venezia 12, 35131 Padova',
+        university: 'UniPd',
+        occupancy_rate: 'Alto',
+        vibe: 'Psicologica / Moderna',
+        notes: 'Ottimi spazi per i lavori di gruppo.',
+        tags: ['Psicologia', 'Gruppi OK', 'Moderno'],
+    },
+
+    // ============================================================
+    // PADOVA - POLO MEDICO (OSPEDALE / BIO)
+    // ============================================================
+    {
+        id: 'unipd_vallisneri',
+        nome: 'Biblioteca Vallisneri',
+        edificio: 'Complesso Biologico',
+        piano: 0,
+        postiDisponibili: 130,
+        postiTotali: 200,
+        orarioApertura: '08:30',
+        orarioChiusura: '19:00',
+        servizi: ['WiFi Eduroam', 'Area Relax', 'Prese'],
+        latitude: 45.4030,
+        longitude: 11.8910,
+        indirizzo: 'Viale Giuseppe Colombo 3, 35131 Padova',
+        university: 'UniPd',
+        occupancy_rate: 'Alto',
+        vibe: 'Scientifica / Intensa',
+        notes: 'Molto frequentata da studenti di Medicina e Biologia.',
+        tags: ['Biologia', 'Medicina', 'Prese'],
+    },
+    {
+        id: 'unipd_pinali',
+        nome: 'Biblioteca Pinali (Medica)',
+        edificio: 'Sede Antica Ospedale',
+        piano: 1,
+        postiDisponibili: 70,
+        postiTotali: 100,
+        orarioApertura: '08:30',
+        orarioChiusura: '18:00',
+        servizi: ['WiFi Eduroam', 'Patrimonio Storico'],
+        latitude: 45.4020,
+        longitude: 11.8845,
+        indirizzo: 'Via Giustiniani 2, 35128 Padova',
+        university: 'UniPd',
+        occupancy_rate: 'Alto',
+        vibe: 'Storica / Medica',
+        notes: 'Atmosfera silenziosa e austera.',
+        tags: ['Medicina', 'Storico', 'Silenzio'],
+    },
+
+    // ============================================================
+    // PADOVA - AULE STUDIO (NO LIBRI, SOLO STUDIO)
+    // ============================================================
+    {
+        id: 'unipd_jappelli',
+        nome: 'Aula Studio Jappelli',
+        edificio: 'Centro Storico',
+        piano: 0,
+        postiDisponibili: 120,
+        postiTotali: 180,
+        orarioApertura: '08:00',
+        orarioChiusura: '23:45',
+        servizi: ['WiFi Eduroam', 'Clima', 'Prese', 'Aperta Sab/Dom'],
+        latitude: 45.4082,
+        longitude: 11.8860,
+        indirizzo: 'Via Giuseppe Jappelli 9, 35121 Padova',
+        university: 'UniPd',
+        occupancy_rate: 'Molto Alto',
+        extendedHours: true,
+        vibe: 'Social / Underground',
+        notes: 'La preferita per chi studia fino a tardi e nei weekend.',
+        tags: ['H24-ish', 'Weekend', 'Social', 'Centro'],
+    },
+    {
+        id: 'unipd_galileo',
+        nome: 'Aula Studio Galileo',
+        edificio: 'Zona Ospedali',
+        piano: 0,
+        postiDisponibili: 80,
+        postiTotali: 130,
+        orarioApertura: '08:00',
+        orarioChiusura: '22:00',
+        servizi: ['WiFi Eduroam', 'Prese', 'Distributori'],
+        latitude: 45.4038,
+        longitude: 11.8865,
+        indirizzo: 'Via Galileo Galilei 42, 35121 Padova',
+        university: 'UniPd',
+        occupancy_rate: 'Alto',
+        vibe: 'Focus / Tranquilla',
+        tags: ['Aula Studio', 'Orario Esteso', 'Prese'],
+    },
+
+    // ============================================================
+    // POLI TERRITORIALI
+    // ============================================================
+    {
+        id: 'unipd_vicenza_san_nicola',
+        nome: 'Polo Vicenza - San Nicola',
+        edificio: 'Ex Convento',
+        piano: 0,
+        postiDisponibili: 100,
+        postiTotali: 150,
+        orarioApertura: '08:30',
+        orarioChiusura: '19:00',
+        indirizzo: 'Viale Margherita 87, 36100 Vicenza',
+        university: 'UniPd',
+        occupancy_rate: 'Medio',
+        tags: ['Vicenza', 'Ingegneria'],
+        latitude: 45.5415,
+        longitude: 11.5510,
+        servizi: ['WiFi Eduroam', 'Prese'],
+    },
+    {
+        id: 'unipd_treviso_latino',
+        nome: 'Polo Treviso - Quartiere Latino',
+        edificio: 'Complesso San Leonardo',
+        piano: 0,
+        postiDisponibili: 70,
+        postiTotali: 110,
+        orarioApertura: '08:30',
+        orarioChiusura: '19:00',
+        servizi: ['WiFi Eduroam', 'Prese'],
+        indirizzo: 'Riviera Garibaldi 13, 31100 Treviso',
+        university: 'UniPd',
+        occupancy_rate: 'Medio',
+        tags: ['Treviso', 'Centro'],
+        latitude: 45.6635,
+        longitude: 12.2450,
+    },
+    {
+        id: 'unipd_rovigo_angeli',
+        nome: 'Polo Rovigo - Palazzo Angeli',
+        edificio: 'Palazzo Angeli',
+        piano: 1,
+        postiDisponibili: 50,
+        postiTotali: 80,
+        orarioApertura: '08:30',
+        orarioChiusura: '19:00',
+        servizi: ['WiFi Eduroam', 'Prese'],
+        indirizzo: 'Via Laurenti 9, 45100 Rovigo',
+        university: 'UniPd',
+        occupancy_rate: 'Basso',
+        tags: ['Rovigo', 'Diritto'],
+        latitude: 45.0715,
+        longitude: 11.7915,
+    }
+];
+
+export const getDirectionsUnipd = (room: StudyRoom): DirectionsFromLocation[] => {
+    const directions: DirectionsFromLocation[] = [];
+    const addr = room.indirizzo;
+
+    if (addr.includes('Padova')) {
+        directions.push({
+            luogo: 'Stazione Ferroviaria Padova',
+            descrizione: 'Asse Centrale: Prendi il Tram SIR1 verso Guizza, ferma a Ponti Romani (Centro) o Tito Livio. Portello: Bus Linea 7, 15 o 18.',
+            mezziPubblici: ['Tram', 'Bus 7, 9, 15'],
+            tempoStimato: '15 min',
+        });
+        directions.push({
+            luogo: 'Parcheggio scambiatore (Nord/Sud)',
+            descrizione: 'Lascia l\'auto al park scambiatore Ponte di Brenta o Guizza e prosegui con il tram. Il centro è quasi tutto ZTL.',
+            mezziPubblici: ['Tram'],
+            tempoStimato: '20 min',
+        });
+    } else if (addr.includes('Vicenza')) {
+        directions.push({
+            luogo: 'Stazione Vicenza',
+            descrizione: 'Viale Margherita è a circa 10 min a piedi dalla stazione, proseguendo verso est oltre Campo Marzo.',
+            mezziPubblici: ['A piedi'],
+            tempoStimato: '10 min',
+        });
+    } else if (addr.includes('Treviso')) {
+        directions.push({
+            luogo: 'Stazione Treviso Centrale',
+            descrizione: 'Il Quartiere Latino si trova a 5 min a piedi dalla stazione, appena oltre il fiume Sile.',
+            mezziPubblici: ['A piedi'],
+            tempoStimato: '5 min',
+        });
+    } else if (addr.includes('Rovigo')) {
+        directions.push({
+            luogo: 'Stazione Rovigo',
+            descrizione: 'Palazzo Angeli è in pieno centro, circa 10 min a piedi dalla stazione.',
+            mezziPubblici: ['A piedi'],
+            tempoStimato: '10 min',
+        });
+    }
+
+    return directions;
+};

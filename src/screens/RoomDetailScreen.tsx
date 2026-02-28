@@ -85,6 +85,14 @@ import { getDirectionsAfamTrentino } from '../data/Trentino/afamTrentino';
 import { getDirectionsUnipg } from '../data/Umbria/unipg';
 import { getDirectionsUnistrapg } from '../data/Umbria/unistrapg';
 import { getDirectionsAfamUmbria } from '../data/Umbria/afamUmbria';
+import { getDirectionsUnivda } from '../data/ValleDAosta/univdaRooms';
+import { getDirectionsAfamVda } from '../data/ValleDAosta/afamVdaRooms';
+import { getDirectionsUnipd } from '../data/Veneto/unipdRooms';
+import { getDirectionsCafoscari } from '../data/Veneto/cafoscariRooms';
+import { getDirectionsUnivr } from '../data/Veneto/univrRooms';
+import { getDirectionsIuav } from '../data/Veneto/iuavRooms';
+import { getDirectionsAfamVeneto } from '../data/Veneto/afamVenetoRooms';
+
 
 const DirectionPoint: React.FC<{ title: string; content: string; icon: any }> = ({ title, content, icon }) => (
     <View style={styles.directionPoint}>
@@ -397,6 +405,28 @@ export const RoomDetailScreen = ({ route, navigation }: any) => {
         if (room.id.startsWith('v')) {
             return getUniVaDirections(room);
         }
+        if (room.id.startsWith('univda_') || room.id.startsWith('aosta_') || (room.university || '').toLowerCase() === 'univda') {
+            return getDirectionsUnivda(room);
+        }
+        if (room.id.startsWith('afam_vda_') || (room.university === 'AFAM' && room.indirizzo.includes('Aosta'))) {
+            return getDirectionsAfamVda(room);
+        }
+        if (room.id.startsWith('unipd_') || (room.university || '').toLowerCase() === 'unipd') {
+            return getDirectionsUnipd(room);
+        }
+        if (room.id.startsWith('cafoscari_') || room.university === 'Ca Foscari') {
+            return getDirectionsCafoscari(room);
+        }
+        if (room.id.startsWith('univr_') || room.university === 'UniVr') {
+            return getDirectionsUnivr(room);
+        }
+        if (room.id.startsWith('iuav_') || room.university === 'Iuav') {
+            return getDirectionsIuav(room);
+        }
+        if (room.id.startsWith('afam_ve_') || room.id.startsWith('afam_vr_') || room.id.startsWith('afam_pd_') || room.id.startsWith('afam_vi_')) {
+            return getDirectionsAfamVeneto(room);
+        }
+
         return getUniNaDirections(room);
     }, [room]);
 
@@ -647,6 +677,211 @@ export const RoomDetailScreen = ({ route, navigation }: any) => {
                                     <Ionicons name="color-palette-outline" size={24} color="#4338ca" />
                                     <Text style={[styles.infoBoxText, { color: '#4338ca' }]}>
                                         🎨 Tavoli Ampi: L'Accademia è ospitata nello storico complesso di San Francesco al Prato. L'aula studio offre postazioni cablate con tavoli decisamente più ampi rispetto ai banchi standard, perfetti per tavolette grafiche o tavole da disegno.
+                                    </Text>
+                                </View>
+                            )}
+                        </>
+                    );
+                })()}
+
+                {/* UniVDA/Aosta specific advisories */}
+                {(() => {
+                    const isUniVDA = room.university === 'UniVDA';
+                    const isNuovoPolo = isUniVDA && (room.indirizzo || '').includes('Monte Vodice');
+                    const isRegionaleAosta = room.id === 'aosta_biblioteca_regionale';
+
+                    if (!isUniVDA && !isRegionaleAosta) return null;
+
+                    let accumulatedBoxes = 0;
+                    const getMarginTop = () => {
+                        const margin = accumulatedBoxes > 0 ? 12 : 0;
+                        accumulatedBoxes++;
+                        return margin;
+                    };
+
+                    return (
+                        <>
+                            {isNuovoPolo && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f0f9ff', borderColor: '#bae6fd', marginTop: getMarginTop() }]}>
+                                    <Ionicons name="leaf-outline" size={24} color="#0284c7" />
+                                    <Text style={[styles.infoBoxText, { color: '#0284c7' }]}>
+                                        🌱 Campus d'Avanguardia: Inaugurato nel 2025, il Nuovo Polo Universitario è una struttura a impatto zero. Le aule studio sono dotate di domotica per il clima e l'illuminazione, e offrono una velocità WiFi superiore rispetto alle vecchie sedi.
+                                    </Text>
+                                </View>
+                            )}
+
+                            {isRegionaleAosta && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f0fdf4', borderColor: '#bbf7d0', marginTop: getMarginTop() }]}>
+                                    <Ionicons name="library-outline" size={24} color="#15803d" />
+                                    <Text style={[styles.infoBoxText, { color: '#15803d' }]}>
+                                        📚 Risorsa Regionale: Questa non è una sede universitaria, ma è la biblioteca più frequentata di Aosta. Qui trovi il WiFi regionale gratuito (non solo Eduroam) e postazioni molto ampie, ottime se devi stendere tavole o libri voluminosi.
+                                    </Text>
+                                </View>
+                            )}
+
+                            {isUniVDA && !isNuovoPolo && !isRegionaleAosta && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fdf4ff', borderColor: '#f5d0fe', marginTop: getMarginTop() }]}>
+                                    <Ionicons name="language-outline" size={24} color="#a21caf" />
+                                    <Text style={[styles.infoBoxText, { color: '#a21caf' }]}>
+                                        🇫🇷 Focus Bilingue: Essendo l'ateneo della Valle d'Aosta, troverai moltissimi testi e risorse in lingua francese, fondamentali per i corsi di Formazione Primaria e Lingue.
+                                    </Text>
+                                </View>
+                            )}
+                        </>
+                    );
+                })()}
+
+                {/* INFOBOX: UNIPD */}
+                {(() => {
+                    const isUniPd = room.university === 'UniPd';
+                    const isPortello = isUniPd && (room.tags?.includes('Portello') || room.id.includes('metelli') || room.id.includes('geoscienze'));
+                    const isBeatoPellegrino = room.id === 'unipd_beato_pellegrino';
+                    const isAulaStudioPura = room.tags?.includes('Aula Studio') || room.id.includes('jappelli');
+
+                    if (isUniPd) {
+                        return (
+                            <>
+                                {isPortello && (
+                                    <View style={[styles.infoBox, { backgroundColor: '#fff7ed', borderColor: '#ffedd5', marginTop: 12 }]}>
+                                        <Ionicons name="fast-food-outline" size={24} color="#c2410c" />
+                                        <Text style={[styles.infoBoxText, { color: '#c2410c' }]}>
+                                            🍱 Sopravvivenza Portello: La zona è densissima. Se vuoi mangiare in Mensa (Nord o Piovego), scarica l'app ESU e prenota il turno o aspettati 30 min di fila. In alternativa, Via Portello è piena di bar con "prezzi studenti".
+                                        </Text>
+                                    </View>
+                                )}
+                                {isBeatoPellegrino && (
+                                    <View style={[styles.infoBox, { backgroundColor: '#f0f9ff', borderColor: '#bae6fd', marginTop: 12 }]}>
+                                        <Ionicons name="laptop-outline" size={24} color="#0284c7" />
+                                        <Text style={[styles.infoBoxText, { color: '#0284c7' }]}>
+                                            ⚡ Top Tech: Beato Pellegrino è il paradiso delle prese elettriche (una per ogni posto). Se hai il laptop scarico, punta qui. Ricorda che i posti migliori (vicino alle finestre) spariscono entro le 8:15.
+                                        </Text>
+                                    </View>
+                                )}
+                                {isAulaStudioPura && (
+                                    <View style={[styles.infoBox, { backgroundColor: '#fdf4ff', borderColor: '#f5d0fe', marginTop: 12 }]}>
+                                        <Ionicons name="moon-outline" size={24} color="#a21caf" />
+                                        <Text style={[styles.infoBoxText, { color: '#a21caf' }]}>
+                                            🌙 Night Owls: Le aule studio (Jappelli, Galileo) non hanno servizio di prestito libri ma sono le uniche che restano aperte quasi fino a mezzanotte e nei weekend. Ideali per sessioni d'esame "disperate".
+                                        </Text>
+                                    </View>
+                                )}
+                            </>
+                        );
+                    }
+                    return null;
+                })()}
+
+                {/* INFOBOX: CA FOSCARI */}
+                {(() => {
+                    const isCafoscari = room.university === 'Ca Foscari';
+                    const isVeneziaCentro = isCafoscari && !room.id.includes('mestre') && !room.id.includes('treviso');
+                    const isCFZ = room.id === 'cafoscari_cfz';
+
+                    if (!isCafoscari) return null;
+
+                    return (
+                        <>
+                            <View style={[styles.infoBox, { backgroundColor: '#fff7ed', borderColor: '#ffedd5', marginTop: 12 }]}>
+                                <Ionicons name="calendar-outline" size={24} color="#c2410c" />
+                                <Text style={[styles.infoBoxText, { color: '#c2410c' }]}>
+                                    🎟️ Prenotazione EasyPlanning: Per occupare un posto a sedere in qualsiasi biblioteca Ca' Foscari è OBBLIGATORIO prenotarsi tramite l'app MyUniVE o il portale EasyPlanning. Senza il QR code della prenotazione l'accesso potrebbe essere negato.
+                                </Text>
+                            </View>
+
+                            {isVeneziaCentro && (
+                                <View style={[styles.infoBox, { backgroundColor: '#eff6ff', borderColor: '#bfdbfe', marginTop: 12 }]}>
+                                    <Ionicons name="boat-outline" size={24} color="#1d4ed8" />
+                                    <Text style={[styles.infoBoxText, { color: '#1d4ed8' }]}>
+                                        🚤 Navigazione Laguna: Se studi a Venezia centro, ricordati che le distanze a piedi "ingannano". Per le Zattere (CFZ) usa la fermata San Basilio, per San Giobbe (BEC) usa la fermata Crea. Scarica l'app AVM Venezia per orari e biglietti in tempo reale.
+                                    </Text>
+                                </View>
+                            )}
+
+                            {isCFZ && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f0fdf4', borderColor: '#bbf7d0', marginTop: 12 }]}>
+                                    <Ionicons name="cafe-outline" size={24} color="#15803d" />
+                                    <Text style={[styles.infoBoxText, { color: '#15803d' }]}>
+                                        🥐 Spuntino Zattere: CFZ è l'unico polo con un'area ristoro interna molto dinamica. Se hai bisogno di staccare, la Fondamenta Zattere è piena di posti per un cicchetto o un gelato da "Nico" (famosissimo il gianduiotto!).
+                                    </Text>
+                                </View>
+                            )}
+                        </>
+                    );
+                })()}
+
+                {/* INFOBOX: IUAV */}
+                {(() => {
+                    const isIuav = room.university === 'Iuav';
+                    const isTolentini = room.id.includes('tolentini');
+                    const isLigabue = room.id.includes('ligabue');
+
+                    if (!isIuav) return null;
+
+                    return (
+                        <>
+                            <View style={[styles.infoBox, { backgroundColor: '#fff7ed', borderColor: '#ffedd5', marginTop: 12 }]}>
+                                <Ionicons name="calendar-outline" size={24} color="#c2410c" />
+                                <Text style={[styles.infoBoxText, { color: '#c2410c' }]}>
+                                    🎟️ Prenotazione Obbligatoria: Per accedere alle sale lettura della Biblioteca Iuav e ai laboratori è necessario prenotare il posto tramite il portale EasyPlanning o l'app dedicata. Senza prenotazione, l'accesso potrebbe non essere garantito dai varchi.
+                                </Text>
+                            </View>
+
+                            {isTolentini && (
+                                <View style={[styles.infoBox, { backgroundColor: '#eff6ff', borderColor: '#bfdbfe', marginTop: 12 }]}>
+                                    <Ionicons name="business-outline" size={24} color="#1d4ed8" />
+                                    <Text style={[styles.infoBoxText, { color: '#1d4ed8' }]}>
+                                        🏛️ Monumento Nazionale: Stai entrando in uno dei capolavori dell'architettura moderna. L'ingresso dei Tolentini è opera di Carlo Scarpa. Rispetta rigorosamente le norme di comportamento: la biblioteca ospita fondi rari e disegni originali unici al mondo.
+                                    </Text>
+                                </View>
+                            )}
+
+                            {isLigabue && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f0fdf4', borderColor: '#bbf7d0', marginTop: 12 }]}>
+                                    <Ionicons name="color-palette-outline" size={24} color="#15803d" />
+                                    <Text style={[styles.infoBoxText, { color: '#15803d' }]}>
+                                        🔨 Spazio "Mani in pasta": I Magazzini Ligabue sono il regno del Design. Qui è normale trovare tavoli occupati da plastici e modelli in scala. Se cerchi un ambiente informale dove sporcarti le mani con i tuoi progetti, questo è il posto giusto.
+                                    </Text>
+                                </View>
+                            )}
+                        </>
+                    );
+                })()}
+
+                {/* INFOBOX: AFAM VENETO */}
+                {(() => {
+                    const isAFAM = room.university === 'AFAM';
+                    const isVeneto = room.id.startsWith('afam_ve_') || room.id.startsWith('afam_vr_') || room.id.startsWith('afam_pd_') || room.id.startsWith('afam_vi_') || room.id.startsWith('afam_ro_') || room.id.startsWith('afam_tv_');
+                    const isConservatorio = isAFAM && (room.tags?.includes('Musica') || room.id.includes('conservatorio'));
+                    const isAccademia = isAFAM && (room.tags?.includes('Accademia') || room.id.includes('accademia'));
+                    const isSanServolo = room.id === 'afam_ve_accademia_servolo';
+
+                    if (!isAFAM || !isVeneto) return null;
+
+                    return (
+                        <>
+                            {isConservatorio && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fef2f2', borderColor: '#fecaca', marginTop: 12 }]}>
+                                    <Ionicons name="musical-notes-outline" size={24} color="#b91c1c" />
+                                    <Text style={[styles.infoBoxText, { color: '#b91c1c' }]}>
+                                        🎹 Studio Strumento: Nelle biblioteche vige il silenzio, ma puoi richiedere l'accesso alle aule insonorizzate per esercitarti. La prenotazione è quasi sempre obbligatoria tramite la portineria o il sistema online dell'istituto.
+                                    </Text>
+                                </View>
+                            )}
+
+                            {isAccademia && (
+                                <View style={[styles.infoBox, { backgroundColor: '#eef2ff', borderColor: '#c7d2fe', marginTop: 12 }]}>
+                                    <Ionicons name="color-palette-outline" size={24} color="#4338ca" />
+                                    <Text style={[styles.infoBoxText, { color: '#4338ca' }]}>
+                                        🎨 Spazi Creativi: Questi ambienti sono pensati per artisti. Troverai tavoli ampi e, in alcuni casi, postazioni con cavalletti o Mac per la grafica. Se devi studiare sui libri, punta alla biblioteca; se devi progettare, cerca i laboratori aperti.
+                                    </Text>
+                                </View>
+                            )}
+
+                            {isSanServolo && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f0fdf4', borderColor: '#bbf7d0', marginTop: 12 }]}>
+                                    <Ionicons name="boat-outline" size={24} color="#15803d" />
+                                    <Text style={[styles.infoBoxText, { color: '#15803d' }]}>
+                                        🚤 Logistica Isola: Attenzione! San Servolo è bellissima ma isolata. Assicurati di avere tutto ciò che ti serve prima di imbarcarti. C'è una mensa/bar sull'isola, ma gli orari dei vaporetti sono il tuo unico legame con la città: scarica l'app AVM per non perdere l'ultima corsa!
                                     </Text>
                                 </View>
                             )}

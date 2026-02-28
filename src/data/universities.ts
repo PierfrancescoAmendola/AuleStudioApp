@@ -79,6 +79,13 @@ import { afamTrentinoRooms } from './Trentino/afamTrentino';
 import { unipgRooms } from './Umbria/unipg';
 import { unistrapgRooms } from './Umbria/unistrapg';
 import { afamUmbriaRooms } from './Umbria/afamUmbria';
+import { univdaRooms } from './ValleDAosta/univdaRooms';
+import { afamVdaRooms } from './ValleDAosta/afamVdaRooms';
+import { unipdRooms } from './Veneto/unipdRooms';
+import { cafoscariRooms } from './Veneto/cafoscariRooms';
+import { univrRooms } from './Veneto/univrRooms';
+import { iuavRooms } from './Veneto/iuavRooms';
+import { afamVenetoRooms } from './Veneto/afamVenetoRooms';
 
 
 
@@ -970,8 +977,74 @@ export const universities: University[] = [
             'Rovigo',
             'Serali/Weekend'
         ],
-        color: '#b91c1c', // UniFe Red
+        color: '#b91c1c', // UniPd Red
+        darkColor: '#991b1b', // UniPd Dark Red
+    },
+    {
+        id: 'cafoscari',
+        name: 'Ca Foscari',
+        fullName: "Università Ca' Foscari Venezia",
+        city: 'Venezia / Mestre / Treviso',
+        regionName: 'Veneto',
+        region: {
+            latitude: 45.43,
+            longitude: 12.33,
+            latitudeDelta: 0.25,
+            longitudeDelta: 0.25,
+        },
+        studyRooms: cafoscariRooms,
+        availableFilters: [
+            'Tutti',
+            'Venezia Centro',
+            'Campus Scientifico Mestre',
+            'Campus Economico',
+            'Treviso'
+        ],
+        color: '#b91c1c', // Venetian Red
         darkColor: '#7f1d1d',
+    },
+    {
+        id: 'univr',
+        name: 'UniVr',
+        fullName: 'Università degli Studi di Verona',
+        city: 'Verona / Vicenza / Legnago / San Bonifacio',
+        regionName: 'Veneto',
+        region: {
+            latitude: 45.438,
+            longitude: 11.0,
+            latitudeDelta: 0.1,
+            longitudeDelta: 0.1,
+        },
+        studyRooms: univrRooms,
+        availableFilters: [
+            'Tutti',
+            'Veronetta (Centro)',
+            'Borgo Roma (Scienze/Med)',
+            'Poli Territoriali'
+        ],
+        color: '#facc15', // Verona Yellow 
+        darkColor: '#ca8a04',
+    },
+    {
+        id: 'iuav',
+        name: 'Iuav',
+        fullName: 'Università Iuav di Venezia',
+        city: 'Venezia',
+        regionName: 'Veneto',
+        region: {
+            latitude: 45.437,
+            longitude: 12.32,
+            latitudeDelta: 0.1,
+            longitudeDelta: 0.1,
+        },
+        studyRooms: iuavRooms,
+        availableFilters: [
+            'Tutti',
+            'Centro',
+            'Sedi Storiche'
+        ],
+        color: '#ea580c', // Orange 
+        darkColor: '#c2410c',
     },
     {
         id: 'unimore',
@@ -2017,6 +2090,70 @@ export const universities: University[] = [
             'Tutti',
             'Perugia',
             'Terni'
+        ],
+        color: '#7c3aed', // AFAM Violet
+        darkColor: '#4c1d95',
+    },
+    {
+        id: 'univda',
+        name: 'UniVDA',
+        fullName: "Università della Valle d'Aosta",
+        city: 'Aosta',
+        regionName: "Valle d'Aosta",
+        region: {
+            latitude: 45.737,
+            longitude: 7.315,
+            latitudeDelta: 0.1,
+            longitudeDelta: 0.1,
+        },
+        studyRooms: univdaRooms,
+        availableFilters: [
+            'Tutti',
+            'Aosta',
+        ],
+        color: '#f59e0b', // Amber
+        darkColor: '#d97706',
+    },
+    {
+        id: 'afam_vda',
+        name: 'AFAM VdA',
+        fullName: "Conservatoire de la Vallée d'Aosta",
+        city: 'Aosta / Pont-Saint-Martin',
+        regionName: "Valle d'Aosta",
+        region: {
+            latitude: 45.74,
+            longitude: 7.32,
+            latitudeDelta: 0.4,
+            longitudeDelta: 0.4,
+        },
+        studyRooms: afamVdaRooms,
+        availableFilters: [
+            'Tutti',
+            'Aosta Centro',
+            'Bassa Valle',
+        ],
+        color: '#7c3aed', // AFAM Violet
+        darkColor: '#4c1d95',
+    },
+    {
+        id: 'afam_veneto',
+        name: 'AFAM Veneto',
+        fullName: 'Istituzioni AFAM del Veneto',
+        city: 'Venezia / Verona / Padova / Vicenza / Rovigo / Castelfranco',
+        regionName: 'Veneto',
+        region: {
+            latitude: 45.43,
+            longitude: 11.5,
+            latitudeDelta: 1.5,
+            longitudeDelta: 1.5,
+        },
+        studyRooms: afamVenetoRooms,
+        availableFilters: [
+            'Tutti',
+            'Venezia',
+            'Verona',
+            'Musica',
+            'Arte'
         ],
         color: '#7c3aed', // AFAM Violet
         darkColor: '#4c1d95',

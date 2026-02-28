@@ -1384,41 +1384,74 @@ export const StudyRoomsScreen: React.FC<StudyRoomsScreenProps> = ({ navigation }
                         room.indirizzo.includes(selectedBuilding)
                     );
                 }
-            } else if (university?.id === 'afamPuglia') {
-                if (selectedBuilding === 'Accademie') {
-                    filtered = filtered.filter(r =>
-                        r.tags?.includes('Accademia') || r.id.startsWith('aba_')
-                    );
-                } else if (selectedBuilding === 'Conservatori') {
-                    filtered = filtered.filter(r =>
-                        r.tags?.includes('Conservatorio') || r.id.startsWith('cons_')
-                    );
-                } else if (selectedBuilding === 'Sporco Tollerato') {
-                    filtered = filtered.filter(r =>
-                        r.tags?.includes('🧱 Sporco Tollerato') ||
-                        r.servizi.some(s => s.toLowerCase().includes('sporco tollerato'))
-                    );
-                } else if (selectedBuilding === 'Tavoli Grandi') {
-                    filtered = filtered.filter(r =>
-                        r.tags?.includes('📐 Tavoli Grandi') ||
-                        r.servizi.some(s => s.toLowerCase().includes('tavoli grandi'))
-                    );
-                } else if (selectedBuilding === 'Sale Prova') {
-                    filtered = filtered.filter(r =>
-                        r.tags?.includes('🎹 Sale Prova') ||
-                        r.servizi.some(s => s.toLowerCase().includes('sale prova'))
-                    );
+            } else if (university?.id === 'unipd') {
+                if (selectedBuilding === 'Venezia' || selectedBuilding === 'Treviso' || selectedBuilding === 'Vicenza' || selectedBuilding === 'Rovigo' || selectedBuilding === 'Verona') {
+                    filtered = filtered.filter(r => r.indirizzo.includes(selectedBuilding) || r.id.includes(selectedBuilding.toLowerCase()));
+                } else if (selectedBuilding === 'Portello') {
+                    filtered = filtered.filter(r => r.tags?.includes('Portello') || r.edificio.includes('Portello'));
+                } else if (selectedBuilding === 'Umanistica') {
+                    filtered = filtered.filter(r => r.tags?.includes('Umanistica') || r.tags?.includes('Centro'));
                 } else {
-                    filtered = filtered.filter(room =>
-                        room.edificio.includes(selectedBuilding) ||
-                        room.indirizzo.includes(selectedBuilding)
-                    );
+                    filtered = filtered.filter(r => r.edificio.includes(selectedBuilding) || r.indirizzo.includes(selectedBuilding));
+                }
+            } else if (university?.id === 'cafoscari') {
+                if (selectedBuilding === 'Venezia Centro') {
+                    filtered = filtered.filter(r => r.tags?.includes('Centro') || (!r.id.includes('mestre') && !r.id.includes('treviso')));
+                } else if (selectedBuilding === 'Mestre') {
+                    filtered = filtered.filter(r => r.id.includes('mestre') || r.tags?.includes('Mestre'));
+                } else if (selectedBuilding === 'Treviso') {
+                    filtered = filtered.filter(r => r.id.includes('treviso') || r.tags?.includes('Treviso'));
+                } else if (selectedBuilding === 'Zattere') {
+                    filtered = filtered.filter(r => r.tags?.includes('Zattere') || r.id.includes('cfz'));
+                } else if (selectedBuilding === 'San Giobbe') {
+                    filtered = filtered.filter(r => r.id.includes('bec') || r.tags?.includes('Economia'));
+                } else {
+                    filtered = filtered.filter(r => r.edificio.includes(selectedBuilding) || r.indirizzo.includes(selectedBuilding));
+                }
+            } else if (university?.id === 'univr') {
+                if (selectedBuilding === 'Veronetta' || selectedBuilding === 'Borgo Roma') {
+                    filtered = filtered.filter(r => r.tags?.includes(selectedBuilding) || r.indirizzo.includes(selectedBuilding));
+                } else if (selectedBuilding === 'Vicenza' || selectedBuilding === 'Legnago' || selectedBuilding === 'San Bonifacio') {
+                    filtered = filtered.filter(r => r.tags?.includes(selectedBuilding) || r.indirizzo.includes(selectedBuilding));
+                } else {
+                    filtered = filtered.filter(r => r.edificio.includes(selectedBuilding) || r.indirizzo.includes(selectedBuilding));
+                }
+            } else if (university?.id === 'iuav') {
+                if (selectedBuilding === 'Tolentini' || selectedBuilding === 'Ligabue') {
+                    filtered = filtered.filter(r => r.id.includes(selectedBuilding.toLowerCase()) || r.edificio.includes(selectedBuilding));
+                } else if (selectedBuilding === 'Dorsoduro' || selectedBuilding === 'San Polo' || selectedBuilding === 'Santa Croce') {
+                    filtered = filtered.filter(r => r.indirizzo.includes(selectedBuilding));
+                } else {
+                    filtered = filtered.filter(r => r.edificio.includes(selectedBuilding) || r.indirizzo.includes(selectedBuilding));
+                }
+            } else if (university?.id === 'afam_veneto') {
+                if (selectedBuilding === 'Musica' || selectedBuilding === 'Arte') {
+                    filtered = filtered.filter(r => (r.tags || []).includes(selectedBuilding) || (r.tags || []).includes(selectedBuilding === 'Musica' ? 'Conservatorio' : 'Accademia'));
+                } else if (selectedBuilding === 'Venezia' || selectedBuilding === 'Verona') {
+                    filtered = filtered.filter(r => (r.tags || []).some(t => t.includes(selectedBuilding)) || r.indirizzo.includes(selectedBuilding));
+                } else {
+                    filtered = filtered.filter(r => r.edificio.includes(selectedBuilding) || r.indirizzo.includes(selectedBuilding));
+                }
+            } else if (university?.id === 'univda') {
+                if (selectedBuilding === 'Aosta') {
+                    filtered = filtered.filter(r => r.indirizzo.includes('Aosta'));
+                } else {
+                    filtered = filtered.filter(r => r.edificio.includes(selectedBuilding) || r.indirizzo.includes(selectedBuilding));
+                }
+            } else if (university?.id === 'afam_vda') {
+                if (selectedBuilding === 'Aosta Centro') {
+                    filtered = filtered.filter(r => r.tags?.includes('Aosta Centro') || r.indirizzo.includes('Aosta'));
+                } else if (selectedBuilding === 'Bassa Valle') {
+                    filtered = filtered.filter(r => r.tags?.includes('Bassa Valle') || r.id.includes('psm'));
+                } else {
+                    filtered = filtered.filter(r => r.edificio.includes(selectedBuilding) || r.indirizzo.includes(selectedBuilding));
                 }
             } else {
-                // For others, direct match or substring in Edificio OR Indirizzo (more robust)
+                // FALLBACK: Case-insensitive search in edifice or address
+                const term = (selectedBuilding || '').toLowerCase();
                 filtered = filtered.filter(room =>
-                    room.edificio.includes(selectedBuilding) ||
-                    room.indirizzo.includes(selectedBuilding)
+                    (room.edificio || '').toLowerCase().includes(term) ||
+                    (room.indirizzo || '').toLowerCase().includes(term)
                 );
             }
         }
