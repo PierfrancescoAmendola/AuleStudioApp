@@ -158,12 +158,34 @@ export const unicalRooms: StudyRoom[] = [
     vibe: 'Comodo per residenti',
     extendedHours: true,
     notes: 'Altro polmone di studio per i residenti. Verificare le modalità di accesso con il Centro Residenziale.'
+  },
+  // ============================================================
+  // AULE STUDIO DIMES (Ingegneria Informatica)
+  // ============================================================
+  {
+    id: 'unical_dimes',
+    nome: 'Aule Studio DIMES',
+    edificio: 'Cubo 41C (Piano 1 e 3) e Cubo 44Z (Piano Terra)',
+    piano: 0,
+    postiDisponibili: 60,
+    postiTotali: 80,
+    orarioApertura: '09:00',
+    orarioChiusura: '19:00',
+    servizi: ['WiFi Eduroam', 'Prese', 'PC Lab'],
+    latitude: 39.3577,
+    longitude: 16.2265,
+    indirizzo: 'Via P. Bucci, 87036 Rende (CS)',
+    university: 'UniCal',
+    tags: ['informatica', 'ingegneria', 'aula studio'],
+    vibe: 'Tech e concentrato',
+    occupancy_rate: 'Alto',
+    notes: 'Aule studio gestite dal Dipartimento di Ingegneria Informatica (DIMES). Dislocate nei Cubi 41C e 44Z. Ambiente molto tecnico.'
   }
 ];
 
 export const getDirectionsUniCal = (room: StudyRoom): DirectionsFromLocation[] => {
   const directions: DirectionsFromLocation[] = [];
-  
+
   // Il Campus è enorme, dividiamo per punti chiave
   const isNord = room.indirizzo.includes('Chiodo') || room.id.includes('bau') || room.id.includes('maisonnettes');
   const isCentro = room.indirizzo.includes('Vermicelli') || room.id.includes('bats');

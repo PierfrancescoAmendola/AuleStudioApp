@@ -256,6 +256,46 @@ export const romaTreRooms: StudyRoom[] = [
         indirizzo: 'Via Principe Amedeo 184, Roma',
         university: 'Roma Tre',
         tags: ['Aula Studio', 'WiFi'],
+    },
+
+    // ============================================================
+    // ROMA - BIBLIOTECHE NAZIONALI / DISCO LAZIO
+    // ============================================================
+    {
+        id: 'r3_bncr',
+        nome: 'Biblioteca Nazionale Centrale di Roma (BNCR)',
+        edificio: 'Castro Pretorio',
+        piano: 0,
+        postiDisponibili: 600,
+        postiTotali: 1200,
+        orarioApertura: '08:30',
+        orarioChiusura: '19:00',
+        servizi: ['WiFi Gratuito', 'Oltre 6 milioni di volumi', 'Sale Specializzate', 'Emeroteca', 'Fotocopie', 'Sabato Aperto'],
+        latitude: 41.9040,
+        longitude: 12.5045,
+        indirizzo: 'Viale Castro Pretorio 105, 00185 Roma',
+        university: 'Roma Tre',
+        occupancy_rate: 'Molto Alto',
+        notes: 'La più grande biblioteca d\'Italia con oltre 6 milioni di volumi. Usatissima da studenti di tutti gli atenei romani (Sapienza, RomaTre, TorVergata). Accesso con tesserino gratuito. Sabato 08:30-13:30. Vicinissima alla Metro B Castro Pretorio.',
+        tags: ['Biblioteca', 'Nazionale', 'WiFi', '📚 6M volumi', '🏛️ Storica'],
+    },
+    {
+        id: 'r3_disco_mattatoio',
+        nome: 'Aula Studio DiSCo Ex-Mattatoio',
+        edificio: 'Padiglione DiSCo (Ex-Mattatoio)',
+        piano: 0,
+        postiDisponibili: 50,
+        postiTotali: 80,
+        orarioApertura: '09:00',
+        orarioChiusura: '20:00',
+        servizi: ['WiFi Gratuito', 'Accesso Libero', 'Vicino mensa DiSCo', 'Climatizzazione'],
+        latitude: 41.8762,
+        longitude: 12.4738,
+        indirizzo: 'Piazza Orazio Giustiniani, 00153 Roma',
+        university: 'Roma Tre',
+        occupancy_rate: 'Medio',
+        notes: 'Gestita da DiSCo Lazio. Spazio studio dentro il complesso dell\'Ex-Mattatoio, accanto alla mensa e al campus di Architettura di Roma Tre. Accesso gratuito per tutti gli studenti universitari del Lazio.',
+        tags: ['Aula Studio', 'DiSCo Lazio', 'WiFi', '🆓 Gratuito'],
     }
 ];
 
@@ -314,6 +354,26 @@ export const getDirectionsRomaTre = (room: StudyRoom): DirectionsFromLocation[] 
             mezziPubblici: ['A piedi', 'Metro B'],
             tempoStimato: '5-10 min',
             note: 'Sede distaccata comodissima per i fuori sede.'
+        });
+    }
+    // BNCR (Castro Pretorio)
+    else if (room.id.includes('bncr')) {
+        directions.push({
+            luogo: 'Metro B Castro Pretorio',
+            descrizione: `Per la Biblioteca Nazionale Centrale:\n1. **Metro B**: Scendi a **Castro Pretorio** (uscita Viale Castro Pretorio). L'ingresso è a 1 minuto.\n2. Da Termini: 10 min a piedi su Viale Castro Pretorio.\n3. Bus 310, 649 (fermata Castro Pretorio).`,
+            mezziPubblici: ['Metro B (Castro Pretorio)', 'A piedi da Termini'],
+            tempoStimato: '5 min da Metro B',
+            note: 'Accesso con tesserino gratuito ottenibile sul posto con documento d\'identità.'
+        });
+    }
+    // DISCO EX-MATTATOIO (già coperto da isMattatoio se servito dall'indirizzo)
+    else if (room.id.includes('disco_mattatoio')) {
+        directions.push({
+            luogo: 'Metro B Piramide',
+            descrizione: `Per l'Aula Studio DiSCo all'Ex-Mattatoio:\n1. **Metro B**: Scendi a **Piramide**.\n2. Cammina 10 min verso Testaccio (Via Marmorata → Via Galvani).\n3. L'aula DiSCo è nel complesso accanto alla mensa e al campus di Architettura.`,
+            mezziPubblici: ['Metro B (Piramide)', 'Bus 718, 719'],
+            tempoStimato: '20 min da Termini',
+            note: 'Accesso gratuito per tutti gli studenti universitari del Lazio.'
         });
     }
 

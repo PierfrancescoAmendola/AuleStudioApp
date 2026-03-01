@@ -232,6 +232,28 @@ export const unipgRooms: StudyRoom[] = [
         occupancy_rate: 'Medio',
         vibe: 'Storica / Criminologia',
         tags: ['Narni', 'Sicurezza', 'Storico'],
+    },
+    // ============================================================
+    // PERUGIA - SPAZI CIVICI
+    // ============================================================
+    {
+        id: 'unipg_san_matteo',
+        nome: 'Biblioteca "San Matteo degli Armeni"',
+        edificio: 'Ex complesso monumentale',
+        piano: 0,
+        postiDisponibili: 30,
+        postiTotali: 50,
+        orarioApertura: '09:00',
+        orarioChiusura: '18:00',
+        servizi: ['WiFi', 'Giardino', 'Silenzio', 'Verde'],
+        latitude: 43.1145,
+        longitude: 12.3935,
+        indirizzo: 'Via San Matteo degli Armeni, 06125 Perugia',
+        university: 'UniPg',
+        occupancy_rate: 'Basso',
+        vibe: 'Monastica / Giardino',
+        notes: 'Ex complesso monumentale immerso nel verde fuori dalle mura. Celebre tra gli universitari per la tranquillità del giardino e delle sale interne. Perfetta per la preparazione di esami complessi.',
+        tags: ['Civica', 'Giardino', 'Silenzio', 'Nascosta'],
     }
 ];
 

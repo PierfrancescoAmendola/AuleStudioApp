@@ -212,6 +212,28 @@ export const unitnRooms: StudyRoom[] = [
         vibe: 'Campus / Residenziale',
         notes: 'Area di studio dello studentato. Fortemente consigliata per chi cerca spazi la sera tardi o nei weekend.',
         tags: ['H24', 'Opera Universitaria', 'Campus', 'WiFi'],
+    },
+    // ============================================================
+    // TRENTO - SPAZI CIVICI
+    // ============================================================
+    {
+        id: 'unitn_biblio_comunale',
+        nome: 'Biblioteca Comunale di Trento',
+        edificio: 'Sede Centrale',
+        piano: 0,
+        postiDisponibili: 80,
+        postiTotali: 120,
+        orarioApertura: '08:30',
+        orarioChiusura: '19:00',
+        servizi: ['WiFi Gratuito', 'Prese', 'Sala Lettura', 'Centro Storico'],
+        latitude: 46.0685,
+        longitude: 11.1209,
+        indirizzo: 'Via Roma 55, 38122 Trento',
+        university: 'UniTrento',
+        occupancy_rate: 'Alto',
+        vibe: 'Civica / Storica',
+        notes: 'Storico punto di riferimento per gli studenti trentini, situata in pienissimo centro storico. Ideale per le giornate in cui le BUC/BUM sono piene.',
+        tags: ['Comunale', 'Centro', 'WiFi'],
     }
 ];
 

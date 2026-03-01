@@ -527,6 +527,68 @@ export const unimiRooms: StudyRoom[] = [
         university: 'Unimi',
         notes: 'Centro di eccellenza per archivi editoriali e comunicazione. Richiede prenotazione.',
         tags: ['Aula Studio', 'WiFi'],
+    },
+
+    // ============================================================
+    // MILANO - BIBLIOTECHE COMUNALI (disponibili per studenti UniMi)
+    // ============================================================
+    {
+        id: 'unimi_sormani',
+        nome: 'Biblioteca Comunale Centrale Sormani',
+        edificio: 'Palazzo Sormani',
+        piano: 0,
+        postiDisponibili: 400,
+        postiTotali: 800,
+        orarioApertura: '08:45',
+        orarioChiusura: '19:30',
+        servizi: ['WiFi Gratuito', 'Catalogo 600.000 volumi', 'Emeroteca', 'Fotocopie', 'Sale Tematiche', 'Sabato Aperto'],
+        latitude: 45.4585,
+        longitude: 9.1990,
+        indirizzo: 'Corso di Porta Vittoria 6, 20122 Milano',
+        university: 'Unimi',
+        occupancy_rate: 'Molto Alto',
+        notes: 'Gestita dal Comune di Milano. La più grande biblioteca pubblica della città con 800 posti. Usatissima da studenti di UniMi, PoliMi e UniMib. Palazzo storico con giardino interno. Sabato 09:30-19:30, domenica chiusa.',
+        tags: ['Biblioteca', 'Comunale', 'WiFi', '📚 600K volumi', '🏛️ Storica'],
+    },
+    // ============================================================
+    // MILANO - SPAZI CIVICI E INDIPENDENTI
+    // ============================================================
+    {
+        id: 'unimi_base_milano',
+        nome: 'Base Milano (Spazio Sociale)',
+        edificio: 'Base Milano',
+        piano: 0,
+        postiDisponibili: 60,
+        postiTotali: 100,
+        orarioApertura: '08:00',
+        orarioChiusura: '22:00',
+        servizi: ['WiFi Gratuito', 'Prese', 'Tavoli Ampi', 'Accesso Libero'],
+        latitude: 45.4535,
+        longitude: 9.1625,
+        indirizzo: 'Via Bergognone 34, 20144 Milano',
+        university: 'Unimi',
+        occupancy_rate: 'Alto',
+        extendedHours: true,
+        notes: 'Spazio ibrido/sociale con tavoli ampi, prese elettriche, WiFi e accesso libero e gratuito. Usato da studenti di tutte le università milanesi.',
+        tags: ['Comunale', 'WiFi', 'Serale', 'Zona Tortona'],
+    },
+    {
+        id: 'unimi_giambellino',
+        nome: 'Spazio Studio Giambellino',
+        edificio: 'Spazio Autogestito',
+        piano: 0,
+        postiDisponibili: 20,
+        postiTotali: 30,
+        orarioApertura: '10:00',
+        orarioChiusura: '20:00',
+        servizi: ['WiFi', 'Prese', 'Aperta Domenica'],
+        latitude: 45.4470,
+        longitude: 9.1450,
+        indirizzo: 'Via Giambellino, 20146 Milano',
+        university: 'Unimi',
+        occupancy_rate: 'Medio',
+        notes: 'Spazio autogestito e gratuito. Vitale perché aperto anche la domenica, quando molte biblioteche civiche sono chiuse.',
+        tags: ['Autogestita', 'Weekend', 'WiFi'],
     }
 ];
 
@@ -688,6 +750,21 @@ export const getDirectionsUnimi = (room: StudyRoom): DirectionsFromLocation[] =>
             mezziPubblici: ['Metro M3 (Porta Romana/Lodi)', 'Bus 90/91'],
             tempoStimato: '15-20 min',
             note: 'Zona Ripamonti. Sede per Storia dell\'Arte e Archivi APICE.'
+        });
+    }
+
+    // BIBLIOTECA SORMANI (Comunale)
+    else if (room.id.includes('sormani')) {
+        directions.push({
+            luogo: 'Centro Milano',
+            descrizione: `Per la Biblioteca Sormani (Corso di Porta Vittoria):
+1. **Metro M3 (Gialla)**: Scendi a **Crocetta** o **Porta Romana**.
+2. Cammina 5-8 min verso Corso di Porta Vittoria.
+3. **Tram 12, 27** (fermata Porta Vittoria).
+4. Da **Piazza Duomo**: 15 min a piedi (Via Larga → Corso Porta Vittoria).`,
+            mezziPubblici: ['Metro M3 (Crocetta/Porta Romana)', 'Tram 12/27'],
+            tempoStimato: '10-15 min',
+            note: 'La più grande biblioteca pubblica di Milano. Palazzo storico con giardino.'
         });
     }
 

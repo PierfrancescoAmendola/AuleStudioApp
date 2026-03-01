@@ -428,6 +428,28 @@ export const unibsRooms: StudyRoom[] = [
         university: 'UniBS',
         notes: 'Ex spazio bar riconvertito. 68 posti.',
         tags: ['Sala Lettura', 'Medicina', 'WiFi'],
+    },
+    // ============================================================
+    // BRESCIA - SPAZI COMUNALI
+    // ============================================================
+    {
+        id: 'unibs_vantini',
+        nome: 'Aula Studio Comunale "Vantini"',
+        edificio: 'Ex-ospedale Vantiniano',
+        piano: 0,
+        postiDisponibili: 40,
+        postiTotali: 60,
+        orarioApertura: '07:00',
+        orarioChiusura: '23:59',
+        servizi: ['WiFi Comunale', 'Prese', 'Badge Gratuito', '60 posti'],
+        latitude: 45.5380,
+        longitude: 10.2200,
+        indirizzo: 'Via Vantini, 25121 Brescia',
+        university: 'UniBS',
+        occupancy_rate: 'Alto',
+        extendedHours: true,
+        notes: 'Aperta tutti i giorni dalle 7:00 alle 24:00. 60 posti, WiFi, prese. Accesso con badge (iscrizione gratuita con cauzione 5€). Lo spazio studio civico più lungo di Brescia.',
+        tags: ['Comunale', 'H24-ish', 'WiFi', 'Centro'],
     }
 ];
 

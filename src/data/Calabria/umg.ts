@@ -140,12 +140,34 @@ export const umgRooms: StudyRoom[] = [
     tags: ['biblioteca', 'lido', 'mare', 'piccolo', 'quartiere'],
     vibe: 'Intimo e stagionale',
     notes: 'Piccolo punto di appoggio a Catanzaro Lido. Gli orari sono ridotti, ma salva la vita a chi vive al mare. Verifica gli orari pomeridiani.'
+  },
+  // ============================================================
+  // CAMPUS GERMANETO - SPAZI AGGIUNTIVI
+  // ============================================================
+  {
+    id: 'umg_ex_uniclub',
+    nome: 'Aula Studio "Ex Uniclub"',
+    edificio: 'Campus Germaneto, Livello 3',
+    piano: 3,
+    postiDisponibili: 40,
+    postiTotali: 60,
+    orarioApertura: '09:00',
+    orarioChiusura: '18:00',
+    servizi: ['Prenotazione Online', 'WiFi', 'Clima'],
+    latitude: 38.8820,
+    longitude: 16.5845,
+    indirizzo: 'Viale Europa, 88100 Catanzaro',
+    university: 'UMG',
+    tags: ['prenotazione', 'aula studio', 'campus'],
+    vibe: 'Riservato e ordinato',
+    occupancy_rate: 'Medio',
+    notes: 'Spazio noto tra gli studenti come "Ex Uniclub". Accessibile su prenotazione via portale/GOMP. Ideale per chi cerca un ambiente ordinato e meno caotico.'
   }
 ];
 
 export const getDirectionsUMG = (room: StudyRoom): DirectionsFromLocation[] => {
   const directions: DirectionsFromLocation[] = [];
-  
+
   const isGermaneto = room.indirizzo.includes('Germaneto') || room.id.includes('umg');
   const isCentro = room.id.includes('denobili');
   const isLido = room.id.includes('lido');

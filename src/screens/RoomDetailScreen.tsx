@@ -889,6 +889,55 @@ export const RoomDetailScreen = ({ route, navigation }: any) => {
                     );
                 })()}
 
+                {/* INFOBOX: UNIVR */}
+                {(() => {
+                    const isUniVr = room.university === 'UniVr';
+                    const isVeronetta = room.id.includes('veronetta') || room.id.includes('zanotto') || room.id.includes('arturo');
+                    const isBorgoRoma = room.id.includes('borgo_roma') || room.id.includes('lente') || room.id.includes('scienza') || room.id.includes('medicina');
+                    const isVicenza = room.tags?.includes('Vicenza') || (room.indirizzo && room.indirizzo.includes('Vicenza'));
+
+                    if (!isUniVr) return null;
+
+                    return (
+                        <>
+                            <View style={[styles.infoBox, { backgroundColor: '#fefce8', borderColor: '#fef08a', marginTop: 12 }]}>
+                                <Ionicons name="information-circle-outline" size={24} color="#ca8a04" />
+                                <Text style={[styles.infoBoxText, { color: '#ca8a04' }]}>
+                                    📌 Polo Universitario: Verona ha due poli principali divisi per ambiti di studio. Controlla sempre la sede di riferimento.
+                                </Text>
+                            </View>
+
+                            {isVeronetta && (
+                                <View style={[styles.infoBox, { backgroundColor: '#fef2f2', borderColor: '#fecaca', marginTop: 12 }]}>
+                                    <Ionicons name="wine-outline" size={24} color="#b91c1c" />
+                                    <Text style={[styles.infoBoxText, { color: '#b91c1c' }]}>
+                                        🍷 Polo Umanistico (Veronetta): Questa è l'area più storica dell'Ateneo. Se hai un'ora buca, goditi la vitalità studentesca del quartiere universitario e delle sue viuzze incantevoli e piene di storia.
+                                    </Text>
+                                </View>
+                            )}
+
+                            {isBorgoRoma && (
+                                <View style={[styles.infoBox, { backgroundColor: '#eff6ff', borderColor: '#bfdbfe', marginTop: 12 }]}>
+                                    <Ionicons name="medical-outline" size={24} color="#1d4ed8" />
+                                    <Text style={[styles.infoBoxText, { color: '#1d4ed8' }]}>
+                                        🏥 Polo Borgo Roma: Sede di Medicina e Scienze. Fai attenzione agli orari dell'autobus (linee 21, 22), specialmente nelle fasce serali e nei weekend. L'area pullula di studenti operosi delle professioni sanitarie.
+                                    </Text>
+                                </View>
+                            )}
+
+                            {isVicenza && (
+                                <View style={[styles.infoBox, { backgroundColor: '#f0fdf4', borderColor: '#bbf7d0', marginTop: 12 }]}>
+                                    <Ionicons name="business-outline" size={24} color="#15803d" />
+                                    <Text style={[styles.infoBoxText, { color: '#15803d' }]}>
+                                        🏛️ Polo di Vicenza: Situato fuori Verona, è concentrato in particolare sugli studi di Economia e Ingegneria. Sfrutta al massimo questi spazi moderni in un ambiente di pregio storico e vivace.
+                                    </Text>
+                                </View>
+                            )}
+                        </>
+                    );
+                })()}
+
+
                 {(() => {
                     const uni = (room.university || '').toLowerCase();
                     const isUniTe = room.id.startsWith('unite_') || uni === 'unite';

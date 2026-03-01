@@ -149,7 +149,7 @@ export const univaqRooms: StudyRoom[] = [
     notes: 'Situata nel complesso adiacente a Scienze Umane.',
     tags: ['Deep Work']
   },
-  
+
   // ============================================================
   // SPAZI ADSU & ALTRI (Diritto allo studio)
   // ============================================================
@@ -169,12 +169,33 @@ export const univaqRooms: StudyRoom[] = [
     university: 'Univaq',
     notes: 'Accessibile prioritariamente ai borsisti/residenti, ma punto di riferimento per chi vive in zona Coppito ovest.',
     tags: ['ADSU']
+  },
+  // ============================================================
+  // CENTRO STORICO - SPAZI STUDENTESCHI
+  // ============================================================
+  {
+    id: 'univaq_praxis',
+    nome: 'Spazio Praxis (Aula Studio UDU)',
+    edificio: 'Spazio gestito dagli studenti (UDU)',
+    piano: 0,
+    postiDisponibili: 30,
+    postiTotali: 40,
+    orarioApertura: '10:00',
+    orarioChiusura: '20:00',
+    servizi: ['WiFi', 'Socialità', 'Eventi culturali'],
+    latitude: 42.3510,
+    longitude: 13.3960,
+    indirizzo: 'Via Veneziani 4, 67100 L\'Aquila',
+    university: 'Univaq',
+    occupancy_rate: 'Alto',
+    notes: 'Spazio autogestito dal sindacato studentesco UDU. Tessera associativa 2€. Orari variabili comunicati via Instagram (@spazio_praxis). Atmosfera vivace e inclusiva.',
+    tags: ['Autogestita', 'Social Hub', 'Centro'],
   }
 ];
 
 export const getDirectionsUnivaq = (room: StudyRoom): DirectionsFromLocation[] => {
   const directions: DirectionsFromLocation[] = [];
-  
+
   // Identificazione della zona in base all'ID o indirizzo
   const isCoppito = room.indirizzo.includes('Vetoio') || room.id.includes('coppito') || room.id.includes('medicina') || room.id.includes('scienze');
   const isRoio = room.indirizzo.includes('Roio') || room.indirizzo.includes('Pontieri');
@@ -225,7 +246,7 @@ export const getDirectionsUnivaq = (room: StudyRoom): DirectionsFromLocation[] =
       note: 'Zona ZTL, ideale muoversi a piedi.'
     });
   }
-  
+
   // HUB 2: STAZIONE FERROVIARIA
   directions.push({
     luogo: 'Stazione FS L\'Aquila',

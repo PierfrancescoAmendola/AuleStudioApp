@@ -148,6 +148,28 @@ export const unisalentoRooms: StudyRoom[] = [
         university: 'UniSalento - Brindisi',
         tags: ['Biblioteca', 'Brindisi', '🅿️ Parcheggio'],
         notes: 'Polo scientifico d\'eccellenza. Sede isolata — auto o bus extraurbano consigliati.'
+    },
+    // ============================================================
+    // LECCE - BIBLIOTECHE AGGIUNTIVE
+    // ============================================================
+    {
+        id: 'unisalento_pellegrino',
+        nome: 'Biblioteca Interfacoltà "Teodoro Pellegrino"',
+        edificio: 'Campus Ecotekne',
+        piano: 0,
+        postiDisponibili: 200,
+        postiTotali: 300,
+        orarioApertura: '08:30',
+        orarioChiusura: '23:59',
+        servizi: ['WiFi Eduroam', 'Prese', 'Orario Esteso', 'Accesso Libero'],
+        latitude: 40.3355,
+        longitude: 18.1150,
+        indirizzo: 'Campus Ecotekne, Via per Monteroni, 73100 Lecce',
+        university: 'UniSalento',
+        occupancy_rate: 'Molto Alto',
+        extendedHours: true,
+        notes: 'Grande biblioteca con orari estesi (fino alle 24 lun-ven in alcune fasi). Fondamentale per lo studio serale e notturno a Lecce.',
+        tags: ['Biblioteca', 'H24-ish', 'WiFi', '🌙 Serale', 'Top Space'],
     }
 ];
 

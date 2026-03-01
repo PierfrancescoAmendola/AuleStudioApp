@@ -210,6 +210,27 @@ export const unibaRooms: StudyRoom[] = [
         university: 'UniBa - Brindisi',
         tags: ['Polo Brindisi'],
         notes: 'Sede distaccata Brindisi. Snodo ferroviario comodo.'
+    },
+    // ============================================================
+    // BARI - SPAZI CIVICI
+    // ============================================================
+    {
+        id: 'uniba_fuori_binaria',
+        nome: 'Spazio Giovani "Fuori Binaria"',
+        edificio: 'Spazio Riqualificato',
+        piano: 0,
+        postiDisponibili: 30,
+        postiTotali: 50,
+        orarioApertura: '09:00',
+        orarioChiusura: '20:00',
+        servizi: ['WiFi', 'Prese', 'Coworking'],
+        latitude: 41.1175,
+        longitude: 16.8670,
+        indirizzo: 'Via Indipendenza 13, 70121 Bari',
+        university: 'UniBa',
+        occupancy_rate: 'Medio',
+        notes: 'Spazio riqualificato vicino alla Stazione Centrale. Offre un\'aula studio sganciata dalle dinamiche d\'ateneo. Ambiente giovane e inclusivo.',
+        tags: ['Civico', 'Coworking', 'Centro'],
     }
 ];
 

@@ -364,6 +364,28 @@ export const unicaRooms: StudyRoom[] = [
         university: 'UniCa - Nuoro',
         tags: ['Nuoro', 'Gruppo'],
         notes: 'Aule più libere adiacenti alla biblioteca centrale di Nuoro.'
+    },
+    // ============================================================
+    // CAGLIARI - ERSU
+    // ============================================================
+    {
+        id: 'unica_ersu_lussu',
+        nome: 'Aule Studio Campus "Emilio Lussu" (ERSU)',
+        edificio: 'Campus ERSU Viale La Plaia',
+        piano: 0,
+        postiDisponibili: 60,
+        postiTotali: 100,
+        orarioApertura: '08:00',
+        orarioChiusura: '22:00',
+        servizi: ['WiFi', 'Prese', 'Clima', 'Mensa vicina'],
+        latitude: 39.2200,
+        longitude: 9.1080,
+        indirizzo: 'Viale La Plaia, 09123 Cagliari',
+        university: 'UniCa',
+        occupancy_rate: 'Alto',
+        extendedHours: true,
+        notes: 'Il più grande campus ERSU di Cagliari. Aule studio proprie fondamentali per i fuorisede e per chi gravita in zona.',
+        tags: ['ERSU', 'Campus', 'WiFi', '🌙 Serale'],
     }
 ];
 

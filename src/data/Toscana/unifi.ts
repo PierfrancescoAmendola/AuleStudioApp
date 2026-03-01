@@ -350,6 +350,48 @@ export const unifiRooms: StudyRoom[] = [
         university: 'UniFi - Pistoia',
         tags: ['Uniser', 'Pistoia', '🗣️ Gruppo'],
         notes: 'Ideale per chiacchierare in pausa o ripassare in compagnia senza disturbare la sala lettura.'
+    },
+
+    // ============================================================
+    // FIRENZE - SPAZI DSU TOSCANA / COMUNALI
+    // ============================================================
+    {
+        id: 'unifi_oblate',
+        nome: 'Biblioteca delle Oblate',
+        edificio: 'Ex Convento delle Oblate',
+        piano: 1,
+        postiDisponibili: 80,
+        postiTotali: 200,
+        orarioApertura: '09:00',
+        orarioChiusura: '24:00',
+        servizi: ['WiFi Gratuito', 'Terrazza Panoramica con vista Duomo', 'Caffetteria', 'Sezione Bambini', 'Apertura Serale'],
+        latitude: 43.7730,
+        longitude: 11.2590,
+        indirizzo: 'Via dell\'Oriuolo 24, 50122 Firenze',
+        university: 'UniFi',
+        occupancy_rate: 'Molto Alto',
+        extendedHours: true,
+        tags: ['Comunale', 'Centro Storico', 'Firenze', '🌙 Serale', '☕ Ristoro', '🏛️ Panorama'],
+        notes: 'Gestita dal Comune di Firenze. Probabilmente lo spazio di studio più amato dagli universitari fiorentini. Terrazza con vista mozzafiato sul Duomo. Aperta fino a mezzanotte. Affollatissima in sessione.'
+    },
+    {
+        id: 'unifi_dsu_calamandrei',
+        nome: 'Sala Studio DSU Residenza Calamandrei',
+        edificio: 'Residenza Calamandrei (DSU Toscana)',
+        piano: 0,
+        postiDisponibili: 60,
+        postiTotali: 100,
+        orarioApertura: '08:00',
+        orarioChiusura: '01:00',
+        servizi: ['WiFi Gratuito', 'Accesso Libero', 'Aperta fino all\'1:00', 'Climatizzazione'],
+        latitude: 43.7870,
+        longitude: 11.2430,
+        indirizzo: 'Viale G. Morgagni 51, 50134 Firenze',
+        university: 'UniFi',
+        occupancy_rate: 'Alto',
+        extendedHours: true,
+        tags: ['DSU Toscana', 'Firenze', '🌙 Notturna', '❄️ Climatizzato'],
+        notes: 'Gestita dal DSU Toscana. Accesso libero per tutti gli studenti (non solo residenti). Aperta ogni giorno fino all\'1:00 di notte. Perfetta per i nottambuli, specialmente in sessione.'
     }
 ];
 
@@ -508,6 +550,26 @@ export const getDirectionsUniFi = (room: StudyRoom): DirectionsFromLocation[] =>
             mezziPubblici: ['Auto', 'Treno'],
             tempoStimato: '45 min da Firenze',
             note: 'Consigliata l\'auto per i pendolari.'
+        });
+    }
+    // BIBLIOTECA DELLE OBLATE (Comunale)
+    else if (id.includes('oblate')) {
+        directions.push({
+            luogo: 'Piazza del Duomo / Stazione SMN',
+            descrizione: `La Biblioteca delle Oblate è a pochi passi dal Duomo.\n1. **A piedi da SMN**: 10 min percorrendo Via de' Panzani e Via dei Calzaiuoli.\n2. **Bus C1/C2**: Fermata \"Santa Maria Nuova\", la biblioteca è nella via successiva.\n3. **In arrivo in Tram**: T2 fermata \"Unità\", poi 12 min a piedi.`,
+            mezziPubblici: ['A piedi', 'Bus C1/C2'],
+            tempoStimato: '10 min da SMN',
+            note: 'Centro storico, ZTL attiva. Non portare l\'auto.'
+        });
+    }
+    // DSU CALAMANDREI (Zona Careggi)
+    else if (id.includes('dsu_calamandrei')) {
+        directions.push({
+            luogo: 'Viale Morgagni / Careggi',
+            descrizione: `La Residenza Calamandrei è in zona Careggi (Viale Morgagni).\n1. **Tram T1**: Fermata \"Morgagni - Università\", poi 3 min a piedi.\n2. **Da Rifredi FS**: 10 min a piedi lungo Viale Morgagni.\n3. **Auto**: Parcheggi su Viale Morgagni (strisce blu) o Parcheggio Careggi.`,
+            mezziPubblici: ['Tram T1 (Morgagni)', 'Treno (Rifredi)'],
+            tempoStimato: '20 min da Centro',
+            note: 'Aperta fino all\'1:00. Accesso libero per tutti gli studenti.'
         });
     } else {
         directions.push({

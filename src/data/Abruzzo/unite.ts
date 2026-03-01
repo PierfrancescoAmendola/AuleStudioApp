@@ -134,12 +134,33 @@ export const uniteRooms: StudyRoom[] = [
     occupancy_rate: 'Alto',
     notes: "Non è dell'università, ma è la biblioteca storica della città. Chiude il sabato alle 13:00. Perfetta per sessioni di studio intenso.",
     tags: ['Deep Work'],
+  },
+  // ============================================================
+  // SEDE DISTACCATA DI AVEZZANO
+  // ============================================================
+  {
+    id: 'unite_avezzano_irti',
+    nome: 'Biblioteca "Nicola Irti" (Sede Avezzano)',
+    edificio: 'Sede distaccata Dipartimento Giurisprudenza',
+    piano: 0,
+    postiDisponibili: 30,
+    postiTotali: 40,
+    orarioApertura: '09:00',
+    orarioChiusura: '13:00',
+    servizi: ['Consultazione', 'Accesso Disabili', 'Fondi Giuridici'],
+    latitude: 42.0333,
+    longitude: 13.4264,
+    indirizzo: 'Via Genserico Fontana 6, 67051 Avezzano (AQ)',
+    university: 'UniTe',
+    occupancy_rate: 'Basso',
+    notes: 'Biblioteca per gli studi storici giuridici sociali. Martedì e giovedì aperta anche 15:00-17:00. Fondamentale per il polo distaccato marsicano di UniTe.',
+    tags: ['Avezzano', 'Giurisprudenza', 'Silenzio'],
   }
 ];
 
 export const getDirectionsUniTe = (room: StudyRoom): DirectionsFromLocation[] => {
   const directions: DirectionsFromLocation[] = [];
-  
+
   const isCoste = room.id.includes('campus'); // Campus Colleparco
   const isVet = room.id.includes('vet');     // Piano d'Accio
   const isCentro = room.id.includes('delfico'); // Centro città

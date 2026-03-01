@@ -228,11 +228,33 @@ export const uniudRooms: StudyRoom[] = [
         notes: '🏃 Polo Scienze Motorie. Non solo libri ma pratica sportiva! Zona alta storica ricostruita post-terremoto. Palestre convenzionate vicine.',
         tags: ['Aula Studio'],
     },
+    // ============================================================
+    // NUOVI SPAZI (CAMPUS RENATI)
+    // ============================================================
+    {
+        id: 'uniud_campus_renati',
+        nome: 'Aule Studio Campus Renati',
+        edificio: 'Campus Renati (Fondazione)',
+        piano: 0,
+        postiDisponibili: 250,
+        postiTotali: 400,
+        orarioApertura: '08:00',
+        orarioChiusura: '22:00',
+        servizi: ['WiFi Eduroam', 'Prese', 'Clima', '630mq'],
+        latitude: 46.0615,
+        longitude: 13.2290,
+        indirizzo: 'Via Tomadini 13, 33100 Udine',
+        university: 'UniUd',
+        occupancy_rate: 'Alto',
+        extendedHours: true,
+        notes: 'Nuova convenzione con Fondazione Renati. 400 posti su 630mq. Orario Lun-Ven 08:00-11:00 e 15:00-22:00. Grandissimo spazio modernissimo.',
+        tags: ['Aula Studio', 'Top Space', 'WiFi', '🌙 Serale'],
+    },
 ];
 
 export const getDirectionsUniUd = (room: StudyRoom): DirectionsFromLocation[] => {
     const directions: DirectionsFromLocation[] = [];
-    
+
     const isRizzi = room.indirizzo.includes('Scienze') || room.indirizzo.includes('Rizzi') || room.indirizzo.includes('Schiavi');
     const isCentroUmanistica = room.indirizzo.includes('Palladio') || room.indirizzo.includes('Margreth') || room.indirizzo.includes('Petracco');
     const isCentroEconomiaGiuridica = room.indirizzo.includes('Tomadini') || room.indirizzo.includes('Treppo');

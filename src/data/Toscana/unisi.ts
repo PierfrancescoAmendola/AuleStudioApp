@@ -257,6 +257,48 @@ export const unisiRooms: StudyRoom[] = [
         university: 'UniSi - Valdarno',
         tags: ['Geologia', 'Valdarno', '🗺️ Cartografia', '🔬 Ricerca'],
         notes: 'Polo d\'eccellenza per le geoscienze. Ambiente iper-specializzato e silenzioso, immerso in laboratori di ricerca.'
+    },
+
+    // ============================================================
+    // SIENA - SPAZI DSU TOSCANA (Ente Regionale Diritto allo Studio)
+    // ============================================================
+    {
+        id: 'unisi_dsu_santagata',
+        nome: 'Sala Studio Mensa DSU Sant\'Agata',
+        edificio: 'Mensa Universitaria Sant\'Agata (DSU Toscana)',
+        piano: 0,
+        postiDisponibili: 40,
+        postiTotali: 60,
+        orarioApertura: '14:00',
+        orarioChiusura: '22:00',
+        servizi: ['WiFi Gratuito', 'Accesso Libero', 'Climatizzazione', 'Vicino Mensa'],
+        latitude: 43.3195,
+        longitude: 11.3340,
+        indirizzo: 'Via Sant\'Agata 1, 53100 Siena',
+        university: 'UniSi',
+        occupancy_rate: 'Medio',
+        extendedHours: true,
+        tags: ['DSU Toscana', 'Centro', '🌙 Serale', '🆓 Gratuito'],
+        notes: 'Gestita da DSU Toscana. Sala studio ricavata all\'interno della mensa universitaria principale, attiva nel pomeriggio e sera (14:00-22:00). Accesso gratuito e libero per tutti gli studenti.'
+    },
+    {
+        id: 'unisi_dsu_bandini',
+        nome: 'Sala Studio DSU Residenza Bandini',
+        edificio: 'Residenza Universitaria Bandini (DSU Toscana)',
+        piano: 0,
+        postiDisponibili: 50,
+        postiTotali: 80,
+        orarioApertura: '08:00',
+        orarioChiusura: '23:00',
+        servizi: ['WiFi Gratuito', 'Prese elettriche', 'Climatizzazione', 'Accesso Libero', 'Distributori'],
+        latitude: 43.3340,
+        longitude: 11.3260,
+        indirizzo: 'Viale Toselli, 53100 Siena',
+        university: 'UniSi',
+        occupancy_rate: 'Alto',
+        extendedHours: true,
+        tags: ['DSU Toscana', 'San Miniato', '🌙 Serale', '⚡ Prese', '❄️ Climatizzato'],
+        notes: 'Gestita da DSU Toscana. Sala studio nella residenza Bandini, aperta a tutti gli studenti (non solo residenti). Aperta fino alle 23:00. 80 posti con WiFi, prese e aria condizionata. Zona San Miniato.'
     }
 ];
 
@@ -338,6 +380,26 @@ export const getDirectionsUniSi = (room: StudyRoom): DirectionsFromLocation[] =>
             mezziPubblici: ['Treno', 'Auto', 'A piedi'],
             tempoStimato: '15 min',
             note: 'Ottimo per chi viaggia in auto.'
+        });
+    }
+
+    // DSU TOSCANA (Siena)
+    if (id.includes('dsu_santagata')) {
+        directions.push({
+            luogo: 'Centro Storico Siena',
+            descrizione: `La Mensa DSU Sant'Agata è nel centro storico:\n1. **Scale Mobili/Risalite**: Sali dalla stazione FS con la risalita dell'Antiporto.\n2. **A piedi**: 10 min dalla piazza principale.\nL'aula studio è attiva dalle 14:00 alle 22:00 (fuori dall'orario pasti).`,
+            mezziPubblici: ['Scale Mobili', 'A piedi'],
+            tempoStimato: '15 min dalla stazione',
+            note: 'Centro ZTL. Aula studio pomeridiana/serale.'
+        });
+    }
+    if (id.includes('dsu_bandini')) {
+        directions.push({
+            luogo: 'Zona San Miniato (fuori mura)',
+            descrizione: `La Residenza Bandini è nella zona nord, vicino al polo scientifico:\n1. **Bus**: Linee S10, S17 da Piazza Gramsci o dalla Stazione FS.\n2. **Auto**: Parcheggio disponibile in zona Viale Toselli.`,
+            mezziPubblici: ['Bus S10/S17', 'Auto'],
+            tempoStimato: '15 min in bus',
+            note: 'Aperta fino alle 23:00. Accesso libero per tutti gli studenti.'
         });
     }
 

@@ -109,6 +109,49 @@ export const cafoscariRooms: StudyRoom[] = [
         vibe: 'Accogliente / Tranquilla',
         notes: 'Sede trevigiana dedicata a Economia e Lingue.',
         tags: ['Treviso', 'Centro', 'Tranquillo'],
+    },
+
+    // ============================================================
+    // VENEZIA - SPAZI ESU (Ente per il Diritto allo Studio)
+    // ============================================================
+    {
+        id: 'cafoscari_esu_santa_marta',
+        nome: 'Aula Studio ESU Santa Marta',
+        edificio: 'Complesso Santa Marta (ESU Venezia)',
+        piano: 0,
+        postiDisponibili: 120,
+        postiTotali: 200,
+        orarioApertura: '08:00',
+        orarioChiusura: '23:00',
+        servizi: ['WiFi Gratuito', 'Prese elettriche', 'Climatizzazione', 'Accesso Libero', 'Distributori'],
+        latitude: 45.4285,
+        longitude: 12.3170,
+        indirizzo: 'Fondamenta Santa Marta, Dorsoduro 2137, 30123 Venezia',
+        university: 'Ca Foscari',
+        occupancy_rate: 'Molto Alto',
+        extendedHours: true,
+        vibe: 'Hub / Vivace',
+        notes: 'Gestita da ESU Venezia. Enorme sala studio nel complesso di Santa Marta (ex area portuale). 200 posti, aperta fino alle 23:00, accesso libero per tutti gli studenti universitari. Usata da studenti Ca\' Foscari, IUAV e conservatorio.',
+        tags: ['ESU', 'Zattere', 'Orario Esteso', '⚡ Prese', '🌙 Serale'],
+    },
+    {
+        id: 'cafoscari_esu_san_basilio',
+        nome: 'Aula Studio ESU San Basilio',
+        edificio: 'Magazzini San Basilio (ESU Venezia)',
+        piano: 0,
+        postiDisponibili: 50,
+        postiTotali: 80,
+        orarioApertura: '08:30',
+        orarioChiusura: '20:00',
+        servizi: ['WiFi Gratuito', 'Prese elettriche', 'Accesso Libero'],
+        latitude: 45.4290,
+        longitude: 12.3200,
+        indirizzo: 'Fondamenta Zattere al Pontelungo, Dorsoduro 1400, 30123 Venezia',
+        university: 'Ca Foscari',
+        occupancy_rate: 'Medio',
+        vibe: 'Tranquilla / Luminosa',
+        notes: 'Gestita da ESU Venezia. Vicina al CFZ e alla fermata San Basilio del vaporetto. 80 posti, meno affollata di Santa Marta. Ottima alternativa.',
+        tags: ['ESU', 'Zattere', 'WiFi', 'Tranquillo'],
     }
 ];
 
@@ -142,6 +185,13 @@ export const getDirectionsCafoscari = (room: StudyRoom): DirectionsFromLocation[
             luogo: 'Piazzale Roma / Stazione',
             descrizione: 'Raggiungibile in 10-15 min a piedi (San Pantalon). In vaporetto scendi a San Tomà o Piazzale Roma.',
             mezziPubblici: ['A piedi', 'Vaporetto 1, 2 (Fermata San Tomà)'],
+            tempoStimato: '15 min',
+        });
+    } else if (id.includes('esu_santa_marta') || id.includes('esu_san_basilio')) {
+        directions.push({
+            luogo: 'Piazzale Roma / Stazione S. Lucia',
+            descrizione: 'Prendi il vaporetto linea 2 o 6 e scendi a San Basilio. Le sale studio ESU sono nel complesso di Santa Marta, a pochi passi dalla fermata.',
+            mezziPubblici: ['Vaporetto 2, 6 (Fermata San Basilio)'],
             tempoStimato: '15 min',
         });
     } else if (room.indirizzo.includes('Treviso')) {

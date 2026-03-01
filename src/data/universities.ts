@@ -73,6 +73,7 @@ import { unipiRooms } from './Toscana/unipi';
 import { unisiRooms } from './Toscana/unisi';
 import { unistrasiRooms } from './Toscana/unistrasi';
 import { afamToscanaRooms } from './Toscana/afamToscana';
+import { eliteSchoolsRooms } from './Toscana/eliteSchools';
 import { unitnRooms } from './Trentino/unitn';
 import { unibzRooms } from './Trentino/unibz';
 import { afamTrentinoRooms } from './Trentino/afamTrentino';
@@ -977,8 +978,34 @@ export const universities: University[] = [
             'Rovigo',
             'Serali/Weekend'
         ],
+        color: '#b91c1c', // UniFe Red
+        darkColor: '#991b1b', // UniFe Dark Red
+    },
+    {
+        id: 'unipd',
+        name: 'UniPd',
+        fullName: 'Università degli Studi di Padova',
+        city: 'Padova / Vicenza / Treviso / Rovigo',
+        regionName: 'Veneto',
+        region: {
+            latitude: 45.4064,
+            longitude: 11.8767,
+            latitudeDelta: 0.1,
+            longitudeDelta: 0.1,
+        },
+        studyRooms: unipdRooms,
+        availableFilters: [
+            'Tutti',
+            'Portello',
+            'Umanistica',
+            'Venezia',
+            'Treviso',
+            'Vicenza',
+            'Rovigo',
+            'Verona'
+        ],
         color: '#b91c1c', // UniPd Red
-        darkColor: '#991b1b', // UniPd Dark Red
+        darkColor: '#991b1b',
     },
     {
         id: 'cafoscari',
@@ -996,9 +1023,10 @@ export const universities: University[] = [
         availableFilters: [
             'Tutti',
             'Venezia Centro',
-            'Campus Scientifico Mestre',
-            'Campus Economico',
-            'Treviso'
+            'Mestre',
+            'Treviso',
+            'Zattere',
+            'San Giobbe'
         ],
         color: '#b91c1c', // Venetian Red
         darkColor: '#7f1d1d',
@@ -1018,9 +1046,11 @@ export const universities: University[] = [
         studyRooms: univrRooms,
         availableFilters: [
             'Tutti',
-            'Veronetta (Centro)',
-            'Borgo Roma (Scienze/Med)',
-            'Poli Territoriali'
+            'Veronetta',
+            'Borgo Roma',
+            'Vicenza',
+            'Legnago',
+            'San Bonifacio'
         ],
         color: '#facc15', // Verona Yellow 
         darkColor: '#ca8a04',
@@ -1040,8 +1070,11 @@ export const universities: University[] = [
         studyRooms: iuavRooms,
         availableFilters: [
             'Tutti',
-            'Centro',
-            'Sedi Storiche'
+            'Tolentini',
+            'Ligabue',
+            'Dorsoduro',
+            'San Polo',
+            'Santa Croce'
         ],
         color: '#ea580c', // Orange 
         darkColor: '#c2410c',
@@ -1958,6 +1991,66 @@ export const universities: University[] = [
         ],
         color: '#8b5cf6', // Violet AFAM
         darkColor: '#4c1d95',
+    },
+    {
+        id: 'sns',
+        name: 'SNS',
+        fullName: 'Scuola Normale Superiore',
+        city: 'Pisa',
+        regionName: 'Toscana',
+        region: {
+            latitude: 43.7198,
+            longitude: 10.3995,
+            latitudeDelta: 0.02,
+            longitudeDelta: 0.02,
+        },
+        studyRooms: eliteSchoolsRooms.filter(r => r.university === 'SNS'),
+        availableFilters: [
+            'Tutti',
+            'Piazza Cavalieri',
+        ],
+        color: '#0c4a6e', // Sky-900 (Prestigious)
+        darkColor: '#082f49',
+    },
+    {
+        id: 'santanna',
+        name: 'Sant\'Anna',
+        fullName: 'Scuola Superiore Sant\'Anna',
+        city: 'Pisa',
+        regionName: 'Toscana',
+        region: {
+            latitude: 43.7195,
+            longitude: 10.4020,
+            latitudeDelta: 0.02,
+            longitudeDelta: 0.02,
+        },
+        studyRooms: eliteSchoolsRooms.filter(r => r.university === 'Sant\'Anna'),
+        availableFilters: [
+            'Tutti',
+            'Campus',
+        ],
+        color: '#166534', // Green-800 (Academic)
+        darkColor: '#14532d',
+    },
+    {
+        id: 'imt',
+        name: 'IMT Lucca',
+        fullName: 'IMT Scuola Alti Studi Lucca',
+        city: 'Lucca',
+        regionName: 'Toscana',
+        region: {
+            latitude: 43.8438,
+            longitude: 10.5010,
+            latitudeDelta: 0.02,
+            longitudeDelta: 0.02,
+        },
+        studyRooms: eliteSchoolsRooms.filter(r => r.university === 'IMT Lucca'),
+        availableFilters: [
+            'Tutti',
+            'San Francesco',
+        ],
+        color: '#9a3412', // Orange-800
+        darkColor: '#7c2d12',
     },
     {
         id: 'unitn',

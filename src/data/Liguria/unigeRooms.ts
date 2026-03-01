@@ -185,11 +185,70 @@ export const unigeRooms: StudyRoom[] = [
         notes: '🎭⭐ IL PUNTO D\'INCONTRO! Civica principale a 5 min da Piazza De Ferrari (centro assoluto). Chiostro interno oasi di pace. MEGLIO per socialità e studio interdisciplinare - qui trovi studenti di TUTTE le facoltà. FILA SPESSO in sessione - arriva presto!',
         tags: ['Biblioteca', 'WiFi', '❄️ Climatizzato'],
     },
+    // ============================================================
+    // SPAZI COMUNALI E ALiSEO
+    // ============================================================
+    {
+        id: 'unige_spazio_circuito',
+        nome: 'Spazio Circuito (Aula Studio Comunale)',
+        edificio: 'Spazio Circuito',
+        piano: 0,
+        postiDisponibili: 40,
+        postiTotali: 60,
+        orarioApertura: '09:00',
+        orarioChiusura: '21:00',
+        servizi: ['WiFi Gratuito', 'Prese', 'Booksharing'],
+        latitude: 44.4070,
+        longitude: 8.9345,
+        indirizzo: 'Salita Santa Caterina 48r, 16123 Genova',
+        university: 'UniGe',
+        occupancy_rate: 'Medio',
+        notes: 'Nuova aula studio gratuita con servizio di booksharing. Aperta 9-21. Ambiente informale e accogliente.',
+        tags: ['Comunale', 'WiFi', 'Centro'],
+    },
+    {
+        id: 'unige_aliseo_gastaldi',
+        nome: 'Aula Studio ALiSEO Gastaldi',
+        edificio: 'Casa dello Studente Gastaldi',
+        piano: 0,
+        postiDisponibili: 50,
+        postiTotali: 80,
+        orarioApertura: '08:00',
+        orarioChiusura: '22:00',
+        servizi: ['WiFi', 'Prese', 'Aperta Festivi'],
+        latitude: 44.4025,
+        longitude: 8.9560,
+        indirizzo: 'Corso Gastaldi 25, 16131 Genova',
+        university: 'UniGe',
+        occupancy_rate: 'Alto',
+        extendedHours: true,
+        notes: 'Gestita da ALiSEO Liguria. Aperta tutti i giorni 8:00-22:00, inclusi festivi. Fondamentale per lo studio serale.',
+        tags: ['ALiSEO', 'Serale', 'Festivi'],
+    },
+    {
+        id: 'unige_aliseo_asiago',
+        nome: 'Aula Studio ALiSEO Asiago',
+        edificio: 'Casa dello Studente Asiago',
+        piano: 0,
+        postiDisponibili: 40,
+        postiTotali: 60,
+        orarioApertura: '08:00',
+        orarioChiusura: '22:00',
+        servizi: ['WiFi', 'Prese', 'Aperta Festivi'],
+        latitude: 44.4140,
+        longitude: 8.9290,
+        indirizzo: 'Via Asiago 2, 16132 Genova',
+        university: 'UniGe',
+        occupancy_rate: 'Medio',
+        extendedHours: true,
+        notes: 'Gestita da ALiSEO Liguria. Aperta tutti i giorni 8:00-22:00.',
+        tags: ['ALiSEO', 'Serale', 'Festivi'],
+    },
 ];
 
 export const getDirectionsUniGe = (room: StudyRoom): DirectionsFromLocation[] => {
     const directions: DirectionsFromLocation[] = [];
-    
+
     const isBalbiPrincipe = room.indirizzo.includes('Balbi') || room.indirizzo.includes('Darsena') || room.indirizzo.includes('Vivaldi');
     const isAlbaroSanMartino = room.indirizzo.includes('Albaro') || room.indirizzo.includes('Montallegro') || room.indirizzo.includes('Benzi') || room.indirizzo.includes('Europa');
     const isSarzano = room.indirizzo.includes('Agostino');

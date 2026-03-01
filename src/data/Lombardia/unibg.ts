@@ -365,6 +365,28 @@ export const unibgRooms: StudyRoom[] = [
         university: 'UniBg',
         notes: '152 posti! Sala mensa usata come aula studio. Ambiente sociale e informale.',
         tags: ['Aula Studio', 'WiFi', '☕ Ristoro'],
+    },
+    // ============================================================
+    // BERGAMO - SPAZI COMUNALI SERALI
+    // ============================================================
+    {
+        id: 'unibg_serali_comune',
+        nome: 'Aule Studio Serali (Comune di BG)',
+        edificio: 'Varie sedi comunali',
+        piano: 0,
+        postiDisponibili: 50,
+        postiTotali: 80,
+        orarioApertura: '20:30',
+        orarioChiusura: '23:00',
+        servizi: ['WiFi', 'Prese', 'Aperte Domenica-Venerdì'],
+        latitude: 45.6920,
+        longitude: 9.6715,
+        indirizzo: 'Sala Bassi / Circolo ACLI / Spazio Villaggio Sposi, 24121 Bergamo',
+        university: 'UniBg',
+        occupancy_rate: 'Medio',
+        extendedHours: true,
+        notes: 'Iniziativa recente del Comune di Bergamo. Tre spazi aperti dom-ven 20:30-23:00 (Sala Bassi, Circolo ACLI "Common", Spazio Villaggio Sposi). Ideali per lo studio serale.',
+        tags: ['Comunale', '🌙 Serale', 'WiFi'],
     }
 ];
 

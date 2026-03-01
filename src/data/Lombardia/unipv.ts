@@ -364,6 +364,27 @@ export const unipvRooms: StudyRoom[] = [
         university: 'Unipv',
         notes: 'Per studenti di Neuroscienze e specializzandi. Ambiente ospedaliero.',
         tags: ['Aula Studio', 'WiFi'],
+    },
+    // ============================================================
+    // PAVIA - SPAZI COMUNALI
+    // ============================================================
+    {
+        id: 'unipv_bonetta',
+        nome: 'Biblioteca Civica Bonetta',
+        edificio: 'Palazzo Bonetta',
+        piano: 0,
+        postiDisponibili: 40,
+        postiTotali: 60,
+        orarioApertura: '09:00',
+        orarioChiusura: '18:00',
+        servizi: ['WiFi', 'Accesso Libero', 'Sala Lettura'],
+        latitude: 45.1840,
+        longitude: 9.1575,
+        indirizzo: 'Piazza Petrarca, 27100 Pavia',
+        university: 'Unipv',
+        occupancy_rate: 'Medio',
+        notes: 'Offre tavoli studio ad accesso libero nel centro cittadino. Ottima alternativa alle biblioteche universitarie, specialmente nei periodi di sovraffollamento.',
+        tags: ['Comunale', 'Centro', 'WiFi'],
     }
 ];
 

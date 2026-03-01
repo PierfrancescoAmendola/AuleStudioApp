@@ -434,6 +434,46 @@ export const sapienzaRooms: StudyRoom[] = [
         indirizzo: 'Via Principe Amedeo 184, Roma',
         university: 'La Sapienza',
         tags: ['Biblioteca', 'WiFi'],
+    },
+
+    // ============================================================
+    // ROMA - SPAZI DISCO LAZIO (Ente Regionale)
+    // ============================================================
+    {
+        id: 'sapienza_disco_mense',
+        nome: 'Aule Studio DiSCo Mense Universitarie',
+        edificio: 'Mense DiSCo Lazio (varie sedi)',
+        piano: 0,
+        postiDisponibili: 60,
+        postiTotali: 100,
+        orarioApertura: '15:00',
+        orarioChiusura: '19:00',
+        servizi: ['WiFi Gratuito', 'Accesso Libero', 'Spazi Attrezzati', 'Gratuito'],
+        latitude: 41.9020,
+        longitude: 12.5130,
+        indirizzo: 'Varie sedi mense DiSCo, Roma',
+        university: 'La Sapienza',
+        occupancy_rate: 'Medio',
+        notes: 'Gestite da DiSCo Lazio. Spazi ricavati dentro le mense universitarie, aperti per lo studio nel pomeriggio (15:00-19:00). Servizio gratuito per tutti gli studenti iscritti ad atenei del Lazio.',
+        tags: ['Aula Studio', 'DiSCo Lazio', 'WiFi', '🆓 Gratuito'],
+    },
+    {
+        id: 'sapienza_disco_cinema',
+        nome: 'Aule Studio DiSCo nei Cinema',
+        edificio: 'Cinema convenzionati DiSCo',
+        piano: 0,
+        postiDisponibili: 40,
+        postiTotali: 80,
+        orarioApertura: '09:00',
+        orarioChiusura: '18:00',
+        servizi: ['WiFi', 'Ambiente particolare', 'Accesso Libero', 'Gratuito'],
+        latitude: 41.9010,
+        longitude: 12.5100,
+        indirizzo: 'Varie sedi cinema convenzionati, Roma',
+        university: 'La Sapienza',
+        occupancy_rate: 'Basso',
+        notes: 'Progetto innovativo di DiSCo Lazio: spazi studio gratuiti ricavati in cinema e teatri di Roma e Cassino, per supportare sia gli studenti che il settore culturale.',
+        tags: ['Aula Studio', 'DiSCo Lazio', 'WiFi', '🎬 Cinema', '🆓 Gratuito'],
     }
 ];
 

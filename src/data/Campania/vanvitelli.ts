@@ -363,6 +363,51 @@ export const studyRoomsData: StudyRoom[] = [
         vibe: 'Concentrato',
         occupancy_rate: 'Alto',
         notes: 'Spazio studio dedicato per studenti di Economia. Via Silicis storica.'
+    },
+    // ============================================================
+    // CASERTA - POLO PSICOLOGIA AGGIUNTIVO
+    // ============================================================
+    {
+        id: 'vanvi_caserta_psicologia_lincoln',
+        nome: 'Sede Didattica Psicologia (Viale Lincoln)',
+        edificio: 'Polo Didattico Viale Lincoln',
+        piano: 0,
+        postiDisponibili: 40,
+        postiTotali: 60,
+        orarioApertura: '08:30',
+        orarioChiusura: '18:30',
+        servizi: ['WiFi', 'Aule didattiche', 'Prese'],
+        latitude: 41.0725,
+        longitude: 14.3265,
+        indirizzo: 'Viale Lincoln, 81100 Caserta',
+        university: 'Vanvitelli',
+        tags: ['psicologia', 'aula studio', 'caserta'],
+        vibe: 'Accademico',
+        occupancy_rate: 'Medio',
+        notes: 'Polo complementare a Viale Ellittico per il Dipartimento di Psicologia. Spazi studio tra le aule didattiche.'
+    },
+    // ============================================================
+    // ADISURC - SPAZI REGIONALI
+    // ============================================================
+    {
+        id: 'vanvi_adisurc_aversa',
+        nome: 'Aula Studio Residenza ADISURC Aversa',
+        edificio: 'Residenza ADISURC Aversa',
+        piano: 0,
+        postiDisponibili: 25,
+        postiTotali: 35,
+        orarioApertura: '00:00',
+        orarioChiusura: '23:59',
+        servizi: ['WiFi', 'Sala Informatica', 'H24 Residenti'],
+        latitude: 40.9720,
+        longitude: 14.2090,
+        indirizzo: 'Vicolo Spirito Santo 6/7, 81031 Aversa (CE)',
+        university: 'Vanvitelli',
+        tags: ['ADISURC', 'residenza', 'H24'],
+        vibe: 'Residenziale e tranquillo',
+        extendedHours: true,
+        occupancy_rate: 'Basso',
+        notes: 'Fondamentale per i fuori sede di Ingegneria/Architettura ad Aversa. Gestita da ADISURC. Accesso H24 per i residenti.'
     }
 ];
 

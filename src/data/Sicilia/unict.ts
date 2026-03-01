@@ -431,6 +431,46 @@ export const unictRooms: StudyRoom[] = [
         university: 'UniCt',
         tags: ['Mensa', 'Centro', '🥪 Pausa Pranzo', '🗣️ Social'],
         notes: 'Punto di appoggio strategico per gli studenti di Economia e Scienze Politiche per studiare in orari pomeridiani.'
+    },
+    // ============================================================
+    // CATANIA - ERSU E SPAZI COMUNALI
+    // ============================================================
+    {
+        id: 'unict_ersu_toscano',
+        nome: 'Aule Studio ERSU (Toscano Scuderi)',
+        edificio: 'Residenza ERSU Toscano Scuderi',
+        piano: 0,
+        postiDisponibili: 80,
+        postiTotali: 120,
+        orarioApertura: '09:00',
+        orarioChiusura: '21:00',
+        servizi: ['WiFi Gratuito', 'Prese', 'Clima', 'Accesso Libero'],
+        latitude: 37.5240,
+        longitude: 15.0750,
+        indirizzo: 'Via Toscano Scuderi, 95128 Catania',
+        university: 'UniCt',
+        occupancy_rate: 'Alto',
+        extendedHours: true,
+        notes: 'Gestite da ERSU Catania. Aperte lun-sab 9:00-21:00. Fondamentali per coprire le carenze serali e del fine settimana delle biblioteche dipartimentali.',
+        tags: ['ERSU', '🌙 Serale', 'WiFi', 'Top Space'],
+    },
+    {
+        id: 'unict_bellini',
+        nome: 'Biblioteca Comunale "Vincenzo Bellini"',
+        edificio: 'Sistema Bibliotecario Centrale',
+        piano: 0,
+        postiDisponibili: 80,
+        postiTotali: 120,
+        orarioApertura: '09:00',
+        orarioChiusura: '18:00',
+        servizi: ['WiFi', 'Accesso Libero', '120 posti lettura'],
+        latitude: 37.5055,
+        longitude: 15.0875,
+        indirizzo: 'Via Biblioteca 13, 95124 Catania',
+        university: 'UniCt',
+        occupancy_rate: 'Medio',
+        notes: 'Dispone di 120 posti lettura nel Sistema Bibliotecario Centrale Catanese. Ottima alternativa alle biblioteche universitarie.',
+        tags: ['Comunale', 'WiFi', 'Centro'],
     }
 ];
 

@@ -691,6 +691,46 @@ export const studyRoomsData: StudyRoom[] = [
         university: 'UniNa',
         tags: ['Bacoli', 'Mare'],
         notes: 'Sede splendida a picco sul mare, ospita corsi di Digital Humanities.'
+    },
+
+    // ============================================================
+    // FUORIGROTTA - DIST (Strutture per Ingegneria e Architettura)
+    // ============================================================
+    {
+        id: 'unina_dist_carlo_greco',
+        nome: 'Aula Studio "Carlo Greco" (DIST)',
+        edificio: 'Via Claudio - Edificio 6 (DIST)',
+        piano: 1,
+        postiTotali: 40,
+        orarioApertura: '09:00',
+        orarioChiusura: '18:30',
+        servizi: ['WiFi Eduroam', 'Prese elettriche', 'Silenzio', 'Climatizzazione'],
+        latitude: 40.8285,
+        longitude: 14.1910,
+        indirizzo: 'Via Claudio 21 (Edificio 6), Napoli',
+        university: 'UniNa',
+        tags: ['Ingegneria', 'Via Claudio', 'Nuova'],
+        notes: 'Nuova aula studio al primo piano dell\'edificio 6. 40 postazioni con prese elettriche e WiFi. Orario spezzato: 09:00-13:30 e 14:30-18:30. Vietato consumare pasti e spostare arredi.'
+    },
+
+    // ============================================================
+    // MONTE SANT'ANGELO - SCIENZE CHIMICHE (Area Studio Dedicata)
+    // ============================================================
+    {
+        id: 'unina_msa_scienze_chimiche',
+        nome: 'Area Studio Scienze Chimiche',
+        edificio: 'Complesso MSA - Dipartimento Scienze Chimiche',
+        piano: 0,
+        postiTotali: 80,
+        orarioApertura: '07:30',
+        orarioChiusura: '19:30',
+        servizi: ['WiFi Eduroam', 'Climatizzazione', 'Prese elettriche', '2 Sale'],
+        latitude: 40.8389,
+        longitude: 14.1848,
+        indirizzo: 'Via Cintia, Monte Sant\'Angelo, Napoli',
+        university: 'UniNa',
+        tags: ['Chimica', 'MSA', '❄️ Climatizzato'],
+        notes: 'Area studio dedicata del Dipartimento di Scienze Chimiche con 80 postazioni distribuite in 2 sale. Aperta lun-ven escluse festività e chiusure d\'Ateneo. WiFi e aria condizionata.'
     }
 ];
 

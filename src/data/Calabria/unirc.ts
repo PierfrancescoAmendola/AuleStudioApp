@@ -176,12 +176,34 @@ export const unircRooms: StudyRoom[] = [
     vibe: 'Sicuro e accogliente',
     extendedHours: true,
     notes: 'Fondamentale per i fuori sede. Se sei ospite di un amico residente, è il posto migliore per studiare la sera.'
+  },
+  // ============================================================
+  // CITTADELLA - SPAZI STUDIO AGGIUNTIVI
+  // ============================================================
+  {
+    id: 'unirc_saletta_dottorandi',
+    nome: 'Saletta Dottorandi (Stecca 2)',
+    edificio: 'Stecca 2, Cittadella Universitaria',
+    piano: 0,
+    postiDisponibili: 15,
+    postiTotali: 20,
+    orarioApertura: '08:30',
+    orarioChiusura: '19:00',
+    servizi: ['WiFi Eduroam', 'Prese', 'Silenzio Assoluto'],
+    latitude: 38.1245,
+    longitude: 15.6610,
+    indirizzo: 'Cittadella Universitaria, Feo di Vito, 89124 Reggio Calabria',
+    university: 'UniRC',
+    tags: ['dottorato', 'silenzio', 'piccola'],
+    vibe: 'Concentrato e intimo',
+    occupancy_rate: 'Basso',
+    notes: 'Spazio studio ufficiale nella Stecca 2. Priorità ai dottorandi, ma accessibile a tutti. Atmosfera di massima concentrazione.'
   }
 ];
 
 export const getDirectionsUniRC = (room: StudyRoom): DirectionsFromLocation[] => {
   const directions: DirectionsFromLocation[] = [];
-  
+
   const isCittadella = room.indirizzo.includes('Feo') || room.indirizzo.includes('Graziella') || room.indirizzo.includes('Melissari');
   const isPalazzoCampanella = room.id.includes('consiglio_regionale');
   const isCentro = room.id.includes('palazzo_cultura');

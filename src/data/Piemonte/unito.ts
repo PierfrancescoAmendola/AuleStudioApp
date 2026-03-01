@@ -234,6 +234,142 @@ export const unitoRooms: StudyRoom[] = [
         occupancy_rate: 'Basso',
         notes: 'Sede in ex stabilimento Olivetti, recentemente ristrutturata.',
         tags: ['Aula Studio', 'Campus', 'WiFi', '🅿️ Parcheggio'],
+    },
+    // ============================================================
+    // TORINO - AULE STUDIO EDISU PIEMONTE (Ente Regionale)
+    // ============================================================
+    {
+        id: 'unito_edisu_verdi26',
+        nome: 'Sala Studio EDISU Verdi 26',
+        edificio: 'Palazzo EDISU Via Verdi',
+        piano: 0,
+        postiDisponibili: 200,
+        postiTotali: 292,
+        orarioApertura: '08:30',
+        orarioChiusura: '24:00',
+        servizi: ['WiFi Gratuito', 'Distributori automatici', 'Fotocopiatrici', 'Prenotazione via App'],
+        latitude: 45.0685,
+        longitude: 7.6935,
+        indirizzo: 'Via Giuseppe Verdi 26, 10124 Torino',
+        university: 'UniTo',
+        occupancy_rate: 'Molto Alto',
+        extendedHours: true,
+        notes: 'Gestita da EDISU Piemonte. 292 posti, aperta fino a mezzanotte (lun-ven) e fino alle 22:00 (sab-dom). Accesso esclusivo tramite app \"Campus Piemonte ID Study Room\".',
+        tags: ['Aula Studio', 'EDISU', 'WiFi', '🌙 Serale', '⚡ Prese'],
+    },
+    {
+        id: 'unito_edisu_olimpia',
+        nome: 'Sala Studio EDISU Olimpia',
+        edificio: 'Residenza Olimpia',
+        piano: 0,
+        postiDisponibili: 120,
+        postiTotali: 180,
+        orarioApertura: '08:30',
+        orarioChiusura: '23:00',
+        servizi: ['WiFi Gratuito', 'Prese elettriche', 'Climatizzazione'],
+        latitude: 45.0620,
+        longitude: 7.6680,
+        indirizzo: 'Via Paolo Borsellino 42, 10138 Torino',
+        university: 'UniTo',
+        occupancy_rate: 'Alto',
+        extendedHours: true,
+        notes: 'Gestita da EDISU Piemonte. Grande sala studio serale nella residenza Olimpia. Molto frequentata in sessione.',
+        tags: ['Aula Studio', 'EDISU', 'WiFi', '🌙 Serale'],
+    },
+    {
+        id: 'unito_edisu_michelangelo',
+        nome: 'Sala Studio EDISU Michelangelo',
+        edificio: 'Sede Via Michelangelo Buonarroti',
+        piano: 0,
+        postiDisponibili: 100,
+        postiTotali: 150,
+        orarioApertura: '08:30',
+        orarioChiusura: '22:00',
+        servizi: ['WiFi Gratuito', 'Prese elettriche', 'Prenotazione via App'],
+        latitude: 45.0595,
+        longitude: 7.6745,
+        indirizzo: 'Via Michelangelo Buonarroti 17/Bis, 10126 Torino',
+        university: 'UniTo',
+        occupancy_rate: 'Alto',
+        notes: 'Gestita da EDISU Piemonte. Accesso tramite app \"Campus Piemonte ID Study Room\". Ambiente moderno e climatizzato.',
+        tags: ['Aula Studio', 'EDISU', 'WiFi', '⚡ Prese'],
+    },
+    {
+        id: 'unito_edisu_giuria',
+        nome: 'Sala Studio EDISU Pietro Giuria',
+        edificio: 'Sede Via Pietro Giuria',
+        piano: 0,
+        postiDisponibili: 80,
+        postiTotali: 120,
+        orarioApertura: '08:30',
+        orarioChiusura: '22:00',
+        servizi: ['WiFi Gratuito', 'Prese elettriche', 'Prenotazione via App'],
+        latitude: 45.0520,
+        longitude: 7.6780,
+        indirizzo: 'Via Pietro Giuria 17, 10125 Torino',
+        university: 'UniTo',
+        occupancy_rate: 'Alto',
+        notes: 'Gestita da EDISU Piemonte. Vicinissima alle facoltà scientifiche (Chimica, Fisica). Prenotazione obbligatoria via app.',
+        tags: ['Aula Studio', 'EDISU', 'WiFi', '⚡ Prese'],
+    },
+    {
+        id: 'unito_edisu_principe_amedeo',
+        nome: 'Sala Studio EDISU Principe Amedeo',
+        edificio: 'Sede Via Principe Amedeo',
+        piano: 0,
+        postiDisponibili: 90,
+        postiTotali: 130,
+        orarioApertura: '08:30',
+        orarioChiusura: '22:00',
+        servizi: ['WiFi Gratuito', 'Prese elettriche', 'Climatizzazione', 'Prenotazione via App'],
+        latitude: 45.0670,
+        longitude: 7.6870,
+        indirizzo: 'Via Principe Amedeo 18, 10123 Torino',
+        university: 'UniTo',
+        occupancy_rate: 'Medio',
+        notes: 'Gestita da EDISU Piemonte. Posizione centralissima vicino a Porta Nuova. Prenotazione obbligatoria via app.',
+        tags: ['Aula Studio', 'EDISU', 'Centro', 'WiFi', '⚡ Prese'],
+    },
+    {
+        id: 'unito_edisu_murazzi',
+        nome: 'Murazzi Student Zone (MSZ)',
+        edificio: 'Arcate Murazzi del Po (30-38)',
+        piano: 0,
+        postiDisponibili: 100,
+        postiTotali: 160,
+        orarioApertura: '08:30',
+        orarioChiusura: '23:00',
+        servizi: ['WiFi Gratuito', 'Prese elettriche', 'Affaccio sul Po', 'Distributori'],
+        latitude: 45.0640,
+        longitude: 7.6960,
+        indirizzo: 'Murazzi del Po, Arcate 30-38, 10124 Torino',
+        university: 'UniTo',
+        occupancy_rate: 'Alto',
+        extendedHours: true,
+        notes: 'Gestita da EDISU Piemonte. Sale studio suggestive sotto le arcate dei Murazzi del Po, affacciate sul fiume. Atmosfera unica. Progetto \"Campus Diffuso Universitario\".',
+        tags: ['Aula Studio', 'EDISU', 'WiFi', '🌙 Serale', '🌊 Fiume'],
+    },
+    // ============================================================
+    // TORINO - CAMPUS DIFFUSO (Comune + EDISU)
+    // ============================================================
+    {
+        id: 'unito_comala',
+        nome: 'Comala (Campus Diffuso)',
+        edificio: 'Spazio Culturale Comala',
+        piano: 0,
+        postiDisponibili: 40,
+        postiTotali: 60,
+        orarioApertura: '09:00',
+        orarioChiusura: '22:00',
+        servizi: ['WiFi', 'Prese', 'Caffetteria', 'Spazio Culturale'],
+        latitude: 45.0595,
+        longitude: 7.6650,
+        indirizzo: 'Corso Ferrucci 65/a, 10138 Torino',
+        university: 'UniTo',
+        occupancy_rate: 'Alto',
+        extendedHours: true,
+        notes: 'Parte del progetto "Campus Diffuso" della Città di Torino con EDISU. Celebre tra gli studenti del PoliTo come aula studio/hub culturale alternativo. Caffetteria interna.',
+        tags: ['Campus Diffuso', 'Comunale', 'WiFi', '🌙 Serale'],
     }
 ];
 
@@ -317,6 +453,21 @@ export const getDirectionsUniTo = (room: StudyRoom): DirectionsFromLocation[] =>
             mezziPubblici: ['Treno SFM3', 'Bus 43'],
             tempoStimato: '30-60 min',
             note: 'Auto fortemente consigliata. Verificare orari treni per rientro serale.'
+        });
+    }
+    // AULE STUDIO EDISU PIEMONTE
+    else if (room.id.includes('edisu')) {
+        const nomeAula = room.nome || 'Aula EDISU';
+        directions.push({
+            luogo: 'Raggiungere le Aule Studio EDISU',
+            descrizione: `**Per ${nomeAula}:**
+1.  **Mezzi pubblici (GTT)**: Tutte le sedi EDISU a Torino sono raggiungibili con metro, tram o bus. Verifica la linea più comoda dall'app GTT.
+2.  **Bici/Monopattino**: Stazioni di bike sharing TO'Bike sparse in tutta la città.
+3.  **Prenotazione**: Per la maggior parte delle sale EDISU è obbligatoria la prenotazione tramite app **"Campus Piemonte ID Study Room"**.
+**Nota**: Accesso gratuito per tutti gli studenti universitari regolarmente iscritti.`,
+            mezziPubblici: ['Metro Linea 1', 'Tram', 'Bus GTT', 'Bici'],
+            tempoStimato: 'Variabile',
+            note: 'Prenotazione obbligatoria tramite app Campus Piemonte. Verifica disponibilità in tempo reale.'
         });
     }
     // SEDI REGIONALI (Cuneo, Biella, Alba, Asti, Savigliano, Ivrea)

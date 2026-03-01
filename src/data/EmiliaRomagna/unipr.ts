@@ -224,6 +224,46 @@ export const uniprRooms: StudyRoom[] = [
         notes: 'Biblioteca comunale principale.',
         tags: ['Biblioteca', 'Centro', 'WiFi'],
     },
+    // ============================================================
+    // SPAZI STUDENTESCHI E NUOVE AULE
+    // ============================================================
+    {
+        id: 'unipr_regeni',
+        nome: 'Student Hub - Aula Studio Giulio Regeni',
+        edificio: 'Casa dello Studente',
+        piano: 0,
+        postiDisponibili: 30,
+        postiTotali: 45,
+        orarioApertura: '09:00',
+        orarioChiusura: '22:00',
+        servizi: ['WiFi', 'Socialità', 'Gestione Studentesca'],
+        latitude: 44.7930,
+        longitude: 10.3225,
+        indirizzo: 'Vicolo Grossardi 4, 43125 Parma',
+        university: 'UniPr',
+        occupancy_rate: 'Alto',
+        extendedHours: true,
+        notes: 'Spazio dedicato allo studio gestito dalle associazioni studentesche. Atmosfera informale e inclusiva.',
+        tags: ['Autogestita', 'Social Hub', 'Serale'],
+    },
+    {
+        id: 'unipr_dazeglio',
+        nome: 'Nuove Aule Studio Plesso D\'Azeglio',
+        edificio: 'Dipartimento Discipline Umanistiche',
+        piano: 0,
+        postiDisponibili: 40,
+        postiTotali: 60,
+        orarioApertura: '08:30',
+        orarioChiusura: '19:00',
+        servizi: ['WiFi Eduroam', 'Spazi Moderni', 'Gruppi OK'],
+        latitude: 44.8010,
+        longitude: 10.3260,
+        indirizzo: 'Via D\'Azeglio 85, 43125 Parma',
+        university: 'UniPr',
+        occupancy_rate: 'Medio',
+        notes: 'Aule studio moderne nel plesso umanistico. Ideali per studio di gruppo.',
+        tags: ['Umanistica', 'Moderno', 'Gruppi OK'],
+    },
 ];
 
 export const getDirectionsUnipr = (room: StudyRoom): DirectionsFromLocation[] => {

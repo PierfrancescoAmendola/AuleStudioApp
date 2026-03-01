@@ -165,12 +165,72 @@ export const unibasRooms: StudyRoom[] = [
     notes: "Situata nel palazzo che domina la piazza principale. E' la vera alternativa al campus. Molto frequentata dagli studenti materani.",
     tags: ['Matera', 'Centro'],
     vibe: 'Iconica'
+  },
+  // ============================================================
+  // POTENZA - AULE STUDIO AUTOGESTITE (Campus Macchia Romana)
+  // ============================================================
+  {
+    id: 'unibas_macchia_f3',
+    nome: 'Aula F3 (Autogestita DiSBA)',
+    edificio: 'Edificio 2DA, Piano 1',
+    piano: 1,
+    postiDisponibili: 20,
+    postiTotali: 30,
+    orarioApertura: '09:30',
+    orarioChiusura: '19:00',
+    servizi: ['WiFi', 'Autogestione'],
+    latitude: 40.6375,
+    longitude: 15.7975,
+    indirizzo: 'Viale dell\'Ateneo Lucano 10, 85100 Potenza',
+    university: 'Unibas',
+    occupancy_rate: 'Medio',
+    notes: 'Spazio autogestito dagli studenti del DiSBA/Scienze. Ambiente informale e collaborativo.',
+    tags: ['Autogestita', 'Scienze'],
+    vibe: 'Informale'
+  },
+  {
+    id: 'unibas_macchia_aula15',
+    nome: 'Aula 15 (Spazio CISIT)',
+    edificio: 'Edificio 3D',
+    piano: -1,
+    postiDisponibili: 25,
+    postiTotali: 40,
+    orarioApertura: '09:30',
+    orarioChiusura: '19:00',
+    servizi: ['WiFi', 'Autogestione'],
+    latitude: 40.6370,
+    longitude: 15.7980,
+    indirizzo: 'Viale dell\'Ateneo Lucano 10, 85100 Potenza',
+    university: 'Unibas',
+    occupancy_rate: 'Medio',
+    notes: 'Aula autogestita dedicata allo studio. Situata nel seminterrato dell\'Edificio 3D.',
+    tags: ['Autogestita', 'Campus'],
+    vibe: 'Tranquilla'
+  },
+  {
+    id: 'unibas_giardino_speranza',
+    nome: 'Aula "Il Giardino della Speranza" (Multimediale)',
+    edificio: 'Edificio 3D',
+    piano: -1,
+    postiDisponibili: 15,
+    postiTotali: 20,
+    orarioApertura: '09:00',
+    orarioChiusura: '18:00',
+    servizi: ['PC Fissi', 'Accessibile Disabili', 'WiFi'],
+    latitude: 40.6370,
+    longitude: 15.7978,
+    indirizzo: 'Viale dell\'Ateneo Lucano 10, 85100 Potenza',
+    university: 'Unibas',
+    occupancy_rate: 'Basso',
+    notes: 'Aula studio multimediale con 20 postazioni PC. Specificamente attrezzata e accessibile.',
+    tags: ['PC Lab', 'Accessibile'],
+    vibe: 'Tech'
   }
 ];
 
 export const getDirectionsUnibas = (room: StudyRoom): DirectionsFromLocation[] => {
   const directions: DirectionsFromLocation[] = [];
-  
+
   const isMacchia = room.indirizzo.includes('Ateneo Lucano') || room.id.includes('macchia') || room.id.includes('adsu');
   const isGallitello = room.id.includes('nazionale');
   const isCentroPotenza = room.indirizzo.includes('Garibaldi') || room.indirizzo.includes('Sauro');

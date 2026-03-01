@@ -106,6 +106,28 @@ export const univdaRooms: StudyRoom[] = [
         vibe: 'Accogliente',
         notes: 'Punto di riferimento per Scienze della Formazione e Psicologia.',
         tags: ['Aula Studio', 'Centro'],
+    },
+    // ============================================================
+    // AOSTA - SPAZI CIVICI E GIOVANILI
+    // ============================================================
+    {
+        id: 'univda_plus',
+        nome: 'Plus (ex Cittadella dei giovani)',
+        edificio: 'Spazio Giovani Plus',
+        piano: 0,
+        postiDisponibili: 30,
+        postiTotali: 50,
+        orarioApertura: '09:00',
+        orarioChiusura: '19:00',
+        servizi: ['WiFi', 'Aula Studio Silenziosa', 'Sala Meeting', 'Caffetteria'],
+        latitude: 45.7390,
+        longitude: 7.3120,
+        indirizzo: 'Viale Giuseppe Garibaldi 7, 11100 Aosta',
+        university: 'UniVDA',
+        occupancy_rate: 'Medio',
+        vibe: 'Giovanile / Sociale',
+        notes: 'Uno dei pochi spazi studio cittadini alternativi alla Biblioteca Regionale. Offre aule studio silenziose, sala meeting e "Spazio Giovani" per il lavoro di gruppo, oltre a caffetteria interna.',
+        tags: ['Civico', 'Spazio Giovani', 'Centro'],
     }
 ];
 

@@ -178,6 +178,49 @@ export const univrRooms: StudyRoom[] = [
         university: 'UniVr',
         occupancy_rate: 'Medio',
         tags: ['Vicenza', 'Diritto/Economia'],
+    },
+
+    // ============================================================
+    // VERONA - SPAZI ESU (Ente per il Diritto allo Studio)
+    // ============================================================
+    {
+        id: 'univr_esu_corte_maddalene',
+        nome: 'Aula Studio ESU Corte Maddalene',
+        edificio: 'Corte Maddalene (ESU Verona)',
+        piano: 0,
+        postiDisponibili: 50,
+        postiTotali: 80,
+        orarioApertura: '08:30',
+        orarioChiusura: '22:00',
+        servizi: ['WiFi Gratuito', 'Prese elettriche', 'Climatizzazione', 'Accesso Libero'],
+        latitude: 45.4395,
+        longitude: 10.9970,
+        indirizzo: 'Corte Maddalene 7/A, 37129 Verona',
+        university: 'UniVr',
+        occupancy_rate: 'Alto',
+        extendedHours: true,
+        vibe: 'Storica / Studentesca',
+        notes: 'Gestita da ESU Verona. In una corte storica nel cuore di Veronetta, accanto ai dipartimenti umanistici. 80 posti con WiFi, prese e A/C. Aperta fino alle 22:00, accesso libero.',
+        tags: ['ESU', 'Centro', 'Orario Esteso', '⚡ Prese'],
+    },
+    {
+        id: 'univr_esu_san_francesco',
+        nome: 'Aula Studio ESU San Francesco',
+        edificio: 'Sede ESU Via San Francesco (presso Frinzi)',
+        piano: 0,
+        postiDisponibili: 40,
+        postiTotali: 60,
+        orarioApertura: '09:00',
+        orarioChiusura: '21:00',
+        servizi: ['WiFi Gratuito', 'Prese elettriche', 'Accesso Libero'],
+        latitude: 45.4382,
+        longitude: 10.9990,
+        indirizzo: 'Via S. Francesco 22, 37129 Verona',
+        university: 'UniVr',
+        occupancy_rate: 'Medio',
+        vibe: 'Intima / Concentrata',
+        notes: 'Gestita da ESU Verona. Adiacente alla Biblioteca Frinzi per chi cerca posti extra. 60 posti, più tranquilla rispetto alla Frinzi. Ideale per lo studio concentrato in orario serale.',
+        tags: ['ESU', 'Centro', 'Silenzio', 'WiFi'],
     }
 ];
 
@@ -199,6 +242,13 @@ export const getDirectionsUnivr = (room: StudyRoom): DirectionsFromLocation[] =>
             descrizione: 'Bus Linee 21, 22 o 93. Scendi alla fermata "Policlinico Borgo Roma".',
             mezziPubblici: ['Bus 21, 22'],
             tempoStimato: '12 min',
+        });
+    } else if (room.id.includes('esu_')) {
+        directions.push({
+            luogo: 'Stazione Verona Porta Nuova',
+            descrizione: 'Bus Linee 11, 12, 13 per Veronetta. Scendi a "Via S. Francesco" o "Piazza Isolo". Le aule studio ESU sono nel cuore del quartiere universitario, a 5 min a piedi.',
+            mezziPubblici: ['Bus 11, 12, 13', 'Bici (10 min)'],
+            tempoStimato: '15 min',
         });
     } else if (room.indirizzo.includes('Vicenza')) {
         directions.push({
