@@ -1,0 +1,57 @@
+# AI Assistant Rules for UniStudy Italia (AuleStudioApp)
+
+You are an expert AI assistant (like Claude, Gemini, Cursor, Copilot, or Windsurf) helping a developer build **UniStudy Italia**. These rules govern how you should interpret requests, write code, and refactor this specific project.
+
+## 1. Project Overview & Tech Stack
+- **Framework:** React Native with Expo (Managed Workflow, Expo SDK 54+).
+- **Language:** TypeScript (`.ts`, `.tsx`). All new files MUST be strongly typed.
+- **UI & Styling:** Core React Native components (`View`, `Text`, `StyleSheet`). No external UI libraries like NativeBase or Tamagui are used unless specified.
+- **Navigation:** React Navigation v7 (`@react-navigation/native`, `@react-navigation/stack`).
+- **Maps & Geolocation:** `react-native-maps`, `react-native-map-clustering`, and `expo-location`.
+- **State Management:** React Hooks (`useState`, `useEffect`, `useMemo`, `useCallback`) and AsyncStorage (`@react-native-async-storage/async-storage`) for persistence.
+- **Animations:** `react-native-reanimated` and `react-native-gesture-handler`.
+
+## 2. Core Architectural Rules
+### 2.1 Directory Structure Compliance
+Always place files in their correct domains:
+- `src/components/`: Reusable, dumb UI components (e.g., Cards, Buttons, Carousels). Keep them pure if possible.
+- `src/screens/`: High-level view components mapping to routes. They should fetch/manage state and pass props down to components.
+- `src/navigation/`: Navigation setup (Stack, Tabs).
+- `src/data/`: Mock data, JSON structures, or static configuration files for universities.
+- `src/services/`: API calls, storage logic, and background tasks.
+- `src/theme/`: Colors, typography, spacing, and dynamic theme switching based on university branding.
+- `src/types/`: Global TypeScript interfaces and type definitions.
+- `src/utils/`: Helper functions (e.g., date formatting, distance calculation).
+
+### 2.2 TypeScript & Types
+- STRICT TypeScript is mandatory. Avoid `any`. Use `unknown` if truly dynamic, but prefer defining precise interfaces in `src/types/`.
+- Export interfaces/types that are shared across files from a centralized place, e.g., `src/types/index.ts`.
+- When typing navigation props, use React Navigation v7's specific generic types (e.g., `StackScreenProps`).
+
+### 2.3 Styling Guidelines
+- Use `StyleSheet.create` for all styling. Avoid inline styles unless they are genuinely dynamic (e.g., calculated width or dynamic theme color).
+- The app uses `@expo-google-fonts/poppins` and `@expo-google-fonts/montserrat`. Always use these font families for text.
+- Rely on the centralized `theme` directory for colors, spacing, and typography. The app adapts colors based on the selected university. Always read primary/secondary colors from the context or theme hooks instead of hardcoding hex values.
+
+### 2.4 Navigation best practices
+- Do not pass large objects as route params. Pass standard primitive IDs and let the target screen fetch/load the data.
+- Ensure safe area context is respected using `react-native-safe-area-context` instead of hardcoded padding.
+
+## 3. Workflow & AI Behavior
+- **Think before coding**: When asked to implement a new feature, quickly outline the files to be touched and the state management approach.
+- **Check dependencies**: Do not introduce new `npm` packages unless explicitly requested. If an existing package can solve the problem (e.g. `reanimated` for an animation, instead of adding another library), use it.
+- **Platform Specifics**: Remember this is a cross-platform Expo app (iOS and Android). Avoid platform-specific code unless using `Platform.select()` or checking `Platform.OS`.
+- **No deprecated APIs**: Ensure you are using React Native v0.81+ and React 19 methodologies (e.g., no deprecated class components, strict hooks usage).
+- **Localization**: If asked to add strings, verify if there is an i18n setup; otherwise, use Italian by default as the app targets Italian students ("UniStudy Italia").
+
+## 4. Key Features Context
+- **Study Rooms**: The primary entity. Contains data like crowd level, open/closed status, amenities (WiFi, AC, Outlets), and geolocation.
+- **SmartWeather**: Integrated feature recommending whether to bring an umbrella. Keep weather logic uncoupled from the UI.
+- **Student Radar / Bluetooth**: Features to find nearby peers. These require specific permissions (`expo-permissions`, `react-native-ble-plx`). Ensure permission checks are robust and handle user denials gracefully.
+
+## 5. STRICT CONSTRAINT: ZERO-CLOUD POLICY & 0€ BUDGET
+- **CRITICAL:** This application operates strictly offline-first and peer-to-peer. 
+- **NEVER** suggest, import, or implement external backends, SaaS, AWS, Firebase, Supabase, or any paid API.
+- All data persistence MUST rely on `AsyncStorage` or local `SQLite`.
+- All networking MUST rely on physical device capabilities (Bluetooth BLE, WiFi Direct) or local processing.
+- If a feature seems to require a server, engineer a local, device-driven, or crowd-sourced alternative.
