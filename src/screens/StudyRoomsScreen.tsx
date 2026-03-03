@@ -221,12 +221,39 @@ export const StudyRoomsScreen: React.FC<StudyRoomsScreenProps> = ({ navigation }
     }, [university]);
 
     const requestLocation = async () => {
-        let { status } = await Location.requestForegroundPermissionsAsync();
-        if (status !== 'granted') { setSortType('name'); return; }
-        try {
-            let location = await Location.getCurrentPositionAsync({});
-            setUserLocation(location);
-        } catch (error) { console.log('Location error', error); }
+        // Check if permission was already granted
+        const { status: existingStatus } = await Location.getForegroundPermissionsAsync();
+        if (existingStatus === 'granted') {
+            try {
+                let location = await Location.getCurrentPositionAsync({});
+                setUserLocation(location);
+            } catch (error) { console.log('Location error', error); }
+            return;
+        }
+
+        // Show human-readable pre-permission dialog in Italian
+        Alert.alert(
+            '📍 Posizione',
+            'UniStudy Italia vorrebbe accedere alla tua posizione per mostrarti le aule studio più vicine e ordinarle per distanza.\n\nPuoi sempre cambiare idea nelle Impostazioni del tuo dispositivo.',
+            [
+                {
+                    text: 'Non ora',
+                    style: 'cancel',
+                    onPress: () => setSortType('name'),
+                },
+                {
+                    text: 'Consenti',
+                    onPress: async () => {
+                        let { status } = await Location.requestForegroundPermissionsAsync();
+                        if (status !== 'granted') { setSortType('name'); return; }
+                        try {
+                            let location = await Location.getCurrentPositionAsync({});
+                            setUserLocation(location);
+                        } catch (error) { console.log('Location error', error); }
+                    },
+                },
+            ]
+        );
     };
 
     const loadFavoritesFromCache = async () => {

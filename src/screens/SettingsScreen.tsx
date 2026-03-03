@@ -96,19 +96,35 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ navigation }) =>
 
     const handleLocationToggle = async (value: boolean) => {
         if (value) {
-            const { status } = await Location.requestForegroundPermissionsAsync();
-            if (status === 'granted') {
-                setLocationEnabled(true);
-            } else {
-                Alert.alert(
-                    'Permesso Negato',
-                    'Per abilitare la localizzazione, vai nelle Impostazioni del dispositivo.',
-                    [
-                        { text: 'Annulla', style: 'cancel' },
-                        { text: 'Impostazioni', onPress: () => Linking.openSettings() }
-                    ]
-                );
-            }
+            // Show human-readable pre-permission dialog in Italian
+            Alert.alert(
+                '📍 Posizione',
+                'UniStudy Italia vorrebbe accedere alla tua posizione per mostrarti le aule studio più vicine e ordinarle per distanza.\n\nPuoi sempre cambiare idea nelle Impostazioni del tuo dispositivo.',
+                [
+                    {
+                        text: 'Non ora',
+                        style: 'cancel',
+                    },
+                    {
+                        text: 'Consenti',
+                        onPress: async () => {
+                            const { status } = await Location.requestForegroundPermissionsAsync();
+                            if (status === 'granted') {
+                                setLocationEnabled(true);
+                            } else {
+                                Alert.alert(
+                                    'Permesso Negato',
+                                    'Per abilitare la localizzazione, vai nelle Impostazioni del dispositivo.',
+                                    [
+                                        { text: 'Annulla', style: 'cancel' },
+                                        { text: 'Impostazioni', onPress: () => Linking.openSettings() }
+                                    ]
+                                );
+                            }
+                        },
+                    },
+                ]
+            );
         } else {
             Alert.alert(
                 'Disabilita Localizzazione',
