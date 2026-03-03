@@ -14,13 +14,10 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-
-// Esempio di Service/Characteristic UUID BLE (sostituire con quelli reali usati dall'app)
-const CHAT_SERVICE_UUID = '12345678-1234-5678-1234-56789abcdef0';
-const CHAT_CHARACTERISTIC_UUID = 'abcdef01-1234-5678-1234-56789abcdef0';
+import { nearbyService } from '../services/nearbyService';
 
 interface ConnectedDevice {
-    id: string;
+    id: string; // Peer ID from expo-nearby-connections
     name: string | null;
 }
 
@@ -34,77 +31,42 @@ interface Message {
 interface BluetoothChatScreenProps {
     connectedDevice: ConnectedDevice;
     onDisconnect: () => void;
-    primaryColor?: string; // Colore dinamico dell'università
+    primaryColor?: string;
 }
 
 export const BluetoothChatScreen: React.FC<BluetoothChatScreenProps> = ({
     connectedDevice,
     onDisconnect,
-    primaryColor = '#10b981' // Verde default
+    primaryColor = '#10b981'
 }) => {
     const [messages, setMessages] = useState<Message[]>([]);
     const [inputText, setInputText] = useState('');
-    const [isConnecting, setIsConnecting] = useState(false);
     const flatListRef = useRef<FlatList>(null);
     const insets = useSafeAreaInsets();
 
     const deviceName = connectedDevice.name || 'Studente Sconosciuto';
 
     useEffect(() => {
-        // Setup iniziale della chat: mi metto in ascolto
-        setupMessageListener();
-
-        // Cleanup allo smontaggio del componente
-        return () => {
-            // QUI: Logica per disiscriversi dalla notifica BLE
-            // es: bleManager.cancelTransaction('messageMonitor');
-        };
-    }, []);
-
-    const setupMessageListener = () => {
-        /* 
-        MOCK BLE LOGIC (es. react-native-ble-plx)
-        QUI: Devi iscriverti alle notifiche per ricevere messaggi dall'altro telefono.
-        
-        bleManager.monitorCharacteristicForDevice(
-            connectedDevice.id,
-            CHAT_SERVICE_UUID,
-            CHAT_CHARACTERISTIC_UUID,
-            (error, characteristic) => {
-                if (error) {
-                    console.log("Errore monitoraggio:", error);
-                    return;
-                }
-                
-                // Conversione da Base64 a Stringa (dipende da come invii i dati)
-                const receivedText = atob(characteristic.value);
-                
+        // Setup real listeners for incoming messages and disconnections
+        const unsubText = nearbyService.onTextReceived(({ peerId, text }) => {
+            if (peerId === connectedDevice.id) {
                 const newMessage: Message = {
                     id: Date.now().toString() + Math.random().toString(),
-                    text: receivedText,
+                    text: text,
                     isSender: false,
                     timestamp: new Date()
                 };
-                
                 setMessages(prev => [...prev, newMessage]);
-            },
-            'messageMonitor'
-        );
-        */
+            }
+        });
 
-        // SIMULAZIONE RICEZIONE MESSAGGIO DOPO 3 SECONDI PER TESTARE UI
-        const mockTimer = setTimeout(() => {
-            const mockMsg: Message = {
-                id: 'mock-1',
-                text: 'Ehi! Anche tu stai studiando per questo esame? Scendiamo a prendere un caffè?',
-                isSender: false,
-                timestamp: new Date()
-            };
-            setMessages(prev => [...prev, mockMsg]);
-        }, 3000);
+        // Event listener is already managed in StudentRadar, but just in case we need strict local cleanup
+        // Note: Disconnection is handled upstream in StudentRadar which drops the chat modal.
 
-        return () => clearTimeout(mockTimer);
-    };
+        return () => {
+            unsubText();
+        };
+    }, [connectedDevice.id]);
 
     const sendMessage = async () => {
         if (!inputText.trim()) return;
@@ -123,27 +85,12 @@ export const BluetoothChatScreen: React.FC<BluetoothChatScreenProps> = ({
         setInputText('');
         Keyboard.dismiss();
 
-        /*
-        2. LOGICA REALE BLE PER L'INVIO
-        QUI: Devi convertire il testo (es. in Base64) e scriverlo sulla Characteristic.
-
+        // 2. LOGICA REALE INVIO TESTO P2P
         try {
-            // Esempio Base64 encoding nativo o libreria custom
-            const base64Data = btoa(messageToSend); 
-            
-            await bleManager.writeCharacteristicWithResponseForDevice(
-                connectedDevice.id,
-                CHAT_SERVICE_UUID,
-                CHAT_CHARACTERISTIC_UUID,
-                base64Data
-            );
-            console.log("Messaggio inviato con successo via BLE");
+            await nearbyService.sendMessage(connectedDevice.id, messageToSend);
         } catch (error) {
-            console.error("Errore nell'invio del messaggio BLE", error);
-            // In un'app reale, mostreresti un alert "Invio fallito" o riporteresti il
-            // messaggio con una icona rossa di "Non inviato"
+            console.error("Errore nell'invio del messaggio P2P", error);
         }
-        */
     };
 
     const formatTimestamp = (date: Date) => {
@@ -213,7 +160,7 @@ export const BluetoothChatScreen: React.FC<BluetoothChatScreenProps> = ({
                         <View style={styles.emptyContainer}>
                             <Ionicons name="chatbubbles-outline" size={48} color="#cbd5e1" />
                             <Text style={styles.emptyText}>Nessun messaggio.</Text>
-                            <Text style={styles.emptySubText}>Inizia a chattare tramite Bluetooth!</Text>
+                            <Text style={styles.emptySubText}>Inizia a chattare!</Text>
                         </View>
                     }
                 />

@@ -17,7 +17,9 @@
       "bundleIdentifier": "com.pierfrancescoamendola.unistudyitalia",
       "buildNumber": "2",
       "infoPlist": {
-        "NSLocationWhenInUseUsageDescription": "UniStudy Italia usa la tua posizione per mostrarti le aule studio più vicine e calcolare le distanze, così trovi subito il posto migliore dove studiare."
+        "NSLocationWhenInUseUsageDescription": "UniStudy Italia usa la tua posizione per mostrarti le aule studio più vicine e calcolare le distanze, così trovi subito il posto migliore dove studiare.",
+        "NSBluetoothAlwaysUsageDescription": "UniStudy Italia utilizza il Bluetooth per permetterti di trovare e connetterti offline con altri studenti vicini.",
+        "NSLocalNetworkUsageDescription": "UniStudy Italia utilizza la rete locale per scoprire e chattare con altri studenti che stanno preparando il tuo stesso esame."
       }
     },
     "android": {
@@ -28,7 +30,11 @@
       "package": "com.yourdomain.unistudyitalia",
       "permissions": [
         "ACCESS_FINE_LOCATION",
-        "ACCESS_COARSE_LOCATION"
+        "ACCESS_COARSE_LOCATION",
+        "BLUETOOTH_ADVERTISE",
+        "BLUETOOTH_CONNECT",
+        "BLUETOOTH_SCAN",
+        "NEARBY_WIFI_DEVICES"
       ],
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false
@@ -43,6 +49,13 @@
         {
           "locationAlwaysAndWhenInUsePermission": "UniStudy Italia usa la tua posizione per mostrarti le aule studio più vicine e calcolare le distanze, così trovi subito il posto migliore dove studiare.",
           "locationWhenInUsePermission": "UniStudy Italia usa la tua posizione per mostrarti le aule studio più vicine e calcolare le distanze, così trovi subito il posto migliore dove studiare."
+        }
+      ],
+      [
+        "expo-nearby-connections",
+        {
+          "bonjourServicesName": "unistudyitalia",
+          "localNetworkUsagePermissionText": "UniStudy Italia ha bisogno di accedere alla tua rete locale per scoprire dispositivi vicini"
         }
       ]
     ]

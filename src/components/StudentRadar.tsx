@@ -15,21 +15,27 @@ import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { EXAM_CATEGORIES } from '../data/exams';
 import { BluetoothChatScreen } from './BluetoothChatScreen';
-
-// FLAG PER DISABILITARE IL BLE E FAR FUNZIONARE EXPO GO
-// Quando farai la build nativa, potrai impostare questo a true e 
-// scommentare/implementare la logica delle librerie BLE reali.
-const IS_BLE_ENABLED = false;
+import { nearbyService } from '../services/nearbyService';
 
 interface StudentRadarProps {
     accentColor?: string;
+}
+
+interface Peer {
+    peerId: string;
+    name: string;
 }
 
 export const StudentRadar: React.FC<StudentRadarProps> = ({ accentColor = '#6366f1' }) => {
     const [selectedExam, setSelectedExam] = useState<string | null>(null);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScanning, setIsScanning] = useState(false);
-    const [matchFound, setMatchFound] = useState<{ exam: string, matchCode: { emoji: string, name: string, color: string } } | null>(null);
+
+    // Peer management
+    const [discoveredPeers, setDiscoveredPeers] = useState<Peer[]>([]);
+    const [matchFound, setMatchFound] = useState<{ exam: string, peer: Peer, matchCode: { emoji: string, name: string, color: string } } | null>(null);
+    const [pendingInvitation, setPendingInvitation] = useState<Peer | null>(null);
+
     const [isChatOpen, setIsChatOpen] = useState(false);
 
     // Animations
@@ -46,55 +52,97 @@ export const StudentRadar: React.FC<StudentRadarProps> = ({ accentColor = '#6366
         { emoji: '☕️', name: 'Caffè Marrone', color: '#84cc16' }
     ];
 
+    // Setup Nearby Connections Listeners when scanning starts
     useEffect(() => {
-        if (isScanning) {
-            pulseAnim.setValue(0);
-            Animated.loop(
-                Animated.timing(pulseAnim, {
-                    toValue: 1,
-                    duration: 2500,
-                    useNativeDriver: true,
-                })
-            ).start();
-
-            // MOCK LOGIC: Se BLE è disattivato, simuliamo un match dopo 4 secondi
-            if (!IS_BLE_ENABLED) {
-                const timer = setTimeout(() => {
-                    handleMatchFound(selectedExam!);
-                }, 4000);
-                return () => clearTimeout(timer);
-            } else {
-                // QUI ANDREBBE LA LOGICA BLE REALE
-                // startBLEScanAndAdvertise(selectedExam);
-            }
-        } else {
+        if (!isScanning) {
             pulseAnim.stopAnimation();
+            return;
         }
-    }, [isScanning]);
 
-    const handleMatchFound = (exam: string) => {
+        // Animated pulse
+        pulseAnim.setValue(0);
+        Animated.loop(
+            Animated.timing(pulseAnim, {
+                toValue: 1,
+                duration: 2500,
+                useNativeDriver: true,
+            })
+        ).start();
+
+        // Register event listeners
+        const unsubFound = nearbyService.onPeerFound((peer) => {
+            // Check if the peer's name matches our exam
+            if (peer.name === `UniChat_${selectedExam}`) {
+                setDiscoveredPeers(prev => {
+                    if (prev.find(p => p.peerId === peer.peerId)) return prev;
+                    return [...prev, peer];
+                });
+            }
+        });
+
+        const unsubLost = nearbyService.onPeerLost((peer) => {
+            setDiscoveredPeers(prev => prev.filter(p => p.peerId !== peer.peerId));
+        });
+
+        const unsubInvite = nearbyService.onInvitationReceived((peer) => {
+            setPendingInvitation(peer);
+        });
+
+        const unsubConnected = nearbyService.onConnected((peer) => {
+            setIsScanning(false);
+            setPendingInvitation(null);
+            handleMatchFound(selectedExam!, peer);
+        });
+
+        const unsubDisconnected = nearbyService.onDisconnected((peer) => {
+            if (matchFound?.peer.peerId === peer.peerId) {
+                setIsChatOpen(false);
+                setMatchFound(null);
+                Alert.alert("Disconnesso", "L'altro studente si è disconnesso.");
+            }
+        });
+
+        return () => {
+            unsubFound();
+            unsubLost();
+            unsubInvite();
+            unsubConnected();
+            unsubDisconnected();
+        };
+    }, [isScanning, selectedExam, matchFound]);
+
+    // Handle incoming invitations
+    useEffect(() => {
+        if (pendingInvitation) {
+            Alert.alert(
+                "Richiesta di Chat",
+                "Uno studente vicino vuole chattare con te per questo esame!",
+                [
+                    {
+                        text: "Rifiuta",
+                        style: "cancel",
+                        onPress: () => {
+                            nearbyService.rejectConnection(pendingInvitation.peerId);
+                            setPendingInvitation(null);
+                        }
+                    },
+                    {
+                        text: "Accetta",
+                        onPress: () => {
+                            nearbyService.acceptConnection(pendingInvitation.peerId);
+                        }
+                    }
+                ]
+            );
+        }
+    }, [pendingInvitation]);
+
+    const handleMatchFound = (exam: string, peer: Peer) => {
         setIsScanning(false);
-        // Genera un codice casuale per il match
         const randomCode = MATCH_CODES[Math.floor(Math.random() * MATCH_CODES.length)];
-        setMatchFound({ exam, matchCode: randomCode });
-        Vibration.vibrate([0, 500, 200, 500]); // Pattern vibrazione: pausa, vibra, pausa, vibra
+        setMatchFound({ exam, peer, matchCode: randomCode });
+        Vibration.vibrate([0, 500, 200, 500]);
     };
-
-    const MOCK_BLUETOOTH_STATE = true; // Impostare a false per testare l'avviso di Bluetooth spento
-
-    const checkBluetoothState = async (): Promise<boolean> => {
-        if (!IS_BLE_ENABLED) {
-            // Simuliamo il controllo dello stato Bluetooth in ambiente Expo Go
-            return MOCK_BLUETOOTH_STATE;
-        } else {
-            // QUI ANDREBBE LA LOGICA REALE (es. con react-native-ble-plx o simile)
-            /*
-            const state = await bleManager.state();
-            return state === 'PoweredOn';
-            */
-            return true;
-        }
-    }
 
     const toggleRadar = async () => {
         if (!selectedExam) {
@@ -104,32 +152,22 @@ export const StudentRadar: React.FC<StudentRadarProps> = ({ accentColor = '#6366
 
         if (isScanning) {
             setIsScanning(false);
+            setDiscoveredPeers([]);
+            await nearbyService.stopRadar();
         } else {
-            const isBluetoothOn = await checkBluetoothState();
-
-            if (!isBluetoothOn) {
-                Alert.alert(
-                    "Bluetooth Spento",
-                    "Devi accendere il Bluetooth per poter usare il Radar Studenti e trovare i tuoi compagni."
-                );
-                return;
-            }
-
-            if (IS_BLE_ENABLED) {
-                // ESEMPIO DI RICHIESTA PERMESSI REALI (DA ATTIVARE IN BUILD)
-                /*
-                const requestPermissions = async () => {
-                    if (Platform.OS === 'android') {
-                        // Richiedi BLUETOOTH_SCAN, BLUETOOTH_ADVERTISE, ACCESS_FINE_LOCATION
-                    }
-                    setIsScanning(true);
-                };
-                requestPermissions();
-                */
-            } else {
-                setIsScanning(true);
+            setIsScanning(true);
+            const success = await nearbyService.startRadar(selectedExam);
+            if (!success) {
+                setIsScanning(false);
+                // Alert already handled inside service if permissions miss
             }
         }
+    };
+
+    const handleConnectToPeer = (peerId: string) => {
+        nearbyService.connectToPeer(peerId).catch(err => {
+            Alert.alert("Errore", "Impossibile connettersi a questo studente.");
+        });
     };
 
     const baseColor = (accentColor.startsWith('#') && accentColor.length === 7)
@@ -137,8 +175,8 @@ export const StudentRadar: React.FC<StudentRadarProps> = ({ accentColor = '#6366
         : '#6366f1';
 
     const gradientColors: [string, string] = isScanning
-        ? [`${baseColor}1A`, `${baseColor}40`] // Active scanning state (10% to 25% opacity)
-        : [`${baseColor}0D`, `${baseColor}1A`]; // Inactive state (5% to 10% opacity)
+        ? [`${baseColor}1A`, `${baseColor}40`]
+        : [`${baseColor}0D`, `${baseColor}1A`];
 
     const mainColor = baseColor;
 
@@ -150,7 +188,6 @@ export const StudentRadar: React.FC<StudentRadarProps> = ({ accentColor = '#6366
                 end={{ x: 1, y: 1 }}
                 style={[styles.card, { borderColor: isScanning ? `${baseColor}66` : `${baseColor}33` }]}
             >
-                {/* Header (Messo in riga come SmartWeatherCard) */}
                 <View style={styles.headerRow}>
                     <View style={[styles.iconCircle, { backgroundColor: isScanning ? `${baseColor}33` : `${baseColor}1A` }]}>
                         <Ionicons name="radio-outline" size={24} color={mainColor} />
@@ -161,7 +198,6 @@ export const StudentRadar: React.FC<StudentRadarProps> = ({ accentColor = '#6366
                     </View>
                 </View>
 
-                {/* Body Component */}
                 {!isScanning && !matchFound && (
                     <View style={styles.controlsContainer}>
                         <TouchableOpacity
@@ -177,6 +213,7 @@ export const StudentRadar: React.FC<StudentRadarProps> = ({ accentColor = '#6366
                         <TouchableOpacity
                             style={[styles.actionBtn, { backgroundColor: mainColor, opacity: selectedExam ? 1 : 0.6 }]}
                             onPress={toggleRadar}
+                            disabled={!selectedExam}
                         >
                             <Text style={styles.actionBtnText}>Attiva Radar</Text>
                             <Ionicons name="wifi" size={18} color="#ffffff" style={{ marginLeft: 6 }} />
@@ -184,11 +221,9 @@ export const StudentRadar: React.FC<StudentRadarProps> = ({ accentColor = '#6366
                     </View>
                 )}
 
-                {/* Scanning Animation State */}
                 {isScanning && (
                     <View style={styles.scanningContainer}>
                         <View style={styles.radarWrapper}>
-                            {/* Inner Circle */}
                             <Animated.View style={[
                                 styles.radarCircle,
                                 {
@@ -197,7 +232,6 @@ export const StudentRadar: React.FC<StudentRadarProps> = ({ accentColor = '#6366
                                     opacity: pulseAnim.interpolate({ inputRange: [0, 1], outputRange: [0.3, 0] })
                                 }
                             ]} />
-                            {/* Outer Circle (delayed) */}
                             <Animated.View style={[
                                 styles.radarCircle,
                                 {
@@ -211,7 +245,23 @@ export const StudentRadar: React.FC<StudentRadarProps> = ({ accentColor = '#6366
                         </View>
                         <Text style={[styles.scanningText, { color: mainColor }]}>Ricerca compagni per {selectedExam}...</Text>
 
-                        <TouchableOpacity style={styles.cancelBtn} onPress={toggleRadar}>
+                        {discoveredPeers.length > 0 && (
+                            <View style={styles.peersList}>
+                                {discoveredPeers.map(peer => (
+                                    <TouchableOpacity
+                                        key={peer.peerId}
+                                        style={styles.peerItem}
+                                        onPress={() => handleConnectToPeer(peer.peerId)}
+                                    >
+                                        <Ionicons name="person-circle" size={24} color={mainColor} />
+                                        <Text style={styles.peerName}>Studente Trovato!</Text>
+                                        <Text style={styles.peerConnectText}>Connetti</Text>
+                                    </TouchableOpacity>
+                                ))}
+                            </View>
+                        )}
+
+                        <TouchableOpacity style={[styles.cancelBtn, { marginTop: discoveredPeers.length > 0 ? 16 : 0 }]} onPress={toggleRadar}>
                             <Text style={styles.cancelBtnText}>Interrompi</Text>
                         </TouchableOpacity>
                     </View>
@@ -264,9 +314,9 @@ export const StudentRadar: React.FC<StudentRadarProps> = ({ accentColor = '#6366
                                 <View style={[styles.successIconBg, { backgroundColor: matchFound.matchCode.color }]}>
                                     <Text style={{ fontSize: 32 }}>{matchFound.matchCode.emoji}</Text>
                                 </View>
-                                <Text style={styles.matchTitle}>🎉 Match Trovato!</Text>
+                                <Text style={styles.matchTitle}>🎉 Match Connesso!</Text>
                                 <Text style={styles.matchDesc}>
-                                    Uno studente vicino a te sta preparando <Text style={[styles.matchExamHighlight, { color: mainColor }]}>{matchFound.exam}</Text>.
+                                    Sei collegato con uno studente che sta preparando <Text style={[styles.matchExamHighlight, { color: mainColor }]}>{matchFound.exam}</Text>.
                                 </Text>
 
                                 <View style={styles.identificationBox}>
@@ -290,9 +340,12 @@ export const StudentRadar: React.FC<StudentRadarProps> = ({ accentColor = '#6366
 
                                 <TouchableOpacity
                                     style={[styles.cancelBtn, { marginTop: 12 }]}
-                                    onPress={() => setMatchFound(null)}
+                                    onPress={() => {
+                                        nearbyService.disconnectPeer(matchFound.peer.peerId);
+                                        setMatchFound(null);
+                                    }}
                                 >
-                                    <Text style={styles.cancelBtnText}>Chiudi</Text>
+                                    <Text style={styles.cancelBtnText}>Disconnetti</Text>
                                 </TouchableOpacity>
                             </>
                         )}
@@ -304,8 +357,12 @@ export const StudentRadar: React.FC<StudentRadarProps> = ({ accentColor = '#6366
             <Modal visible={isChatOpen} animationType="slide" onRequestClose={() => setIsChatOpen(false)}>
                 {matchFound ? (
                     <BluetoothChatScreen
-                        connectedDevice={{ id: 'mock-device-id', name: matchFound.matchCode.name }}
-                        onDisconnect={() => { setIsChatOpen(false); setMatchFound(null); }}
+                        connectedDevice={{ id: matchFound.peer.peerId, name: matchFound.matchCode.name }}
+                        onDisconnect={() => {
+                            nearbyService.disconnectPeer(matchFound.peer.peerId);
+                            setIsChatOpen(false);
+                            setMatchFound(null);
+                        }}
                         primaryColor={mainColor}
                     />
                 ) : null}
@@ -324,7 +381,6 @@ const styles = StyleSheet.create({
         borderRadius: 16,
         padding: 16,
         borderWidth: 1,
-        // Elevated shadow matching SmartWeatherCard
         shadowColor: '#64748b',
         shadowOffset: { width: 0, height: 3 },
         shadowOpacity: 0.08,
@@ -426,6 +482,37 @@ const styles = StyleSheet.create({
         fontSize: 13,
         fontWeight: '600',
         marginBottom: 16,
+    },
+    peersList: {
+        width: '100%',
+        backgroundColor: 'rgba(255,255,255,0.8)',
+        borderRadius: 12,
+        padding: 8,
+        marginBottom: 16,
+    },
+    peerItem: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: '#ffffff',
+        padding: 12,
+        borderRadius: 8,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.1,
+        shadowRadius: 2,
+        elevation: 1,
+    },
+    peerName: {
+        flex: 1,
+        fontSize: 14,
+        fontWeight: '600',
+        color: '#1e293b',
+        marginLeft: 10,
+    },
+    peerConnectText: {
+        fontSize: 12,
+        fontWeight: '700',
+        color: '#3b82f6',
     },
     cancelBtn: {
         paddingHorizontal: 16,
