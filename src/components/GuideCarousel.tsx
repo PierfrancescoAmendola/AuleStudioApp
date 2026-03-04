@@ -19,7 +19,7 @@ export const GuideCarousel: React.FC<GuideCarouselProps> = ({ isVisible, onClose
                         Puoi filtrare per edificio e cercare per nome.
                     </Text>
                     <Text style={styles.text}>
-                        Sfrutta gli strumenti smart: il banner meteo ti suggerisce se studiare all'aperto o al chiuso, mentre il Radar Studenti ti permette di trovare compagni che preparano il tuo stesso esame!
+                        Sfrutta il banner meteo per sapere subito se conviene studiare all'aperto o al chiuso!
                     </Text>
                     <TouchableOpacity onPress={onClose} style={styles.button}>
                         <Text style={styles.buttonText}>Ho capito</Text>

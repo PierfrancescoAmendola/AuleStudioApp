@@ -63,7 +63,7 @@ const slides: OnboardingSlide[] = [
         id: '6',
         icon: 'hardware-chip-outline',
         title: 'Strumenti Smart',
-        description: 'Meteo in tempo reale per studiare al meglio. Usa il Radar Bluetooth per trovare compagni che preparano il tuo stesso esame!',
+        description: 'Meteo in tempo reale per scegliere sempre il posto migliore dove studiare, al chiuso o all\'aperto.',
         gradient: ['#6366f1', '#4f46e5'],
     },
 ];
