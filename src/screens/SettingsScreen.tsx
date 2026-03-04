@@ -198,7 +198,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ navigation }) =>
         const deviceInfo = `${Device.brand || 'Unknown'} ${Device.modelName || 'Device'}`;
         const osInfo = `${Platform.OS === 'ios' ? 'iOS' : 'Android'} ${Platform.Version}`;
 
-        const email = 'supportunistudyitalia@gmail.com';
+        const email = 'unistudyitalia@gmail.com';
         const subject = encodeURIComponent(`[${selectedCategory}] UniStudy Italia`);
 
         let locDetails = '';
@@ -481,7 +481,7 @@ Puoi:
 • Eliminare tutti i dati locali disinstallando l'app
 
 5. CONTATTI
-Per domande sulla Privacy, contattaci a: supportunistudyitalia@gmail.com`;
+Per domande sulla Privacy, contattaci a: unistudyitalia@gmail.com`;
 
     return (
         <View style={styles.container}>
