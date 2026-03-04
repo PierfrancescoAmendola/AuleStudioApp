@@ -26,6 +26,7 @@ interface Message {
     text: string;
     isSender: boolean;
     timestamp: Date;
+    status?: 'sent' | 'delivered' | 'read';
 }
 
 interface BluetoothChatScreenProps {
@@ -50,13 +51,46 @@ export const BluetoothChatScreen: React.FC<BluetoothChatScreenProps> = ({
         // Setup real listeners for incoming messages and disconnections
         const unsubText = nearbyService.onTextReceived(({ peerId, text }) => {
             if (peerId === connectedDevice.id) {
-                const newMessage: Message = {
-                    id: Date.now().toString() + Math.random().toString(),
-                    text: text,
-                    isSender: false,
-                    timestamp: new Date()
-                };
-                setMessages(prev => [...prev, newMessage]);
+                if (text.startsWith('__CTRL__:')) {
+                    const parts = text.split(':');
+                    if (parts.length >= 3) {
+                        const ctrlType = parts[1];
+                        const msgId = parts.slice(2).join(':');
+
+                        if (ctrlType === 'DELIVERED') {
+                            setMessages(prev => prev.map(m => m.id === msgId && m.status === 'sent' ? { ...m, status: 'delivered' } : m));
+                        } else if (ctrlType === 'READ') {
+                            setMessages(prev => prev.map(m => m.id === msgId && (m.status === 'sent' || m.status === 'delivered') ? { ...m, status: 'read' } : m));
+                        }
+                    }
+                } else {
+                    let finalId = Date.now().toString() + Math.random().toString();
+                    let finalText = text;
+
+                    if (text.startsWith('__MSG__:')) {
+                        const firstColon = text.indexOf(':', 8);
+                        if (firstColon !== -1) {
+                            finalId = text.substring(8, firstColon);
+                            finalText = text.substring(firstColon + 1);
+                        }
+                    }
+
+                    const newMessage: Message = {
+                        id: finalId,
+                        text: finalText,
+                        isSender: false,
+                        timestamp: new Date()
+                    };
+                    setMessages(prev => [...prev, newMessage]);
+
+                    // Send DELIVERED receipt immediately
+                    nearbyService.sendMessage(peerId, `__CTRL__:DELIVERED:${finalId}`).catch(() => { });
+
+                    // Simulate READ receipt after a short delay for the "wow" visual effect
+                    setTimeout(() => {
+                        nearbyService.sendMessage(peerId, `__CTRL__:READ:${finalId}`).catch(() => { });
+                    }, 800);
+                }
             }
         });
 
@@ -74,20 +108,22 @@ export const BluetoothChatScreen: React.FC<BluetoothChatScreenProps> = ({
         const messageToSend = inputText.trim();
 
         // 1. Aggiorno SUBITO la UI locale per una sensazione di reattività (Optimistic UI)
+        const messageId = Date.now().toString();
         const newMessage: Message = {
-            id: Date.now().toString(),
+            id: messageId,
             text: messageToSend,
             isSender: true,
-            timestamp: new Date()
+            timestamp: new Date(),
+            status: 'sent'
         };
 
         setMessages(prev => [...prev, newMessage]);
         setInputText('');
         Keyboard.dismiss();
 
-        // 2. LOGICA REALE INVIO TESTO P2P
+        // 2. LOGICA REALE INVIO TESTO P2P (Formato strutturato)
         try {
-            await nearbyService.sendMessage(connectedDevice.id, messageToSend);
+            await nearbyService.sendMessage(connectedDevice.id, `__MSG__:${messageId}:${messageToSend}`);
         } catch (error) {
             console.error("Errore nell'invio del messaggio P2P", error);
         }
@@ -111,9 +147,19 @@ export const BluetoothChatScreen: React.FC<BluetoothChatScreenProps> = ({
                         {item.text}
                     </Text>
                 </View>
-                <Text style={styles.timestamp}>
-                    {formatTimestamp(item.timestamp)}
-                </Text>
+                <View style={styles.messageMetaContainer}>
+                    <Text style={styles.timestamp}>
+                        {formatTimestamp(item.timestamp)}
+                    </Text>
+                    {isMe && item.status && (
+                        <Ionicons
+                            name={item.status === 'sent' ? 'checkmark' : 'checkmark-done'}
+                            size={16}
+                            color={item.status === 'read' ? '#3b82f6' : '#94a3b8'}
+                            style={styles.ticks}
+                        />
+                    )}
+                </View>
             </View>
         );
     };
@@ -305,8 +351,15 @@ const styles = StyleSheet.create({
     timestamp: {
         fontSize: 11,
         color: '#94a3b8',
+    },
+    messageMetaContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
         marginTop: 4,
         marginHorizontal: 4,
+    },
+    ticks: {
+        marginLeft: 4,
     },
     emptyContainer: {
         alignItems: 'center',

@@ -1,5 +1,6 @@
 import { Platform, PermissionsAndroid, Alert } from 'react-native';
 import * as NearbyConnections from 'expo-nearby-connections';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // Using P2P_STAR strategy for 1-to-N or N-to-N topologies
 // In expo-nearby-connections: 1 = P2P_CLUSTER, 2 = P2P_STAR, 3 = P2P_POINT_TO_POINT
@@ -7,7 +8,45 @@ const STRATEGY = 2; // P2P_STAR
 
 class NearbyService {
     private myPeerId: string | null = null;
-    private listeners: Array<() => void> = [];
+    private mySessionId: string = "uninitialized";
+    private _isAdvertising = false;
+    private _isDiscovering = false;
+
+    /**
+     * Generate a compact 12-char alphanumeric ID.
+     * Short enough to fit inside the 60-char Nearby identifier
+     * while still providing ~62 bits of entropy (no realistic collision risk).
+     */
+    private generateCompactId(): string {
+        const chars = '0123456789abcdefghijklmnopqrstuvwxyz';
+        let result = '';
+        for (let i = 0; i < 12; i++) {
+            result += chars[Math.floor(Math.random() * chars.length)];
+        }
+        return result;
+    }
+
+    async getOrCreateSessionId() {
+        if (this.mySessionId !== "uninitialized") {
+            return this.mySessionId;
+        }
+        try {
+            let id = await AsyncStorage.getItem('@nearby_device_id');
+            // Regenerate if missing or if leftover UUID v4 (too long for 60-char identifier limit)
+            if (!id || id.length > 16) {
+                id = this.generateCompactId();
+                await AsyncStorage.setItem('@nearby_device_id', id);
+            }
+            this.mySessionId = id;
+        } catch (e) {
+            this.mySessionId = this.generateCompactId();
+        }
+        return this.mySessionId;
+    }
+
+    getMySessionId() {
+        return this.mySessionId;
+    }
 
     /**
      * Request necessary permissions for Nearby Connections
@@ -20,7 +59,6 @@ class NearbyService {
 
         if (Platform.OS === 'android') {
             try {
-                // If API level >= 31, we need BLUETOOTH_ADVERTISE, BLUETOOTH_CONNECT, BLUETOOTH_SCAN, etc.
                 if (Platform.Version >= 31) {
                     const granted = await PermissionsAndroid.requestMultiple([
                         PermissionsAndroid.PERMISSIONS.BLUETOOTH_SCAN,
@@ -29,17 +67,14 @@ class NearbyService {
                         PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
                         PermissionsAndroid.PERMISSIONS.ACCESS_COARSE_LOCATION,
                     ]);
-
                     return Object.values(granted).every(
                         (permission) => permission === PermissionsAndroid.RESULTS.GRANTED
                     );
                 } else {
-                    // Lower API levels mainly need Location
                     const granted = await PermissionsAndroid.requestMultiple([
                         PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
                         PermissionsAndroid.PERMISSIONS.ACCESS_COARSE_LOCATION,
                     ]);
-
                     return Object.values(granted).every(
                         (permission) => permission === PermissionsAndroid.RESULTS.GRANTED
                     );
@@ -54,8 +89,8 @@ class NearbyService {
     }
 
     /**
-     * Start the Radar: Both advertises presence and discovers others
-     * @param examName The name of the exam to use as identifier
+     * Start the Radar: Both advertises presence and discovers others.
+     * Does NOT touch listeners -- React useEffect manages their lifecycle.
      */
     async startRadar(examName: string): Promise<boolean> {
         const hasPermissions = await this.requestPermissions();
@@ -67,16 +102,28 @@ class NearbyService {
             return false;
         }
 
+        // Always stop any previous advertising/discovery first so the native
+        // module creates fresh MCPeerID + MCSession objects for this cycle.
+        await this.stopRadar();
+
         try {
-            // Identifier is combined to ensure they find matching exams
-            const identifier = `UniChat_${examName}`;
+            const sessionId = await this.getOrCreateSessionId();
 
-            // Start discovering others
+            // Format: UC|sessionId|examName (Limitato a 60 chars per evitare troncamenti iOS)
+            const identifier = `UC|${sessionId}|${examName}`.substring(0, 60);
+
+            // Start discovering others first, then advertise.
+            // Both now share the same MCPeerID + MCSession in the native module,
+            // so the call order no longer matters for session integrity.
+
+            // 1. Start discovering others
             await NearbyConnections.startDiscovery(identifier, STRATEGY);
+            this._isDiscovering = true;
 
-            // Start advertising ourselves
+            // 2. Start advertising ourselves
             const peerId = await NearbyConnections.startAdvertise(identifier, STRATEGY);
             this.myPeerId = peerId;
+            this._isAdvertising = true;
 
             return true;
         } catch (error) {
@@ -86,16 +133,25 @@ class NearbyService {
     }
 
     /**
-     * Stops everything and cleans up
+     * Stops advertising and discovery. Does NOT disconnect active connections
+     * and does NOT touch event listeners.
      */
     async stopRadar() {
-        try {
-            await NearbyConnections.stopAdvertise();
-            await NearbyConnections.stopDiscovery();
-            this.myPeerId = null;
-            this.clearListeners();
-        } catch (error) {
-            console.error("Error stopping radar:", error);
+        if (this._isAdvertising) {
+            try {
+                await NearbyConnections.stopAdvertise();
+            } catch (e) {
+                console.error("Error stopping advertise:", e);
+            }
+            this._isAdvertising = false;
+        }
+        if (this._isDiscovering) {
+            try {
+                await NearbyConnections.stopDiscovery();
+            } catch (e) {
+                console.error("Error stopping discovery:", e);
+            }
+            this._isDiscovering = false;
         }
     }
 
@@ -103,24 +159,14 @@ class NearbyService {
      * Request connection to a discovered peer
      */
     async connectToPeer(peerId: string) {
-        try {
-            await NearbyConnections.requestConnection(peerId);
-        } catch (error) {
-            console.error("Error requesting connection:", error);
-            throw error;
-        }
+        await NearbyConnections.requestConnection(peerId);
     }
 
     /**
      * Accept an incoming connection request
      */
     async acceptConnection(peerId: string) {
-        try {
-            await NearbyConnections.acceptConnection(peerId);
-        } catch (error) {
-            console.error("Error accepting connection:", error);
-            throw error;
-        }
+        await NearbyConnections.acceptConnection(peerId);
     }
 
     /**
@@ -149,62 +195,33 @@ class NearbyService {
      * Send text message to connected peer
      */
     async sendMessage(peerId: string, text: string) {
-        try {
-            await NearbyConnections.sendText(peerId, text);
-        } catch (error) {
-            console.error("Error sending text:", error);
-            throw error;
-        }
+        await NearbyConnections.sendText(peerId, text);
     }
 
-    // --- EVENT LISTENERS ---
+    // --- Direct native event subscriptions. Caller owns lifecycle (cleanup via unsub). ---
 
-    onPeerFound(callback: (data: { peerId: string; name: string }) => void) {
-        const unsub = NearbyConnections.onPeerFound(callback);
-        this.listeners.push(unsub);
-        return unsub;
+    onPeerFound(cb: (data: { peerId: string; name: string }) => void) {
+        return NearbyConnections.onPeerFound(cb);
     }
 
-    onPeerLost(callback: (data: { peerId: string }) => void) {
-        const unsub = NearbyConnections.onPeerLost(callback);
-        this.listeners.push(unsub);
-        return unsub;
+    onPeerLost(cb: (data: { peerId: string }) => void) {
+        return NearbyConnections.onPeerLost(cb);
     }
 
-    onInvitationReceived(callback: (data: { peerId: string; name: string }) => void) {
-        const unsub = NearbyConnections.onInvitationReceived(callback);
-        this.listeners.push(unsub);
-        return unsub;
+    onInvitationReceived(cb: (data: { peerId: string; name: string }) => void) {
+        return NearbyConnections.onInvitationReceived(cb);
     }
 
-    onConnected(callback: (data: { peerId: string; name: string }) => void) {
-        const unsub = NearbyConnections.onConnected(callback);
-        this.listeners.push(unsub);
-        return unsub;
+    onConnected(cb: (data: { peerId: string; name: string }) => void) {
+        return NearbyConnections.onConnected(cb);
     }
 
-    onDisconnected(callback: (data: { peerId: string }) => void) {
-        const unsub = NearbyConnections.onDisconnected(callback);
-        this.listeners.push(unsub);
-        return unsub;
+    onDisconnected(cb: (data: { peerId: string }) => void) {
+        return NearbyConnections.onDisconnected(cb);
     }
 
-    onTextReceived(callback: (data: { peerId: string; text: string }) => void) {
-        const unsub = NearbyConnections.onTextReceived(callback);
-        this.listeners.push(unsub);
-        return unsub;
-    }
-
-    /**
-     * Clear all active event listeners
-     */
-    private clearListeners() {
-        this.listeners.forEach(unsub => {
-            if (typeof unsub === 'function') {
-                unsub();
-            }
-        });
-        this.listeners = [];
+    onTextReceived(cb: (data: { peerId: string; text: string }) => void) {
+        return NearbyConnections.onTextReceived(cb);
     }
 
     getMyPeerId() {

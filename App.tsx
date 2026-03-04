@@ -21,6 +21,7 @@ import { RoomDetailScreen } from './src/screens/RoomDetailScreen';
 import { SettingsScreen } from './src/screens/SettingsScreen';
 import { DonationScreen } from './src/screens/DonationScreen';
 import { StorageService } from './src/services/storageService';
+import { LoadingScreen } from './src/components/LoadingScreen';
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -58,7 +59,7 @@ export default function App() {
   };
 
   if (isChecking || !fontsLoaded) {
-    return <View style={styles.container} />;
+    return <LoadingScreen />;
   }
 
   return (

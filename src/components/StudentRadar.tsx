@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import {
     View,
     Text,
@@ -9,7 +9,8 @@ import {
     SectionList,
     Vibration,
     Platform,
-    Alert
+    Alert,
+    ActivityIndicator
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -26,40 +27,70 @@ interface Peer {
     name: string;
 }
 
+// Match codes — defined outside the component so they are stable across renders.
+const MATCH_CODES = [
+    { emoji: '🍎', name: 'Mela Rossa', color: '#ef4444' },
+    { emoji: '🍋', name: 'Limone Giallo', color: '#eab308' },
+    { emoji: '🍀', name: 'Trifoglio Verde', color: '#22c55e' },
+    { emoji: '💎', name: 'Diamante Blu', color: '#3b82f6' },
+    { emoji: '🦊', name: 'Volpe Arancione', color: '#f97316' },
+    { emoji: '🍇', name: 'Uva Viola', color: '#a855f7' },
+    { emoji: '🍩', name: 'Ciambella Rosa', color: '#ec4899' },
+    { emoji: '☕️', name: 'Caffè Marrone', color: '#84cc16' }
+];
+
 export const StudentRadar: React.FC<StudentRadarProps> = ({ accentColor = '#6366f1' }) => {
+
+    // ---- UI State (drives renders) ----
+
     const [selectedExam, setSelectedExam] = useState<string | null>(null);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScanning, setIsScanning] = useState(false);
 
-    // Peer management
-    const [discoveredPeers, setDiscoveredPeers] = useState<Peer[]>([]);
-    const [matchFound, setMatchFound] = useState<{ exam: string, peer: Peer, matchCode: { emoji: string, name: string, color: string } } | null>(null);
+    const [connectingPeer, setConnectingPeer] = useState<Peer | null>(null);
+    const [matchFound, setMatchFound] = useState<{
+        exam: string;
+        peer: Peer;
+        matchCode: { emoji: string; name: string; color: string };
+    } | null>(null);
     const [pendingInvitation, setPendingInvitation] = useState<Peer | null>(null);
 
     const [isChatOpen, setIsChatOpen] = useState(false);
+    const [chatStatus, setChatStatus] = useState<'IDLE' | 'WAITING' | 'RECEIVED'>('IDLE');
+    const [timeLeft, setTimeLeft] = useState(0);
 
-    // Animations
     const pulseAnim = useRef(new Animated.Value(0)).current;
 
-    const MATCH_CODES = [
-        { emoji: '🍎', name: 'Mela Rossa', color: '#ef4444' },
-        { emoji: '🍋', name: 'Limone Giallo', color: '#eab308' },
-        { emoji: '🍀', name: 'Trifoglio Verde', color: '#22c55e' },
-        { emoji: '💎', name: 'Diamante Blu', color: '#3b82f6' },
-        { emoji: '🦊', name: 'Volpe Arancione', color: '#f97316' },
-        { emoji: '🍇', name: 'Uva Viola', color: '#a855f7' },
-        { emoji: '🍩', name: 'Ciambella Rosa', color: '#ec4899' },
-        { emoji: '☕️', name: 'Caffè Marrone', color: '#84cc16' }
-    ];
+    // ---- Refs (always-current values for native listeners) ----
 
-    // Setup Nearby Connections Listeners when scanning starts
+    const isScanningRef = useRef(false);
+    const selectedExamRef = useRef<string | null>(null);
+    const matchFoundRef = useRef<typeof matchFound>(null);
+    const isChatOpenRef = useRef(false);
+    const chatStatusRef = useRef<'IDLE' | 'WAITING' | 'RECEIVED'>('IDLE');
+
+    const isDisconnectingRef = useRef(false);
+    const connectingPeerIdRef = useRef<string | null>(null);   // dedup guard
+    const connectedPeerIdRef = useRef<string | null>(null);    // established connection
+    const pendingMatchPeerRef = useRef<Peer | null>(null);     // non-initiator waiting for code
+    const fallbackTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null); // iOS asymmetric discovery fallback
+    const connectTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null); // guard against stuck connecting
+
+    // ---- Keep refs in sync with state ----
+
+    useEffect(() => { isScanningRef.current = isScanning; }, [isScanning]);
+    useEffect(() => { selectedExamRef.current = selectedExam; }, [selectedExam]);
+    useEffect(() => { matchFoundRef.current = matchFound; }, [matchFound]);
+    useEffect(() => { isChatOpenRef.current = isChatOpen; }, [isChatOpen]);
+    useEffect(() => { chatStatusRef.current = chatStatus; }, [chatStatus]);
+
+    // ---- Pulse animation ----
+
     useEffect(() => {
         if (!isScanning) {
             pulseAnim.stopAnimation();
             return;
         }
-
-        // Animated pulse
         pulseAnim.setValue(0);
         Animated.loop(
             Animated.timing(pulseAnim, {
@@ -68,37 +99,243 @@ export const StudentRadar: React.FC<StudentRadarProps> = ({ accentColor = '#6366
                 useNativeDriver: true,
             })
         ).start();
+    }, [isScanning]);
 
-        // Register event listeners
+    // Helper: finalize a match with synchronized code
+    const finishMatch = useCallback((exam: string, peer: Peer, codeIndex: number) => {
+        connectedPeerIdRef.current = peer.peerId;
+        connectingPeerIdRef.current = null;
+        pendingMatchPeerRef.current = null;
+
+        setIsScanning(false);
+        setConnectingPeer(null);
+        setChatStatus('IDLE');
+        setTimeLeft(0);
+        setMatchFound({ exam, peer, matchCode: MATCH_CODES[codeIndex] || MATCH_CODES[0] });
+        Vibration.vibrate([0, 500, 200, 500]);
+
+        // NOTE: We intentionally do NOT call stopRadar() here.
+        // On iOS, stopping advertise/discovery can tear down the underlying
+        // Multipeer session and fire a spurious onDisconnected event, causing
+        // an infinite connect-disconnect loop. Advertise/discovery will be
+        // stopped lazily when the user disconnects or toggles the radar off.
+    }, []);
+
+    // ---- SINGLE listener registration on mount ----
+    //
+    // All 6 native event listeners are registered ONCE. They read mutable state
+    // exclusively through refs, so there are no stale-closure issues and no need
+    // to re-subscribe when React state changes.
+
+    useEffect(() => {
+
+        // -- onPeerFound --
         const unsubFound = nearbyService.onPeerFound((peer) => {
-            // Check if the peer's name matches our exam
-            if (peer.name === `UniChat_${selectedExam}`) {
-                setDiscoveredPeers(prev => {
-                    if (prev.find(p => p.peerId === peer.peerId)) return prev;
-                    return [...prev, peer];
+            if (!isScanningRef.current) return;
+            // Already connecting/connected to someone? Skip.
+            if (connectedPeerIdRef.current || connectingPeerIdRef.current) return;
+
+            const parts = peer.name.split('|');
+            if (parts.length < 3 || parts[0] !== 'UC') return;
+
+            const peerSessionId = parts[1];
+            const peerExam = parts.slice(2).join('|');
+            const mySessionId = nearbyService.getMySessionId();
+
+            if (peerSessionId === mySessionId) return;
+            if (!selectedExamRef.current || !peerExam.startsWith(selectedExamRef.current)) return;
+
+            setConnectingPeer(prev => prev || peer);
+
+            // Helper: attempt connection with timeout guard
+            const doConnect = (targetPeerId: string) => {
+                connectingPeerIdRef.current = targetPeerId;
+                // Start a 10s timeout: if onConnected hasn't fired by then, reset so we can retry
+                if (connectTimeoutRef.current) clearTimeout(connectTimeoutRef.current);
+                connectTimeoutRef.current = setTimeout(() => {
+                    if (connectingPeerIdRef.current === targetPeerId && !connectedPeerIdRef.current) {
+                        console.log('[Radar] Connect timeout, resetting...');
+                        connectingPeerIdRef.current = null;
+                        setConnectingPeer(null);
+                    }
+                }, 10000);
+                nearbyService.connectToPeer(targetPeerId).catch(() => {
+                    connectingPeerIdRef.current = null;
+                    if (connectTimeoutRef.current) { clearTimeout(connectTimeoutRef.current); connectTimeoutRef.current = null; }
                 });
+            };
+
+            // Tie-breaker: the peer with the higher sessionId initiates first
+            if (mySessionId > peerSessionId) {
+                doConnect(peer.peerId);
+            } else {
+                // iOS Multipeer discovery can be asymmetric: the other peer may
+                // never discover us. Set a fallback timer: if after 5 seconds we
+                // haven't received a connection, connect ourselves.
+                if (fallbackTimerRef.current) clearTimeout(fallbackTimerRef.current);
+                fallbackTimerRef.current = setTimeout(() => {
+                    fallbackTimerRef.current = null;
+                    if (!connectedPeerIdRef.current && !connectingPeerIdRef.current && isScanningRef.current) {
+                        console.log('[Radar] Fallback: peer never connected to us, trying ourselves...');
+                        setConnectingPeer(prev => prev || peer);
+                        doConnect(peer.peerId);
+                    }
+                }, 5000);
             }
         });
 
+        // -- onPeerLost --
         const unsubLost = nearbyService.onPeerLost((peer) => {
-            setDiscoveredPeers(prev => prev.filter(p => p.peerId !== peer.peerId));
+            if (connectingPeerIdRef.current === peer.peerId) {
+                connectingPeerIdRef.current = null;
+            }
+            setConnectingPeer(prev => prev?.peerId === peer.peerId ? null : prev);
         });
 
+        // -- onInvitationReceived --
         const unsubInvite = nearbyService.onInvitationReceived((peer) => {
-            setPendingInvitation(peer);
+            if (connectedPeerIdRef.current) return; // already matched
+            setConnectingPeer(peer);
+            connectingPeerIdRef.current = peer.peerId;
+            nearbyService.acceptConnection(peer.peerId).catch(() => {
+                connectingPeerIdRef.current = null;
+            });
         });
 
+        // -- onConnected --
         const unsubConnected = nearbyService.onConnected((peer) => {
+            // Guard: ignore if we already finalized a connection
+            if (connectedPeerIdRef.current) return;
+
+            // Cancel any pending timers
+            if (fallbackTimerRef.current) { clearTimeout(fallbackTimerRef.current); fallbackTimerRef.current = null; }
+            if (connectTimeoutRef.current) { clearTimeout(connectTimeoutRef.current); connectTimeoutRef.current = null; }
+
+            connectedPeerIdRef.current = peer.peerId;
+            connectingPeerIdRef.current = null;
+            setConnectingPeer(null);
             setIsScanning(false);
-            setPendingInvitation(null);
-            handleMatchFound(selectedExam!, peer);
+
+            // -- Match-code synchronization --
+            const parts = peer.name.split('|');
+            const peerSessionId = parts.length >= 2 ? parts[1] : '';
+            const mySessionId = nearbyService.getMySessionId();
+            const exam = selectedExamRef.current!;
+
+            if (mySessionId > peerSessionId) {
+                // Initiator: pick a random code and send it to the peer.
+                // Send multiple times with increasing delays to ensure delivery,
+                // because the remote side may not have its onTextReceived
+                // listener fully wired up yet.
+                const codeIndex = Math.floor(Math.random() * MATCH_CODES.length);
+                const msg = `__CTRL__:MATCH_CODE:${codeIndex}`;
+                const delays = [400, 1200, 2500];
+                delays.forEach(delay => {
+                    setTimeout(() => {
+                        if (connectedPeerIdRef.current === peer.peerId && !matchFoundRef.current) {
+                            nearbyService.sendMessage(peer.peerId, msg).catch(() => {});
+                        }
+                    }, delay);
+                });
+                finishMatch(exam, peer, codeIndex);
+            } else {
+                // Non-initiator: wait for the match code via onTextReceived
+                pendingMatchPeerRef.current = peer;
+            }
         });
 
+        // -- onDisconnected --
         const unsubDisconnected = nearbyService.onDisconnected((peer) => {
-            if (matchFound?.peer.peerId === peer.peerId) {
-                setIsChatOpen(false);
-                setMatchFound(null);
-                Alert.alert("Disconnesso", "L'altro studente si è disconnesso.");
+            const wasConnected  = connectedPeerIdRef.current === peer.peerId;
+            const wasConnecting = connectingPeerIdRef.current === peer.peerId;
+            const wasPending    = pendingMatchPeerRef.current?.peerId === peer.peerId;
+
+            // Ignore disconnect events for peers we don't care about
+            if (!wasConnected && !wasConnecting && !wasPending) return;
+
+            // Clean up all internal refs
+            connectedPeerIdRef.current = null;
+            connectingPeerIdRef.current = null;
+            pendingMatchPeerRef.current = null;
+            if (fallbackTimerRef.current) { clearTimeout(fallbackTimerRef.current); fallbackTimerRef.current = null; }
+            if (connectTimeoutRef.current) { clearTimeout(connectTimeoutRef.current); connectTimeoutRef.current = null; }
+
+            // Clean up UI state
+            setIsChatOpen(false);
+            setMatchFound(null);
+            setChatStatus('IDLE');
+            setConnectingPeer(null);
+
+            // Only show alert + auto-restart if we had a real connection
+            // AND the user did not intentionally disconnect.
+            if ((wasConnected || wasConnecting) && !isDisconnectingRef.current) {
+                if (wasConnected) {
+                    Alert.alert(
+                        "Connessione persa",
+                        "L'utente ha abbandonato la sessione o si è disconnesso."
+                    );
+                }
+                const exam = selectedExamRef.current;
+                if (exam) {
+                    // Delay restart to prevent rapid connect-disconnect loops
+                    setTimeout(() => {
+                        if (!connectedPeerIdRef.current && !connectingPeerIdRef.current) {
+                            setIsScanning(true);
+                            nearbyService.startRadar(exam).catch(() => {
+                                setIsScanning(false);
+                            });
+                        }
+                    }, 2000);
+                }
+            }
+            isDisconnectingRef.current = false;
+        });
+
+        // -- onTextReceived (handles both match-code sync AND chat control) --
+        const unsubText = nearbyService.onTextReceived(({ peerId, text }) => {
+
+            // 1) Match code for non-initiator
+            if (text.startsWith('__CTRL__:MATCH_CODE:')) {
+                // Already matched? Ignore duplicate deliveries.
+                if (matchFoundRef.current) return;
+
+                const pendingPeer = pendingMatchPeerRef.current;
+                // Accept the code if it comes from the pending peer OR from our
+                // connected peer (covers race where onConnected and onTextReceived
+                // arrive with slightly different peerId hashes).
+                const expectedPeerId = pendingPeer?.peerId || connectedPeerIdRef.current;
+                if (!expectedPeerId || peerId !== expectedPeerId) return;
+
+                const codeIndex = parseInt(text.split(':')[2], 10);
+                const exam = selectedExamRef.current!;
+                const peer = pendingPeer || { peerId, name: '' };
+                pendingMatchPeerRef.current = null;
+                finishMatch(
+                    exam,
+                    peer,
+                    (!isNaN(codeIndex) && codeIndex >= 0 && codeIndex < MATCH_CODES.length) ? codeIndex : 0
+                );
+                return;
+            }
+
+            // 2) Chat control messages
+            const match = matchFoundRef.current;
+            if (!match || isChatOpenRef.current || peerId !== match.peer.peerId) return;
+
+            if (text === '__CTRL__:CHAT_REQ') {
+                setChatStatus('RECEIVED');
+                Vibration.vibrate([0, 300, 100, 300]);
+            } else if (text === '__CTRL__:CHAT_ACC') {
+                setChatStatus('IDLE');
+                setIsChatOpen(true);
+            } else if (text === '__CTRL__:CHAT_REJ') {
+                const st = chatStatusRef.current;
+                if (st === 'WAITING') {
+                    setChatStatus('IDLE');
+                    Alert.alert("Richiesta rifiutata", "L'utente ha preferito non avviare la chat ora.");
+                } else if (st === 'RECEIVED') {
+                    setChatStatus('IDLE');
+                }
             }
         });
 
@@ -108,64 +345,102 @@ export const StudentRadar: React.FC<StudentRadarProps> = ({ accentColor = '#6366
             unsubInvite();
             unsubConnected();
             unsubDisconnected();
+            unsubText();
+            if (fallbackTimerRef.current) { clearTimeout(fallbackTimerRef.current); fallbackTimerRef.current = null; }
+            if (connectTimeoutRef.current) { clearTimeout(connectTimeoutRef.current); connectTimeoutRef.current = null; }
         };
-    }, [isScanning, selectedExam, matchFound]);
+    }, [finishMatch]);
 
-    // Handle incoming invitations
+    // ---- Chat request timer ----
+
     useEffect(() => {
-        if (pendingInvitation) {
-            Alert.alert(
-                "Richiesta di Chat",
-                "Uno studente vicino vuole chattare con te per questo esame!",
-                [
-                    {
-                        text: "Rifiuta",
-                        style: "cancel",
-                        onPress: () => {
-                            nearbyService.rejectConnection(pendingInvitation.peerId);
-                            setPendingInvitation(null);
-                        }
-                    },
-                    {
-                        text: "Accetta",
-                        onPress: () => {
-                            nearbyService.acceptConnection(pendingInvitation.peerId);
-                        }
-                    }
-                ]
-            );
+        if (chatStatus === 'WAITING' && timeLeft > 0) {
+            const timer = setTimeout(() => setTimeLeft(prev => prev - 1), 1000);
+            return () => clearTimeout(timer);
+        } else if (chatStatus === 'WAITING' && timeLeft === 0) {
+            setChatStatus('IDLE');
+            // Notify the remote peer that the request has expired
+            const m = matchFoundRef.current;
+            if (m?.peer.peerId) {
+                nearbyService.sendMessage(m.peer.peerId, '__CTRL__:CHAT_REJ').catch(() => {});
+            }
         }
-    }, [pendingInvitation]);
+    }, [chatStatus, timeLeft]);
 
-    const handleMatchFound = (exam: string, peer: Peer) => {
-        setIsScanning(false);
-        const randomCode = MATCH_CODES[Math.floor(Math.random() * MATCH_CODES.length)];
-        setMatchFound({ exam, peer, matchCode: randomCode });
-        Vibration.vibrate([0, 500, 200, 500]);
-    };
+    // ---- Action handlers ----
 
-    const toggleRadar = async () => {
-        if (!selectedExam) {
+    const handleManualDisconnect = useCallback(() => {
+        isDisconnectingRef.current = true;
+        if (fallbackTimerRef.current) { clearTimeout(fallbackTimerRef.current); fallbackTimerRef.current = null; }
+        if (connectTimeoutRef.current) { clearTimeout(connectTimeoutRef.current); connectTimeoutRef.current = null; }
+        const pid = connectedPeerIdRef.current || connectingPeerIdRef.current || pendingMatchPeerRef.current?.peerId;
+        if (pid) {
+            nearbyService.disconnectPeer(pid).catch(() => {});
+        }
+        connectedPeerIdRef.current = null;
+        connectingPeerIdRef.current = null;
+        pendingMatchPeerRef.current = null;
+        setMatchFound(null);
+        setChatStatus('IDLE');
+        setConnectingPeer(null);
+        setIsChatOpen(false);
+        nearbyService.stopRadar().catch(() => {});
+    }, []);
+
+    const handleSendChatRequest = useCallback(() => {
+        const m = matchFoundRef.current;
+        if (!m) return;
+        nearbyService.sendMessage(m.peer.peerId, '__CTRL__:CHAT_REQ').catch((err) => {
+            console.error("Error sending chat request", err);
+        });
+        setChatStatus('WAITING');
+        setTimeLeft(30);
+    }, []);
+
+    const handleAcceptChat = useCallback(() => {
+        const m = matchFoundRef.current;
+        if (!m) return;
+        nearbyService.sendMessage(m.peer.peerId, '__CTRL__:CHAT_ACC').catch(() => {});
+        setChatStatus('IDLE');
+        setIsChatOpen(true);
+    }, []);
+
+    const handleRejectChat = useCallback(() => {
+        const m = matchFoundRef.current;
+        if (!m) return;
+        nearbyService.sendMessage(m.peer.peerId, '__CTRL__:CHAT_REJ').catch(() => {});
+        setChatStatus('IDLE');
+    }, []);
+
+    const toggleRadar = useCallback(async () => {
+        if (!selectedExamRef.current) {
             Alert.alert("Seleziona un esame", "Devi indicare quale esame stai preparando prima di attivare il radar.");
             return;
         }
 
-        if (isScanning) {
+        if (isScanningRef.current) {
             setIsScanning(false);
-            setDiscoveredPeers([]);
+            setConnectingPeer(null);
+            connectingPeerIdRef.current = null;
+            if (fallbackTimerRef.current) { clearTimeout(fallbackTimerRef.current); fallbackTimerRef.current = null; }
+            if (connectTimeoutRef.current) { clearTimeout(connectTimeoutRef.current); connectTimeoutRef.current = null; }
             await nearbyService.stopRadar();
         } else {
+            // Reset all connection refs before starting fresh
+            connectingPeerIdRef.current = null;
+            connectedPeerIdRef.current = null;
+            pendingMatchPeerRef.current = null;
             setIsScanning(true);
-            const success = await nearbyService.startRadar(selectedExam);
+            setConnectingPeer(null);
+            const success = await nearbyService.startRadar(selectedExamRef.current);
             if (!success) {
                 setIsScanning(false);
-                // Alert already handled inside service if permissions miss
             }
         }
-    };
+    }, []);
 
     const handleConnectToPeer = (peerId: string) => {
-        nearbyService.connectToPeer(peerId).catch(err => {
+        nearbyService.connectToPeer(peerId).catch(() => {
             Alert.alert("Errore", "Impossibile connettersi a questo studente.");
         });
     };
@@ -243,25 +518,11 @@ export const StudentRadar: React.FC<StudentRadarProps> = ({ accentColor = '#6366
 
                             <Ionicons name="bluetooth" size={32} color={mainColor} style={{ zIndex: 10 }} />
                         </View>
-                        <Text style={[styles.scanningText, { color: mainColor }]}>Ricerca compagni per {selectedExam}...</Text>
+                        <Text style={[styles.scanningText, { color: mainColor, textAlign: 'center', paddingHorizontal: 20 }]}>
+                            {connectingPeer ? "Studente trovato! Connessione in corso..." : `Ricerca compagni per ${selectedExam}...`}
+                        </Text>
 
-                        {discoveredPeers.length > 0 && (
-                            <View style={styles.peersList}>
-                                {discoveredPeers.map(peer => (
-                                    <TouchableOpacity
-                                        key={peer.peerId}
-                                        style={styles.peerItem}
-                                        onPress={() => handleConnectToPeer(peer.peerId)}
-                                    >
-                                        <Ionicons name="person-circle" size={24} color={mainColor} />
-                                        <Text style={styles.peerName}>Studente Trovato!</Text>
-                                        <Text style={styles.peerConnectText}>Connetti</Text>
-                                    </TouchableOpacity>
-                                ))}
-                            </View>
-                        )}
-
-                        <TouchableOpacity style={[styles.cancelBtn, { marginTop: discoveredPeers.length > 0 ? 16 : 0 }]} onPress={toggleRadar}>
+                        <TouchableOpacity style={[styles.cancelBtn, { marginTop: 16 }]} onPress={toggleRadar}>
                             <Text style={styles.cancelBtnText}>Interrompi</Text>
                         </TouchableOpacity>
                     </View>
@@ -330,20 +591,54 @@ export const StudentRadar: React.FC<StudentRadarProps> = ({ accentColor = '#6366
                                     <Text style={styles.identificationHint}>Alza lo sguardo e tieni il telefono visibile, oppure cerca chi ha questo simbolo sullo schermo!</Text>
                                 </View>
 
-                                <TouchableOpacity
-                                    style={[styles.actionBtn, { backgroundColor: mainColor, width: '100%', marginTop: 20 }]}
-                                    onPress={() => setIsChatOpen(true)}
-                                >
-                                    <Text style={styles.actionBtnText}>Avvia Chat Offline</Text>
-                                    <Ionicons name="chatbubbles" size={18} color="#ffffff" style={{ marginLeft: 8 }} />
-                                </TouchableOpacity>
+                                {chatStatus === 'IDLE' && (
+                                    <TouchableOpacity
+                                        style={[styles.actionBtn, { backgroundColor: mainColor, width: '100%', marginTop: 20 }]}
+                                        onPress={handleSendChatRequest}
+                                    >
+                                        <Text style={styles.actionBtnText}>Richiedi Chat Offline</Text>
+                                        <Ionicons name="chatbubbles" size={18} color="#ffffff" style={{ marginLeft: 8 }} />
+                                    </TouchableOpacity>
+                                )}
+
+                                {chatStatus === 'WAITING' && (
+                                    <TouchableOpacity
+                                        style={[styles.actionBtn, { backgroundColor: '#94a3b8', width: '100%', marginTop: 20 }]}
+                                        disabled
+                                    >
+                                        <Text style={styles.actionBtnText}>In attesa... ({timeLeft}s)</Text>
+                                        <ActivityIndicator size="small" color="#ffffff" style={{ marginLeft: 8 }} />
+                                    </TouchableOpacity>
+                                )}
+
+                                {chatStatus === 'RECEIVED' && (
+                                    <View style={{ width: '100%', marginTop: 20 }}>
+                                        <Text style={{ fontSize: 13, fontWeight: '700', color: '#1e293b', textAlign: 'center', marginBottom: 12 }}>
+                                            L'utente vuole avviare una chat con te!
+                                        </Text>
+                                        <View style={{ flexDirection: 'row', width: '100%', gap: 10 }}>
+                                            <TouchableOpacity
+                                                style={[styles.actionBtn, { backgroundColor: '#ef4444', flex: 1 }]}
+                                                onPress={handleRejectChat}
+                                            >
+                                                <Text style={styles.actionBtnText}>Rifiuta</Text>
+                                                <Ionicons name="close" size={18} color="#ffffff" style={{ marginLeft: 4 }} />
+                                            </TouchableOpacity>
+
+                                            <TouchableOpacity
+                                                style={[styles.actionBtn, { backgroundColor: '#10b981', flex: 1 }]}
+                                                onPress={handleAcceptChat}
+                                            >
+                                                <Text style={styles.actionBtnText}>Accetta</Text>
+                                                <Ionicons name="checkmark" size={18} color="#ffffff" style={{ marginLeft: 4 }} />
+                                            </TouchableOpacity>
+                                        </View>
+                                    </View>
+                                )}
 
                                 <TouchableOpacity
                                     style={[styles.cancelBtn, { marginTop: 12 }]}
-                                    onPress={() => {
-                                        nearbyService.disconnectPeer(matchFound.peer.peerId);
-                                        setMatchFound(null);
-                                    }}
+                                    onPress={handleManualDisconnect}
                                 >
                                     <Text style={styles.cancelBtnText}>Disconnetti</Text>
                                 </TouchableOpacity>
@@ -358,11 +653,7 @@ export const StudentRadar: React.FC<StudentRadarProps> = ({ accentColor = '#6366
                 {matchFound ? (
                     <BluetoothChatScreen
                         connectedDevice={{ id: matchFound.peer.peerId, name: matchFound.matchCode.name }}
-                        onDisconnect={() => {
-                            nearbyService.disconnectPeer(matchFound.peer.peerId);
-                            setIsChatOpen(false);
-                            setMatchFound(null);
-                        }}
+                        onDisconnect={handleManualDisconnect}
                         primaryColor={mainColor}
                     />
                 ) : null}
@@ -482,37 +773,6 @@ const styles = StyleSheet.create({
         fontSize: 13,
         fontWeight: '600',
         marginBottom: 16,
-    },
-    peersList: {
-        width: '100%',
-        backgroundColor: 'rgba(255,255,255,0.8)',
-        borderRadius: 12,
-        padding: 8,
-        marginBottom: 16,
-    },
-    peerItem: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        backgroundColor: '#ffffff',
-        padding: 12,
-        borderRadius: 8,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 0.1,
-        shadowRadius: 2,
-        elevation: 1,
-    },
-    peerName: {
-        flex: 1,
-        fontSize: 14,
-        fontWeight: '600',
-        color: '#1e293b',
-        marginLeft: 10,
-    },
-    peerConnectText: {
-        fontSize: 12,
-        fontWeight: '700',
-        color: '#3b82f6',
     },
     cancelBtn: {
         paddingHorizontal: 16,
