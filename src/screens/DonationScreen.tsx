@@ -11,7 +11,6 @@ import {
     TouchableWithoutFeedback,
     Keyboard,
     Alert,
-    ActivityIndicator,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -24,26 +23,11 @@ interface DonationScreenProps {
 
 export const DonationScreen: React.FC<DonationScreenProps> = ({ navigation }) => {
     const [amount, setAmount] = useState('');
-    const [loading, setLoading] = useState(false);
+    // const [loading, setLoading] = useState(false);
 
+    // handlePay temporarily disabled — awaiting real IAP integration
     const handlePay = () => {
-        const numAmount = parseFloat(amount.replace(',', '.'));
-
-        if (isNaN(numAmount) || numAmount < 1) {
-            Alert.alert('Attenzione', 'Inserisci un importo di almeno 1,00 € per procedere.');
-            return;
-        }
-
-        setLoading(true);
-        // Simulate payment process
-        setTimeout(() => {
-            setLoading(false);
-            Alert.alert(
-                'Grazie di cuore!',
-                'La tua donazione è preziosa per il futuro di UniStudy Italia.',
-                [{ text: 'Torna alle Impostazioni', onPress: () => navigation.goBack() }]
-            );
-        }, 2000);
+        Alert.alert('Prossimamente', 'La funzionalità di donazione sarà disponibile a breve.');
     };
 
     return (
@@ -114,6 +98,7 @@ export const DonationScreen: React.FC<DonationScreenProps> = ({ navigation }) =>
                             <Text style={styles.amountShortcut}>L'importo minimo è 1,00 €</Text>
                         </View>
 
+                        {/* Payment button temporarily disabled — awaiting real IAP integration
                         <TouchableOpacity
                             style={[styles.payButton, loading && styles.payButtonDisabled]}
                             onPress={handlePay}
@@ -137,6 +122,7 @@ export const DonationScreen: React.FC<DonationScreenProps> = ({ navigation }) =>
                         <Text style={styles.secureText}>
                             <Ionicons name="shield-checkmark" size={12} color="#94a3b8" /> Pagamento sicuro e crittografato
                         </Text>
+                        */}
                     </View>
                 </ScrollView>
             </TouchableWithoutFeedback>

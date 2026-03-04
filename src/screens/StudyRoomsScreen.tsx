@@ -1586,7 +1586,7 @@ export const StudyRoomsScreen: React.FC<StudyRoomsScreenProps> = ({ navigation }
                             setSelectedBuilding(filter === 'Outdoor' ? '☀️ All\'Aperto' : '🏠 Al Coperto');
                         }}
                     />
-                    <StudentRadar accentColor={university.color} />
+                    {/* <StudentRadar accentColor={university.color} /> */}
                 </>
             )}
 

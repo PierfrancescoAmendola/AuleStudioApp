@@ -611,6 +611,7 @@ Per domande sulla Privacy, contattaci a: support@unistudyitalia.app`;
                             subtitle="Valutaci sullo Store"
                             onPress={handleReview}
                         />
+                        {/* Donation temporarily disabled
                         <View style={styles.divider} />
                         <SettingItem
                             icon="heart-outline"
@@ -620,6 +621,7 @@ Per domande sulla Privacy, contattaci a: support@unistudyitalia.app`;
                             subtitle="Fai una piccola donazione"
                             onPress={() => navigation.navigate('Donation')}
                         />
+                        */}
                     </View>
                 </View>
 
