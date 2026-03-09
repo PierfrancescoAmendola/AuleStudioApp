@@ -4,16 +4,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="0; url=support.html">
-    <title>UniStudy Italia</title>
+    <title>UniStudy Italia 🎓 — Trova il tuo posto ideale per studiare</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <div class="container" style="text-align: center; margin-top: 100px;">
-        <h1>UniStudy Italia</h1>
-        <p>Ti stiamo reindirizzando alla pagina di supporto...</p>
-        <p>Se non accade nulla, <a href="support.html">clicca qui</a>.</p>
+    <div class="container">
+        <header class="hero">
+            <div class="badge">Disponibile su iOS e Android</div>
+            <h1>UniStudy Italia 🎓🇮🇹</h1>
+            <p class="hero-subtitle">L'applicazione definitiva per gli studenti universitari italiani. Trova il silenzio, i servizi e l'ispirazione di cui hai bisogno.</p>
+            <div class="hero-btns">
+                <a href="#features" class="cta-button primary">Scopri di più</a>
+                <a href="support.html" class="cta-button secondary">Supporto</a>
+            </div>
+        </header>
+
+        <main>
+            <section id="features">
+                <h2>🌟 Funzionalità Principali</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>🏫 Multi-Ateneo</h3>
+                        <p>Supporto per oltre 100 atenei: PoliMi, La Sapienza, Federico II, UniTO, UniBa e molti altri, inclusi Conservatori e Accademie (AFAM).</p>
+                    </div>
+                    <div class="card">
+                        <h3>🔍 Filtri Intelligenti</h3>
+                        <p>Filtra per Regione, Edificio o Polo Universitario. Trova subito le aule aperte o quelle all'aperto grazie alla SmartWeather integration.</p>
+                    </div>
+                    <div class="card">
+                        <h3>📍 Navigazione</h3>
+                        <p>Calcolo della distanza in tempo reale e indicazioni precise (Bus, Metro, Piedi) integrate con le tue mappe native.</p>
+                    </div>
+                    <div class="card">
+                        <h3>🎨 Theming Dinamico</h3>
+                        <p>L'app cambia colore istantaneamente in base alla tua università. Un'esperienza personalizzata e identitaria.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="tech-stack">
+                <h2>🛠 Stack Tecnologico</h2>
+                <p>UniStudy è costruita con tecnologie all'avanguardia per garantire stabilità e fluidità a 60 FPS:</p>
+                <div class="tech-grid">
+                    <div class="tech-tag">React Native</div>
+                    <div class="tech-tag">Expo SDK</div>
+                    <div class="tech-tag">TypeScript</div>
+                    <div class="tech-tag">React Navigation</div>
+                    <div class="tech-tag">Native Maps</div>
+                    <div class="tech-tag">AsyncStorage</div>
+                </div>
+            </section>
+
+            <section id="testing">
+                <h2>🧪 Qualità e Testing</h2>
+                <p>La stabilità è la nostra priorità. Utilizziamo un approccio di testing rigoroso per garantire un'esperienza impeccabile su ogni dispositivo:</p>
+                <div class="testing-content">
+                    <div class="test-item">
+                        <strong>✅ Unit & Component Testing</strong>
+                        <p>Test automatici con Jest per validare logiche di calcolo orari e filtri complessi.</p>
+                    </div>
+                    <div class="test-item">
+                        <strong>🤖 Android QA Specifico</strong>
+                        <p>Gestione avanzata del rendering nativo per evitare "Ghost Pins" nelle mappe e bug grafici tipici del motore Android.</p>
+                    </div>
+                    <div class="test-item">
+                        <strong>🛡 Error Handling</strong>
+                        <p>Flussi di fallback eleganti per la gestione dei permessi GPS e della connettività offline.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contribute">
+                <h2>🤝 Contribuisci al Progetto</h2>
+                <p>UniStudy è un progetto "da studenti per studenti". Vuoi aggiungere la tua università o migliorare una descrizione?</p>
+                <a href="https://github.com" class="cta-button primary">Vai su GitHub</a>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 UniStudy Italia — Sviluppato con ❤️ in Italia</p>
+            <div class="footer-links">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="support.html">Supporto</a>
+            </div>
+        </footer>
     </div>
 </body>
 
