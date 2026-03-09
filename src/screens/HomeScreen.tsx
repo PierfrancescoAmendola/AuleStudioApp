@@ -5,7 +5,6 @@ import {
     StyleSheet,
     FlatList,
     TouchableOpacity,
-    SafeAreaView,
     TextInput,
     StatusBar,
     Animated,
@@ -13,7 +12,9 @@ import {
     ScrollView,
     Keyboard,
     Pressable,
+    Platform,
 } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -33,6 +34,7 @@ interface Props {
 const { width } = Dimensions.get('window');
 
 export const HomeScreen: React.FC<Props> = ({ navigation }) => {
+    const insets = useSafeAreaInsets();
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedRegion, setSelectedRegion] = useState('Tutti');
     const [scaleAnims] = useState(() => universities.map(() => new Animated.Value(1)));
@@ -191,7 +193,7 @@ export const HomeScreen: React.FC<Props> = ({ navigation }) => {
                 colors={['#10b981', '#059669']}
                 style={styles.headerBackground}
             >
-                <SafeAreaView style={styles.safeArea}>
+                <View style={[styles.safeArea, { paddingTop: Platform.OS === 'android' ? Math.max(insets.top, StatusBar.currentHeight || 0) + 20 : Math.max(insets.top, 20) }]}>
                     <View style={styles.headerContent}>
                         <View style={styles.headerTextContainer}>
                             <Text style={styles.greeting}>Benvenuto in</Text>
@@ -226,7 +228,7 @@ export const HomeScreen: React.FC<Props> = ({ navigation }) => {
                             </TouchableOpacity>
                         )}
                     </View>
-                </SafeAreaView>
+                </View>
             </LinearGradient>
 
             <View style={styles.listContainer}>

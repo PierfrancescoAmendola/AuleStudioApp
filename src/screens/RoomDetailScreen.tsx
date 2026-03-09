@@ -2554,16 +2554,50 @@ export const RoomDetailScreen = ({ route, navigation }: any) => {
                     )}
                 </View>
 
-                <View style={[styles.infoBox, { backgroundColor: lightBackgroundColor, borderColor: borderColor }]}>
+                <View style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    backgroundColor: lightBackgroundColor,
+                    padding: 16,
+                    borderRadius: 16,
+                    marginTop: 14,
+                    marginBottom: 6,
+                    borderWidth: 1,
+                    borderColor: borderColor,
+                }}>
                     <Ionicons name="information-circle-outline" size={24} color={darkColor} />
-                    <Text style={[styles.infoBoxText, { color: darkColor }]}>
+                    <Text style={{
+                        flex: 1,
+                        marginLeft: 12,
+                        fontSize: 13,
+                        color: darkColor,
+                        lineHeight: 19,
+                        fontWeight: '500',
+                    }}>
                         Gli orari dei mezzi pubblici potrebbero variare. Controlla sempre le app ufficiali dei trasporti.
                     </Text>
                 </View>
 
-                <View style={[styles.infoBox, { backgroundColor: '#eff6ff', borderColor: '#bfdbfe', marginTop: 16 }]}>
+                <View style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    backgroundColor: '#eff6ff',
+                    padding: 16,
+                    borderRadius: 16,
+                    marginTop: 16,
+                    marginBottom: 6,
+                    borderWidth: 1,
+                    borderColor: '#bfdbfe',
+                }}>
                     <Ionicons name="cloud-offline-outline" size={24} color="#3b82f6" />
-                    <Text style={[styles.infoBoxText, { color: '#2563eb' }]}>
+                    <Text style={{
+                        flex: 1,
+                        marginLeft: 12,
+                        fontSize: 13,
+                        color: '#2563eb',
+                        lineHeight: 19,
+                        fontWeight: '500',
+                    }}>
                         Queste indicazioni sono disponibili anche offline.
                     </Text>
                 </View>
@@ -2701,5 +2735,6 @@ const styles = StyleSheet.create({
         color: '#047857',
         lineHeight: 19,
         fontWeight: '500',
+        backgroundColor: 'transparent',
     },
 });

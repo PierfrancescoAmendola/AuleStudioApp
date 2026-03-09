@@ -22,7 +22,7 @@ import { Ionicons } from '@expo/vector-icons';
 import * as Location from 'expo-location';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import MapView from 'react-native-map-clustering';
-import { Marker, Callout } from 'react-native-maps';
+import { Marker, Callout, PROVIDER_GOOGLE } from 'react-native-maps';
 import { StudyRoom, University } from '../types';
 import { haversineDistance } from '../utils/locationHelpers';
 import { FocusAwareStatusBar } from '../components/FocusAwareStatusBar';
@@ -48,6 +48,76 @@ const FILTERS_CACHE_KEY = 'study_rooms_filters_cache';
 const FAVORITES_CACHE_KEY = 'study_rooms_favorites_cache';
 const CACHE_EXPIRY = 24 * 60 * 60 * 1000;
 const UDA_ALERT_KEY = 'uda_campus_prompt_shown';
+
+const CustomMapMarker = React.memo(({ room, onPress, onCalloutPress, color }: { room: StudyRoom, onPress: () => void, onCalloutPress: () => void, color: string }) => {
+    const [tracksViewChanges, setTracksViewChanges] = useState(Platform.OS === 'android');
+    const markerRef = useRef<any>(null);
+    const hasFrozen = useRef(false);
+
+    const forceFreeze = useCallback(() => {
+        if (Platform.OS === 'android' && !hasFrozen.current) {
+            hasFrozen.current = true;
+            // Wait slightly for the native view to finish rendering its layout before taking the snapshot
+            setTimeout(() => {
+                setTracksViewChanges(false);
+            }, 300);
+        }
+    }, []);
+
+    useEffect(() => {
+        if (Platform.OS === 'android') {
+            // Fallback in case onLayout doesn't fire
+            const timer = setTimeout(() => {
+                if (!hasFrozen.current) {
+                    hasFrozen.current = true;
+                    setTracksViewChanges(false);
+                }
+            }, 1000);
+            return () => clearTimeout(timer);
+        }
+    }, []);
+
+    const handlePress = (e: any) => {
+        if (e && e.stopPropagation) {
+            e.stopPropagation();
+        }
+        if (onPress) onPress();
+
+        // Force the callout to appear on Android when onPress is intercepted
+        if (Platform.OS === 'android' && markerRef.current && markerRef.current.showCallout) {
+            setTimeout(() => {
+                markerRef.current.showCallout();
+            }, 50);
+        }
+    };
+
+    return (
+        <Marker
+            ref={markerRef}
+            coordinate={{ latitude: room.latitude, longitude: room.longitude }}
+            onPress={handlePress}
+            tracksViewChanges={tracksViewChanges}
+            onCalloutPress={onCalloutPress}
+        >
+            <View
+                style={[styles.markerContainer, { backgroundColor: color }]}
+                pointerEvents="none"
+                onLayout={Platform.OS === 'android' ? forceFreeze : undefined}
+            >
+                <Ionicons name="school" size={16} color="#ffffff" />
+            </View>
+            <Callout tooltip onPress={onCalloutPress}>
+                <View style={styles.calloutContainer}>
+                    <Text style={styles.calloutTitle}>{room.nome}</Text>
+                    <Text style={styles.calloutDescription}>{room.edificio}</Text>
+                    <View style={[styles.calloutButton, { backgroundColor: color }]}>
+                        <Text style={styles.calloutButtonText}>Vedi Indicazioni</Text>
+                    </View>
+                </View>
+            </Callout>
+        </Marker>
+    );
+});
 
 export const StudyRoomsScreen: React.FC<StudyRoomsScreenProps> = ({ navigation }) => {
     const insets = useSafeAreaInsets();
@@ -1625,6 +1695,7 @@ export const StudyRoomsScreen: React.FC<StudyRoomsScreenProps> = ({ navigation }
             <View style={styles.mapContainer}>
                 <MapView
                     ref={mapRef}
+                    provider={Platform.OS === 'android' ? PROVIDER_GOOGLE : undefined}
                     style={styles.mapView}
                     initialRegion={university?.region}
                     showsUserLocation={true}
@@ -1638,15 +1709,12 @@ export const StudyRoomsScreen: React.FC<StudyRoomsScreenProps> = ({ navigation }
                     animationEnabled={true}
                 >
                     {filteredRooms.map((room) => (
-                        <Marker
-                            key={room.id}
-                            coordinate={{ latitude: room.latitude, longitude: room.longitude }}
+                        <CustomMapMarker
+                            key={Platform.OS === 'android' ? `${room.id}-${selectedBuilding}-${searchQuery}-${showFavorites}` : room.id}
+                            room={room}
+                            color={university?.color || '#10b981'}
                             onPress={() => handleMarkerPress(room)}
-                        >
-                            <View style={[styles.markerContainer, { backgroundColor: university?.color || '#10b981' }]}>
-                                <Ionicons name="school" size={16} color="#ffffff" />
-                            </View>
-                            <Callout tooltip onPress={() => {
+                            onCalloutPress={() => {
                                 Alert.alert(
                                     "Come vuoi procedere?",
                                     "Scegli come visualizzare le indicazioni",
@@ -1675,16 +1743,8 @@ export const StudyRoomsScreen: React.FC<StudyRoomsScreenProps> = ({ navigation }
                                         }
                                     ]
                                 );
-                            }}>
-                                <View style={styles.calloutContainer}>
-                                    <Text style={styles.calloutTitle}>{room.nome}</Text>
-                                    <Text style={styles.calloutDescription}>{room.edificio}</Text>
-                                    <View style={[styles.calloutButton, { backgroundColor: university?.color }]}>
-                                        <Text style={styles.calloutButtonText}>Vedi Indicazioni</Text>
-                                    </View>
-                                </View>
-                            </Callout>
-                        </Marker>
+                            }}
+                        />
                     ))}
                 </MapView>
             </View>
@@ -2013,10 +2073,13 @@ const styles = StyleSheet.create({
         ...StyleSheet.absoluteFillObject,
     },
     markerContainer: {
-        padding: 7,
-        borderRadius: 20,
+        width: 36,
+        height: 36,
+        borderRadius: 18,
         borderWidth: 2.5,
         borderColor: '#ffffff',
+        justifyContent: 'center',
+        alignItems: 'center',
         // Marker shadow
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
