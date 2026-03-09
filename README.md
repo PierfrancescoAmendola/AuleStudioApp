@@ -123,4 +123,4 @@ Siamo aperti al contributo di tutti per mappare in maniera ineccepibile ogni sin
 
 ---
 
-Sviluppato con ❤️ per gli studenti italiani, da dev italiani.
+Sviluppato con ❤️ per gli studenti italiani, da Pierfrancesco Amendola.
